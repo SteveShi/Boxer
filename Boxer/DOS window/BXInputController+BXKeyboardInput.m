@@ -68,6 +68,14 @@
 
 - (void) keyDown: (NSEvent *)theEvent
 {
+	//Special handling for Cmd+F4 to cycle through mounted disc images
+	if ((theEvent.modifierFlags & NSEventModifierFlagCommand) == NSEventModifierFlagCommand &&
+		theEvent.keyCode == kVK_F4)
+	{
+		[self cycleMountedDiscsForward: self];
+		return;
+	}
+
 	//If the keypress was command-modified, don't pass it on to the emulator as it indicates
 	//a failed key equivalent.
 	//(This is consistent with how other OS X apps with textinput handle Cmd-keypresses.)
@@ -230,6 +238,10 @@
 - (IBAction) sendColon:         (id)sender { [self.representedObject.emulator handlePastedString: @":" asCommand: NO]; }
 - (IBAction) sendDash:          (id)sender { [self.representedObject.emulator handlePastedString: @"-" asCommand: NO]; }
 
+- (IBAction) cycleMountedDiscsForward: (id)sender
+{
+	[self.representedObject cycleMountedDiscsForward: sender];
+}
 
 - (void) type: (NSString *)message
 {
