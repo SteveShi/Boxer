@@ -159,6 +159,9 @@ typedef NS_ENUM(NSInteger, BXPlaybackMode) {
 - (IBAction) mountNextDrivesInQueues: (id)sender;
 - (IBAction) mountPreviousDrivesInQueues: (id)sender;
 
+/// Cycle all mounted drives to their next queued images. Triggered by Cmd+F4 keyboard shortcut.
+- (IBAction) cycleMountedDiscsForward: (id)sender;
+
 /// Whether we have any drive queues that can be cycled. Used for UI bindings.
 - (BOOL) canCycleDrivesInQueues;
 

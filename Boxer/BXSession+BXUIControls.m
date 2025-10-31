@@ -1087,6 +1087,36 @@
     [self _mountQueuedSiblingsAtOffset: -1];
 }
 
+- (IBAction) cycleMountedDiscsForward: (id)sender
+{
+    //Cycle through each mounted drive's queued images, showing bezel notifications for each change.
+    //This is triggered by Cmd+F4 in the keyboard input handler.
+    for (BXDrive *currentDrive in self.mountedDrives)
+    {
+        BXDrive *siblingDrive = [self siblingOfQueuedDrive: currentDrive atOffset: 1];
+        if (siblingDrive && ![siblingDrive isEqual: currentDrive])
+        {
+            NSError *mountError = nil;
+            BXDrive *mountedDrive = [self mountDrive: siblingDrive
+                                            ifExists: BXDriveReplace
+                                             options: BXDefaultDriveMountOptions
+                                               error: &mountError];
+
+            if (!mountedDrive && mountError)
+            {
+                [self presentError: mountError
+                    modalForWindow: self.windowForDriveSheet
+                          delegate: nil
+                didPresentSelector: NULL
+                       contextInfo: NULL];
+
+                //Don't continue mounting if we encounter a problem
+                break;
+            }
+        }
+    }
+}
+
 + (NSSet *) keyPathsForValuesAffectingCanCycleDrivesInQueues
 {
     return [NSSet setWithObject: @"drives"];
