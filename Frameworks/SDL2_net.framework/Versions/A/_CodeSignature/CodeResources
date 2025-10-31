@@ -4,25 +4,63 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Resources/CMake/sdl2_net-config-version.cmake</key>
+		<data>
+		8ZKkJQMqkdmUCdUuXuBqZ06vOF4=
+		</data>
+		<key>Resources/CMake/sdl2_net-config.cmake</key>
+		<data>
+		mA6B9iPIly+sLqYmoDUu4LBJYPE=
+		</data>
 		<key>Resources/Info.plist</key>
 		<data>
-		r1/4r4Zd6u0IEe9xmTCSr409DcY=
+		JDlPUDTYvr6hGQO/WrsAUdtWrnQ=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
 		<key>Headers/SDL_net.h</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			dl+uHo4/dWimv+l/hyYdbgUl+5Y=
+			</data>
 			<key>hash2</key>
 			<data>
-			HJ7/4em+a3lReAmd3+hhshDq3e902JmwHId7QF6qWhA=
+			JL1IWQfyfxnF/X8fJONZRNhOejk3XVvtTj1yRJJ6ZSc=
+			</data>
+		</dict>
+		<key>Resources/CMake/sdl2_net-config-version.cmake</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			8ZKkJQMqkdmUCdUuXuBqZ06vOF4=
+			</data>
+			<key>hash2</key>
+			<data>
+			TDUCXSZht6XHLKbEkJKjfayM8qVq/F8B9meM2EaKzNA=
+			</data>
+		</dict>
+		<key>Resources/CMake/sdl2_net-config.cmake</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			mA6B9iPIly+sLqYmoDUu4LBJYPE=
+			</data>
+			<key>hash2</key>
+			<data>
+			g8IJN/fTlaSR/cyuSd7xebrjWdW7k+Ls5Aj1+uswLjY=
 			</data>
 		</dict>
 		<key>Resources/Info.plist</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			JDlPUDTYvr6hGQO/WrsAUdtWrnQ=
+			</data>
 			<key>hash2</key>
 			<data>
-			lefKUyOAp+P+pTTln6ogRhN4LP94kUZ6pJtcQ61PTSE=
+			0fyzZXWxpqAJir+VnaeERkRsafEreOAYbqd/+C0lNyw=
 			</data>
 		</dict>
 	</dict>

@@ -1,6 +1,6 @@
 /*
   Simple DirectMedia Layer
-  Copyright (C) 1997-2021 Sam Lantinga <slouken@libsdl.org>
+  Copyright (C) 1997-2025 Sam Lantinga <slouken@libsdl.org>
 
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
@@ -22,13 +22,13 @@
 #ifndef SDL_shape_h_
 #define SDL_shape_h_
 
-#include "SDL_stdinc.h"
-#include "SDL_pixels.h"
-#include "SDL_rect.h"
-#include "SDL_surface.h"
-#include "SDL_video.h"
+#include <SDL2/SDL_stdinc.h>
+#include <SDL2/SDL_pixels.h>
+#include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_surface.h>
+#include <SDL2/SDL_video.h>
 
-#include "begin_code.h"
+#include <SDL2/begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -48,18 +48,18 @@ extern "C" {
  * and flags.
  *
  * \param title The title of the window, in UTF-8 encoding.
- * \param x The x position of the window, ::SDL_WINDOWPOS_CENTERED, or
- *          ::SDL_WINDOWPOS_UNDEFINED.
- * \param y The y position of the window, ::SDL_WINDOWPOS_CENTERED, or
- *          ::SDL_WINDOWPOS_UNDEFINED.
+ * \param x The x position of the window, SDL_WINDOWPOS_CENTERED, or
+ *          SDL_WINDOWPOS_UNDEFINED.
+ * \param y The y position of the window, SDL_WINDOWPOS_CENTERED, or
+ *          SDL_WINDOWPOS_UNDEFINED.
  * \param w The width of the window.
  * \param h The height of the window.
  * \param flags The flags for the window, a mask of SDL_WINDOW_BORDERLESS with
- *              any of the following: ::SDL_WINDOW_OPENGL,
- *              ::SDL_WINDOW_INPUT_GRABBED, ::SDL_WINDOW_HIDDEN,
- *              ::SDL_WINDOW_RESIZABLE, ::SDL_WINDOW_MAXIMIZED,
- *              ::SDL_WINDOW_MINIMIZED, ::SDL_WINDOW_BORDERLESS is always set,
- *              and ::SDL_WINDOW_FULLSCREEN is always unset.
+ *              any of the following: SDL_WINDOW_OPENGL,
+ *              SDL_WINDOW_INPUT_GRABBED, SDL_WINDOW_HIDDEN,
+ *              SDL_WINDOW_RESIZABLE, SDL_WINDOW_MAXIMIZED,
+ *              SDL_WINDOW_MINIMIZED, SDL_WINDOW_BORDERLESS is always set, and
+ *              SDL_WINDOW_FULLSCREEN is always unset.
  * \return the window created, or NULL if window creation failed.
  *
  * \since This function is available since SDL 2.0.0.
@@ -150,6 +150,6 @@ extern DECLSPEC int SDLCALL SDL_GetShapedWindowMode(SDL_Window *window,SDL_Windo
 #ifdef __cplusplus
 }
 #endif
-#include "close_code.h"
+#include <SDL2/close_code.h>
 
 #endif /* SDL_shape_h_ */
