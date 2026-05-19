@@ -1,6 +1,6 @@
 # Boxer Changelog / 更新日志
 
-## Version 2.0.1-Alpha (English)
+## Version 2.0.0-Alpha2 (English)
 
 This is an alpha release of Boxer featuring a major architectural migration under the hood, updating our emulation core to the modern and highly active **DOSBox-Staging**.
 
@@ -13,7 +13,7 @@ This is an alpha release of Boxer featuring a major architectural migration unde
 
 ---
 
-## 版本 2.0.1-Alpha (中文)
+## 版本 2.0.0-Alpha2 (中文)
 
 这是一个测试版本，在底层进行了重大的架构迁移，将我们的模拟核心升级到了现代且高度活跃的 **DOSBox-Staging** 项目。
 

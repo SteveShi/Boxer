@@ -685,8 +685,8 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer
         INFOPLIST_FILE: Info.plist
         CODE_SIGN_ENTITLEMENTS: Boxer/Boxer.entitlements
-        MARKETING_VERSION: 2.0.1-Alpha
-        CURRENT_PROJECT_VERSION: 2.0.1-Alpha+20260519
+        MARKETING_VERSION: 2.0.0-Alpha2
+        CURRENT_PROJECT_VERSION: 2.0.0-Alpha2+20260519
         SUEnableAutomaticChecks: true
         SUScheduledCheckInterval: 86400
         SUFeedURL: https://github.com/SteveShi/Boxer/releases/latest/download/appcast.xml
