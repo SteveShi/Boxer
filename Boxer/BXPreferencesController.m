@@ -19,6 +19,8 @@
 #import "BXMIDIDeviceMonitor.h"
 #import "BXFilterGallery.h"
 #import "BXFrameRenderingView.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
+
 
 #pragma mark -
 #pragma mark Implementation
@@ -376,7 +378,7 @@ enum {
     //of UTI codes because the ".rom" extension is owned by a
     //dozen-and-one console emulators and any UTI definition
     //of our own would just fight with them.
-    openPanel.allowedFileTypes = @[@"rom"];
+    openPanel.allowedContentTypes = @[[UTType typeWithFilenameExtension:@"rom"]];
     
     [openPanel beginSheetModalForWindow: self.window
                       completionHandler: ^(NSInteger result) {

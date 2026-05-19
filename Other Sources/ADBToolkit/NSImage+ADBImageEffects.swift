@@ -157,7 +157,7 @@ extension NSImage {
 	/// Draw a template image filled with the specified gradient and rendered
 	/// with the specified inner and drop shadows.
 	@objc(drawInRect:withGradient:dropShadow:innerShadow:respectFlipped:)
-	open func draw(in drawRect: NSRect, with fillGradient: NSGradient?, dropShadow: NSShadow?, innerShadow: NSShadow?, respectFlipped respectContextIsFlipped: Bool) {
+	@MainActor open func draw(in drawRect: NSRect, with fillGradient: NSGradient?, dropShadow: NSShadow?, innerShadow: NSShadow?, respectFlipped respectContextIsFlipped: Bool) {
 		precondition(self.isTemplate, "drawInRect:withGradient:dropShadow:innerShadow: can only be used with template images.")
 		
 		//Check if we're rendering into a backing intended for retina displays.

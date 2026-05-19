@@ -26,6 +26,7 @@
 
 #import "NSImage+ADBSaveImages.h"
 #import "BXFileTypes.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 
 @implementation BXSession (BXUIControls)
@@ -983,7 +984,7 @@
                                      @"Label for confirmation button on open panel when importing a game state.");
     panel.message = NSLocalizedString(@"Importing will replace your current savegames and player data. The game will relaunch to complete the import.",
                                       @"Explanatory text on open panel when importing a game state.");
-    panel.allowedFileTypes = @[BXGameStateType];
+    panel.allowedContentTypes = @[[UTType typeWithIdentifier:BXGameStateType]];
     panel.canChooseDirectories = NO;
     panel.allowsMultipleSelection = NO;
     
@@ -1042,7 +1043,7 @@
     panel.nameFieldLabel = NSLocalizedString(@"Export as:",
                                              @"Label for filename field on save panel when exporting the current game state.");
     
-    panel.allowedFileTypes = @[BXGameStateType];
+    panel.allowedContentTypes = @[[UTType typeWithIdentifier:BXGameStateType]];
     panel.nameFieldStringValue = baseName;
     panel.canSelectHiddenExtension = NO;
     

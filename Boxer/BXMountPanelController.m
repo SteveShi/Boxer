@@ -15,6 +15,8 @@
 #import "BXDrive.h"
 #import "BXGamebox.h"
 #import "BXInspectorController.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
+
 
 
 @implementation BXMountPanelController
@@ -58,7 +60,11 @@
                                          @"Label shown on accept button in mount-a-new-drive panel.");
 	
     openPanel.accessoryView = self.view;
-    openPanel.allowedFileTypes = [BXFileTypes mountableTypes].allObjects;
+    NSMutableArray<UTType *> *types = [NSMutableArray array];
+    for (NSString *uti in [BXFileTypes mountableTypes]) {
+        [types addObject:[UTType typeWithIdentifier:uti]];
+    }
+    openPanel.allowedContentTypes = types;
     openPanel.directoryURL = theSession.gamebox.resourceURL;
 	
 	[self populateDrivesFromSession: theSession];

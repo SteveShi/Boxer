@@ -15,6 +15,8 @@
 #import "BXGamebox.h"
 #import "NSURL+ADBFilesystemHelpers.h"
 #import "NSString+ADBPaths.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
+
 
 
 //Used by syncMenuItems to determine where to fill the program menu with program items
@@ -133,7 +135,11 @@ enum {
     openPanel.canChooseFiles = YES;
     openPanel.canChooseDirectories = NO;
     openPanel.treatsFilePackagesAsDirectories = YES;
-    openPanel.allowedFileTypes = [BXFileTypes executableTypes].allObjects;
+    NSMutableArray<UTType *> *types = [NSMutableArray array];
+    for (NSString *uti in [BXFileTypes executableTypes]) {
+        [types addObject:[UTType typeWithIdentifier:uti]];
+    }
+    openPanel.allowedContentTypes = types;
     
     openPanel.message = NSLocalizedString(@"Choose the target program for this gamebox:",
                                           @"Help text shown at the top of choose-a-target-program panel.");

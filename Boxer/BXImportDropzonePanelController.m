@@ -12,6 +12,8 @@
 #import "BXImportSession.h"
 #import "BXBlueprintPanel.h"
 #import "BXAppController.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
+
 
 
 @implementation BXImportDropzonePanelController
@@ -49,7 +51,11 @@
     openPanel.prompt = NSLocalizedString(@"Import",
                                          @"Label shown on accept button in choose-a-folder-to-import panel.");
 	
-    openPanel.allowedFileTypes = [BXImportSession acceptedSourceTypes].allObjects;
+    NSMutableArray<UTType *> *types = [NSMutableArray array];
+    for (NSString *uti in [BXImportSession acceptedSourceTypes]) {
+        [types addObject:[UTType typeWithIdentifier:uti]];
+    }
+    openPanel.allowedContentTypes = types;
     
     [openPanel beginSheetModalForWindow: self.view.window
                       completionHandler: ^(NSInteger result) {

@@ -11,6 +11,7 @@
 #import "BBIconDropzone.h"
 #import "NSURL+ADBFilesystemHelpers.h"
 #import "NSWorkspace+ADBIconHelpers.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 NSString * const kBBRowIndexSetDropType = @"BBRowIndexSetDropType";
 NSString * const kUTTypeGamebox = @"net.washboardabs.boxer-game-package";
@@ -706,7 +707,7 @@ NSString * const kBBValidationErrorDomain = @"net.washboardabs.boxer-bundler.val
     
     NSSavePanel *panel = [NSSavePanel savePanel];
     panel.nameFieldStringValue = [self.sanitisedAppName stringByAppendingPathExtension: @"app"];
-    panel.allowedFileTypes = @[(NSString *)kUTTypeApplicationBundle];
+    panel.allowedContentTypes = @[UTTypeApplicationBundle];
     panel.extensionHidden = YES;
     panel.canSelectHiddenExtension = NO;
     
@@ -770,7 +771,7 @@ NSString * const kBBValidationErrorDomain = @"net.washboardabs.boxer-bundler.val
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     
-    panel.allowedFileTypes = @[(NSString *)kUTTypeAppleICNS];
+    panel.allowedContentTypes = @[UTTypeAppleICNS];
     panel.allowsMultipleSelection = NO;
     panel.treatsFilePackagesAsDirectories = YES;
     
@@ -794,9 +795,9 @@ NSString * const kBBValidationErrorDomain = @"net.washboardabs.boxer-bundler.val
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     
-    panel.allowedFileTypes = @[
-        (NSString *)kUTTypeApplicationBundle,
-        kUTTypeGamebox
+    panel.allowedContentTypes = @[
+        UTTypeApplicationBundle,
+        [UTType typeWithIdentifier:kUTTypeGamebox]
     ];
     panel.allowsMultipleSelection = NO;
     panel.treatsFilePackagesAsDirectories = NO;

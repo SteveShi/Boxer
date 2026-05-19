@@ -14,6 +14,8 @@
 #import "BXValueTransformers.h"
 #import "NSString+ADBPaths.h"
 #import "NSURL+ADBFilesystemHelpers.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
+
 
 
 //The tag of the divider at the end of the installer options in the installer selector menu.
@@ -193,7 +195,11 @@
     openPanel.message = NSLocalizedString(@"Choose the DOS installer program for this game:",
                                           @"Help text shown at the top of choose-an-installer panel.");
 	
-    openPanel.allowedFileTypes = [BXFileTypes executableTypes].allObjects;
+    NSMutableArray<UTType *> *types = [NSMutableArray array];
+    for (NSString *uti in [BXFileTypes executableTypes]) {
+        [types addObject:[UTType typeWithIdentifier:uti]];
+    }
+    openPanel.allowedContentTypes = types;
     openPanel.directoryURL = self.controller.document.sourceURL;
     
     [openPanel beginSheetModalForWindow: self.view.window completionHandler: ^(NSInteger result) {
