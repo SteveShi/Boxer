@@ -9,7 +9,7 @@
 #import "BXCollectionItemView.h"
 #import "NSBezierPath+MCAdditions.h"
 #import "NSShadow+ADBShadowExtensions.h"
-#import "BXThemedImageCell.h"
+
 #import "NSView+ADBDrawingHelpers.h"
 
 @implementation BXCollectionItemView

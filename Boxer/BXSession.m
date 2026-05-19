@@ -38,7 +38,11 @@
 
 #import "ADBAppKitVersionHelpers.h"
 
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
 #import "Boxer-Swift.h"
+#endif
 
 
 #pragma mark -

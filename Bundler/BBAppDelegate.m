@@ -771,7 +771,7 @@ NSString * const kBBValidationErrorDomain = @"net.washboardabs.boxer-bundler.val
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     
-    panel.allowedContentTypes = @[UTTypeAppleICNS];
+    panel.allowedContentTypes = @[[UTType typeWithIdentifier:@"com.apple.icns"]];
     panel.allowsMultipleSelection = NO;
     panel.treatsFilePackagesAsDirectories = YES;
     

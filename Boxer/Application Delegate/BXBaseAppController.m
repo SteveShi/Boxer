@@ -28,7 +28,11 @@
 #import "NSObject+ADBPerformExtensions.h"
 
 #import "ADBUserNotificationDispatcher.h"
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
 #import "Boxer-Swift.h"
+#endif
 #include <tgmath.h>
 
 /// The number of increments from minimum volume to full volume.

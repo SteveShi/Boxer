@@ -1,5 +1,31 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Alpha3 (English)
+
+This release establishes our modern, premium CI/CD pipelines, automates localized release notes parsing, and unifies the release scheme for all three software targets.
+
+### Key Changes
+- **CI/CD Automation Pipeline**: Fully re-designed and expanded the GitHub Actions CI/CD workflows to simultaneously compile all three software targets (**Boxer**, **Boxer Standalone**, and **Boxer Bundler**) for Apple Silicon.
+- **Sparkle-Ready Localized Release Notes**: Built an intelligent Python-based automatic parser for localized Release Notes. Upon pushing a version tag, the CI dynamically extracts English and Chinese sections from `CHANGELOG.md` matching the tag version, perfect for Sparkle's multi-lingual update dialogs.
+- **Multi-App Distribution Packages**: Integrated automated `.zip` and `.dmg` creation and signing-free packaging for all three platforms (6 distribution files in total) and automated GitHub Release publishing.
+- **Repository and Branch Pruning**: Fully cleaned up and deleted outdated or obsolete local and remote tracking branches across the main codebase and DOSBox-Staging submodules, locking the environment onto a pure and clean `main` branch setup.
+- **Unified Software Versioning**: Standardized and synchronized the software version numbers to `2.0.0-Alpha3` across all targets.
+
+---
+
+## 版本 2.0.0-Alpha3 (中文)
+
+本版本建立了现代、高级的 CI/CD 自动化流水线，实现了本地化更新日志的自动截取解析，并统一了所有三个软件目标的发布方案。
+
+### 主要更新
+- **CI/CD 自动化流水线**：重构并扩展了 GitHub Actions CI/CD 工作流，实现针对 Apple Silicon 架构同时自动编译 **Boxer**、**Boxer Standalone** 和 **Boxer Bundler** 三个软件目标。
+- **支持 Sparkle 的双语 Release Notes 提取**：构建了智能 Python 脚本解析器。当您推送版本 Tag 时，CI 会动态从 `CHANGELOG.md` 中隔离提取出与该版本完全对应的中英文更新日志，完美适配 Sparkle 的多语言更新弹窗。
+- **多应用分发打包**：整合了三大目标平台独立 `.zip` 与 `.dmg` 文件（共 6 个发布资产）的自动化压缩、打包和 GitHub Release 发布流程。
+- **仓库与分支深度清理**：彻底清理并删除了主仓库和 DOSBox-Staging 子模块中所有陈旧、无用的本地与远程跟踪分支，将构建环境锁定在极度纯净的 `main` 分支上。
+- **统一软件版本号**：将所有三个软件目标的 MARKETING_VERSION 统一升级并同步为 `2.0.0-Alpha3`。
+
+---
+
 ## Version 2.0.0-Alpha2 (English)
 
 This is an alpha release of Boxer featuring a major architectural migration under the hood, updating our emulation core to the modern and highly active **DOSBox-Staging**.

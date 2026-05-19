@@ -39,8 +39,36 @@ jobs:
       - name: Generate Xcode project
         run: xcodegen generate
 
-      - name: Build release app
+      - name: Extract Release Notes from CHANGELOG
         run: |
+          python3 -c "
+          import os, re
+          tag = os.environ.get('GITHUB_REF_NAME', '')
+          version = tag[1:] if tag.startswith('v') else tag
+          if not version:
+              version = '2.0.0-Alpha2'
+          with open('CHANGELOG.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+          en_pattern = rf'## Version {re.escape(version)} \(English\)(.*?)(?:\r?\n##\s|\r?\n---\r?\n|\Z)'
+          en_match = re.search(en_pattern, content, re.DOTALL)
+          en_notes = en_match.group(1).strip() if en_match else ''
+          zh_pattern = rf'## 版本 {re.escape(version)} \(中文\)(.*?)(?:\r?\n##\s|\r?\n---|\Z)'
+          zh_match = re.search(zh_pattern, content, re.DOTALL)
+          zh_notes = zh_match.group(1).strip() if zh_match else ''
+          release_notes = ''
+          if en_notes:
+              release_notes += f'## Version {version} (English)\n\n' + en_notes + '\n\n'
+          if en_notes and zh_notes:
+              release_notes += '---\n\n'
+          if zh_notes:
+              release_notes += f'## 版本 {version} (中文)\n\n' + zh_notes + '\n'
+          with open('release_notes.md', 'w', encoding='utf-8') as f:
+              f.write(release_notes)
+          "
+
+      - name: Build release apps
+        run: |
+          # Build Boxer
           xcodebuild \
             -project Boxer.xcodeproj \
             -scheme Boxer \
@@ -53,16 +81,56 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             build
 
-      - name: Package release app
+          # Build Boxer Standalone
+          xcodebuild \
+            -project Boxer.xcodeproj \
+            -scheme "Boxer Standalone" \
+            -configuration Release \
+            -destination 'platform=macOS,arch=arm64' \
+            -derivedDataPath build \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
+          # Build Boxer Bundler
+          xcodebuild \
+            -project Boxer.xcodeproj \
+            -scheme "Boxer Bundler" \
+            -configuration Release \
+            -destination 'platform=macOS,arch=arm64' \
+            -derivedDataPath build \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
+      - name: Package release apps
         run: |
-          ditto -c -k --keepParent build/Build/Products/Release/Boxer.app Boxer-Apple-Silicon.zip
-          hdiutil create -volname Boxer -srcfolder build/Build/Products/Release/Boxer.app -ov -format UDZO Boxer-Apple-Silicon.dmg
+          # Package Boxer
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer.app" Boxer-Apple-Silicon.zip
+          hdiutil create -volname Boxer -srcfolder "build/Build/Products/Release/Boxer.app" -ov -format UDZO Boxer-Apple-Silicon.dmg
+
+          # Package Boxer Standalone
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Standalone.app" Boxer-Standalone-Apple-Silicon.zip
+          hdiutil create -volname "Boxer Standalone" -srcfolder "build/Build/Products/Release/Boxer Standalone.app" -ov -format UDZO Boxer-Standalone-Apple-Silicon.dmg
+
+          # Package Boxer Bundler
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Bundler.app" Boxer-Bundler-Apple-Silicon.zip
+          hdiutil create -volname "Boxer Bundler" -srcfolder "build/Build/Products/Release/Boxer Bundler.app" -ov -format UDZO Boxer-Bundler-Apple-Silicon.dmg
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
+          body_path: release_notes.md
           files: |
             Boxer-Apple-Silicon.zip
             Boxer-Apple-Silicon.dmg
+            Boxer-Standalone-Apple-Silicon.zip
+            Boxer-Standalone-Apple-Silicon.dmg
+            Boxer-Bundler-Apple-Silicon.zip
+            Boxer-Bundler-Apple-Silicon.dmg
           fail_on_unmatched_files: true
           make_latest: true

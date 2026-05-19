@@ -9,7 +9,11 @@
 #import "NSShadow+ADBShadowExtensions.h"
 #import "NSBezierPath+MCAdditions.h"
 #import "ADBGeometry.h"
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
 #import "Boxer-Swift.h"
+#endif
 
 @interface BXStandaloneLaunchPanelButtonCell ()
 

@@ -7,7 +7,11 @@
 
 #import "BXThemedButtonCell.h"
 #import "ADBGeometry.h"
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
 #import "Boxer-Swift.h"
+#endif
 
 @implementation BXThemedButtonCell
 

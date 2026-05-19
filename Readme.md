@@ -38,7 +38,14 @@ All necessary frameworks and other dependencies are included in the Boxer repo o
     *   **Via Xcode**: Open `Boxer.xcodeproj` and build the **Boxer** scheme using `Product > Build` (or `Cmd + B`).
     *   **Via Command Line (Release)**:
         ```bash
+        # Build main Boxer emulator
         xcodebuild -scheme Boxer -configuration Release build
+
+        # Build Boxer Standalone
+        xcodebuild -scheme "Boxer Standalone" -configuration Release build
+
+        # Build Boxer Bundler
+        xcodebuild -scheme "Boxer Bundler" -configuration Release build
         ```
 
 ### Build Targets
@@ -47,8 +54,10 @@ All necessary frameworks and other dependencies are included in the Boxer repo o
 *   **Boxer Standalone**: A lightweight standalone wrapper that packages a single gamebox into a self-contained macOS app.
 *   **Boxer Bundler**: A graphical utility that uses Boxer Standalone to package your DOS gameboxes into stand-alone apps.
 
-### Emulation Core
-This version of Boxer uses **DOSBox-Staging** (v0.82.2 compat core) as its underlying engine, providing superior audio rendering (including MT-32 emulation via Munt), pixel-perfect shader configurations, modern gamepad integration, and modern macOS API styling.
+### CI/CD Automation
+The project includes a robust GitHub Actions CI/CD pipeline (`.github/workflows`):
+*   **macOS Verification Workflow (`macos.yml`)**: Automatically triggers on all pushes and pull requests to build all three targets (**Boxer**, **Boxer Standalone**, and **Boxer Bundler**) for Apple Silicon to guarantee build stability.
+*   **macOS Release Workflow (`macos-release.yml`)**: Automatically triggers when you push a version tag (e.g. `v2.0.0-Alpha3`). It compiles all three targets for Apple Silicon, packages them into individual `.zip` and `.dmg` files (6 assets in total), dynamically extracts localized Chinese and English release notes from `CHANGELOG.md` matching the tag version, and publishes a new GitHub Release with the correct notes and binaries.
 
 ### License
 This project is licensed under the [GPLv2](./LICENSE). Originally developed by Alun Bestor and modernized by Steve Shi and other contributors.
@@ -89,7 +98,14 @@ This project is licensed under the [GPLv2](./LICENSE). Originally developed by A
     *   **使用 Xcode 打开**：双击打开 `Boxer.xcodeproj`，选择 **Boxer** 方案并按 `Cmd + B` 进行编译。
     *   **通过命令行编译 (Release 模式)**：
         ```bash
+        # 编译主 Boxer 模拟器 App
         xcodebuild -scheme Boxer -configuration Release build
+
+        # 编译 Boxer Standalone
+        xcodebuild -scheme "Boxer Standalone" -configuration Release build
+
+        # 编译 Boxer Bundler
+        xcodebuild -scheme "Boxer Bundler" -configuration Release build
         ```
 
 ### 构建目标 (Targets)
@@ -98,8 +114,10 @@ This project is licensed under the [GPLv2](./LICENSE). Originally developed by A
 *   **Boxer Standalone**：轻量级封装版本，用于将单个 DOS 游戏包（gamebox）打包为独立的 macOS App。
 *   **Boxer Bundler**：图形化打包工具，利用 Boxer Standalone 快速将您的 DOS 游戏包制作成免安装、双击即玩的 Mac 应用程序。
 
-### 模拟核心
-此版本的 Boxer 采用 **DOSBox-Staging** (基于 v0.82.2 兼容分支) 作为底层引擎，支持高端音频渲染（包括通过 Munt 提供的 MT-32 模拟）、像素级着色器配置、现代手柄原生集成以及现代 macOS 系统的多项高级 API。
+### CI/CD 自动化
+项目内置了强大的 GitHub Actions 自动化构建与发布流程（位于 `.github/workflows`）：
+*   **macOS 编译验证流 (`macos.yml`)**：在任何分支收到 push 或 pull request 时自动触发，同时编译 **Boxer**、**Boxer Standalone** 和 **Boxer Bundler** 三个 App (针对 Apple Silicon)，确保代码合并与演进过程中的编译稳定性。
+*   **macOS 版本发布流 (`macos-release.yml`)**：当您推送版本 Tag（例如 `v2.0.0-Alpha3`）时自动触发。它会一键完成这三个 App 的编译，并将每个 App 分别打包成独立的 `.zip` 和 `.dmg` 文件（共 6 个发布产物）。同时，CI 会采用 Python 脚本智能、动态地解析并提取 `CHANGELOG.md` 中与当前版本完全匹配的中英文双语更新日志，完美排版并发布到 GitHub Release。
 
 ### 开源协议
 本软件采用 [GPLv2 开源协议](./LICENSE)。最初由 Alun Bestor 等开发者开发，现由 Steve Shi 及其他贡献者完成现代化迁移与维护。

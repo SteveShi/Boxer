@@ -13,7 +13,11 @@
 #import "BXBaseAppController.h"
 #import "NSError+ADBErrorHelpers.h"
 #import "NSBezierPath+MCAdditions.h"
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
 #import "Boxer-Swift.h"
+#endif
 
 NS_ENUM(NSInteger) {
     BXDocumentationItemIcon = 1,

@@ -16,7 +16,11 @@
 #import "BXMIDISynth.h"
 #import "BXExternalMIDIDevice.h"
 #import "BXExternalMT32.h"
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
 #import "Boxer-Swift.h"
+#endif
 #import "RegexKitLite.h"
 
 

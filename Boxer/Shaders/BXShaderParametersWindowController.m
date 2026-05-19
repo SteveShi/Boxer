@@ -27,7 +27,11 @@
 #import "BXShaderParametersWindowController.h"
 #import "BXSession.h"
 #import "BXDOSWindowController.h"
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
 #import "Boxer-Swift.h"
+#endif
 
 static NSUserInterfaceItemIdentifier const CheckboxType  = @"Checkbox";
 static NSUserInterfaceItemIdentifier const SliderType    = @"Slider";

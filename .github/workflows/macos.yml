@@ -34,11 +34,39 @@ jobs:
       - name: Generate Xcode project
         run: xcodegen generate
 
-      - name: Build
+      - name: Build Boxer
         run: |
           xcodebuild \
             -project Boxer.xcodeproj \
             -scheme Boxer \
+            -configuration Release \
+            -destination 'platform=macOS,arch=arm64' \
+            -derivedDataPath build \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
+      - name: Build Boxer Standalone
+        run: |
+          xcodebuild \
+            -project Boxer.xcodeproj \
+            -scheme "Boxer Standalone" \
+            -configuration Release \
+            -destination 'platform=macOS,arch=arm64' \
+            -derivedDataPath build \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
+      - name: Build Boxer Bundler
+        run: |
+          xcodebuild \
+            -project Boxer.xcodeproj \
+            -scheme "Boxer Bundler" \
             -configuration Release \
             -destination 'platform=macOS,arch=arm64' \
             -derivedDataPath build \
