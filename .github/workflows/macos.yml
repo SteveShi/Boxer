@@ -27,8 +27,8 @@ jobs:
       - name: Patch shader dependencies for current CMake
         run: |
           if ! grep -q CMAKE_POLICY_VERSION_MINIMUM Vendor/OpenEmuShaders/3rdparty/Makefile; then
-            perl -0pi -e 's/\$\(CMAKE\) -B \$\(GLSLANG_BUILD_DIR\) -S \$\(GLSLANG_DIR\)/$(CMAKE) -B $(GLSLANG_BUILD_DIR) -S $(GLSLANG_DIR) -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
-            perl -0pi -e 's/\$\(CMAKE\) -B \$\(SPIRV_TOOLS_BUILD_DIR\) -S \$\(SPIRV_TOOLS_DIR\) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''\$\(TARGET_ARCHITECTURES\)'\'' -DSPIRV_WERROR=OFF/$(CMAKE) -B $(SPIRV_TOOLS_BUILD_DIR) -S $(SPIRV_TOOLS_DIR) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''$(TARGET_ARCHITECTURES)'\'' -DSPIRV_WERROR=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
+            perl -0pi -e 's/\$\(CMAKE\) -B \$\(GLSLANG_BUILD_DIR\) -S \$\(GLSLANG_DIR\)/\$(CMAKE) -B \$(GLSLANG_BUILD_DIR) -S \$(GLSLANG_DIR) -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
+            perl -0pi -e 's/\$\(CMAKE\) -B \$\(SPIRV_TOOLS_BUILD_DIR\) -S \$\(SPIRV_TOOLS_DIR\) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''\$\(TARGET_ARCHITECTURES\)'\'' -DSPIRV_WERROR=OFF/\$(CMAKE) -B \$(SPIRV_TOOLS_BUILD_DIR) -S \$(SPIRV_TOOLS_DIR) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''\$(TARGET_ARCHITECTURES)'\'' -DSPIRV_WERROR=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
           fi
 
       - name: Generate Xcode project
