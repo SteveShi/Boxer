@@ -1,22 +1,49 @@
+name: macOS
+
 on:
   push:
     branches:
-      - '**'
+      - "**"
+  pull_request:
+  workflow_dispatch:
 
 jobs:
-  k6_local_test:
-    name: Boxer test build macos
+  build:
+    name: Build Boxer for Apple Silicon
     runs-on: macos-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-      - name: Get dependencies
-        run: git submodule update --init --recursive
+      - name: Install XcodeGen
+        run: |
+          if ! command -v xcodegen >/dev/null 2>&1; then
+            brew install xcodegen
+          fi
 
-      - name: list content
-        run: pwd; ls -l
+      - name: Patch shader dependencies for current CMake
+        run: |
+          if ! grep -q CMAKE_POLICY_VERSION_MINIMUM Vendor/OpenEmuShaders/3rdparty/Makefile; then
+            perl -0pi -e 's/\$\(CMAKE\) -B \$\(GLSLANG_BUILD_DIR\) -S \$\(GLSLANG_DIR\)/$(CMAKE) -B $(GLSLANG_BUILD_DIR) -S $(GLSLANG_DIR) -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
+            perl -0pi -e 's/\$\(CMAKE\) -B \$\(SPIRV_TOOLS_BUILD_DIR\) -S \$\(SPIRV_TOOLS_DIR\) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''\$\(TARGET_ARCHITECTURES\)'\'' -DSPIRV_WERROR=OFF/$(CMAKE) -B $(SPIRV_TOOLS_BUILD_DIR) -S $(SPIRV_TOOLS_DIR) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''$(TARGET_ARCHITECTURES)'\'' -DSPIRV_WERROR=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
+          fi
 
-      - name: Build the project
-        run: xcodebuild -derivedDataPath ./build -workspace Boxer.xcworkspace -scheme "Boxer CI" -configuration "Release"
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build
+        run: |
+          xcodebuild \
+            -project Boxer.xcodeproj \
+            -scheme Boxer \
+            -configuration Release \
+            -destination 'platform=macOS,arch=arm64' \
+            -derivedDataPath build \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build

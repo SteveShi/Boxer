@@ -47,7 +47,8 @@ public class BXShadersModel : NSObject {
     }
     
     @objc
-    public static var shared : BXShadersModel = {
+    nonisolated(unsafe)
+    public static let shared : BXShadersModel = {
         return BXShadersModel()
     }()
     

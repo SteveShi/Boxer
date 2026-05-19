@@ -88,9 +88,11 @@ typedef NS_ENUM(uint8_t, BXCGACompositeMode) {
 	__unsafe_unretained BXEmulator *_emulator;
 	BXVideoFrame *_currentFrame;
 	
-	NSInteger _currentVideoMode;
-	BXFilterType _filterType;
-	BOOL _frameInProgress;
+		NSInteger _currentVideoMode;
+		BXFilterType _filterType;
+		BXFilterType _activeFilterType;
+		NSUInteger _frameskip;
+		BOOL _frameInProgress;
     
     BXHerculesTintMode _herculesTint;
     BXCGACompositeMode _CGAComposite;

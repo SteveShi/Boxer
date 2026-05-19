@@ -1,33 +1,68 @@
-on:
-  release:
-    types: [created]
-    # Sequence of patterns matched against refs/tags
-    tags:
-    - '[0-9]+.*' # Push events to matching 1.0, 2.0, 1.0.1-alpha
+name: Release macOS
 
-name: Upload Release Asset
+on:
+  push:
+    tags:
+      - "v*"
+      - "[0-9]*"
+  release:
+    types:
+      - created
+
+permissions:
+  contents: write
 
 jobs:
   release:
-    name: Upload Release Asset
+    name: Build and publish Apple Silicon release
     runs-on: macos-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
-      - name: Get dependencies
-        run: git submodule update --init --recursive
-      - name: Update the version before building
-        run: agvtool new-marketing-version ${GITHUB_REF#refs/tags/}
-      - name: Build the project
-        run: xcodebuild -derivedDataPath ./build -workspace Boxer.xcworkspace -scheme "Boxer CI" -configuration "Release"
-      - name: Package the release artefacts
-        run: |
-          hdiutil create -volname Boxer -srcfolder build/Build/Products/Release/Boxer.app -ov -format UDZO Boxer.dmg
-      - name:  Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
-          file: ./Boxer.dmg
-          asset_name: Boxer.dmg
-          overwrite: true
+          submodules: recursive
+
+      - name: Install XcodeGen
+        run: |
+          if ! command -v xcodegen >/dev/null 2>&1; then
+            brew install xcodegen
+          fi
+
+      - name: Patch shader dependencies for current CMake
+        run: |
+          if ! grep -q CMAKE_POLICY_VERSION_MINIMUM Vendor/OpenEmuShaders/3rdparty/Makefile; then
+            perl -0pi -e 's/\$\(CMAKE\) -B \$\(GLSLANG_BUILD_DIR\) -S \$\(GLSLANG_DIR\)/$(CMAKE) -B $(GLSLANG_BUILD_DIR) -S $(GLSLANG_DIR) -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
+            perl -0pi -e 's/\$\(CMAKE\) -B \$\(SPIRV_TOOLS_BUILD_DIR\) -S \$\(SPIRV_TOOLS_DIR\) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''\$\(TARGET_ARCHITECTURES\)'\'' -DSPIRV_WERROR=OFF/$(CMAKE) -B $(SPIRV_TOOLS_BUILD_DIR) -S $(SPIRV_TOOLS_DIR) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''$(TARGET_ARCHITECTURES)'\'' -DSPIRV_WERROR=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
+          fi
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build release app
+        run: |
+          xcodebuild \
+            -project Boxer.xcodeproj \
+            -scheme Boxer \
+            -configuration Release \
+            -destination 'platform=macOS,arch=arm64' \
+            -derivedDataPath build \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
+
+      - name: Package release app
+        run: |
+          ditto -c -k --keepParent build/Build/Products/Release/Boxer.app Boxer-Apple-Silicon.zip
+          hdiutil create -volname Boxer -srcfolder build/Build/Products/Release/Boxer.app -ov -format UDZO Boxer-Apple-Silicon.dmg
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Boxer-Apple-Silicon.zip
+            Boxer-Apple-Silicon.dmg
+          fail_on_unmatched_files: true
+          make_latest: true

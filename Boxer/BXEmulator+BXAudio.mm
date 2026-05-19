@@ -151,11 +151,8 @@ NSString * const BXMIDIExternalDeviceNeedsMT32SysexDelaysKey = @"Needs MT-32 Sys
 {
     SDL_PauseAudio(YES);
     
-#if !defined(C_SDL2)
-    _cdromWasPlaying = (SDL_CDStatus(NULL) == CD_PLAYING);
-    if (_cdromWasPlaying)
-        SDL_CDPause(NULL);
-#endif
+// SDL CD API removed in SDL2; CD audio state tracking disabled
+    (void)_cdromWasPlaying;
     
     [self.activeMIDIDevice pause];
 }
@@ -164,10 +161,7 @@ NSString * const BXMIDIExternalDeviceNeedsMT32SysexDelaysKey = @"Needs MT-32 Sys
 {
     SDL_PauseAudio(NO);
 
-#if !defined(C_SDL2)
-    if (_cdromWasPlaying)
-        SDL_CDResume(NULL);
-#endif
+// SDL CD API removed in SDL2; CD resume disabled
     
     [self.activeMIDIDevice resume];
 }
@@ -178,39 +172,40 @@ void _renderMIDIOutput(Bitu numFrames)
 {
     //We need to look up the corresponding channel for this because DOSBox's
     //mixer doesn't pass any context with its callbacks.
-    MixerChannel *channel = MIXER_FindChannel(BXMIDIChannelName);
-    if (channel) [[BXEmulator currentEmulator] _renderMIDIOutputToChannel: channel frames: numFrames];
+    MixerChannelPtr channel = MIXER_FindChannel(BXMIDIChannelName);
+    if (channel) [[BXEmulator currentEmulator] _renderMIDIOutputToChannel: channel.get() frames: numFrames];
 }
 
 
 - (MixerChannel *) _MIDIMixerChannel
 {
-    return MIXER_FindChannel(BXMIDIChannelName);
+    MixerChannelPtr ptr = MIXER_FindChannel(BXMIDIChannelName);
+    return ptr.get();
 }
 
 - (MixerChannel *) _addMIDIMixerChannelWithSampleRate: (NSUInteger)sampleRate
 {
-    MixerChannel *channel = [self _MIDIMixerChannel];
+    MixerChannelPtr channelPtr = MIXER_FindChannel(BXMIDIChannelName);
     
-    if (channel)
+    if (channelPtr)
     {
-        channel->SetFreq(sampleRate);
+        channelPtr->SetSampleRate((int)sampleRate);
     }
     else
     {
-        channel = MIXER_AddChannel(_renderMIDIOutput, sampleRate, BXMIDIChannelName);
+        channelPtr = MIXER_AddChannel(_renderMIDIOutput, (int)sampleRate, BXMIDIChannelName, {});
     }
-    channel->Enable(true);
-    return channel;
+    channelPtr->Enable(true);
+    return channelPtr.get();
 }
 
 - (void) _removeMIDIMixerChannel
 {
-    MixerChannel *channel = [self _MIDIMixerChannel];
-    if (channel)
+    MixerChannelPtr channelPtr = MIXER_FindChannel(BXMIDIChannelName);
+    if (channelPtr)
     {
-        channel->Enable(false);
-        MIXER_DelChannel(channel);
+        channelPtr->Enable(false);
+        MIXER_DeregisterChannel(channelPtr);
     }
 }
 
@@ -230,7 +225,9 @@ void _renderMIDIOutput(Bitu numFrames)
     NSUInteger sampleRate = 0;
     BXAudioFormat format = BXAudioFormatAny;
     
-    void *buffer = (void *)MixTemp;
+    // MixTemp was removed from DOSBox-Staging; use a local buffer instead
+    static uint8_t localMixBuf[65536 * 4];
+    void *buffer = (void *)localMixBuf;
     BOOL audioRendered = [source renderOutputToBuffer: buffer
                                                frames: numFrames
                                            sampleRate: &sampleRate
@@ -238,7 +235,7 @@ void _renderMIDIOutput(Bitu numFrames)
     
     if (audioRendered)
     {
-        [self _renderBuffer: MixTemp
+        [self _renderBuffer: localMixBuf
                   toChannel: channel
                      frames: numFrames
                      format: format];
@@ -263,32 +260,32 @@ void _renderMIDIOutput(Bitu numFrames)
         case BXAudioFormat8Bit:
             if (isSigned)
             {
-                if (isStereo)   channel->AddSamples_s8s(numFrames, (const Bit8s *)buffer);
-                else            channel->AddSamples_m8s(numFrames, (const Bit8s *)buffer);
+                if (isStereo)   channel->AddSamples_s8s((int)numFrames, (const int8_t *)buffer);
+                else            channel->AddSamples_m8s((int)numFrames, (const int8_t *)buffer);
             }
             else
             {
-                if (isStereo)   channel->AddSamples_s8(numFrames, (const Bit8u *)buffer);
-                else            channel->AddSamples_m8(numFrames, (const Bit8u *)buffer);
+                if (isStereo)   channel->AddSamples_s8((int)numFrames, (const uint8_t *)buffer);
+                else            channel->AddSamples_m8((int)numFrames, (const uint8_t *)buffer);
             }
             break;
         
         case BXAudioFormat16Bit:
             if (isSigned)
             {
-                if (isStereo)   channel->AddSamples_s16(numFrames, (const Bit16s *)buffer);
-                else            channel->AddSamples_m16(numFrames, (const Bit16s *)buffer);
+                if (isStereo)   channel->AddSamples_s16((int)numFrames, (const int16_t *)buffer);
+                else            channel->AddSamples_m16((int)numFrames, (const int16_t *)buffer);
             }
             else
             {
-                if (isStereo)   channel->AddSamples_s16u(numFrames, (const Bit16u *)buffer);
-                else            channel->AddSamples_m16u(numFrames, (const Bit16u *)buffer);
+                if (isStereo)   channel->AddSamples_s16u((int)numFrames, (const uint16_t *)buffer);
+                else            channel->AddSamples_m16u((int)numFrames, (const uint16_t *)buffer);
             }
             break;
             
         case BXAudioFormat32Bit:
-            if (isStereo)       channel->AddSamples_s32(numFrames, (const Bit32s *)buffer);
-            else                channel->AddSamples_m32(numFrames, (const Bit32s *)buffer);
+            NSLog(@"BXAudioFormat32Bit is no longer supported by the internal mixer.");
+            break;
     }
 }
 

@@ -121,7 +121,7 @@ Bitu boxer_prepareForFrameSize(Bitu width, Bitu height, Bitu gfx_flags, double s
 	NSSize scale		= NSMakeSize((CGFloat)scalex, (CGFloat)scaley);
 	[[emulator videoHandler] prepareForOutputSize: outputSize atScale: scale withCallback: callback];
 	
-	return GFX_CAN_32 | GFX_SCALING;
+	return GFX_CAN_32;
 }
 
 Bitu boxer_idealOutputMode(Bitu flags)
@@ -129,7 +129,7 @@ Bitu boxer_idealOutputMode(Bitu flags)
 	//Originally this tested various bit depths to find the most appropriate mode for the chosen scaler.
 	//Because OS X always uses a 32bpp context and Boxer always uses RGBA-capable scalers, we ignore the
 	//original function's behaviour altogether and just return something that will keep DOSBox happy.
-	return GFX_CAN_32 | GFX_SCALING;
+	return GFX_CAN_32;
 }
 
 bool boxer_startFrame(Bit8u * &frameBuffer, int & pitch)
@@ -609,10 +609,6 @@ void restart_program(std::vector<std::string> & parameters) {
     E_Exit("Restarting not implemented!");
 }
 
-const char *DOSBOX_GetDetailedVersion() noexcept
-{
-    return "Boxer-build";
-}
 
 #pragma mark - No-ops
 
@@ -628,3 +624,108 @@ void MAPPER_AutoType(std::vector<std::string> &sequence,
                      const uint32_t wait_ms,
                      const uint32_t pacing_ms) {}
 std::vector<std::string> MAPPER_GetEventNames(const std::string &prefix) {return std::vector<std::string>();}
+
+#include "video.h"
+#include "mixer.h"
+#include "setup.h"
+#include "programs.h"
+#include <string>
+#include "mouse.h"
+
+#undef GFX_Events
+#undef GFX_StartUpdate
+#undef GFX_EndUpdate
+#undef GFX_SetSize
+#undef GFX_GetRGB
+#undef GFX_SetShader
+#undef GFX_GetBestMode
+
+// GFX Stubs (Wrappers for DOSBox-Staging core)
+bool GFX_Events() { return boxer_processEvents(); }
+uint32_t GFX_GetRGB(const uint8_t red, const uint8_t green, const uint8_t blue) { return boxer_getRGBPaletteEntry(red, green, blue); }
+uint8_t GFX_SetSize(const int w, const int h, const Fraction& fa, const uint8_t flags, const VideoMode& vm, GFX_CallBack_t cb) { return boxer_prepareForFrameSize(w, h, flags, 1.0, 1.0, cb, 1.0); }
+void GFX_EndUpdate(const uint16_t* dirtyBlocks) { boxer_finishFrame(dirtyBlocks); }
+void GFX_SetShader(const ShaderInfo&, const std::string& source) { boxer_setShader(source.c_str()); }
+void GFX_CenterMouse() {}
+uint8_t GFX_GetBestMode(const uint8_t flags) { return boxer_idealOutputMode(flags); }
+bool GFX_StartUpdate(uint8_t * &pixels, int &pitch) { return boxer_startFrame(pixels, pitch); }
+void GFX_RefreshTitle() {}
+void GFX_SetMouseHint(MouseHint) {}
+void GFX_NotifyBooting() {}
+DosBox::Rect GFX_GetDesktopSize() { return DosBox::Rect(); }
+void GFX_SetMouseCapture(bool) {}
+void GFX_SetMouseRawInput(bool) {}
+float GFX_GetDpiScaleFactor() { return 1.0f; }
+
+void GFX_NotifyProgramName(const std::string&, const std::string&) {}
+void GFX_SetMouseVisibility(bool) {}
+const char* GFX_GetRenderingBackend_String() { return "opengl"; } // Removed GFX_GetRenderingBackend string stub
+void GFX_NotifyCyclesChanged() {}
+DosBox::Rect GFX_GetCanvasSizeInPixels() { return DosBox::Rect(); }
+IntegerScalingMode GFX_GetIntegerScalingMode() { return IntegerScalingMode::Off; }
+void GFX_SetIntegerScalingMode(IntegerScalingMode) {}
+bool GFX_HaveDesktopEnvironment() { return true; }
+void GFX_NotifyAudioMutedStatus(bool) {}
+DosBox::Rect GFX_GetViewportSizeInPixels() { return DosBox::Rect(); }
+InterpolationMode GFX_GetTextureInterpolationMode() { return InterpolationMode::NearestNeighbour; }
+RenderingBackend GFX_GetRenderingBackend() { return RenderingBackend::Texture; }
+
+#include "capture/capture.h"
+
+// CAPTURE Stubs
+bool CAPTURE_IsCapturingMidi() { return false; }
+bool CAPTURE_IsCapturingAudio() { return false; }
+bool CAPTURE_IsCapturingImage() { return false; }
+bool CAPTURE_IsCapturingVideo() { return false; }
+bool CAPTURE_IsCapturingPostRenderImage() { return false; }
+void CAPTURE_StopVideoCapture() {}
+void CAPTURE_StartVideoCapture() {}
+void CAPTURE_AddConfigSection(const ConfigPtr&) {}
+void CAPTURE_AddFrame(const RenderedImage&, const float) {}
+FILE* CAPTURE_CreateFile(const CaptureType, const std::optional<std::filesystem::path>&) { return nullptr; }
+void CAPTURE_AddMidiData(const bool, const size_t, const uint8_t*) {}
+void CAPTURE_AddAudioData(const uint32_t, const uint32_t, const int16_t*) {}
+void CAPTURE_AddPostRenderImage(const RenderedImage&) {}
+
+// IMFC Stubs
+void IMFC_AddConfigSection(const ConfigPtr&) {}
+
+// MAPPER Stubs
+void MAPPER_StopAutoTyping() {}
+
+// _boxer stubs (from the missing DOSBox-Staging core patches)
+extern "C" {
+    Bitu boxer_keyboardBufferRemaining() { return 0; }
+    bool boxer_keyboardLayoutActive() { return false; }
+    bool boxer_keyboardLayoutLoaded() { return false; }
+    const char* boxer_keyboardLayoutName() { return "en"; }
+    bool boxer_keyboardLayoutSupported(const char*) { return false; }
+    void boxer_setCGAComponentMode(Bit8u) {}
+    void boxer_setCGACompositeHueOffset(double) {}
+    void boxer_setHerculesTintMode(Bit8u) {}
+    void boxer_setKeyboardLayoutActive(bool) {}
+    
+    int autofire = 0;
+}
+void boxer_updateVolumes() {}
+const char* RunningProgram = nullptr;
+
+void restart_dosbox(std::vector<std::string>&) {}
+
+
+#include "render.h"
+#include "shader_manager.h"
+#include <deque>
+
+void ShaderManager::AddMessages() {}
+void ShaderManager::ReloadCurrentShader() {}
+void ShaderManager::NotifyGlshaderSettingChanged(const std::string&) {}
+void ShaderManager::NotifyRenderParametersChanged(DosBox::Rect, const VideoMode&) {}
+std::string ShaderManager::MapShaderName(const std::string& name) const { return name; }
+const ShaderInfo& ShaderManager::GetCurrentShaderInfo() const { static ShaderInfo s; return s; }
+const std::string& ShaderManager::GetCurrentShaderSource() const { static std::string s; return s; }
+std::deque<std::string> ShaderManager::GenerateShaderInventoryMessage() const { return std::deque<std::string>(); }
+
+#include "mixer.h"
+#include <cmath>
+

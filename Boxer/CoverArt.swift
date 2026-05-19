@@ -218,25 +218,48 @@ private func imageHasTransparency(_ image: NSImage) -> Bool {
 			}
 		} else {
 			let imageSize = image.size
-			
+			let pixelWidth  = Int(imageSize.width)
+			let pixelHeight = Int(imageSize.height)
+
+			// Snapshot the image into a bitmap rep, then interrogate pixels via colorAt(x:y:)
+			guard let bitmap = NSBitmapImageRep(
+				bitmapDataPlanes: nil,
+				pixelsWide: pixelWidth,
+				pixelsHigh: pixelHeight,
+				bitsPerSample: 8,
+				samplesPerPixel: 4,
+				hasAlpha: true,
+				isPlanar: false,
+				colorSpaceName: .calibratedRGB,
+				bytesPerRow: 0,
+				bitsPerPixel: 32
+			) else { return false }
+
+			bitmap.size = imageSize
+
+			NSGraphicsContext.saveGraphicsState()
+			NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: bitmap)
+			image.draw(in: NSRect(origin: .zero, size: imageSize),
+					   from: .zero,
+					   operation: .copy,
+					   fraction: 1.0)
+			NSGraphicsContext.restoreGraphicsState()
+
 			//Test 5 pixels in an X pattern: each corner and right in the center of the image.
-			let testPoints = [
-				NSMakePoint(0,						0),
-				NSMakePoint(imageSize.width - 1.0,	0),
-				NSMakePoint(0,						imageSize.height - 1.0),
-				NSMakePoint(imageSize.width - 1.0,	imageSize.height - 1.0),
-				NSMakePoint(imageSize.width * 0.5,	imageSize.height * 0.5)
+			let testPoints: [(x: Int, y: Int)] = [
+				(0,             0),
+				(pixelWidth - 1, 0),
+				(0,             pixelHeight - 1),
+				(pixelWidth - 1, pixelHeight - 1),
+				(pixelWidth / 2, pixelHeight / 2)
 			]
-			
-			image.lockFocus()
-			for point in testPoints {
-				//If any of the pixels appears to be translucent, then stop looking further.
-				if let pixel = NSReadPixel(point), pixel.alphaComponent < 0.9 {
+
+			for (x, y) in testPoints {
+				if let pixel = bitmap.colorAt(x: x, y: y), pixel.alphaComponent < 0.9 {
 					hasTranslucentPixels = true
 					break
 				}
 			}
-			image.unlockFocus()
 		}
 	}
 

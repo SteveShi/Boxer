@@ -16,7 +16,12 @@
 
 #import "config.h"
 #import "video.h"
+#include <cstdint>
 #include <stdio.h>
+
+using Bit8u  = uint8_t;
+using Bit16u = uint16_t;
+using Bit32s = int32_t;
 
 #if __cplusplus
 extern "C" {

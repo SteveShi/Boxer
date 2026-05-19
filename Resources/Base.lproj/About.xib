@@ -60,8 +60,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="36">
                                     <font key="font" metaFont="system" size="16"/>
-                                    <string key="title">Punching some sense
-into DOS emulation.</string>
+                                    <string key="title">Bringing classic DOS
+games to modern Mac.</string>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -72,10 +72,13 @@ into DOS emulation.</string>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="56">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">Boxer is designed by
-Alun Bestor &amp; released under the GNU Public License.
+Alun Bestor &amp; maintained by contributors.
+Released under the GNU General Public License.
 
-Boxer is based on DOSBox 0.74, which is 
-© 2002–2010 by the DOSBox Team.</string>
+Boxer is based on DOSBox Staging,
+© 2020–2025 by the DOSBox Staging Team.
+Originally based on DOSBox,
+© 2002–2024 by the DOSBox Team.</string>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

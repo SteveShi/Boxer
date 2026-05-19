@@ -1,0 +1,730 @@
+name: Boxer
+options:
+  bundleIdPrefix: com.steveshi
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+configs:
+  Debug: debug
+  Release: release
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    from: 2.9.1
+projectReferences:
+  OpenEmuShaders:
+    path: Vendor/OpenEmuShaders/OpenEmuShaders.xcodeproj
+  MT32Emu:
+    path: Vendor/MT32Emu/Boxer-MT32Emu.xcodeproj
+  DDHidLib:
+    path: Vendor/DDHidLib/DDHidLib.xcodeproj
+settings:
+  base:
+    CLANG_CXX_LANGUAGE_STANDARD: gnu++20
+    CLANG_CXX_LIBRARY: libc++
+    CLANG_ENABLE_MODULES: YES
+    CLANG_ENABLE_OBJC_ARC: YES
+    GCC_C_LANGUAGE_STANDARD: gnu99
+    SWIFT_VERSION: 6.0
+    STRINGS_FILE_OUTPUT_ENCODING: binary
+targets:
+  Boxer:
+    type: application
+    platform: macOS
+    deploymentTarget: "13.0"
+    sources:
+      - path: "Boxer/Application Delegate/BXAppController.m"
+      - path: "Boxer/Application Delegate/BXAppController+BXGamesFolder.m"
+      - path: "Boxer/Application Delegate/BXApplication.m"
+      - path: "Boxer/Application Delegate/BXBaseAppController.m"
+      - path: "Boxer/Application Delegate/BXBaseAppController+BXHotKeys.m"
+      - path: "Boxer/Application Delegate/BXBaseAppController+BXSupportFiles.m"
+      - path: "Boxer/Application Delegate/BXSampleGamesCopy.m"
+      - path: "Boxer/Application Delegate/BXShelfAppearanceOperation.m"
+      - path: Boxer/BootlegCoverArt.swift
+      - path: Boxer/BX360ControllerProfile.m
+      - path: Boxer/BXAboutController.m
+      - path: Boxer/BXBezelController.m
+      - path: Boxer/BXBezelView.m
+      - path: Boxer/BXBinCueImageImport.m
+      - path: Boxer/BXBlueprintBackgroundView.m
+      - path: Boxer/BXBlueprintPanel.m
+      - path: Boxer/BXCDImageImport.m
+      - path: Boxer/BXCHFlightstick.mm
+      - path: Boxer/BXCHFlightstickProUSB.m
+      - path: Boxer/BXCloseAlert.m
+      - path: Boxer/BXCoalface.mm
+      - path: Boxer/BXCoalfaceAudio.mm
+      - path: Boxer/BXCollectionItemView.m
+      - path: Boxer/BXCursorFadeAnimation.m
+      - path: Boxer/BXDockTileController.m
+      - path: Boxer/BXDrive.m
+      - path: Boxer/BXDrive+BXDriveArchiving.m
+      - path: Boxer/BXDriveBundleImport.m
+      - path: Boxer/BXDriveImport.m
+      - path: Boxer/BXDrivesInUseAlert.m
+      - path: Boxer/BXDualActionControllerProfile.m
+      - path: Boxer/BXEmulatedJoystick.mm
+      - path: Boxer/BXEmulatedKeyboard.mm
+      - path: Boxer/BXEmulatedMouse.mm
+      - path: Boxer/BXEmulatedMT32.mm
+      - path: Boxer/BXEmulator.mm
+        compilerFlags: -fno-objc-arc
+      - path: Boxer/BXEmulator+BXAudio.mm
+      - path: Boxer/BXEmulator+BXDOSFileSystem.mm
+      - path: Boxer/BXEmulator+BXPaste.mm
+      - path: Boxer/BXEmulator+BXShell.mm
+      - path: Boxer/BXEmulatorConfiguration.m
+      - path: Boxer/BXEmulatorErrors.mm
+      - path: Boxer/BXExternalMIDIDevice.m
+      - path: Boxer/BXExternalMIDIDevice+BXGeneralMIDISysexes.m
+      - path: Boxer/BXExternalMT32.m
+      - path: Boxer/BXExternalMT32+BXMT32Sysexes.m
+      - path: Boxer/BXFileTypes.m
+      - path: Boxer/BXFilterGallery.m
+      - path: Boxer/BXG25ControllerProfile.m
+      - path: Boxer/BXGamebox.m
+      - path: Boxer/BXGameProfile.m
+      - path: Boxer/BXGamesFolderPanelController.m
+      - path: Boxer/BXHelpMenuController.m
+      - path: Boxer/BXHIDControllerProfile.m
+      - path: Boxer/BXHIDInputBinding.m
+      - path: Boxer/BXHUDLevelIndicatorCell.m
+      - path: Boxer/BXImportCommand.m
+      - path: Boxer/BXImportDropzone.m
+      - path: Boxer/BXImportDropzonePanelController.m
+      - path: Boxer/BXImportFinalizingPanelController.m
+      - path: Boxer/BXImportFinishedPanelController.m
+      - path: Boxer/BXImportInstallerPanelController.m
+      - path: Boxer/BXImportSession.m
+        compilerFlags: -fno-objc-arc
+      - path: Boxer/BXImportSession+BXImportPolicies.m
+      - path: Boxer/BXImportTipsPanelController.m
+      - path: Boxer/BXImportWindowController.m
+      - path: Boxer/BXInstallerScan.m
+      - path: Boxer/BXJoystickController.m
+      - path: Boxer/BXKeyboardEventTap.m
+      - path: Boxer/BXKeyBuffer.mm
+      - path: Boxer/BXMIDIConfig.cpp
+      - path: Boxer/BXMIDIDeviceMonitor.m
+      - path: Boxer/BXMIDISynth.m
+      - path: Boxer/BXMOMORacingControllerProfile.m
+      - path: Boxer/BXMountPanelController.m
+      - path: Boxer/BXMT32ROMDropzone.m
+      - path: Boxer/BXPrecisionProControllerProfile.m
+      - path: Boxer/BXPreferencesController.m
+      - path: Boxer/BXScriptablePreferences.m
+      - path: Boxer/BXScriptableWindow.m
+      - path: Boxer/BXScroller.m
+      - path: Boxer/BXSession.m
+      - path: Boxer/BXSession+BXAudioControls.m
+      - path: Boxer/BXSession+BXDragDrop.m
+      - path: Boxer/BXSession+BXFileManagement.m
+      - path: Boxer/BXSession+BXPrinting.m
+      - path: Boxer/BXSession+BXUIControls.m
+      - path: Boxer/BXSessionError.m
+      - path: Boxer/BXShelfArt.m
+      - path: Boxer/BXSimpleDriveImport.m
+      - path: Boxer/BXSixaxisControllerProfile.m
+      - path: Boxer/BXTFlightControllerProfile.m
+      - path: Boxer/BXThemedButtonCell.m
+      - path: Boxer/BXThemedImageCell.m
+      - path: Boxer/BXThemedLabel.m
+      - path: Boxer/BXThemedProgressIndicator.m
+      - path: Boxer/BXThemes.m
+      - path: Boxer/BXThrustmasterFCS.mm
+      - path: Boxer/BXValueTransformers.m
+      - path: Boxer/BXVideoHandler.mm
+      - path: Boxer/BXWelcomeView.m
+      - path: Boxer/BXWelcomeWindowController.m
+      - path: Boxer/BXXBOBluetoothControllerProfile.m
+      - path: Boxer/CoverArt.swift
+      - path: "Boxer/Documentation Panel/BXDocumentationPanelController.m"
+      - path: "Boxer/Documentation Panel/BXDocumentationBrowser.m"
+      - path: "Boxer/DOS window/BXDOSWindow.m"
+      - path: "Boxer/DOS window/BXDOSWindowBackgroundView.m"
+      - path: "Boxer/DOS window/BXDOSWindowController.m"
+      - path: "Boxer/DOS window/BXDOSWindowControllerLion.m"
+      - path: "Boxer/DOS window/BXHUDSpinningProgressIndicator.m"
+      - path: "Boxer/DOS window/BXInputController.m"
+      - path: "Boxer/DOS window/BXInputController+BXJoystickInput.m"
+      - path: "Boxer/DOS window/BXInputController+BXKeyboardInput.m"
+      - path: "Boxer/DOS window/BXInputView.m"
+      - path: "Boxer/DOS window/BXLaunchPanelController.m"
+      - path: "Boxer/DOS window/BXProgramPanel.m"
+      - path: "Boxer/DOS window/BXProgramPanelController.m"
+      - path: "Boxer/DOS window/BXStatusBarController.m"
+      - path: Boxer/DummyMIDIDevice.swift
+      - path: Boxer/Input/BXOutputBinding.m
+      - path: "Boxer/Inspector Panel/BXCoverArtWell.m"
+      - path: "Boxer/Inspector Panel/BXDriveItem.m"
+      - path: "Boxer/Inspector Panel/BXDriveList.m"
+      - path: "Boxer/Inspector Panel/BXDrivePanelController.m"
+      - path: "Boxer/Inspector Panel/BXGameboxPanelController.m"
+      - path: "Boxer/Inspector Panel/BXInspectorController.m"
+      - path: "Boxer/Inspector Panel/BXJoystickItem.m"
+      - path: Boxer/main.m
+      - path: "Boxer/Metal Rendering/BXMetalLayer.m"
+      - path: "Boxer/Metal Rendering/BXMetalRenderingView.m"
+      - path: "Boxer/Metal Rendering/BXMetalRenderingView+BXImageCapture.m"
+      - path: Boxer/MT32LCDDisplay.swift
+      - path: Boxer/NSAlert+BXAlert.m
+      - path: Boxer/NSApplication+BXScripting.m
+      - path: "Other Sources/BGHUDAppKit/BGThemeManager.m"
+      - path: Boxer/Printing/BXEmulatedPrinter.mm
+      - path: Boxer/Printing/BXPrintSession.m
+      - path: Boxer/Printing/BXPrintStatusPanelController.m
+      - path: Boxer/Rendering/BXVideoFrame.m
+      - path: Boxer/Shaders/BXShaderParametersWindowController.m
+      - path: Boxer/Shaders/BXShadersModel.swift
+      - path: Boxer/Shaders/BXShadersModel+OpenEmu.swift
+      - path: DOSBox-Staging/src/ints/bios_disk.cpp
+      - path: DOSBox-Staging/src/ints/bios_keyboard.cpp
+      - path: DOSBox-Staging/src/ints/bios_pci.cpp
+      - path: DOSBox-Staging/src/ints/bios.cpp
+      - path: DOSBox-Staging/src/ints/ems.cpp
+      - path: DOSBox-Staging/src/ints/int10_char.cpp
+      - path: DOSBox-Staging/src/ints/int10_memory.cpp
+      - path: DOSBox-Staging/src/ints/int10_misc.cpp
+      - path: DOSBox-Staging/src/ints/int10_modes.cpp
+      - path: DOSBox-Staging/src/ints/int10_pal.cpp
+      - path: DOSBox-Staging/src/ints/int10_put_pixel.cpp
+      - path: DOSBox-Staging/src/ints/int10_vesa.cpp
+      - path: DOSBox-Staging/src/ints/int10_video_state.cpp
+      - path: DOSBox-Staging/src/ints/int10_vptable.cpp
+      - path: DOSBox-Staging/src/ints/int10.cpp
+      - path: DOSBox-Staging/src/ints/xms.cpp
+      - path: DOSBox-Staging/src/cpu/callback.cpp
+      - path: DOSBox-Staging/src/cpu/core_dyn_x86.cpp
+      - path: DOSBox-Staging/src/cpu/core_dynrec.cpp
+      - path: DOSBox-Staging/src/cpu/core_full.cpp
+      - path: DOSBox-Staging/src/cpu/core_normal.cpp
+      - path: DOSBox-Staging/src/cpu/core_prefetch.cpp
+      - path: DOSBox-Staging/src/cpu/core_simple.cpp
+      - path: DOSBox-Staging/src/cpu/cpu.cpp
+      - path: DOSBox-Staging/src/cpu/flags.cpp
+      - path: DOSBox-Staging/src/cpu/mmx.cpp
+      - path: DOSBox-Staging/src/cpu/modrm.cpp
+      - path: DOSBox-Staging/src/cpu/paging.cpp
+      - path: DOSBox-Staging/src/debug/debug_disasm.cpp
+      - path: DOSBox-Staging/src/debug/debug_gui.cpp
+      - path: DOSBox-Staging/src/debug/debug_win32.cpp
+      - path: DOSBox-Staging/src/debug/debug.cpp
+      - path: DOSBox-Staging/src/dos/cdrom_image.cpp
+      - path: DOSBox-Staging/src/dos/cdrom.cpp
+      - path: DOSBox-Staging/src/dos/dos_classes.cpp
+      - path: DOSBox-Staging/src/dos/dos_devices.cpp
+      - path: DOSBox-Staging/src/dos/dos_execute.cpp
+      - path: DOSBox-Staging/src/dos/dos_files.cpp
+      - path: DOSBox-Staging/src/dos/dos_ioctl.cpp
+      - path: DOSBox-Staging/src/dos/dos_keyboard_layout.cpp
+      - path: DOSBox-Staging/src/dos/dos_locale.cpp
+      - path: DOSBox-Staging/src/dos/dos_memory.cpp
+      - path: DOSBox-Staging/src/dos/dos_misc.cpp
+      - path: DOSBox-Staging/src/dos/dos_mscdex.cpp
+      - path: DOSBox-Staging/src/dos/dos_programs.cpp
+      - path: DOSBox-Staging/src/dos/dos_tables.cpp
+      - path: DOSBox-Staging/src/dos/dos.cpp
+      - path: DOSBox-Staging/src/dos/drive_cache.cpp
+      - path: DOSBox-Staging/src/dos/drive_fat.cpp
+      - path: DOSBox-Staging/src/dos/drive_iso.cpp
+      - path: DOSBox-Staging/src/dos/drive_local.cpp
+      - path: DOSBox-Staging/src/dos/drive_overlay.cpp
+      - path: DOSBox-Staging/src/dos/drive_virtual.cpp
+      - path: DOSBox-Staging/src/dos/drives.cpp
+      - path: DOSBox-Staging/src/dos/program_autotype.cpp
+      - path: DOSBox-Staging/src/dos/program_attrib.cpp
+      - path: DOSBox-Staging/src/dos/program_biostest.cpp
+      - path: DOSBox-Staging/src/dos/program_boot.cpp
+      - path: DOSBox-Staging/src/dos/program_choice.cpp
+      - path: DOSBox-Staging/src/dos/program_help.cpp
+      - path: DOSBox-Staging/src/dos/program_imgmount.cpp
+      - path: DOSBox-Staging/src/dos/program_intro.cpp
+      - path: DOSBox-Staging/src/dos/program_keyb.cpp
+      - path: DOSBox-Staging/src/dos/program_loadfix.cpp
+      - path: DOSBox-Staging/src/dos/program_loadrom.cpp
+      - path: DOSBox-Staging/src/dos/program_ls.cpp
+      - path: DOSBox-Staging/src/dos/program_mem.cpp
+      - path: DOSBox-Staging/src/dos/program_mixer.cpp
+      - path: DOSBox-Staging/src/dos/program_mode.cpp
+      - path: DOSBox-Staging/src/dos/program_more.cpp
+      - path: DOSBox-Staging/src/dos/program_more_output.cpp
+      - path: DOSBox-Staging/src/dos/program_mount_common.cpp
+      - path: DOSBox-Staging/src/dos/program_mount.cpp
+      - path: DOSBox-Staging/src/dos/program_mousectl.cpp
+      - path: DOSBox-Staging/src/dos/program_move.cpp
+      - path: DOSBox-Staging/src/dos/program_placeholder.cpp
+      - path: DOSBox-Staging/src/dos/program_rescan.cpp
+      - path: DOSBox-Staging/src/dos/program_serial.cpp
+      - path: DOSBox-Staging/src/dos/program_setver.cpp
+      - path: DOSBox-Staging/src/dos/program_subst.cpp
+      - path: DOSBox-Staging/src/dos/program_tree.cpp
+      - path: DOSBox-Staging/src/dosbox.cpp
+      - path: DOSBox-Staging/src/fpu/fpu.cpp
+      - path: DOSBox-Staging/src/gui/render_scalers.cpp
+        compilerFlags: -Wno-unused-function
+      - path: DOSBox-Staging/src/gui/render.cpp
+      - path: DOSBox-Staging/src/hardware/adlib_gold.cpp
+      - path: DOSBox-Staging/src/hardware/cmos.cpp
+      - path: DOSBox-Staging/src/hardware/compressor.cpp
+      - path: DOSBox-Staging/src/hardware/covox.cpp
+      - path: DOSBox-Staging/src/hardware/disney.cpp
+      - path: DOSBox-Staging/src/hardware/dma.cpp
+      - path: DOSBox-Staging/src/hardware/envelope.cpp
+      - path: DOSBox-Staging/src/hardware/gameblaster.cpp
+      - path: DOSBox-Staging/src/hardware/gus.cpp
+      - path: DOSBox-Staging/src/hardware/ide.cpp
+      - path: DOSBox-Staging/src/hardware/innovation.cpp
+      - path: DOSBox-Staging/src/hardware/input/intel8042.cpp
+      - path: DOSBox-Staging/src/hardware/input/intel8255.cpp
+      - path: DOSBox-Staging/src/hardware/input/keyboard.cpp
+      - path: DOSBox-Staging/src/hardware/input/keyboard_scancodes.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouse.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouse_common.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouse_config.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouse_interfaces.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouse_manymouse.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouseif_dos_driver.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouseif_ps2_bios.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouseif_virtual_machines.cpp
+      - path: DOSBox-Staging/src/hardware/iohandler_containers.cpp
+      - path: DOSBox-Staging/src/hardware/iohandler.cpp
+      - path: DOSBox-Staging/src/hardware/ipx.cpp
+      - path: DOSBox-Staging/src/hardware/ipxserver.cpp
+      - path: DOSBox-Staging/src/hardware/joystick.cpp
+      - path: DOSBox-Staging/src/hardware/lpt_dac.cpp
+      - path: DOSBox-Staging/src/hardware/mame/saa1099.cpp
+      - path: DOSBox-Staging/src/hardware/mame/sn76496.cpp
+      - path: DOSBox-Staging/src/hardware/memory.cpp
+      - path: DOSBox-Staging/src/hardware/mixer.cpp
+      - path: DOSBox-Staging/src/hardware/mpu401.cpp
+      - path: DOSBox-Staging/src/hardware/ne2000.cpp
+      - path: DOSBox-Staging/src/hardware/opl.cpp
+      - path: DOSBox-Staging/src/hardware/opl_capture.cpp
+      - path: DOSBox-Staging/src/hardware/parport/printer_charmaps.cpp
+      - path: DOSBox-Staging/src/hardware/pci_bus.cpp
+      - path: DOSBox-Staging/src/hardware/pcspeaker.cpp
+      - path: DOSBox-Staging/src/hardware/pcspeaker_discrete.cpp
+      - path: DOSBox-Staging/src/hardware/pcspeaker_impulse.cpp
+      - path: DOSBox-Staging/src/hardware/pic.cpp
+      - path: DOSBox-Staging/src/hardware/ps1audio.cpp
+      - path: DOSBox-Staging/src/hardware/reelmagic/driver.cpp
+      - path: DOSBox-Staging/src/hardware/reelmagic/player.cpp
+      - path: DOSBox-Staging/src/hardware/reelmagic/video_mixer.cpp
+      - path: DOSBox-Staging/src/hardware/sblaster.cpp
+      - path: DOSBox-Staging/src/hardware/serialport/directserial.cpp
+      - path: DOSBox-Staging/src/hardware/serialport/libserial.cpp
+      - path: DOSBox-Staging/src/hardware/serialport/misc_util.cpp
+      - path: DOSBox-Staging/src/hardware/serialport/nullmodem.cpp
+      - path: DOSBox-Staging/src/hardware/serialport/serialdummy.cpp
+      - path: DOSBox-Staging/src/hardware/serialport/serialmouse.cpp
+      - path: DOSBox-Staging/src/hardware/serialport/serialport.cpp
+      - path: DOSBox-Staging/src/hardware/serialport/softmodem.cpp
+      - path: DOSBox-Staging/src/hardware/ston1_dac.cpp
+      - path: DOSBox-Staging/src/hardware/tandy_sound.cpp
+      - path: DOSBox-Staging/src/hardware/timer.cpp
+      - path: DOSBox-Staging/src/hardware/vga_attr.cpp
+      - path: DOSBox-Staging/src/hardware/vga_crtc.cpp
+      - path: DOSBox-Staging/src/hardware/vga_dac.cpp
+      - path: DOSBox-Staging/src/hardware/vga_draw.cpp
+      - path: DOSBox-Staging/src/hardware/vga_gfx.cpp
+      - path: DOSBox-Staging/src/hardware/vga_memory.cpp
+      - path: DOSBox-Staging/src/hardware/vga_misc.cpp
+      - path: DOSBox-Staging/src/hardware/vga_other.cpp
+      - path: DOSBox-Staging/src/hardware/vga_paradise.cpp
+      - path: DOSBox-Staging/src/hardware/vga_s3.cpp
+      - path: DOSBox-Staging/src/hardware/vga_seq.cpp
+      - path: DOSBox-Staging/src/hardware/vga_tseng.cpp
+      - path: DOSBox-Staging/src/hardware/vga_xga.cpp
+      - path: DOSBox-Staging/src/hardware/vga.cpp
+      - path: DOSBox-Staging/src/hardware/virtualbox.cpp
+      - path: DOSBox-Staging/src/hardware/vmware.cpp
+      - path: DOSBox-Staging/src/hardware/voodoo.cpp
+      - path: DOSBox-Staging/src/libs/decoders/flac.c
+      - path: DOSBox-Staging/src/libs/decoders/mp3_seek_table.cpp
+      - path: DOSBox-Staging/src/libs/decoders/mp3.cpp
+      - path: DOSBox-Staging/src/libs/decoders/SDL_sound.c
+      - path: DOSBox-Staging/src/libs/decoders/vorbis.c
+      - path: DOSBox-Staging/src/libs/decoders/wav.c
+      - path: DOSBox-Staging/src/libs/ESFMu/esfm.c
+      - path: DOSBox-Staging/src/libs/ESFMu/esfm_registers.c
+      - path: DOSBox-Staging/src/libs/ghc/fs_std_impl.cpp
+      - path: DOSBox-Staging/src/libs/tal-chorus/Lfo.cpp
+      - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Biquad.cpp
+      - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Butterworth.cpp
+      - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Cascade.cpp
+      - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/ChebyshevI.cpp
+      - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/ChebyshevII.cpp
+      - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Custom.cpp
+      - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/PoleFilter.cpp
+      - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/RBJ.cpp
+      - path: DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp/resample.c
+        compilerFlags: -DFLOATING_POINT
+      - path: DOSBox-Staging/src/libs/nuked/opl3.c
+      - path: DOSBox-Staging/src/libs/residfp/Dac.cpp
+      - path: DOSBox-Staging/src/libs/residfp/EnvelopeGenerator.cpp
+      - path: DOSBox-Staging/src/libs/residfp/ExternalFilter.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Integrator6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Integrator8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/OpAmp.cpp
+      - path: DOSBox-Staging/src/libs/residfp/resample/SincResampler.cpp
+      - path: DOSBox-Staging/src/libs/residfp/SID.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Spline.cpp
+      - path: DOSBox-Staging/src/libs/residfp/version.cc
+      - path: DOSBox-Staging/src/libs/residfp/WaveformCalculator.cpp
+      - path: DOSBox-Staging/src/libs/residfp/WaveformGenerator.cpp
+      - path: DOSBox-Staging/src/libs/whereami/whereami.c
+      - path: DOSBox-Staging/src/libs/YM7128B_emu/YM7128B_emu.c
+      - path: DOSBox-Staging/src/midi/midi.cpp
+      - path: DOSBox-Staging/src/misc/ansi_code_markup.cpp
+      - path: DOSBox-Staging/src/misc/cross.cpp
+      - path: DOSBox-Staging/src/misc/fs_utils.cpp
+      - path: DOSBox-Staging/src/misc/fs_utils_posix.cpp
+      - path: DOSBox-Staging/src/misc/help_util.cpp
+      - path: DOSBox-Staging/src/misc/messages.cpp
+      - path: DOSBox-Staging/src/misc/pacer.cpp
+      - path: DOSBox-Staging/src/misc/programs.cpp
+      - path: DOSBox-Staging/src/misc/rwqueue.cpp
+      - path: DOSBox-Staging/src/misc/setup.cpp
+      - path: DOSBox-Staging/src/misc/string_utils.cpp
+      - path: DOSBox-Staging/src/misc/support.cpp
+      - path: DOSBox-Staging/src/misc/unicode.cpp
+      - path: DOSBox-Staging/src/shell/autoexec.cpp
+      - path: DOSBox-Staging/src/shell/command_line.cpp
+      - path: DOSBox-Staging/src/shell/file_reader.cpp
+      - path: DOSBox-Staging/src/shell/shell_batch.cpp
+      - path: DOSBox-Staging/src/shell/shell_cmds.cpp
+      - path: DOSBox-Staging/src/shell/shell_history.cpp
+      - path: DOSBox-Staging/src/shell/shell_misc.cpp
+      - path: DOSBox-Staging/src/shell/shell.cpp
+      - path: DOSBox-Staging/src/libs/loguru/loguru.cpp
+      - path: "Other Sources/ADBToolkit/ADBAppKitVersionHelpers.m"
+      - path: "Other Sources/ADBToolkit/ADBBinCueImage.m"
+      - path: "Other Sources/ADBToolkit/ADBContinuousThread.m"
+      - path: "Other Sources/ADBToolkit/ADBDelegatedView.m"
+      - path: "Other Sources/ADBToolkit/ADBDigest.m"
+      - path: "Other Sources/ADBToolkit/ADBEnumerationHelpers.m"
+      - path: "Other Sources/ADBToolkit/ADBFileHandle.m"
+      - path: "Other Sources/ADBToolkit/ADBFileScan.m"
+      - path: "Other Sources/ADBToolkit/ADBFilesystemBase.m"
+      - path: "Other Sources/ADBToolkit/ADBFileTransferSet.m"
+      - path: "Other Sources/ADBToolkit/ADBForwardCompatibility.m"
+      - path: "Other Sources/ADBToolkit/ADBFullscreenCapableWindow.m"
+      - path: "Other Sources/ADBToolkit/ADBGeometry.m"
+      - path: "Other Sources/ADBToolkit/ADBHIDEvent.m"
+      - path: "Other Sources/ADBToolkit/ADBHIDMonitor.m"
+      - path: "Other Sources/ADBToolkit/ADBImageAwareFileScan.m"
+      - path: "Other Sources/ADBToolkit/ADBISOImage.m"
+      - path: "Other Sources/ADBToolkit/ADBLineEnumerator.m"
+      - path: "Other Sources/ADBToolkit/ADBLocalFilesystem.m"
+      - path: "Other Sources/ADBToolkit/ADBMountableImage.m"
+      - path: "Other Sources/ADBToolkit/ADBMultiPanelWindowController.m"
+      - path: "Other Sources/ADBToolkit/ADBOperation.m"
+      - path: "Other Sources/ADBToolkit/ADBOperationSet.m"
+      - path: "Other Sources/ADBToolkit/ADBPathEnumerator.m"
+      - path: "Other Sources/ADBToolkit/ADBScanOperation.m"
+      - path: "Other Sources/ADBToolkit/ADBShadowedFilesystem.m"
+      - path: "Other Sources/ADBToolkit/ADBSingleFileTransfer.m"
+      - path: "Other Sources/ADBToolkit/ADBSwiftHelpers.swift"
+      - path: "Other Sources/ADBToolkit/ADBTabbedWindowController.m"
+      - path: "Other Sources/ADBToolkit/ADBTaskOperation.m"
+      - path: "Other Sources/ADBToolkit/ADBUserNotificationDispatcher.m"
+      - path: "Other Sources/ADBToolkit/DDHidDevice+ADBDeviceExtensions.m"
+      - path: "Other Sources/ADBToolkit/DDHidUsage+ADBUsageExtensions.m"
+      - path: "Other Sources/ADBToolkit/NSError+ADBErrorHelpers.mm"
+      - path: "Other Sources/ADBToolkit/NSError+ADBErrorHelpers.swift"
+      - path: "Other Sources/ADBToolkit/NSFileManager+ADBTemporaryFiles.m"
+      - path: "Other Sources/ADBToolkit/NSFileManager+ADBUniqueFilenames.m"
+      - path: "Other Sources/ADBToolkit/NSImage+ADBImageEffects.swift"
+      - path: "Other Sources/ADBToolkit/NSImage+ADBSaveImages.m"
+      - path: "Other Sources/ADBToolkit/NSKeyedArchiver+ADBArchivingAdditions.m"
+      - path: "Other Sources/ADBToolkit/NSObject+ADBPerformExtensions.m"
+      - path: "Other Sources/ADBToolkit/NSShadow+ADBShadowExtensions.m"
+      - path: "Other Sources/ADBToolkit/NSString+ADBPaths.m"
+      - path: "Other Sources/ADBToolkit/NSString+ADBStringFormatting.m"
+      - path: "Other Sources/ADBToolkit/NSURL+ADBFilesystemHelpers.m"
+      - path: "Other Sources/ADBToolkit/NSView+ADBDrawingHelpers.m"
+      - path: "Other Sources/ADBToolkit/NSWindow+ADBWindowDimensions.m"
+      - path: "Other Sources/ADBToolkit/NSWindow+ADBWindowEffects.m"
+      - path: "Other Sources/ADBToolkit/NSWorkspace+ADBFileTypes.m"
+      - path: "Other Sources/ADBToolkit/NSWorkspace+ADBIconHelpers.m"
+      - path: "Other Sources/ADBToolkit/NSWorkspace+ADBMountedVolumes.m"
+      - path: "Other Sources/ADBToolkit/URL+ADBAliasHelpers.swift"
+      - path: "Other Sources/ADBToolkit/URL+ADBFilesystemHelpers.swift"
+      - path: "Other Sources/ADBToolkit/URL+ADBQuickLookHelpers.swift"
+      - path: "Other Sources/MCAdditions/NSBezierPath+MCAdditions.m"
+      - path: "Other Sources/NSData+HexStrings.m"
+      - path: "Other Sources/RegexKitLite/RegexKitLite.m"
+        compilerFlags: "-fno-objc-arc -DOSSPINLOCK_USE_INLINED=1"
+      - path: "Other Sources/YRKSpinningProgressIndicator/YRKSpinningProgressIndicator.m"
+      - path: Resources/Base.lproj/ImportWindow.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/ImportWindow.xcstrings
+        buildPhase: resources
+      - path: Resources/LockClosing.aiff
+        buildPhase: resources
+      - path: Resources/LockOpening.aiff
+        buildPhase: resources
+      - path: Resources/Snapshot.aiff
+        buildPhase: resources
+      - path: "Resources/DOS Toolkit"
+        buildPhase: resources
+        type: folder
+      - path: Resources/Base.lproj/DocumentationPanel.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/DocumentationPanel.xcstrings
+        buildPhase: resources
+      - path: Resources/GameProfiles.plist
+        buildPhase: resources
+      - path: Resources/GroupCell.xib
+        buildPhase: resources
+      - path: Resources/Configurations
+        buildPhase: resources
+        type: folder
+      - path: Resources/Brand.png
+        buildPhase: resources
+      - path: Resources/Base.lproj/GamesFolderPanelOptions.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/GamesFolderPanelOptions.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/MountPanelOptions.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/MountPanelOptions.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/DOSBox.strings
+        buildPhase: resources
+      - path: Resources/es.lproj/DOSBox.strings
+        buildPhase: resources
+      - path: Resources/en.lproj/DOSBox.strings
+        buildPhase: resources
+      - path: Resources/pt-BR.lproj/DOSBox.strings
+        buildPhase: resources
+      - path: Resources/fr.lproj/DOSBox.strings
+        buildPhase: resources
+      - path: Resources/Base.lproj/DOSImportWindow.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/DOSImportWindow.xcstrings
+        buildPhase: resources
+      - path: "Resources/Boxer only.xcassets"
+        buildPhase: resources
+      - path: Resources/UserDefaults.plist
+        buildPhase: resources
+      - path: Resources/dsa_pub.pem
+        buildPhase: resources
+      - path: Resources/GameDefaults.plist
+        buildPhase: resources
+      - path: Resources/Base.lproj/Shell.strings
+        buildPhase: resources
+      - path: Resources/cs.lproj/Shell.strings
+        buildPhase: resources
+      - path: Resources/es.lproj/Shell.strings
+        buildPhase: resources
+      - path: Resources/en.lproj/Shell.strings
+        buildPhase: resources
+      - path: Resources/pt-BR.lproj/Shell.strings
+        buildPhase: resources
+      - path: Resources/fr.lproj/Shell.strings
+        buildPhase: resources
+      - path: Resources/Base.lproj/LauncherHeading.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/LauncherHeading.xcstrings
+        buildPhase: resources
+      - path: "Resources/Sample Games"
+        buildPhase: resources
+        type: folder
+      - path: Resources/Boxer.sdef
+        buildPhase: resources
+      - path: "Resources/Sample Game Icons"
+        buildPhase: resources
+        type: folder
+      - path: Resources/KeyboardLayouts.plist
+        buildPhase: resources
+      - path: Resources/Base.lproj/LauncherFavorite.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/LauncherFavorite.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/Inspector.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/Inspector.xcstrings
+        buildPhase: resources
+      - path: Resources/MT32ROMTypes.plist
+        buildPhase: resources
+      - path: Resources/Shared.xcassets
+        buildPhase: resources
+      - path: Resources/cs.lproj/Localizable.strings
+        buildPhase: resources
+      - path: Resources/es.lproj/Localizable.strings
+        buildPhase: resources
+      - path: Resources/en.lproj/Localizable.strings
+        buildPhase: resources
+      - path: Resources/pt-BR.lproj/Localizable.strings
+        buildPhase: resources
+      - path: Resources/fr.lproj/Localizable.strings
+        buildPhase: resources
+      - path: Resources/Base.lproj/LauncherItem.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/LauncherItem.xcstrings
+        buildPhase: resources
+      - path: Resources/Configuration.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/ProgramPanel.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/ProgramPanel.xcstrings
+        buildPhase: resources
+      - path: Resources/DummyCD.iso
+        buildPhase: resources
+      - path: Resources/Base.lproj/ImportTipsPanel.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/ImportTipsPanel.xcstrings
+        buildPhase: resources
+      - path: Resources/CheckboxCell.xib
+        buildPhase: resources
+      - path: Resources/Base.lproj/DocumentationBrowser.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/DocumentationBrowser.xcstrings
+        buildPhase: resources
+      - path: Resources/ShaderParameters.xib
+        buildPhase: resources
+      - path: Resources/Base.lproj/LaunchPanel.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/LaunchPanel.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/InspectorDriveItem.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/InspectorDriveItem.xcstrings
+        buildPhase: resources
+      - path: Resources/SliderCell.xib
+        buildPhase: resources
+      - path: Resources/Base.lproj/Preferences.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/Preferences.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/PrintStatusPanel.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/PrintStatusPanel.xcstrings
+        buildPhase: resources
+      - path: Resources/Shaders
+        buildPhase: resources
+        type: folder
+      - path: Resources/Base.lproj/Welcome.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/Welcome.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/About.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/About.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/DOSWindow.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/DOSWindow.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/InspectorJoystickItem.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/InspectorJoystickItem.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/MainMenu.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/MainMenu.xcstrings
+        buildPhase: resources
+      - path: Resources/InfoPlist.xcstrings
+        buildPhase: resources
+      - path: Resources/Base.lproj/Bezel.xib
+        buildPhase: resources
+      - path: Resources/mul.lproj/Bezel.xcstrings
+        buildPhase: resources
+      - path: Resources/Boxer.help
+        buildPhase: resources
+        type: folder
+    dependencies:
+      - sdk: libz.tbd
+      - sdk: IOKit.framework
+      - sdk: CoreServices.framework
+      - sdk: Cocoa.framework
+      - sdk: Carbon.framework
+      - sdk: AudioUnit.framework
+      - sdk: CoreMIDI.framework
+      - sdk: Quartz.framework
+      - sdk: QuartzCore.framework
+      - sdk: AudioToolbox.framework
+      - sdk: libicucore.tbd
+      - sdk: ScriptingBridge.framework
+      - sdk: DiskArbitration.framework
+      - sdk: libpcap.tbd
+      - package: Sparkle
+      - framework: Frameworks/SDL2.framework
+        embed: true
+        codeSign: true
+      - framework: Frameworks/SDL2_net.framework
+        embed: true
+        codeSign: true
+      - target: OpenEmuShaders/OpenEmuShaders
+        embed: true
+        codeSign: true
+      - target: MT32Emu/Framework
+        embed: true
+        codeSign: true
+      - target: DDHidLib/DDHidLib
+        embed: true
+        codeSign: true
+    copyFiles:
+      - destination: resources
+        files:
+          - path: Resources/cdrdao
+            codeSignOnCopy: true
+          - path: Resources/toc2cue
+            codeSignOnCopy: true
+    settings:
+      base:
+        PRODUCT_NAME: Boxer
+        PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer
+        INFOPLIST_FILE: Info.plist
+        CODE_SIGN_ENTITLEMENTS: Boxer/Boxer.entitlements
+        MARKETING_VERSION: 2.0.1-Alpha
+        CURRENT_PROJECT_VERSION: 2.0.1-Alpha+20260519
+        SUEnableAutomaticChecks: true
+        SUScheduledCheckInterval: 86400
+        SUFeedURL: https://github.com/SteveShi/Boxer/releases/latest/download/appcast.xml
+        SUPublicEDKey: MkHAeSDd//tR7+jzLDuwomA0aHHe5+35hbQ4csagwF0=
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "-"
+        DEVELOPMENT_TEAM: ""
+        PROVISIONING_PROFILE_SPECIFIER: ""
+        ENABLE_HARDENED_RUNTIME: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: boxer
+        COMBINE_HIDPI_IMAGES: YES
+        LD_RUNPATH_SEARCH_PATHS: "@executable_path/../Frameworks"
+        LD_NO_PIE: YES
+        "LD_NO_PIE[arch=arm64]": NO
+        FRAMEWORK_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks $(PROJECT_DIR)/Frameworks"
+        LIBRARY_SEARCH_PATHS: "$(inherited)"
+        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/Vendor/OpenEmuShaders/Source/RendererPrivate $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debug $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/mame $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/reelmagic $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/ghc $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/shell \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
+        GCC_PREPROCESSOR_DEFINITIONS: "BOXER_DEBUG USE_PRIVATE_APIS C_SRECORD HAVE_CXX11 EXPORT="
+        GCC_WARN_CHECK_SWITCH_STATEMENTS: NO
+        GCC_WARN_64_TO_32_BIT_CONVERSION: NO
+        CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION: NO
+        OTHER_CFLAGS: -mstackrealign
+        SWIFT_OBJC_BRIDGING_HEADER: Boxer/Boxer-Bridging-Header.h
+        SWIFT_VERSION: 6.0
+        MTL_LANGUAGE_REVISION: UseDeploymentTarget
+        COPY_PHASE_STRIP: NO
+      configs:
+        Debug:
+          GCC_PREPROCESSOR_DEFINITIONS: "$(inherited) BOXER_DEBUG USE_PRIVATE_APIS C_SRECORD HAVE_CXX11 EXPORT= DEBUG=1"
+          GCC_DYNAMIC_NO_PIC: NO
+        Release:
+          GCC_PREPROCESSOR_DEFINITIONS: "$(inherited) BOXER_DEBUG USE_PRIVATE_APIS C_SRECORD HAVE_CXX11 EXPORT= NDEBUG=1"
+schemes:
+  Boxer:
+    build:
+      targets:
+        Boxer: all
+    run:
+      config: Debug
+    archive:
+      config: Release

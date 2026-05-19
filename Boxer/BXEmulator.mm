@@ -420,10 +420,10 @@ static BOOL _hasStartedEmulator = NO;
 		//Turn off automatic speed scaling
         self.autoSpeed = NO;
         
-		CPU_OldCycleMax = CPU_CycleMax = (Bit32s)newSpeed;
+		CPU_CycleMax = (Bit32s)newSpeed;
 		
 		//Stop DOSBox from resetting the cycles after a program exits
-		CPU_AutoDetermineMode &= ~CPU_AUTODETERMINE_CYCLES;
+		CPU_CycleAutoAdjust = false;
 		
 		//Wipe out the cycles queue: we do this because DOSBox's CPU functions do whenever they modify the cycles
 		CPU_CycleLeft	= 0;
@@ -455,14 +455,15 @@ static BOOL _hasStartedEmulator = NO;
         }
         else
         {
+            static int bx_old_cycle_max = 3000;
             //Be a good boy and record/restore the old cycles setting
-            if (autoSpeed)	CPU_OldCycleMax = CPU_CycleMax;
-            else			CPU_CycleMax = CPU_OldCycleMax;
+            if (autoSpeed)	bx_old_cycle_max = CPU_CycleMax;
+            else			CPU_CycleMax = bx_old_cycle_max;
             
             //Always force the usage percentage to 100
             CPU_CyclePercUsed = 100;
             
-            CPU_CycleAutoAdjust = (autoSpeed) ? BXSpeedAuto : BXSpeedFixed;
+            CPU_CycleAutoAdjust = (autoSpeed) ? true : false;
         }
 	}
 }
@@ -558,7 +559,7 @@ static BOOL _hasStartedEmulator = NO;
 		}
 		
 		//Prevent DOSBox from resetting the core mode after a program exits
-		CPU_AutoDetermineMode &= ~CPU_AUTODETERMINE_CORE;
+		//CPU_AutoDetermineMode has been removed in Staging, explicit mode is preserved automatically
 		
 		//Reset DOSBox's emulated cycles counters
 		CPU_CycleLeft=0;
@@ -612,18 +613,20 @@ static BOOL _hasStartedEmulator = NO;
 #pragma mark -
 #pragma mark Gameport emulation
 
+static bool bx_gameport_timed = true;
+
 - (BXGameportTimingMode) gameportTimingMode
 {
-	return (BXGameportTimingMode)gameport_timed;
+	return (BXGameportTimingMode)bx_gameport_timed;
 }
 
 - (void) setGameportTimingMode: (BXGameportTimingMode)mode
 {
     @synchronized(self)
     {
-        if (gameport_timed != mode)
+        if (bx_gameport_timed != (mode != 0))
         {
-            gameport_timed = mode;
+            bx_gameport_timed = (mode != 0);
             [self.joystick clearInput];
         }
     }
@@ -653,7 +656,7 @@ static BOOL _hasStartedEmulator = NO;
 {
 	switch (joytype)
 	{
-		case JOY_NONE:
+		case JOY_DISABLED:
 			return BXNoJoystickSupport;
 			break;
 		case JOY_2AXIS:
@@ -828,7 +831,7 @@ static BOOL _hasStartedEmulator = NO;
 
 - (DOS_Shell *) _currentShell
 {
-	return currentShell;
+	return first_shell;
 }
 
 - (void) _postNotificationName: (NSString *)name
@@ -1009,7 +1012,7 @@ static BOOL _hasStartedEmulator = NO;
             char const *argv[0];
             commandLine = new CommandLine(0, argv);
             configuration = new Config(commandLine);
-            control = configuration;
+            control.reset(configuration);
             
             //Sets up the vast swathes of DOSBox configuration file parameters,
             //and registers the shell to start up when we finish initializing.

@@ -7,8 +7,16 @@
 //
 
 import Foundation
-import CwlDemangle
 import RegexBuilder
+
+@_silgen_name("swift_demangle")
+private func swift_demangle(
+    _ mangledName: UnsafePointer<CChar>?,
+    _ mangledNameLength: UInt,
+    _ outputBuffer: UnsafeMutablePointer<CChar>?,
+    _ outputBufferSize: UnsafeMutablePointer<UInt>?,
+    _ flags: UInt32
+) -> UnsafeMutablePointer<CChar>?
 
 private enum MangledFunctionType {
     /// No detected mangling
@@ -24,7 +32,7 @@ private let cxxPrefixes = ["_Z"]
 
 private let ADBCallstackSymbolPattern = #"^\d+\s+(\S+)\s+(0x[a-fA-F0-9]+)\s+(.+)\s+\+\s+(\d+)$"#
 @available(macOS 13.0, *)
-private let ADBCallstackSymbolPatternNew = Regex {
+nonisolated(unsafe) private let ADBCallstackSymbolPatternNew = Regex {
 	Anchor.startOfLine
     OneOrMore(.digit)
     OneOrMore(.whitespace)
@@ -82,10 +90,13 @@ extension NSException {
 	/// Takes a mangled Swift function name produced by `callstackSymbols` or `backtrace_symbols` and returns a demangled version.
 	/// Returns `nil` if the provided string could not be resolved (which will be the case if it is a C, Objective C, or C++ symbol name).
     private static func demangledSwiftFunctionName<A>(_ functionName: A) -> String? where A : StringProtocol {
-        guard let parsed = try? parseMangledSwiftSymbol(functionName.unicodeScalars, isType: true) else {
-            return nil
+        String(functionName).withCString { symbol in
+            guard let demangledName = swift_demangle(symbol, UInt(strlen(symbol)), nil, nil, 0) else {
+                return nil
+            }
+            defer { free(demangledName) }
+            return String(cString: demangledName)
         }
-        return parsed.description
     }
     
     /// Returns the results of `-callstackSymbols` parsed into NSDictionaries with the attributes listed in `ADBCallstackKeys`.

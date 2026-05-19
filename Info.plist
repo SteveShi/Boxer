@@ -180,11 +180,11 @@
 	<key>SUEnableSystemProfiling</key>
 	<false/>
 	<key>SUFeedURL</key>
-	<string>https://updates.boxerapp.com/appcast-dev</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
+	<string>$(SUFeedURL)</string>
+	<key>SUPublicEDKey</key>
+	<string>$(SUPublicEDKey)</string>
 	<key>SUScheduledCheckInterval</key>
-	<integer>86400</integer>
+	<string>$(SUScheduledCheckInterval)</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

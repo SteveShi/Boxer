@@ -1,17 +1,33 @@
-#Ignore Finder metadata files
+# ─── macOS 系统文件 ───────────────────────────────────────────────
 .DS_Store
 ._*
 
-#No build directories thanks
-build
+# ─── 构建产物 ─────────────────────────────────────────────────────
+build/
+DerivedData/
 
-#Ignore user-specific stuff in .xcodeproj bundles
+# ─── 日志与临时文件 ───────────────────────────────────────────────
+*.log
+*.tmp
+*.temp
+
+# ─── Xcode 用户专属文件 ───────────────────────────────────────────
 *.pbxuser
 *.perspective
 *.perspectivev3
 *.mode1v3
 *.mode2v3
 xcuserdata/
-project.xcworkspace
-DerivedData/
+*.xccheckout
+*.moved-aside
 swiftpm/
+
+# ─── xcodegen 生成的 Xcode 工程文件（由 project.yml 生成，不需要追踪）───
+# 保留 xcshareddata/xcschemes/ 中手写的 schemes（如 Boxer Bundler）
+Boxer.xcodeproj/project.pbxproj
+Boxer.xcodeproj/project.xcworkspace/
+Boxer.xcodeproj/xcshareddata/xcschemes/Boxer.xcscheme
+
+# xcworkspace 中由 xcodegen 生成的部分
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
