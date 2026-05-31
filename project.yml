@@ -10,7 +10,7 @@ configs:
 packages:
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
-    from: 2.9.1
+    from: 2.9.2
 projectReferences:
   OpenEmuShaders:
     path: Vendor/OpenEmuShaders/OpenEmuShaders.xcodeproj
@@ -685,8 +685,8 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer
         INFOPLIST_FILE: Info.plist
         CODE_SIGN_ENTITLEMENTS: Boxer/Boxer.entitlements
-        MARKETING_VERSION: 2.0.0-Alpha3
-        CURRENT_PROJECT_VERSION: 2.0.0-Alpha3+20260519
+        MARKETING_VERSION: 2.0.0-Alpha4
+        CURRENT_PROJECT_VERSION: 2.0.0-Alpha4+20260531
         SUEnableAutomaticChecks: true
         SUScheduledCheckInterval: 86400
         SUFeedURL: https://github.com/SteveShi/Boxer/releases/latest/download/appcast.xml
@@ -1282,8 +1282,8 @@ targets:
         PRODUCT_NAME: "Boxer Standalone"
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer-standalone
         INFOPLIST_FILE: Standalone/Boxer Standalone-Info.plist
-        MARKETING_VERSION: 2.0.0-Alpha3
-        CURRENT_PROJECT_VERSION: 2.0.0-Alpha3+20260519
+        MARKETING_VERSION: 2.0.0-Alpha4
+        CURRENT_PROJECT_VERSION: 2.0.0-Alpha4+20260531
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: "-"
         DEVELOPMENT_TEAM: ""
@@ -1343,8 +1343,8 @@ targets:
         PRODUCT_NAME: "Boxer Bundler"
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer-bundler
         INFOPLIST_FILE: Bundler/Boxer Bundler-Info.plist
-        MARKETING_VERSION: 2.0.0-Alpha3
-        CURRENT_PROJECT_VERSION: 2.0.0-Alpha3+20260519
+        MARKETING_VERSION: 2.0.0-Alpha4
+        CURRENT_PROJECT_VERSION: 2.0.0-Alpha4+20260531
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: "-"
         DEVELOPMENT_TEAM: ""

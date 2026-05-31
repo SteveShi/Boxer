@@ -1,5 +1,23 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Alpha4 (English)
+
+This release updates the Sparkle auto-update framework to the latest version.
+
+### Key Changes
+- **Sparkle Framework Update**: Updated Sparkle dependency from 2.9.1 to 2.9.2, ensuring compatibility with the latest auto-update features and security improvements.
+
+---
+
+## 版本 2.0.0-Alpha4 (中文)
+
+本版本更新了 Sparkle 自动更新框架到最新版本。
+
+### 主要更新
+- **Sparkle 框架更新**：将 Sparkle 依赖从 2.9.1 升级到 2.9.2，确保与最新的自动更新功能和安全改进兼容。
+
+---
+
 ## Version 2.0.0-Alpha3 (English)
 
 This release establishes our modern, premium CI/CD pipelines, automates localized release notes parsing, and unifies the release scheme for all three software targets.
