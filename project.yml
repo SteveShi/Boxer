@@ -10,7 +10,7 @@ configs:
 packages:
   Sparkle:
     url: https://github.com/sparkle-project/Sparkle
-    from: 2.9.2
+    from: 2.0.0
 projectReferences:
   OpenEmuShaders:
     path: Vendor/OpenEmuShaders/OpenEmuShaders.xcodeproj

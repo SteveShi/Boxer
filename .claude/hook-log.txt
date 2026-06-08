@@ -1,0 +1,4 @@
+2026-05-31T09:08:45Z [cc-design] session-start: fired
+2026-05-31T09:14:38Z [cc-design] stop: fired, running cleanup
+2026-05-31T09:18:20Z [cc-design] stop: fired, running cleanup
+2026-05-31T09:19:13Z [cc-design] stop: fired, running cleanup
