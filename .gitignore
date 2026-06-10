@@ -23,11 +23,5 @@ xcuserdata/
 swiftpm/
 
 # ─── xcodegen 生成的 Xcode 工程文件（由 project.yml 生成，不需要追踪）───
-# 保留 xcshareddata/xcschemes/ 中手写的 schemes（如 Boxer Bundler）
-Boxer.xcodeproj/project.pbxproj
-Boxer.xcodeproj/project.xcworkspace/
-Boxer.xcodeproj/xcshareddata/xcschemes/Boxer.xcscheme
-
-# xcworkspace 中由 xcodegen 生成的部分
-*.xcworkspace/xcuserdata/
-*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+*.xcodeproj/
+*.xcworkspace/
