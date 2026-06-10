@@ -1,5 +1,25 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Alpha6 (English)
+
+This release fixes the DOSBox command execution failure where custom emulator startup commands were not intercepted by the Objective-C frontend, preventing the game from launching automatically and showing "Illegal command" errors.
+
+### Key Changes
+- **Fix Custom Command Interception**: Re-introduced the `boxer_shellShouldRunCommand` check inside `DOS_Shell::DoCommand` (`shell_cmds.cpp`). This ensures Boxer-specific shell commands like `boxer_preflight` and `boxer_launch` are correctly intercepted and handled by the app frontend instead of falling through to the emulator shell and raising errors.
+- **Restore Game Auto-Launch**: Intercepting `boxer_launch` correctly triggers the emulator delegate to boot the target executable immediately, resolving the issue where the game box would stop at the Favorites/Launch Panel on load.
+
+---
+
+## 版本 2.0.0-Alpha6 (中文)
+
+本版本修复了自定义虚拟机启动指令未被 Cocoa 前端拦截，从而导致 DOSBox 执行报错并无法自动进入游戏的问题。
+
+### 主要更新
+- **修复自定义指令拦截**：重新在 `DOS_Shell::DoCommand`（`shell_cmds.cpp`）中接入了 `boxer_shellShouldRunCommand` 检查，确保 `boxer_preflight` 和 `boxer_launch` 等 Boxer 专属控制指令能被 Cocoa 框架正确捕获与执行，避免这些指令被传导至 DOSBox 终端引发 `Illegal command` 报错。
+- **恢复游戏自动运行**：修复了拦截逻辑后，`boxer_launch` 会正确驱动虚拟机代理以直接运行目标游戏程序，解决了双击打开游戏包（Gamebox）时直接卡在 Favorites 快捷启动界面的问题。
+
+---
+
 ## Version 2.0.0-Alpha5 (English)
 
 This release fixes the process launch hang and loading spinner freeze issues by resolving a thread exception crash.
