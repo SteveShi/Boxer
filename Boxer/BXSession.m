@@ -312,7 +312,7 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 		self.gamebox = [BXGamebox bundleWithURL: gameboxURL];
 		
         //Check if the user opened the gamebox itself or a specific file/folder inside the gamebox.
-        BOOL hasCustomTarget = ![self.targetURL isEqual: gameboxURL];
+        BOOL hasCustomTarget = ![self.targetURL.absoluteURL.standardizedURL isEqual: gameboxURL.absoluteURL.standardizedURL];
         
         //Check if we are flagged to show the launch panel at startup for this game,
         //instead of looking for a target program.
@@ -1959,7 +1959,7 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
                 
                 //If our target was the gamebox itself, rewrite it to point to this C drive
                 //so that we'll start up at drive C.
-                if ([self.targetURL isEqual: self.gamebox.bundleURL])
+                if ([self.targetURL.absoluteURL.standardizedURL isEqual: self.gamebox.bundleURL.absoluteURL.standardizedURL])
                     self.targetURL = drive.sourceURL;
             }
             
