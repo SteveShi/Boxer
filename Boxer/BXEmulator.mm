@@ -14,6 +14,7 @@
 #import "shell.h"
 #import "mapper.h"
 #import "joystick.h"
+#import "cross.h"
 
 
 #pragma mark - Constants
@@ -1014,6 +1015,9 @@ static bool bx_gameport_timed = true;
             configuration = new Config(commandLine);
             control.reset(configuration);
             
+            //Sets up the config directory location.
+            InitConfigDir();
+
             //Sets up the vast swathes of DOSBox configuration file parameters,
             //and registers the shell to start up when we finish initializing.
             DOSBOX_Init();
@@ -1061,7 +1065,6 @@ static bool bx_gameport_timed = true;
 	SDL_Quit();
 	[self.videoHandler shutdown];
     control = NULL;
-    delete configuration;
     configuration = NULL;
     delete commandLine;
     commandLine = NULL;

@@ -1298,6 +1298,7 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 
 - (void) runPreflightCommandsForEmulator: (BXEmulator *)theEmulator
 {
+    NSLog(@"BXDIAG runPreflightCommandsForEmulator hasConfigured=%d", _hasConfigured);
 	if (!_hasConfigured)
 	{
         @autoreleasepool {
@@ -1320,6 +1321,7 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 
 - (void) runLaunchCommandsForEmulator: (BXEmulator *)theEmulator
 {
+    NSLog(@"BXDIAG runLaunchCommandsForEmulator targetURL=%@", self.targetURL);
 	_hasLaunched = YES;
     
     //Do any just-in-time configuration, which should override all previous startup stuff.
@@ -1389,6 +1391,10 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 
 - (void) emulator: (BXEmulator *)theEmulator didFinishFrame: (BXVideoFrame *)frame
 {
+    static NSUInteger _bxdiagFrameCount = 0;
+    if (_bxdiagFrameCount < 5 || (_bxdiagFrameCount % 60) == 0)
+        NSLog(@"BXDIAG didFinishFrame #%lu frame=%@ panel=%ld", (unsigned long)_bxdiagFrameCount, (frame ? @"yes" : @"nil"), (long)self.DOSWindowController.currentPanel);
+    _bxdiagFrameCount++;
 	[self.DOSWindowController updateWithFrame: frame];
 }
 
@@ -1647,6 +1653,9 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
         //if requestedDate was nil or in the past.)
 		untilDate = self.isSuspended ? [NSDate distantFuture] : requestedDate;
 	}
+    
+    // Drive the runloop to execute any pending timers and performSelectors (e.g. showDOSView after delay)
+    [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: [NSDate date]];
 }
 
 #pragma mark - Synchronizing emulation state

@@ -119,8 +119,9 @@ Bitu boxer_prepareForFrameSize(Bitu width, Bitu height, Bitu gfx_flags, double s
 	
 	NSSize outputSize	= NSMakeSize((CGFloat)width, (CGFloat)height);
 	NSSize scale		= NSMakeSize((CGFloat)scalex, (CGFloat)scaley);
+	NSLog(@"BXDIAG boxer_prepareForFrameSize %lux%lu", (unsigned long)width, (unsigned long)height);
 	[[emulator videoHandler] prepareForOutputSize: outputSize atScale: scale withCallback: callback];
-	
+
 	return GFX_CAN_32;
 }
 
@@ -652,7 +653,7 @@ bool GFX_StartUpdate(uint8_t * &pixels, int &pitch) { return boxer_startFrame(pi
 void GFX_RefreshTitle() {}
 void GFX_SetMouseHint(MouseHint) {}
 void GFX_NotifyBooting() {}
-DosBox::Rect GFX_GetDesktopSize() { return DosBox::Rect(); }
+DosBox::Rect GFX_GetDesktopSize() { return DosBox::Rect(640, 480); }
 void GFX_SetMouseCapture(bool) {}
 void GFX_SetMouseRawInput(bool) {}
 float GFX_GetDpiScaleFactor() { return 1.0f; }
@@ -661,12 +662,12 @@ void GFX_NotifyProgramName(const std::string&, const std::string&) {}
 void GFX_SetMouseVisibility(bool) {}
 const char* GFX_GetRenderingBackend_String() { return "opengl"; } // Removed GFX_GetRenderingBackend string stub
 void GFX_NotifyCyclesChanged() {}
-DosBox::Rect GFX_GetCanvasSizeInPixels() { return DosBox::Rect(); }
+DosBox::Rect GFX_GetCanvasSizeInPixels() { return DosBox::Rect(640, 480); }
 IntegerScalingMode GFX_GetIntegerScalingMode() { return IntegerScalingMode::Off; }
 void GFX_SetIntegerScalingMode(IntegerScalingMode) {}
 bool GFX_HaveDesktopEnvironment() { return true; }
 void GFX_NotifyAudioMutedStatus(bool) {}
-DosBox::Rect GFX_GetViewportSizeInPixels() { return DosBox::Rect(); }
+DosBox::Rect GFX_GetViewportSizeInPixels() { return DosBox::Rect(640, 480); }
 InterpolationMode GFX_GetTextureInterpolationMode() { return InterpolationMode::NearestNeighbour; }
 RenderingBackend GFX_GetRenderingBackend() { return RenderingBackend::Texture; }
 

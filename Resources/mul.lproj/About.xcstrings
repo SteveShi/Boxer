@@ -2,24 +2,24 @@
   "sourceLanguage" : "en",
   "strings" : {
     "36.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Punching some sense\\ninto DOS emulation.\"; ObjectID = \"36\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Bringing classic DOS\\ngames to modern Mac.\"; ObjectID = \"36\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Punching some sense\ninto DOS emulation."
+            "value" : "Bringing classic DOS\ngames to modern Mac."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Empujando algún sentido\ndentro de la emulación DOS."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Donner du punch à\nl’émulation DOS."
           }
         }
@@ -74,7 +74,7 @@
       }
     },
     "56.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Boxer is designed by\\nAlun Bestor & released under the GNU Public License.\\n\\nBoxer is based on DOSBox 0.74, which is \\n© 2002–2010 by the DOSBox Team.\"; ObjectID = \"56\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Boxer is designed by\\nAlun Bestor & maintained by contributors.\\nReleased under the GNU General Public License.\\n\\nBoxer is based on DOSBox Staging,\\n© 2020–2025 by the DOSBox Staging Team.\\nOriginally based on DOSBox,\\n© 2002–2024 by the DOSBox Team.\"; ObjectID = \"56\";",
       "localizations" : {
         "en" : {
           "stringUnit" : {

@@ -476,7 +476,9 @@ nil];
 {	
 	//Normalise the command to lowercase
 	NSString *command = originalCommand.lowercaseString;
-	
+
+	NSLog(@"BXDIAG _handleCommand: '%@' args:'%@' matched=%d", command, originalArgumentString, ([_commandList objectForKey: command] != nil));
+
 	//Check if the command matched one of our aliases
 	NSString *aliasedCommand = [_commandAliases objectForKey: command];
 	if (aliasedCommand)
@@ -666,13 +668,12 @@ nil];
 	
     BOOL isShell = [fullDOSPath isEqualToString: shellProcessPath];
     
-    NSMutableDictionary *processInfo = [NSMutableDictionary dictionaryWithDictionary: @{
-                                        BXEmulatorDOSPathKey: fullDOSPath,
-                                        BXEmulatorDriveKey: drive,
-                                        BXEmulatorLaunchDateKey: [NSDate date],
-                                        BXEmulatorIsBatchFileKey: @(isBatchFile),
-                                        BXEmulatorIsShellKey: @(isShell),
-                                        }];
+    NSMutableDictionary *processInfo = [NSMutableDictionary dictionary];
+    if (fullDOSPath) [processInfo setObject: fullDOSPath forKey: BXEmulatorDOSPathKey];
+    if (drive) [processInfo setObject: drive forKey: BXEmulatorDriveKey];
+    [processInfo setObject: [NSDate date] forKey: BXEmulatorLaunchDateKey];
+    [processInfo setObject: @(isBatchFile) forKey: BXEmulatorIsBatchFileKey];
+    [processInfo setObject: @(isShell) forKey: BXEmulatorIsShellKey];
     
 	if (fileURL)
     {

@@ -1,5 +1,25 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Alpha5 (English)
+
+This release fixes the process launch hang and loading spinner freeze issues by resolving a thread exception crash.
+
+### Key Changes
+- **Fix Emulator Thread Exception**: Fixed a fatal `NSInvalidArgumentException` when initializing the process info dictionary with a `nil` drive during the launch of `AUTOEXEC.BAT`. Refactored dictionary creation in `BXEmulator+BXShell` to safely check for `nil` pointers.
+- **Multithreaded Emulation Stability**: Restored full stability to the multithreaded emulation run loop, ensuring the Cocoa event loop and the emulator thread run seamlessly in parallel.
+
+---
+
+## 版本 2.0.0-Alpha5 (中文)
+
+本版本解决了虚拟机启动挂起和 Loading 转圈冻结的问题，修复了子线程字典空值异常崩溃。
+
+### 主要更新
+- **修复仿真线程异常崩溃**：修复了在启动 `AUTOEXEC.BAT` 批处理文件时，由于 `drive` 驱动器为 `nil` 从而在初始化 `processInfo` 字典时引发的致命 `NSInvalidArgumentException` 异常。重构了 `BXEmulator+BXShell` 中的字典构建逻辑以安全防御 `nil` 指针。
+- **多线程仿真稳定性**：恢复了多线程仿真模式下虚拟机主循环与前台 Cocoa 事件 RunLoop 并行运转的稳定性，确保游戏和提示符界面能够流畅载入并消除转圈挂起。
+
+---
+
 ## Version 2.0.0-Alpha4 (English)
 
 This release updates the Sparkle auto-update framework to the latest version.
