@@ -64,6 +64,10 @@ jobs:
               release_notes += f'## 版本 {version} (中文)\n\n' + zh_notes + '\n'
           with open('release_notes.md', 'w', encoding='utf-8') as f:
               f.write(release_notes)
+          with open('release_notes_en.md', 'w', encoding='utf-8') as f:
+              f.write(en_notes if en_notes else release_notes)
+          with open('release_notes_zh.md', 'w', encoding='utf-8') as f:
+              f.write(zh_notes if zh_notes else release_notes)
           "
 
       - name: Build release apps
@@ -121,6 +125,68 @@ jobs:
           ditto -c -k --keepParent "build/Build/Products/Release/Boxer Bundler.app" Boxer-Bundler-Apple-Silicon.zip
           hdiutil create -volname "Boxer Bundler" -srcfolder "build/Build/Products/Release/Boxer Bundler.app" -ov -format UDZO Boxer-Bundler-Apple-Silicon.dmg
 
+      - name: Generate Sparkle Appcast
+        env:
+          SPARKLE_SECRET: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 1. 获取最新 Sparkle 版本并下载工具
+          SPARKLE_VERSION=$(gh api repos/sparkle-project/Sparkle/releases/latest --jq '.tag_name' | sed 's/^v//')
+          curl -fL -H "User-Agent: curl" -o Sparkle.tar.xz "https://github.com/sparkle-project/Sparkle/releases/download/${SPARKLE_VERSION}/Sparkle-${SPARKLE_VERSION}.tar.xz"
+          tar -xf Sparkle.tar.xz
+
+          # 2. 极致清理私钥 (确保没有任何不可见字符)
+          CLEAN_KEY=$(echo "$SPARKLE_SECRET" | sed 's/EdDSAPrivateKey://' | tr -dc 'A-Za-z0-9+/=')
+          
+          if [ -z "$CLEAN_KEY" ]; then
+            echo "ERROR: SPARKLE_PRIVATE_KEY secret is missing!"
+            exit 1
+          fi
+
+          # 3. 准备发布目录
+          mkdir -p deploy
+          cp Boxer-Apple-Silicon.zip deploy/
+          # 准备多语言更新日志文件
+          cp release_notes_en.md "deploy/release_notes_en.md"
+          cp release_notes_zh.md "deploy/release_notes_zh.md"
+          # 默认版本（供 generate_appcast 自动创建基础项）
+          cp release_notes_en.md "deploy/release_notes.md"
+          
+          # 4. 执行签名并生成 Appcast
+          # 设置动态库路径以确保 bin/generate_appcast 能找到 Sparkle.framework
+          export DYLD_FRAMEWORK_PATH="$PWD"
+          
+          echo "Running generate_appcast using stdin method..."
+          echo "$CLEAN_KEY" | ./bin/generate_appcast \
+            --ed-key-file - \
+            --download-url-prefix "https://github.com/SteveShi/Boxer/releases/download/${{ github.ref_name }}/" \
+            deploy/
+          
+          if [ -f "deploy/appcast.xml" ]; then
+            mv deploy/appcast.xml .
+            
+            # 1. 清理可能自动生成的描述或旧链接 (MacOS BSD sed 语法适配)
+            sed -i.bak '/<description>/d' appcast.xml
+            sed -i.bak '/<sparkle:releaseNotesLink>/d' appcast.xml
+            
+            # 2. 准备链接内容
+            EN_LINK="https://github.com/SteveShi/Boxer/releases/download/${{ github.ref_name }}/release_notes_en.md"
+            ZH_LINK="https://github.com/SteveShi/Boxer/releases/download/${{ github.ref_name }}/release_notes_zh.md"
+            
+            # 3. 注入Localized链接（在 <enclosure 标签之前）
+            # 注意：BSD sed 的 i 指令后面需要换行符
+            sed -i.bak "/<enclosure/i\\
+            <sparkle:releaseNotesLink xml:lang=\"en\">$EN_LINK</sparkle:releaseNotesLink>" appcast.xml
+            sed -i.bak "/<enclosure/i\\
+            <sparkle:releaseNotesLink xml:lang=\"zh-Hans\">$ZH_LINK</sparkle:releaseNotesLink>" appcast.xml
+            
+            rm appcast.xml.bak
+            echo "Appcast generated successfully with localized Markdown support."
+          else
+            echo "ERROR: generate_appcast failed to produce appcast.xml."
+            exit 1
+          fi
+
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v3
         with:
@@ -132,5 +198,8 @@ jobs:
             Boxer-Standalone-Apple-Silicon.dmg
             Boxer-Bundler-Apple-Silicon.zip
             Boxer-Bundler-Apple-Silicon.dmg
+            release_notes_en.md
+            release_notes_zh.md
+            appcast.xml
           fail_on_unmatched_files: true
           make_latest: true

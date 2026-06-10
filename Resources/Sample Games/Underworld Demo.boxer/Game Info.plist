@@ -8,5 +8,14 @@
 	<string>2DB89431077F7CDF8383C7A04799EA57E678B337</string>
 	<key>BXGameIdentifierType</key>
 	<integer>2</integer>
+	<key>BXLaunchers</key>
+	<array>
+		<dict>
+			<key>BXLauncherPath</key>
+			<string>C.harddisk/UWDEMO/UWDEMO.EXE</string>
+			<key>BXLauncherTitle</key>
+			<string>Launch Underworld Demo</string>
+		</dict>
+	</array>
 </dict>
 </plist>

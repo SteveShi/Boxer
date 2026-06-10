@@ -8,5 +8,14 @@
 	<string>644E7CBAB999DB002669A9AD0B0F91722D095C22</string>
 	<key>BXGameIdentifierType</key>
 	<integer>2</integer>
+	<key>BXLaunchers</key>
+	<array>
+		<dict>
+			<key>BXLauncherPath</key>
+			<string>C.harddisk/XCOMDEMO/XCOM.BAT</string>
+			<key>BXLauncherTitle</key>
+			<string>Launch X-COM Demo</string>
+		</dict>
+	</array>
 </dict>
 </plist>
