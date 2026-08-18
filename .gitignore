@@ -25,3 +25,6 @@ swiftpm/
 # ─── xcodegen 生成的 Xcode 工程文件（由 project.yml 生成，不需要追踪）───
 *.xcodeproj/
 *.xcworkspace/
+.freebuff/desktop-v2.db-wal
+.freebuff/desktop-v2.db-shm
+.freebuff/desktop-v2.db

@@ -165,8 +165,11 @@ targets:
       - path: "Boxer/Inspector Panel/BXJoystickItem.m"
       - path: Boxer/main.m
       - path: "Boxer/Metal Rendering/BXMetalLayer.m"
-      - path: "Boxer/Metal Rendering/BXMetalRenderingView.m"
-      - path: "Boxer/Metal Rendering/BXMetalRenderingView+BXImageCapture.m"
+      - path: "Boxer/Metal Rendering/BXMetalRenderingView.swift"
+      - path: "Boxer/Metal Rendering/BXMetalRenderingView+BXImageCapture.swift"
+      - path: Boxer/Shaders/BXShaderParamModels.swift
+      - path: Boxer/BXGameControllerMonitor.swift
+      - path: Boxer/WhatsNewSheetView.swift
       - path: Boxer/MT32LCDDisplay.swift
       - path: Boxer/NSAlert+BXAlert.m
       - path: Boxer/NSApplication+BXScripting.m
@@ -638,6 +641,8 @@ targets:
         buildPhase: resources
       - path: Resources/mul.lproj/Bezel.xcstrings
         buildPhase: resources
+      - path: Resources/mul.lproj/WhatsNew.xcstrings
+        buildPhase: resources
       - path: Resources/Boxer.help
         buildPhase: resources
         type: folder
@@ -656,6 +661,7 @@ targets:
       - sdk: ScriptingBridge.framework
       - sdk: DiskArbitration.framework
       - sdk: libpcap.tbd
+      - sdk: GameController.framework
       - package: Sparkle
       - framework: Frameworks/SDL2.framework
         embed: true
@@ -685,8 +691,8 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer
         INFOPLIST_FILE: Info.plist
         CODE_SIGN_ENTITLEMENTS: Boxer/Boxer.entitlements
-        MARKETING_VERSION: 2.0.0-Alpha6
-        CURRENT_PROJECT_VERSION: 2.0.0-Alpha6+20260610
+        MARKETING_VERSION: 2.0.0-Alpha7
+        CURRENT_PROJECT_VERSION: 2.0.0-Alpha7+20260819
         SUEnableAutomaticChecks: true
         SUScheduledCheckInterval: 86400
         SUFeedURL: https://github.com/SteveShi/Boxer/releases/latest/download/appcast.xml
@@ -703,7 +709,7 @@ targets:
         "LD_NO_PIE[arch=arm64]": NO
         FRAMEWORK_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks $(PROJECT_DIR)/Frameworks"
         LIBRARY_SEARCH_PATHS: "$(inherited)"
-        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/Vendor/OpenEmuShaders/Source/RendererPrivate $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debug $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/mame $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/reelmagic $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/ghc $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/shell \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
+        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debug $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/mame $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/reelmagic $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/ghc $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/shell \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
         GCC_PREPROCESSOR_DEFINITIONS: "BOXER_DEBUG USE_PRIVATE_APIS C_SRECORD HAVE_CXX11 EXPORT="
         GCC_WARN_CHECK_SWITCH_STATEMENTS: NO
         GCC_WARN_64_TO_32_BIT_CONVERSION: NO
@@ -817,8 +823,11 @@ targets:
       - path: "Boxer/Inspector Panel/BXInspectorController.m"
       - path: Boxer/main.m
       - path: "Boxer/Metal Rendering/BXMetalLayer.m"
-      - path: "Boxer/Metal Rendering/BXMetalRenderingView.m"
-      - path: "Boxer/Metal Rendering/BXMetalRenderingView+BXImageCapture.m"
+      - path: "Boxer/Metal Rendering/BXMetalRenderingView.swift"
+      - path: "Boxer/Metal Rendering/BXMetalRenderingView+BXImageCapture.swift"
+      - path: Boxer/Shaders/BXShaderParamModels.swift
+      - path: Boxer/BXGameControllerMonitor.swift
+      - path: Boxer/WhatsNewSheetView.swift
       - path: Boxer/MT32LCDDisplay.swift
       - path: Boxer/NSAlert+BXAlert.m
       - path: "Other Sources/BGHUDAppKit/BGThemeManager.m"
@@ -1229,6 +1238,8 @@ targets:
         buildPhase: resources
       - path: Resources/mul.lproj/Bezel.xcstrings
         buildPhase: resources
+      - path: Resources/mul.lproj/WhatsNew.xcstrings
+        buildPhase: resources
       - path: Resources/Boxer.help
         buildPhase: resources
         type: folder
@@ -1255,6 +1266,7 @@ targets:
       - sdk: ScriptingBridge.framework
       - sdk: DiskArbitration.framework
       - sdk: libpcap.tbd
+      - sdk: GameController.framework
       - framework: Frameworks/SDL2.framework
         embed: true
         codeSign: true
@@ -1282,8 +1294,8 @@ targets:
         PRODUCT_NAME: "Boxer Standalone"
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer-standalone
         INFOPLIST_FILE: Standalone/Boxer Standalone-Info.plist
-        MARKETING_VERSION: 2.0.0-Alpha6
-        CURRENT_PROJECT_VERSION: 2.0.0-Alpha6+20260610
+        MARKETING_VERSION: 2.0.0-Alpha7
+        CURRENT_PROJECT_VERSION: 2.0.0-Alpha7+20260819
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: "-"
         DEVELOPMENT_TEAM: ""
@@ -1295,7 +1307,7 @@ targets:
         "LD_NO_PIE[arch=arm64]": NO
         FRAMEWORK_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks $(PROJECT_DIR)/Frameworks"
         LIBRARY_SEARCH_PATHS: "$(inherited)"
-        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/Vendor/OpenEmuShaders/Source/RendererPrivate $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debug $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/intel8255.cpp $(SRCROOT)/DOSBox-Staging/src/hardware/mame $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/reelmagic $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/ghc $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/shell \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
+        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debug $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/intel8255.cpp $(SRCROOT)/DOSBox-Staging/src/hardware/mame $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/reelmagic $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/ghc $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/shell \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
         GCC_PREPROCESSOR_DEFINITIONS: "BOXER_DEBUG STANDALONE=1 USE_PRIVATE_APIS C_SRECORD HAVE_CXX11 EXPORT="
         GCC_WARN_CHECK_SWITCH_STATEMENTS: NO
         GCC_WARN_64_TO_32_BIT_CONVERSION: NO
@@ -1326,6 +1338,7 @@ targets:
       - path: "Bundler/Boxer Bundler-Info.plist"
       - path: "Bundler/Resources/Bundler.xcassets"
       - path: "Bundler/Resources/Base.lproj/MainMenu.xib"
+      - path: Bundler/Localizable.xcstrings
       - path: "Bundler/Resources/mul.lproj/MainMenu.xcstrings"
       - path: "Bundler/Resources/InfoPlist.xcstrings"
       - path: "Bundler/Resources/UserDefaults.plist"
@@ -1343,8 +1356,8 @@ targets:
         PRODUCT_NAME: "Boxer Bundler"
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer-bundler
         INFOPLIST_FILE: Bundler/Boxer Bundler-Info.plist
-        MARKETING_VERSION: 2.0.0-Alpha6
-        CURRENT_PROJECT_VERSION: 2.0.0-Alpha6+20260610
+        MARKETING_VERSION: 2.0.0-Alpha7
+        CURRENT_PROJECT_VERSION: 2.0.0-Alpha7+20260819
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: "-"
         DEVELOPMENT_TEAM: ""

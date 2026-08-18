@@ -13,6 +13,12 @@
 #import "BXBezelController.h"
 #import "BXVideoHandler.h"
 
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
+#import "Boxer-Swift.h"
+#endif
+
 
 #pragma mark -
 #pragma mark Constants
@@ -170,7 +176,7 @@
 - (BOOL) joystickControllersAvailable
 {
     BXJoystickController *joystickController = [(BXBaseAppController *)[NSApp delegate] joystickController];
-    return joystickController.joystickDevices.count > 0;
+    return (joystickController.joystickDevices.count > 0) || [BXGameControllerMonitor shared].hasConnectedControllers;
 }
 
 - (BOOL) controllersAvailable

@@ -1,0 +1,134 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "What's New in Boxer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What's New in Boxer"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boxer 新功能"
+          }
+        }
+      }
+    },
+    "Continue" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续"
+          }
+        }
+      }
+    },
+    "Modern Metal Rendering Pipeline" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modern Metal Rendering Pipeline"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现代化 Metal 渲染管线"
+          }
+        }
+      }
+    },
+    "Migrated to upstream OpenEmuShaders with pure Swift 6 Metal rendering and upgraded SPIRV compiler toolchains." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Migrated to upstream OpenEmuShaders with pure Swift 6 Metal rendering and upgraded SPIRV compiler toolchains."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全面接入最新上游 OpenEmuShaders 与纯 Swift 6 Metal 渲染管线，升级 SPIRV 工具链。"
+          }
+        }
+      }
+    },
+    "Upgraded MT32 MIDI Engine" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgraded MT32 MIDI Engine"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "升级 MT32 MIDI 仿真引擎"
+          }
+        }
+      }
+    },
+    "Updated to Munt 2.8.2 for superior Roland MT-32 emulation accuracy and stability." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updated to Munt 2.8.2 for superior Roland MT-32 emulation accuracy and stability."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "升级至 Munt 2.8.2 引擎，带来更高精度的 Roland MT-32 音乐合成与稳定性。"
+          }
+        }
+      }
+    },
+    "Native Wireless Game Controllers" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Native Wireless Game Controllers"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "原生无线手柄支持"
+          }
+        }
+      }
+    },
+    "Seamless support for modern Xbox, PlayStation DualSense, and Nintendo Switch Pro controllers via Apple GameController framework." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seamless support for modern Xbox, PlayStation DualSense, and Nintendo Switch Pro controllers via Apple GameController framework."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过 Apple GameController 原生支持 Xbox、PlayStation DualSense 与 Switch Pro 等现代无线手柄。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -37,7 +37,7 @@ extension BXShadersModel {
 
 extension BXShadersModel.BXShaderModel {
     @objc(writeParameters:forIdentifier:)
-    public func write(parameters params: [ShaderParameter], identifier: String) {
+    public func write(parameters params: [OEShaderParameter], identifier: String) {
         var state = [String]()
         
         for p in params.filter({ $0.value != $0.initial }) {

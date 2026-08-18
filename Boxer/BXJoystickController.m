@@ -16,6 +16,12 @@
 
 #import <DDHidLib/DDHidJoystick.h>
 
+#if STANDALONE
+#import "Boxer_Standalone-Swift.h"
+#else
+#import "Boxer-Swift.h"
+#endif
+
 @interface BXJoystickController ()
 
 @property (strong, nonatomic) ADBHIDMonitor *HIDMonitor;
@@ -35,6 +41,9 @@
         self.HIDMonitor.delegate = self;
         NSArray *deviceProfiles = @[[ADBHIDMonitor joystickDescriptor], [ADBHIDMonitor gamepadDescriptor]];
         [self.HIDMonitor observeDevicesMatching: deviceProfiles];
+        
+        // Initialize modern GameController.framework monitor
+        [BXGameControllerMonitor shared];
         
         //Clear our cache of running HID remappers whenever Boxer regains the application focus
         //(since the user may have launched/quit other applications while we were inactive).

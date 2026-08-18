@@ -1,5 +1,29 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Alpha7 (English)
+
+This release modernizes Boxer's core dependencies, featuring a pure Swift 6 Metal rendering pipeline with the latest OpenEmuShaders, updated Roland MT-32 emulation via Munt 2.8.2, and native Apple GameController framework integration for modern wireless gamepads.
+
+### Key Changes
+- **Swift 6 Metal Rendering Pipeline**: Rebuilt the Metal video rendering view and screenshot capture extensions in pure Swift 6, directly integrating with the latest upstream `OpenEmuShaders` framework (`2ac33a9`) and modernized SPIRV toolchains.
+- **Roland MT-32 Munt 2.8.2 Engine**: Upgraded `Vendor/MT32Emu` to the latest `munt_2_8_2` release, delivering enhanced MIDI synthesis accuracy, modernized DSP filters, and universal Apple Silicon / Intel binary support.
+- **Native Wireless Gamepad Support**: Introduced `BXGameControllerMonitor` leveraging Apple's `GameController.framework`, providing out-of-the-box support for modern Bluetooth wireless controllers including Xbox Wireless, PlayStation DualSense / DualShock 4, and Nintendo Switch Pro controllers.
+- **What's New in Boxer**: Added a native SwiftUI `WhatsNewSheetView` with full localization for highlighting new features on major updates.
+
+---
+
+## 版本 2.0.0-Alpha7 (中文)
+
+本版本全面完成了 Boxer 核心 Vendor 依赖库的现代化重构，包含基于纯 Swift 6 的 Metal 渲染管线与最新 OpenEmuShaders 升级、基于 Munt 2.8.2 的 Roland MT-32 仿真引擎升级，以及基于 Apple GameController 框架的原生现代无线手柄支持。
+
+### 主要更新
+- **纯 Swift 6 Metal 渲染管线**：使用纯 Swift 6 全面重构了 Metal 画面渲染视图与截图捕获扩展，直接接入上游最新 `OpenEmuShaders` 框架（`2ac33a9`）及全新 SPIRV 工具链。
+- **Roland MT-32 Munt 2.8.2 仿真引擎**：升级 `Vendor/MT32Emu` 核心引擎至最新的 `munt_2_8_2` 正式版，大幅提升 MIDI 音乐合成精度与 DSP 滤波质量，并全面支持 Apple Silicon 与 Intel 双架构。
+- **原生现代无线手柄支持**：引入基于 Apple 官方 `GameController.framework` 的 `BXGameControllerMonitor`，原生支持 Xbox 无线手柄、PlayStation DualSense / DualShock 4 及 Nintendo Switch Pro 手柄的即插即用与无线蓝牙连接。
+- **新功能特性弹窗**：新增原生 SwiftUI `WhatsNewSheetView` 弹窗与多语言本地化支持，用于在版本更新时直观展示新特性。
+
+---
+
 ## Version 2.0.0-Alpha6 (English)
 
 This release fixes the DOSBox command execution failure where custom emulator startup commands were not intercepted by the Objective-C frontend, preventing the game from launching automatically and showing "Illegal command" errors.
