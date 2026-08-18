@@ -104,7 +104,7 @@ static NSUserInterfaceItemIdentifier const GroupType     = @"Group";
     
     [self willChangeValueForKey:@"groups"];
     
-    NSArray<OEShaderParameter *> *params;
+    NSArray<OEShaderParameter *> *params = @[];
     
     if (groups.count > 1)
     {
@@ -119,12 +119,12 @@ static NSUserInterfaceItemIdentifier const GroupType     = @"Group";
         groups = filtered;
         params = p2;
     }
-    else
+    else if (groups.count == 1)
     {
-        params = groups[0].parameters;
+        params = groups[0].parameters ?: @[];
     }
     
-    _groups = groups;
+    _groups = groups ?: @[];
     
     [self didChangeValueForKey:@"groups"];
     
@@ -260,16 +260,16 @@ static NSUserInterfaceItemIdentifier const GroupType     = @"Group";
     if (_groups.count == 1)
     {
         // no outline necessary for a single group, just return parameters
-        return _params[index];
+        return (index >= 0 && index < (NSInteger)_params.count) ? _params[index] : nil;
     }
     
     if ([item isKindOfClass:OEShaderParamGroup.class])
     {
         OEShaderParamGroup *g = (OEShaderParamGroup *)item;
-        return g.parameters[index];
+        return (index >= 0 && index < (NSInteger)g.parameters.count) ? g.parameters[index] : nil;
     }
     
-    return _groups[index];
+    return (index >= 0 && index < (NSInteger)_groups.count) ? _groups[index] : nil;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
