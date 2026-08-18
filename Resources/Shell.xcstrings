@@ -1,0 +1,232 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Shell Command Help": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\n\u001b[33;1mGetting help:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Display this list of DOS commands.\n\u001b[34;1mDRIVES\u001b[0m             List the current DOS drives.\n\u001b[34;1mPROGRAMS\u001b[0m           List the executable programs in the current directory.\n\n\u001b[33;1mMoving around in DOS:\u001b[0m\n\u001b[34;1m[drive]:\u001b[0m           Change to the specified drive (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directory]\u001b[0m     Change to the specified directory.\n\u001b[34;1mDIR\u001b[0m                List the contents of the current directory.\n\u001b[34;1mREVEAL\u001b[0m             Show the current directory in macOS Finder.\n\u001b[34;1mREVEAL [directory]\u001b[0m Show the specified DOS directory in macOS Finder.\n\n\u001b[33;1mUsing files:\u001b[0m\n\u001b[34;1mLAUNCH [program]\u001b[0m   Find and run the specified program (wherever it may be.)\n\u001b[34;1mEDIT [document]\u001b[0m    Open the specified document in a text editor.\n\u001b[34;1mPRINT [document]\u001b[0m   Print the specified document to the emulated printer.\n\n\u001b[33;1mControlling DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Host or join an IPX network session.\n\u001b[34;1mRESTART\u001b[0m            Restart DOS and relaunch any game you started with.\n\u001b[34;1mQUIT\u001b[0m               Close the DOS window.\n"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\n \u001b[33;1mè·åå¸®å©: \u001b[0m\n \u001b[34;1mHELP\u001b[0m               æ¾ç¤ºæ­¤ DOS å½ä»¤åè¡¨ã\n \u001b[34;1mDRIVES\u001b[0m             ååºå½åå·²è£è½½ç DOS é©±å¨å¨ã\n \u001b[34;1mPROGRAMS\u001b[0m           ååºå½åç®å½ä¸çå¯æ§è¡ç¨åºã\n\n \u001b[33;1mDOS ç®å½ä¸å¯¼èª: \u001b[0m\n \u001b[34;1m[çç¬¦]:\u001b[0m            åæ¢è³æå®é©±å¨å¨ (ä¾å¦ C:, D:, Y:)\n \u001b[34;1mCD [ç®å½]\u001b[0m          åæ¢è³æå®ç®å½ã\n \u001b[34;1mDIR\u001b[0m                ååºå½åç®å½åå®¹ã\n \u001b[34;1mREVEAL\u001b[0m             å¨è®¿è¾¾ (Finder) ä¸­æ¾ç¤ºå½åç®å½ã\n \u001b[34;1mREVEAL [ç®å½]\u001b[0m      å¨è®¿è¾¾ (Finder) ä¸­æ¾ç¤ºæå® DOS ç®å½ã\n\n \u001b[33;1mæä»¶æä½: \u001b[0m\n \u001b[34;1mLAUNCH [ç¨åº]\u001b[0m      æ¥æ¾å¹¶è¿è¡æå®ç¨åºã\n \u001b[34;1mEDIT [ææ¡£]\u001b[0m        å¨ææ¬ç¼è¾å¨ä¸­æå¼æå®ææ¡£ã\n \u001b[34;1mPRINT [ææ¡£]\u001b[0m       å°æå®ææ¡£åéè³æ¨¡ææå°æºã\n\n \u001b[33;1mæ§å¶ DOS: \u001b[0m\n \u001b[34;1mNETWORK\u001b[0m            åå»ºæå å¥ IPX å±åç½èæºã\n \u001b[34;1mRESTART\u001b[0m            éå¯ DOS å¹¶éæ°å¯å¨å³èæ¸¸æã\n \u001b[34;1mQUIT\u001b[0m               å³é­ DOS çªå£ã\n"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NÃ¡povÄda k pÅÃ­kazÅ¯m"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\n\u001b[33;1mObteniendo ayuda:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Muestra esta lista de comandos DOS.\n\u001b[34;1mDRIVES\u001b[0m             Muestra las unidades DOS actuales.\n\u001b[34;1mPROGRAMS\u001b[0m           Muestra los programas ejecutables del directorio actual.\n\n\u001b[33;1mMoverse por DOS:\u001b[0m\n\u001b[34;1m[unidad]:\u001b[0m           Cambia a la unidad especificada (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directorio]\u001b[0m     Cambia al directorio especificado.\n\u001b[34;1mDIR\u001b[0m                 Muestra el contenido del directorio actual.\n\u001b[34;1mREVEAL\u001b[0m              Muestra el directorio actual en Finder de macOS.\n\u001b[34;1mREVEAL [directorio]\u001b[0m Muestra el directorio DOS especificado en Finder de macOS.\n\n\u001b[33;1mUsando archivos:\u001b[0m\n\u001b[34;1mLAUNCH [programa]\u001b[0m   Busca y ejecuta el programa especificado (dondequiera que\n                    estÃ©.)\n\u001b[34;1mEDIT [documento]\u001b[0m    Abre el documento especificado en un editor de texto.\n\u001b[34;1mPRINT [documento]\u001b[0m   Imprime el documento especificado en una impresora emulada.\n\n\u001b[33;1mControlando DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Organiza o participa en una sesiÃ³n de red IPX.\n\u001b[34;1mRESTART\u001b[0m            Reinicia DOS y ejecuta cualquier juego ya iniciado.\n\u001b[34;1mQUIT\u001b[0m               Cierra la ventana DOS.\n"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\n\u001b[33;1mObtenir de l'aide :\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Affiche cette liste de commandes DOS.\n\u001b[34;1mDRIVES\u001b[0m             Liste les lecteurs DOS en cours.\n\u001b[34;1mPROGRAMS\u001b[0m           Liste les programmes exÃ©cutables du rÃ©pertoire en cours.\n\n\u001b[33;1mSe dÃ©placer dans DOS :\u001b[0m\n\u001b[34;1m[lecteur]:\u001b[0m         Modifie le lecteur en cours vers celui spÃ©cifiÃ© (ex. C:, D:)\n\u001b[34;1mCD [rÃ©pertoire]\u001b[0m    Modifie le rÃ©pertoire en cours vers celui spÃ©cifiÃ©.\n\u001b[34;1mDIR\u001b[0m                Liste le contenu du rÃ©pertoire en cours.\n\u001b[34;1mREVEAL\u001b[0m             Affiche le rÃ©pertoire en cours dans le Finder macOS.\n\u001b[34;1mREVEAL [rÃ©p]\u001b[0m       Affiche le rÃ©pertoire DOS spÃ©cifiÃ© dans le Finder macOS.\n\n\u001b[33;1mUtiliser les fichiers :\u001b[0m\n\u001b[34;1mLAUNCH [programme]\u001b[0m Recherche et exÃ©cute le programme (emplacement ignorÃ©.)\n\u001b[34;1mEDIT [document]\u001b[0m    Ouvre le document spÃ©cifiÃ© dans un Ã©diteur de texte.\n\u001b[34;1mPRINT [document]\u001b[0m   Imprime le document spÃ©cifiÃ© vers l'imprimante Ã©mulÃ©e.\n\n\u001b[33;1mContrÃ´ler DOS :\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            HÃ©berge ou rejoint une session rÃ©seau IPX.\n\u001b[34;1mRESTART\u001b[0m            RedÃ©marre DOS et relance le jeu dÃ©marrÃ©.\n\u001b[34;1mQUIT\u001b[0m               Ferme la fenÃªtre DOS.\n"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\n\u001b[33;1mGetting help:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Display this list of DOS commands.\n\u001b[34;1mDRIVES\u001b[0m             List the current DOS drives.\n\u001b[34;1mPROGRAMS\u001b[0m           List the executable programs in the current directory.\n\n\u001b[33;1mMoving around in DOS:\u001b[0m\n\u001b[34;1m[drive]:\u001b[0m           Change to the specified drive (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directory]\u001b[0m     Change to the specified directory.\n\u001b[34;1mDIR\u001b[0m                List the contents of the current directory.\n\u001b[34;1mREVEAL\u001b[0m             Show the current directory in macOS Finder.\n\u001b[34;1mREVEAL [directory]\u001b[0m Show the specified DOS directory in macOS Finder.\n\n\u001b[33;1mUsing files:\u001b[0m\n\u001b[34;1mLAUNCH [program]\u001b[0m   Find and run the specified program (wherever it may be.)\n\u001b[34;1mEDIT [document]\u001b[0m    Open the specified document in a text editor.\n\u001b[34;1mPRINT [document]\u001b[0m   Print the specified document to the emulated printer.\n\n\u001b[33;1mControlling DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Host or join an IPX network session.\n\u001b[34;1mRESTART\u001b[0m            Restart DOS and relaunch any game you started with.\n\u001b[34;1mQUIT\u001b[0m               Close the DOS window.\n"
+          }
+        }
+      }
+    },
+    "Mounting the %@ folder is not permitted.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[31;1mMounting the \u001b[32;1m%@\u001b[31;1m folder is not permitted.\u001b[0m"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " \u001b[31;1mä¸åè®¸è£è½½  \u001b[32;1m%@\u001b[31;1m æä»¶å¤¹ã\u001b[0m"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[31;1mEl montaje de la carpeta \u001b[32;1m%@\u001b[31;1m no estÃ¡ permitido.\u001b[0m"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[31;1mLe montage du dossier \u001b[32;1m%@\u001b[31;1m n'est pas permis.\u001b[0m"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[31;1mMounting the \u001b[32;1m%@\u001b[31;1m folder is not permitted.\u001b[0m"
+          }
+        }
+      }
+    },
+    "Currently mounted drives:": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[33;1mCurrently mounted drives:\u001b[0m\n"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " \u001b[33;1må½åå·²è£è½½çé©±å¨å¨:\u001b[0m\n"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AktuÃ¡lnÄ pÅipojenÃ© disky:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[33;1mUnidades montadas actualmente:\u001b[0m\n"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[33;1mLecteurs actuellement montÃ©s :\u001b[0m\n"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[33;1mCurrently mounted drives:\u001b[0m\n"
+          }
+        }
+      }
+    },
+    "Windows-only game warning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m is a Windows program, which Boxer does not support.\nYou may be able to run the program in a Windows emulator instead.\u001b[0m\n"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " \u001b[31;1m\u001b[32;1m%@\u001b[31;1m æ¯ Windows ç¨åºï¼Boxer ä¸æ¯æç´æ¥è¿è¡ã\næ¨å¯ä»¥å°è¯å¨ Windows èææº/æ¨¡æå¨ä¸­è¿è¡æ­¤ç¨åºã\u001b[0m\n"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VarovÃ¡nÃ­ ke hÅe pouze pro Windows"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m es un programa de Windows, que Boxer no soporta.\nEs posible que pueda ejecutar el programa en un emulador de Windows en su lugar.\u001b[0m\n"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m est un programme Windows. Ils ne sont pas supportÃ©s par Boxer.\nVous pourrez lancer ce programme dans un Ã©mulateur Windows.\u001b[0m\n"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m is a Windows program, which Boxer does not support.\nYou may be able to run the program in a Windows emulator instead.\u001b[0m\n"
+          }
+        }
+      }
+    },
+    "The path \"%1$@\" does not exist in OS X.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The path \"%1$@\" does not exist in macOS."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "è·¯å¾ \"%1$@\" å¨ macOS ä¸­ä¸å­å¨ã"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cesta \"%1$@\" v macOS neexistuje."
+          }
+        }
+      }
+    },
+    "%1$@: %2$@\n": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@\n"
+          }
+        }
+      }
+    },
+    "%1$@: %2$@ from %3$@\n": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@: %2$@ z %3$@\n"
+          }
+        }
+      }
+    },
+    "The path \"%1$@\" does not exist.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cesta \"%1$@\" neexistuje."
+          }
+        }
+      }
+    },
+    "The path \"%1$@\" is a virtual drive used by Boxer and does not exist in OS X.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cesta \"%1$@\" pÅedstavuje virtuÃ¡lnÃ­ disk pouÅ¾Ã­vanÃ½ Boxerem, kterÃ½ v macOS neexistuje."
+          }
+        }
+      }
+    },
+    "The path \"%1$@\" is not accessible in OS X.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cesta \"%1$@\" nenÃ­ v macOS pÅÃ­stupnÃ¡."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

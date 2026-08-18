@@ -78,7 +78,6 @@ public final class BXMetalRenderingView: MTKView, @preconcurrency BXFrameRenderi
     internal var filterChain: FilterChain?
     internal var currentTexture: MTLTexture?
     
-    private var videoLayer: CAMetalLayer?
     private var inflightSemaphore = DispatchSemaphore(value: MAX_INFLIGHT)
     private var skippedFrames: Int = 0
     private var commandQueue: MTLCommandQueue?
@@ -107,11 +106,11 @@ public final class BXMetalRenderingView: MTKView, @preconcurrency BXFrameRenderi
         framebufferOnly = true
         presentsWithTransaction = false
         isPaused = false
-        enableSetNeedsDisplay = true
+        enableSetNeedsDisplay = false
+        colorPixelFormat = .bgra8Unorm
         self.clearColor = MTLClearColorMake(0, 0, 0, 1)
         
         wantsLayer = true
-        videoLayer = self.layer as? CAMetalLayer
         
         if let dev = self.device {
             commandQueue = dev.makeCommandQueue()
@@ -151,6 +150,7 @@ public final class BXMetalRenderingView: MTKView, @preconcurrency BXFrameRenderi
         guard let frame = frame else {
             currentFrame = nil
             currentTexture = nil
+            needsDisplay = true
             return
         }
         
@@ -179,6 +179,8 @@ public final class BXMetalRenderingView: MTKView, @preconcurrency BXFrameRenderi
         if managesViewport {
             setViewportRect(viewport(for: frame), animated: true)
         }
+        
+        needsDisplay = true
     }
     
     // MARK: - Drawing
@@ -186,62 +188,55 @@ public final class BXMetalRenderingView: MTKView, @preconcurrency BXFrameRenderi
     public override func draw(_ dirtyRect: NSRect) {
         guard let texture = currentTexture,
               let filterChain = filterChain,
-              let commandQueue = commandQueue,
-              let videoLayer = videoLayer
+              let commandQueue = commandQueue
         else { return }
         
         autoreleasepool {
+            guard let drawable = currentDrawable,
+                  let rpd = currentRenderPassDescriptor ?? {
+                      let descriptor = MTLRenderPassDescriptor()
+                      descriptor.colorAttachments[0].clearColor = self.clearColor
+                      descriptor.colorAttachments[0].loadAction = .clear
+                      descriptor.colorAttachments[0].texture = drawable.texture
+                      return descriptor
+                  }()
+            else { return }
+            
+            rpd.colorAttachments[0].clearColor = self.clearColor
+            rpd.colorAttachments[0].loadAction = .clear
+            
             if inflightSemaphore.wait(timeout: .now()) != .success {
                 skippedFrames += 1
-            } else {
-                guard let offscreenCB = commandQueue.makeCommandBuffer() else {
-                    inflightSemaphore.signal()
-                    return
-                }
-                offscreenCB.label = "offscreen"
-                offscreenCB.enqueue()
-                filterChain.renderOffscreenPasses(sourceTexture: texture, commandBuffer: offscreenCB)
-                offscreenCB.commit()
-                
-                if let drawable = videoLayer.nextDrawable() {
-                    let rpd = MTLRenderPassDescriptor()
-                    rpd.colorAttachments[0].clearColor = self.clearColor
-                    rpd.colorAttachments[0].loadAction = .clear
-                    rpd.colorAttachments[0].texture = drawable.texture
-                    
-                    guard let finalCB = commandQueue.makeCommandBuffer(),
-                          let rce = finalCB.makeRenderCommandEncoder(descriptor: rpd)
-                    else {
-                        inflightSemaphore.signal()
-                        return
-                    }
-                    
-                    finalCB.label = "final"
-                    filterChain.renderFinalPass(withCommandEncoder: rce, flipVertically: false)
-                    rce.endEncoding()
-                    
-                    let sem = inflightSemaphore
-                    finalCB.addCompletedHandler { _ in
-                        sem.signal()
-                    }
-                    
-                    finalCB.present(drawable)
-                    finalCB.commit()
-                } else {
-                    inflightSemaphore.signal()
-                }
+                return
             }
+            
+            guard let commandBuffer = commandQueue.makeCommandBuffer() else {
+                inflightSemaphore.signal()
+                return
+            }
+            commandBuffer.label = "filterChain"
+            
+            filterChain.render(sourceTexture: texture,
+                               commandBuffer: commandBuffer,
+                               renderPassDescriptor: rpd,
+                               flipVertically: false)
+            
+            let sem = inflightSemaphore
+            commandBuffer.addCompletedHandler { _ in
+                sem.signal()
+            }
+            
+            commandBuffer.present(drawable)
+            commandBuffer.commit()
         }
     }
     
     // MARK: - Viewport & Layout
     
     private func updateRenderState() {
-        guard let videoLayer = videoLayer else { return }
-        videoLayer.bounds = self.bounds
         let backingSize = convertToBacking(self.bounds).size
-        videoLayer.drawableSize = backingSize
-        filterChain?.drawableSize = videoLayer.drawableSize
+        self.drawableSize = backingSize
+        filterChain?.drawableSize = backingSize
         
         if let current = currentFrame {
             setViewportRect(viewport(for: current), animated: false)

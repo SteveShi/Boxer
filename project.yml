@@ -4,6 +4,11 @@ options:
   deploymentTarget:
     macOS: "13.0"
   createIntermediateGroups: true
+  developmentLanguage: en
+  knownRegions:
+    - en
+    - zh-Hans
+    - Base
 configs:
   Debug: debug
   Release: release
@@ -500,15 +505,7 @@ targets:
         buildPhase: resources
       - path: Resources/mul.lproj/MountPanelOptions.xcstrings
         buildPhase: resources
-      - path: Resources/Base.lproj/DOSBox.strings
-        buildPhase: resources
-      - path: Resources/es.lproj/DOSBox.strings
-        buildPhase: resources
-      - path: Resources/en.lproj/DOSBox.strings
-        buildPhase: resources
-      - path: Resources/pt-BR.lproj/DOSBox.strings
-        buildPhase: resources
-      - path: Resources/fr.lproj/DOSBox.strings
+      - path: Resources/DOSBox.xcstrings
         buildPhase: resources
       - path: Resources/Base.lproj/DOSImportWindow.xib
         buildPhase: resources
@@ -522,17 +519,7 @@ targets:
         buildPhase: resources
       - path: Resources/GameDefaults.plist
         buildPhase: resources
-      - path: Resources/Base.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/cs.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/es.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/en.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/pt-BR.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/fr.lproj/Shell.strings
+      - path: Resources/Shell.xcstrings
         buildPhase: resources
       - path: Resources/Base.lproj/LauncherHeading.xib
         buildPhase: resources
@@ -560,15 +547,7 @@ targets:
         buildPhase: resources
       - path: Resources/Shared.xcassets
         buildPhase: resources
-      - path: Resources/cs.lproj/Localizable.strings
-        buildPhase: resources
-      - path: Resources/es.lproj/Localizable.strings
-        buildPhase: resources
-      - path: Resources/en.lproj/Localizable.strings
-        buildPhase: resources
-      - path: Resources/pt-BR.lproj/Localizable.strings
-        buildPhase: resources
-      - path: Resources/fr.lproj/Localizable.strings
+      - path: Resources/Localizable.xcstrings
         buildPhase: resources
       - path: Resources/Base.lproj/LauncherItem.xib
         buildPhase: resources
@@ -1153,27 +1132,9 @@ targets:
         buildPhase: resources
       - path: Resources/mul.lproj/MountPanelOptions.xcstrings
         buildPhase: resources
-      - path: Resources/Base.lproj/DOSBox.strings
+      - path: Resources/DOSBox.xcstrings
         buildPhase: resources
-      - path: Resources/es.lproj/DOSBox.strings
-        buildPhase: resources
-      - path: Resources/en.lproj/DOSBox.strings
-        buildPhase: resources
-      - path: Resources/pt-BR.lproj/DOSBox.strings
-        buildPhase: resources
-      - path: Resources/fr.lproj/DOSBox.strings
-        buildPhase: resources
-      - path: Resources/Base.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/cs.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/es.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/en.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/pt-BR.lproj/Shell.strings
-        buildPhase: resources
-      - path: Resources/fr.lproj/Shell.strings
+      - path: Resources/Shell.xcstrings
         buildPhase: resources
       - path: Resources/KeyboardLayouts.plist
         buildPhase: resources
@@ -1181,15 +1142,7 @@ targets:
         buildPhase: resources
       - path: Resources/Shared.xcassets
         buildPhase: resources
-      - path: Resources/cs.lproj/Localizable.strings
-        buildPhase: resources
-      - path: Resources/es.lproj/Localizable.strings
-        buildPhase: resources
-      - path: Resources/en.lproj/Localizable.strings
-        buildPhase: resources
-      - path: Resources/pt-BR.lproj/Localizable.strings
-        buildPhase: resources
-      - path: Resources/fr.lproj/Localizable.strings
+      - path: Resources/Localizable.xcstrings
         buildPhase: resources
       - path: Resources/Configuration.xcstrings
         buildPhase: resources

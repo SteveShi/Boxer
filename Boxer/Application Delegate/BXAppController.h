@@ -53,6 +53,9 @@ typedef NS_ENUM(NSInteger, BXStartUpWithAction) {
 /// Displays the About panel.
 - (IBAction) orderFrontAboutPanel: (id)sender;
 
+/// Displays the What's New sheet.
+- (IBAction) showWhatsNew: (id)sender;
+
 /// Displays the welcome panel.
 - (IBAction) orderFrontWelcomePanel: (id)sender;
 

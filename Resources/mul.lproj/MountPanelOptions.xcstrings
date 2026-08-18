@@ -1,306 +1,366 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "7.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Drive type:\"; ObjectID = \"7\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Drive type:"
+  "sourceLanguage": "en",
+  "strings": {
+    "7.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"Drive type:\"; ObjectID = \"7\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Drive type:"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tipo de unidad:"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo de unidad:"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Type :"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type :"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tipo do Disco:"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo do Disco:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "驱动器 type:"
           }
         }
       }
     },
-    "9.title" : {
-      "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"9\";",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OtherViews"
+    "9.title": {
+      "comment": "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"9\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OtherViews"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OtherViews"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OtherViews"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OtherViews"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OtherViews"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OtherViews"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OtherViews"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other视图s"
           }
         }
       }
     },
-    "10.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"CD-ROM\"; ObjectID = \"10\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "CD-ROM"
+    "10.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"CD-ROM\"; ObjectID = \"10\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "CD-ROM"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CD-ROM"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CD-ROM"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CD-ROM"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CD-ROM"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CD-ROM"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CD-ROM"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CD-ROM"
           }
         }
       }
     },
-    "11.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Floppy Disk\"; ObjectID = \"11\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Floppy Disk"
+    "11.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Floppy Disk\"; ObjectID = \"11\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Floppy Disk"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disquete"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disquete"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disquette"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disquette"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disquete"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disquete"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "软盘驱动器"
           }
         }
       }
     },
-    "12.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Automatic\"; ObjectID = \"12\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Automatic"
+    "12.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Automatic\"; ObjectID = \"12\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Automatic"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automático"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automático"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automatique"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatique"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automático"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automático"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动matic"
           }
         }
       }
     },
-    "13.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Hard Disk\"; ObjectID = \"13\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Hard Disk"
+    "13.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Hard Disk\"; ObjectID = \"13\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Hard Disk"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disco duro"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disco duro"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disque dur"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disque dur"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disco Rígido"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disco Rígido"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "硬盘驱动器"
           }
         }
       }
     },
-    "15.title" : {
-      "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"15\";",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OtherViews"
+    "15.title": {
+      "comment": "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"15\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OtherViews"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OtherViews"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OtherViews"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OtherViews"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OtherViews"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OtherViews"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OtherViews"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other视图s"
           }
         }
       }
     },
-    "16.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Automatic\"; ObjectID = \"16\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Automatic"
+    "16.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Automatic\"; ObjectID = \"16\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Automatic"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automático"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automático"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Auto"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Automático"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automático"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动matic"
           }
         }
       }
     },
-    "17.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Drive letter:\"; ObjectID = \"17\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Drive letter:"
+    "17.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"Drive letter:\"; ObjectID = \"17\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Drive letter:"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Letra de unidad:"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letra de unidad:"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lettre :"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lettre :"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Letra do Disco:"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Letra do Disco:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "驱动器 letter:"
           }
         }
       }
     },
-    "27.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Read-only\"; ObjectID = \"27\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Read-only"
+    "27.title": {
+      "comment": "Class = \"NSButtonCell\"; title = \"Read-only\"; ObjectID = \"27\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Read-only"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo-lectura"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo-lectura"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lecture seule"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lecture seule"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Somente leitura"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Somente leitura"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read-only"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

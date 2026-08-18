@@ -1,125 +1,155 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "36.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Bringing classic DOS\\ngames to modern Mac.\"; ObjectID = \"36\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Bringing classic DOS\ngames to modern Mac."
+  "sourceLanguage": "en",
+  "strings": {
+    "36.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"Bringing classic DOS\\ngames to modern Mac.\"; ObjectID = \"36\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Bringing classic DOS\ngames to modern Mac."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Empujando algún sentido\ndentro de la emulación DOS."
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Empujando algún sentido\ndentro de la emulación DOS."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Donner du punch à\nl’émulation DOS."
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Donner du punch à\nl’émulation DOS."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "为现代 Mac 带来经典 DOS 游戏体验。"
           }
         }
       }
     },
-    "47.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Acknowledgements\"; ObjectID = \"47\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Acknowledgements"
+    "47.title": {
+      "comment": "Class = \"NSButtonCell\"; title = \"Acknowledgements\"; ObjectID = \"47\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Acknowledgements"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Agradecimientos"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agradecimientos"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remerciements"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remerciements"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鸣谢"
           }
         }
       }
     },
-    "49.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Boxer Website\"; ObjectID = \"49\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Boxer Website"
+    "49.title": {
+      "comment": "Class = \"NSButtonCell\"; title = \"Boxer Website\"; ObjectID = \"49\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Boxer Website"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Página web de Boxer"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Página web de Boxer"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Site web Boxer"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Site web Boxer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer 官方网站"
           }
         }
       }
     },
-    "56.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Boxer is designed by\\nAlun Bestor & maintained by contributors.\\nReleased under the GNU General Public License.\\n\\nBoxer is based on DOSBox Staging,\\n© 2020–2025 by the DOSBox Staging Team.\\nOriginally based on DOSBox,\\n© 2002–2024 by the DOSBox Team.\"; ObjectID = \"56\";",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Boxer is designed by\nAlun Bestor & released under the GNU Public License.\n\nBoxer is based on DOSBox 0.74, which is \n© 2002–2019 by the DOSBox Team."
+    "56.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"Boxer is designed by\\nAlun Bestor & maintained by contributors.\\nReleased under the GNU General Public License.\\n\\nBoxer is based on DOSBox Staging,\\n© 2020–2025 by the DOSBox Staging Team.\\nOriginally based on DOSBox,\\n© 2002–2024 by the DOSBox Team.\"; ObjectID = \"56\";",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer is designed by\nAlun Bestor & released under the GNU Public License.\n\nBoxer is based on DOSBox 0.74, which is \n© 2002–2019 by the DOSBox Team."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Boxer está diseñado por\nAlun Bestor & publicado bajo la licencia pública GNU.\n\nBoxer está basado en DOSBox 0.74, el cual es \n© 2002–2019 por el equipo DOSBox."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer está diseñado por\nAlun Bestor & publicado bajo la licencia pública GNU.\n\nBoxer está basado en DOSBox 0.74, el cual es \n© 2002–2019 por el equipo DOSBox."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Boxer est conçu par\nAlun Bestor et publié sous licence GNU Public License.\n\nBoxer est basé sur DOSBox 0.74, \n© 2002–2010 par l’équipe DOSBox."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer est conçu par\nAlun Bestor et publié sous licence GNU Public License.\n\nBoxer est basé sur DOSBox 0.74, \n© 2002–2010 par l’équipe DOSBox."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer 由 Alun Bestor 设计开发，基于 GNU 通用公共许可证发布。\n\nBoxer 基于 DOSBox Staging 与 DOSBox 构建，版权所有 © 2002–2026 DOSBox & DOSBox Staging 开发团队。"
           }
         }
       }
     },
-    "58.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"[Version 1.2 | build 20111031.1]\"; ObjectID = \"58\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "[Version 1.2 | build 20111031.1]"
+    "58.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"[Version 1.2 | build 20111031.1]\"; ObjectID = \"58\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "[Version 1.2 | build 20111031.1]"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Version 1.2 | build 20111031.1]"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Version 1.2 | build 20111031.1]"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Version 1.2 | build 20111031.1]"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Version 1.2 | build 20111031.1]"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Version 1.2 | build 20111031.1]"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

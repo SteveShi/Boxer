@@ -1,99 +1,216 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Boxer disk bundle" : {
-
-    },
-    "Boxer game state" : {
-
-    },
-    "Boxer gamebox" : {
-
-    },
-    "Boxer mountable folder" : {
-
-    },
-    "CD-ROM bundle" : {
-
-    },
-    "CFBundleName" : {
-      "comment" : "Bundle name",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Boxer"
+  "sourceLanguage": "en",
+  "strings": {
+    "Boxer disk bundle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer disk bundle"
           }
         }
       }
     },
-    "Configuration file" : {
-
-    },
-    "Disc image cue-sheet" : {
-
-    },
-    "GOG.com disc image" : {
-
-    },
-    "Microsoft MS-DOS application" : {
-
-    },
-    "Microsoft Windows/MS-DOS batch file" : {
-
-    },
-    "MS-DOS CD-ROM" : {
-
-    },
-    "MS-DOS floppy disk" : {
-
-    },
-    "MS-DOS hard disk" : {
-
-    },
-    "NSHumanReadableCopyright" : {
-      "comment" : "The copyright notice displayed for the application in Finder's Get Info window.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "© 2011 Alun Bestor. Vydáno v souladu s Obecnou veřejnou licencí GNU 2.0."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "© 2016 Alun Bestor and contributors. Released under the GNU Public License 2.0."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "© 2016 Alun Bestor y colaboradores. Publicado bajo la licencia pública GNU 2.0."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "© 2016 Alun Bestor et contributeurs. Publié sous licence GNU Public License 2.0."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "© 2016 Alun Bestor and contributors. Released under the GNU Public License 2.0."
+    "Boxer game state": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer game state"
           }
         }
       }
     },
-    "VirtualPC floppy disk image" : {
-
+    "Boxer gamebox": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer gamebox"
+          }
+        }
+      }
     },
-    "WinImage raw disk image" : {
-
+    "Boxer mountable folder": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer mountable folder"
+          }
+        }
+      }
+    },
+    "CD-ROM bundle": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CD-ROM bundle"
+          }
+        }
+      }
+    },
+    "CFBundleName": {
+      "comment": "Bundle name",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Boxer"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer"
+          }
+        }
+      }
+    },
+    "Configuration file": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration file"
+          }
+        }
+      }
+    },
+    "Disc image cue-sheet": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "光盘 image cue-sheet"
+          }
+        }
+      }
+    },
+    "GOG.com disc image": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GOG.com disc image"
+          }
+        }
+      }
+    },
+    "Microsoft MS-DOS application": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Microsoft MS-DOS application"
+          }
+        }
+      }
+    },
+    "Microsoft Windows/MS-DOS batch file": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Microsoft 窗口s/MS-DOS batch file"
+          }
+        }
+      }
+    },
+    "MS-DOS CD-ROM": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MS-DOS CD-ROM"
+          }
+        }
+      }
+    },
+    "MS-DOS floppy disk": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MS-DOS floppy disk"
+          }
+        }
+      }
+    },
+    "MS-DOS hard disk": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MS-DOS hard disk"
+          }
+        }
+      }
+    },
+    "NSHumanReadableCopyright": {
+      "comment": "The copyright notice displayed for the application in Finder's Get Info window.",
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2011 Alun Bestor. Vydáno v souladu s Obecnou veřejnou licencí GNU 2.0."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2016 Alun Bestor and contributors. Released under the GNU Public License 2.0."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2016 Alun Bestor y colaboradores. Publicado bajo la licencia pública GNU 2.0."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2016 Alun Bestor et contributeurs. Publié sous licence GNU Public License 2.0."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "© 2016 Alun Bestor and contributors. Released under the GNU Public License 2.0."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2016 Alun Bestor and contributors. Released under the GNU Public License 2.0."
+          }
+        }
+      }
+    },
+    "VirtualPC floppy disk image": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VirtualPC floppy disk image"
+          }
+        }
+      }
+    },
+    "WinImage raw disk image": {
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WinImage raw disk image"
+          }
+        }
+      }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

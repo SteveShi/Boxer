@@ -52,6 +52,12 @@
                                     <action selector="orderFrontAboutPanel:" target="-1" id="681"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="What's New in Boxer" id="3303">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showWhatsNew:" target="-1" id="3304"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Preferences…" keyEquivalent="," id="1838">
                                 <connections>
                                     <action selector="orderFrontPreferencesPanel:" target="401" id="1839"/>
@@ -901,6 +907,12 @@
                             <menuItem title="Boxer Help" keyEquivalent="?" id="111">
                                 <connections>
                                     <action selector="showHelp:" target="1141" id="1755"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="What's New in Boxer" id="3301">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showWhatsNew:" target="-1" id="3302"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="1125"/>

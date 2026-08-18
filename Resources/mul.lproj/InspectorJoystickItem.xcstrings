@@ -1,66 +1,78 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "7.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"[Joystick type description, which may span up to two lines]\"; ObjectID = \"7\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "[Joystick type description, which may span up to two lines]"
+  "sourceLanguage": "en",
+  "strings": {
+    "7.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"[Joystick type description, which may span up to two lines]\"; ObjectID = \"7\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "[Joystick type description, which may span up to two lines]"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Joystick type description, which may span up to two lines]"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Joystick type description, which may span up to two lines]"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Joystick type description, which may span up to two lines]"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Joystick type description, which may span up to two lines]"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Descrição do tipo de Joystick, pode conter até duas linhas"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Descrição do tipo de Joystick, pode conter até duas linhas"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[游戏手柄 type description, which may span up to two lines]"
           }
         }
       }
     },
-    "8.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"[Joystick type name]\"; ObjectID = \"8\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "[Joystick type name]"
+    "8.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"[Joystick type name]\"; ObjectID = \"8\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "[Joystick type name]"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Joystick type name]"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Joystick type name]"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Joystick type name]"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Joystick type name]"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Nome do tipo de Joystick virá aqui]"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Nome do tipo de Joystick virá aqui]"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[游戏手柄 type name]"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

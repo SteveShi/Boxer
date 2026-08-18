@@ -1,216 +1,258 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "6.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Import into Gamebox\"; ObjectID = \"6\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Import into Gamebox"
+  "sourceLanguage": "en",
+  "strings": {
+    "6.ibShadowedToolTip": {
+      "comment": "Class = \"NSButton\"; ibShadowedToolTip = \"Import into Gamebox\"; ObjectID = \"6\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Import into Gamebox"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importar en Gamebox"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar en Gamebox"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importer dans la gamebox"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer dans la gamebox"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Importar para Gamebox"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar para Gamebox"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导入 into 游戏盒"
           }
         }
       }
     },
-    "9.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Cancel Import\"; ObjectID = \"9\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel Import"
+    "9.ibShadowedToolTip": {
+      "comment": "Class = \"NSButton\"; ibShadowedToolTip = \"Cancel Import\"; ObjectID = \"9\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Cancel Import"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancelar Importar"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar Importar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Annuler l’importation"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler l’importation"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancelar importação"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar importação"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消 导入"
           }
         }
       }
     },
-    "10.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Show in Finder\"; ObjectID = \"10\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Show in Finder"
+    "10.ibShadowedToolTip": {
+      "comment": "Class = \"NSButton\"; ibShadowedToolTip = \"Show in Finder\"; ObjectID = \"10\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Show in Finder"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mostrar en Finder"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar en Finder"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Afficher dans le Finder"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher dans le Finder"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exibir no Finder"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exibir no Finder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在访达中显示"
           }
         }
       }
     },
-    "13.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"W\"; ObjectID = \"13\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "W"
+    "13.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"W\"; ObjectID = \"13\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "W"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W"
           }
         }
       }
     },
-    "19.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"[Display name]\"; ObjectID = \"19\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "[Display name]"
+    "19.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"[Display name]\"; ObjectID = \"19\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "[Display name]"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Display name]"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Display name]"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Display name]"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Display name]"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Nome]"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Nome]"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[显示 name]"
           }
         }
       }
     },
-    "20.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"[Drive type]\"; ObjectID = \"20\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "[Drive type]"
+    "20.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"[Drive type]\"; ObjectID = \"20\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "[Drive type]"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Drive type]"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Drive type]"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Drive type]"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Drive type]"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "[Tipo de Disco]"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Tipo de Disco]"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[驱动器 type]"
           }
         }
       }
     },
-    "21.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"100% of 999MB\"; ObjectID = \"21\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "100% of 999MB"
+    "21.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"100% of 999MB\"; ObjectID = \"21\";",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "100% of 999MB"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "100% de 999MB"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100% de 999MB"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "100% de 999MB"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100% de 999MB"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "100% de 999MB"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100% de 999MB"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "100% of 999MB"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

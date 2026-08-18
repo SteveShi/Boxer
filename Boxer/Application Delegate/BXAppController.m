@@ -26,6 +26,9 @@
 #import "BXFileTypes.h"
 #import "ADBForwardCompatibility.h"
 #import "ADBAppKitVersionHelpers.h"
+#if __has_include("Boxer-Swift.h")
+#import "Boxer-Swift.h"
+#endif
 
 
 static NSString * const BXNewSessionParam = @"--openNewSession";
@@ -126,6 +129,17 @@ static NSString * const BXActivateOnLaunchParam = @"--activateOnLaunch";
 
 - (void) applicationDidFinishLaunching: (NSNotification *)notification
 {
+    // Check if we should display What's New sheet for upgraded version
+    NSString *lastSeenVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"BXLastSeenWhatsNewVersion"];
+    NSString *currentVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"2.0.0";
+    if (![lastSeenVersion isEqualToString:currentVersion])
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:@"BXLastSeenWhatsNewVersion"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [BXWhatsNewController showWhatsNewSheetWithPresentingWindow: nil];
+        });
+    }
+    
     //Determine if we were passed any startup parameters we need to act upon
 	NSArray *arguments = [NSProcessInfo processInfo].arguments;
 	
@@ -561,6 +575,11 @@ static NSString * const BXActivateOnLaunchParam = @"--activateOnLaunch";
 - (IBAction) orderFrontAboutPanel: (id)sender
 {
 	[[BXAboutController controller] showWindow: sender];
+}
+
+- (IBAction) showWhatsNew: (id)sender
+{
+	[BXWhatsNewController showWhatsNewSheetWithPresentingWindow: nil];
 }
 
 - (IBAction) orderFrontPreferencesPanel: (id)sender
