@@ -25,7 +25,6 @@
  */
 
 #import "NSURL+ADBFilesystemHelpers.h"
-#import "ADBForwardCompatibility.h"
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 @implementation NSURL (ADBFilePaths)

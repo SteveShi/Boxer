@@ -26,7 +26,6 @@
 
 
 #import "ADBFullscreenCapableWindow.h"
-#import "ADBForwardCompatibility.h"
 #import "NSWindow+ADBWindowDimensions.h"
 
 

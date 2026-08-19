@@ -6,9 +6,7 @@
  */
 
 #import "BXPrintStatusPanelController.h"
-#import "BXPrintSession.h"
 #import "ADBGeometry.h"
-#import "ADBForwardCompatibility.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreImage/CIFilter.h>
 

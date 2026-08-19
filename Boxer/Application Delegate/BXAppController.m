@@ -24,8 +24,6 @@
 #import "NSString+ADBPaths.h"
 
 #import "BXFileTypes.h"
-#import "ADBForwardCompatibility.h"
-#import "ADBAppKitVersionHelpers.h"
 #if __has_include("Boxer-Swift.h")
 #import "Boxer-Swift.h"
 #endif

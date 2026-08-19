@@ -62,12 +62,18 @@ jobs:
               release_notes += '---\n\n'
           if zh_notes:
               release_notes += f'## 版本 {version} (中文)\n\n' + zh_notes + '\n'
+          if not release_notes:
+              release_notes = f'## Release {tag}\n\nBoxer release {tag}.\n'
+          if not en_notes:
+              en_notes = release_notes
+          if not zh_notes:
+              zh_notes = release_notes
           with open('release_notes.md', 'w', encoding='utf-8') as f:
               f.write(release_notes)
           with open('release_notes_en.md', 'w', encoding='utf-8') as f:
-              f.write(en_notes if en_notes else release_notes)
+              f.write(en_notes)
           with open('release_notes_zh.md', 'w', encoding='utf-8') as f:
-              f.write(zh_notes if zh_notes else release_notes)
+              f.write(zh_notes)
           "
 
       - name: Build release apps

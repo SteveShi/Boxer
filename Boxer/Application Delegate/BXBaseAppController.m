@@ -7,7 +7,6 @@
 
 #import "BXBaseAppControllerPrivate.h"
 #import "BXValueTransformers.h"
-#import "ADBAppKitVersionHelpers.h"
 
 #import "BXBaseAppController+BXHotKeys.h"
 #import "BXFileTypes.h"

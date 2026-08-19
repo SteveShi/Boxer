@@ -20,7 +20,6 @@
 #import "BXShelfAppearanceOperation.h"
 #import "NSString+ADBPaths.h"
 #import "NSURL+ADBFilesystemHelpers.h"
-#import "ADBAppKitVersionHelpers.h"
 #import "Boxer-Swift.h"
 
 #pragma mark - Constants

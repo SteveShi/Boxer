@@ -14,7 +14,6 @@
 #import "BXEmulator+BXDOSFileSystem.h"
 #import "NSString+ADBPaths.h"
 #import "BXDOSWindowController.h"
-#import "ADBForwardCompatibility.h"
 
 
 @interface BXProgramPanelController ()

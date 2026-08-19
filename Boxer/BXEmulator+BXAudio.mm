@@ -149,7 +149,7 @@ NSString * const BXMIDIExternalDeviceNeedsMT32SysexDelaysKey = @"Needs MT-32 Sys
 
 - (void) _suspendAudio
 {
-    SDL_PauseAudio(YES);
+    MIXER_Mute();
     
 // SDL CD API removed in SDL2; CD audio state tracking disabled
     (void)_cdromWasPlaying;
@@ -159,7 +159,7 @@ NSString * const BXMIDIExternalDeviceNeedsMT32SysexDelaysKey = @"Needs MT-32 Sys
 
 - (void) _resumeAudio
 {
-    SDL_PauseAudio(NO);
+    MIXER_Unmute();
 
 // SDL CD API removed in SDL2; CD resume disabled
     

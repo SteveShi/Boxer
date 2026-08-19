@@ -1,5 +1,27 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Alpha9 (English)
+
+This release resolves the audio freezing/stuttering bug during game pause, refines Simplified Chinese localization across the entire application, and removes legacy code and unused dependencies.
+
+### Key Changes
+- **Fix Audio Stutter on Pause**: Connected `BXEmulator` pause/resume cycle directly to `MIXER_Mute()` and `MIXER_Unmute()` in DOSBox-Staging's audio mixer. This cleanly mutes audio and empties the buffer upon pausing, eliminating the buzzing/stutter loop on the last audio sample.
+- **Comprehensive UI Localization**: Fixed untranslated and machine-translated menu items and panels across all `.xcstrings` string catalogs, delivering native, polished macOS Simplified Chinese terminology.
+- **Legacy Cleanup & Modernization**: Removed deprecated macOS 10.6/10.7 shims (`ADBForwardCompatibility`, `ADBAppKitVersionHelpers`), obsolete documentation files, and modernized AppKit / `UniformTypeIdentifiers` APIs for macOS 13+.
+
+---
+
+## 版本 2.0.0-Alpha9 (中文)
+
+本版本彻底修复了游戏暂停时音频卡死在最后一声的循环杂音问题，完成了全软件界面的规范简体中文本地化精修，并清理了历史遗留兼容代码与冗余文件。
+
+### 主要更新
+- **修复暂停时音频卡死杂音**：将虚拟机的暂停/恢复生命周期接入 DOSBox-Staging 混音器的 `MIXER_Mute()` 与 `MIXER_Unmute()` 机制，在暂停时彻底静音并清空音频缓冲区，彻底根除了暂停时卡在最后一段声音持续循环（蜂鸣/卡死）的问题。
+- **全界面精细汉化**：全面校对并修复了主菜单、检查器、启动面板、打印机对话框与状态栏中的所有中英文混杂与机翻残留，提供符合 macOS 规范的纯正简体中文体验。
+- **清理遗留兼容层与冗余代码**：剔除了针对早期 OS X 10.6/10.7 的历史兼容补丁（如 `ADBForwardCompatibility`、`ADBAppKitVersionHelpers`）及第三方冗余文档，全面升级现代化 AppKit 与 `UniformTypeIdentifiers` API。
+
+---
+
 ## Version 2.0.0-Alpha7 (English)
 
 This release modernizes Boxer's core dependencies, featuring a pure Swift 6 Metal rendering pipeline with the latest OpenEmuShaders, updated Roland MT-32 emulation via Munt 2.8.2, and native Apple GameController framework integration for modern wireless gamepads.

@@ -8,7 +8,6 @@
 
 #import "BXScroller.h"
 #import "NSBezierPath+MCAdditions.h"
-#import "ADBForwardCompatibility.h"
 
 @implementation BXScroller
 

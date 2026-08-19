@@ -36,7 +36,7 @@
 #import "NSObject+ADBPerformExtensions.h"
 #import "ADBFilesystem.h"
 
-#import "ADBAppKitVersionHelpers.h"
+
 
 #if STANDALONE
 #import "Boxer_Standalone-Swift.h"

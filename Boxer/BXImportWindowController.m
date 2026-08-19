@@ -10,7 +10,6 @@
 #import "BXImportSession.h"
 #import "ADBGeometry.h"
 #import "NSWindow+ADBWindowDimensions.h"
-#import "ADBAppKitVersionHelpers.h"
 
 @implementation BXImportWindowController
 

@@ -12,7 +12,6 @@
 #import "NSShadow+ADBShadowExtensions.h"
 #import "NSBezierPath+MCAdditions.h"
 
-#import "ADBAppKitVersionHelpers.h"
 
 
 @implementation BXProgramPanel

@@ -9,7 +9,6 @@
 #import "BXKeyboardEventTap.h"
 #import "BXSession+BXUIControls.h"
 #import "SystemPreferences.h"
-#import "ADBAppKitVersionHelpers.h"
 
 //For various keycode definitions
 #import <IOKit/hidsystem/ev_keymap.h>
@@ -255,11 +254,7 @@
 
 + (BOOL) hasPerAppAccessibilityControls
 {
-    //IMPLEMENTATION NOTE: a tidier way of doing this would be to check for the existence
-    //of the AXIsProcessTrustedWithOptions() function, which was introduced in 10.9. However,
-    //referencing that function at all would require the 10.9 SDK, which would prevent people
-    //compiling Boxer on older OS X versions.
-    return isRunningOnMavericksOrAbove();
+    return YES;
 }
 
 + (NSURL *) _accessibilityPreferencesURL

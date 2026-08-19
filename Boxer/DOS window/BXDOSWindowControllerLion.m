@@ -8,7 +8,6 @@
 
 #import "BXDOSWindowControllerLion.h"
 #import "BXDOSWindowControllerPrivate.h"
-#import "ADBForwardCompatibility.h"
 #import "BXSession.h"
 #import "BXInputView.h"
 #import "BXDOSWindow.h"

@@ -28,7 +28,6 @@
 #import "ADBLocalFilesystemPrivate.h"
 #import "NSURL+ADBFilesystemHelpers.h"
 #import "NSError+ADBErrorHelpers.h"
-#import "ADBForwardCompatibility.h"
 #import "ADBFileHandle.h"
 
 #pragma mark -
