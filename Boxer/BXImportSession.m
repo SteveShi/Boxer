@@ -680,7 +680,7 @@
 	
 	//Generate a new gamebox for us to import into.
     NSError *generationError;
-    BOOL createdGamebox = [self _generateGameboxWithError: &generationError];
+    BOOL __unused createdGamebox = [self _generateGameboxWithError: &generationError];
     NSAssert(createdGamebox, @"Gamebox creation failed with error: %@", generationError);
 	
 	self.importStage = BXImportSessionRunningInstaller;
@@ -703,7 +703,7 @@
     
     //Create a new gamebox for us to import into.
     NSError *generationError;
-    BOOL createdGamebox = [self _generateGameboxWithError: &generationError];
+    BOOL __unused createdGamebox = [self _generateGameboxWithError: &generationError];
     
     NSAssert(createdGamebox, @"Gamebox creation failed with error: %@", generationError);
 	

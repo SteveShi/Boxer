@@ -585,7 +585,7 @@ typedef NS_OPTIONS(uint8_t, BXEmulatedPrinterStatus) {
         //Start with a base font size of 10.5pts for non-multipoint characters.
         //This may then be scaled horizontally and/or vertically depending on the current font settings.
         fontSize = NSMakeSize(10.5, 10.5);
-        fontSize.width *= (BXFontPitch10CPI / _effectivePitch);
+        fontSize.width *= ((double)BXFontPitch10CPI / _effectivePitch);
         //IMPLEMENTATION NOTE: there's no indication from the ESC/P docs that 10cpi, 12cpi and 15cpi fonts
         //differ in height: only in width.
         //fontSize.height *= (BXFontPitch10CPI / (CGFloat)self.fontPitch);

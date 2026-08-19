@@ -361,10 +361,10 @@ extern NSStringEncoding BXDirectStringEncoding;
 #pragma mark Gameport devices
 
 /// Validates whether the specified joystick is a valid joystick type and supported by the current session.
-/// @param ioValue[inout]   A reference to the joystick instance to validate. If the method returns YES,
+/// @param ioValue          A reference to the joystick instance to validate. If the method returns YES,
 ///                         this will be populated with a valid joystick instance (usually the same that was passed in.)
 ///                         If the method returns NO, the contents of this variable should not be accessed.
-/// @param outError[out]    If provided the method returns NO, this will contain an error explaining the reason
+/// @param outError         If provided the method returns NO, this will contain an error explaining the reason
 ///                         why the joystick instance was invalid.
 /// @return YES if the specified joystick instance was valid and supported for this session, or NO otherwise.
 - (BOOL) validateJoystick: (inout id <BXEmulatedJoystick> _Nonnull *_Nonnull)ioValue

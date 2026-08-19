@@ -27,6 +27,7 @@
 #import "ADBISOImagePrivate.h"
 #import "ADBFileHandle.h"
 #import "NSURL+ADBFilesystemHelpers.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 #pragma mark - Constants
 
@@ -256,18 +257,20 @@ static int extdate_to_int(uint8_t *digits, int length)
 - (NSString *) typeOfFileAtPath: (NSString *)path
 {
     NSString *extension = path.pathExtension;
-    CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
-    return (NSString *)CFBridgingRelease(UTI);
+    UTType *type = [UTType typeWithFilenameExtension: extension];
+    return type.identifier;
 }
 
 - (NSString *) typeOfFileAtPath: (NSString *)path matchingTypes: (NSSet *)comparisonUTIs
 {
-    NSString *UTI = [self typeOfFileAtPath: path];
-    if (UTI)
+    NSString *extension = path.pathExtension;
+    UTType *type = [UTType typeWithFilenameExtension: extension];
+    if (type)
     {
         for (NSString *comparisonUTI in comparisonUTIs)
         {
-            if (UTTypeConformsTo((__bridge CFStringRef)UTI, (__bridge CFStringRef)comparisonUTI))
+            UTType *targetType = [UTType typeWithIdentifier: comparisonUTI];
+            if (targetType && [type conformsToType: targetType])
                 return comparisonUTI;
         }
     }
@@ -276,8 +279,10 @@ static int extdate_to_int(uint8_t *digits, int length)
 
 - (BOOL) fileAtPath: (NSString *)path conformsToType: (NSString *)comparisonUTI
 {
-    NSString *UTI = [self typeOfFileAtPath: path];
-    return (UTI != nil && UTTypeConformsTo((__bridge CFStringRef)UTI, (__bridge CFStringRef)comparisonUTI));
+    NSString *extension = path.pathExtension;
+    UTType *type = [UTType typeWithFilenameExtension: extension];
+    UTType *targetType = [UTType typeWithIdentifier: comparisonUTI];
+    return (type != nil && targetType != nil && [type conformsToType: targetType]);
 }
 
 
