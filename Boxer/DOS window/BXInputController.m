@@ -432,6 +432,7 @@ void _inputSourceChanged(CFNotificationCenterRef center,
         {
             [self _applyMouseLockState: lock];
             _mouseLocked = lock;
+            self.emulatedMouse.locked = lock;
             
             [self.representedObject didToggleMouseLocked];
         }
@@ -465,15 +466,7 @@ void _inputSourceChanged(CFNotificationCenterRef center,
 	if (_trackMouseWhileUnlocked != track)
 	{
 		_trackMouseWhileUnlocked = track;
-	
-		//If we're disabling tracking, and the mouse is currently unlocked,
-		//then warp the mouse to the center of the window as if we had just unlocked it.
-		
-		//Disabled for now because this makes the mouse jumpy and unpredictable.
-		/*
-		if (!track && ![self mouseLocked])
-			[self _syncEmulatedCursorToPointInCanvas: NSMakePoint(0.5f, 0.5f)];
-		*/
+		self.emulatedMouse.tracksWhileUnlocked = track;
 	}
 }
 

@@ -517,6 +517,16 @@ void boxer_mouseMovedToPoint(float x, float y)
 	emulator.mouse.position = point;
 }
 
+bool boxer_isMouseCaptured()
+{
+	BXEmulator *emulator = [BXEmulator currentEmulator];
+	if (emulator.mouse.isLocked || !emulator.mouse.tracksWhileUnlocked)
+	{
+		return true;
+	}
+	return false;
+}
+
 void boxer_setCapsLockActive(bool active)
 {
 	BXEmulator *emulator = [BXEmulator currentEmulator];

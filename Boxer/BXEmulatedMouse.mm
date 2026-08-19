@@ -13,6 +13,8 @@
 #import "mouse.h"
 
 
+#import "mouse_common.h"
+
 #pragma mark -
 #pragma mark Private method declarations
 
@@ -37,9 +39,11 @@
 {
 	if ((self = [super init]))
 	{
-		_active			= NO;
-		_position		= NSMakePoint(0.5f, 0.5f);
-		_pressedButtons	= BXNoMouseButtonsMask;
+		_active					= NO;
+		_locked					= NO;
+		_tracksWhileUnlocked	= YES;
+		_position				= NSMakePoint(0.5f, 0.5f);
+		_pressedButtons			= BXNoMouseButtonsMask;
         
         _lastButtonDown[BXMouseButtonLeft] = 0;
         _lastButtonDown[BXMouseButtonRight] = 0;
@@ -68,6 +72,25 @@
 		
 		_active = flag;
 		MOUSE_NotifyWindowActive(flag);
+		MOUSE_UpdateGFX();
+	}
+}
+
+- (void) setLocked: (BOOL)locked
+{
+	if (_locked != locked)
+	{
+		_locked = locked;
+		MOUSE_UpdateGFX();
+	}
+}
+
+- (void) setTracksWhileUnlocked: (BOOL)tracks
+{
+	if (_tracksWhileUnlocked != tracks)
+	{
+		_tracksWhileUnlocked = tracks;
+		MOUSE_UpdateGFX();
 	}
 }
 
@@ -80,13 +103,19 @@
 	{
 		NSPoint canvasDelta = NSMakePoint(delta.x * canvas.size.width,
 										  delta.y * canvas.size.height);
-		int32_t absX = (int32_t)round(point.x * canvas.size.width);
-		int32_t absY = (int32_t)round(point.y * canvas.size.height);
+		
+		int32_t resX = (int32_t)mouse_shared.resolution_x;
+		int32_t resY = (int32_t)mouse_shared.resolution_y;
+		if (resX < 2) resX = 320;
+		if (resY < 2) resY = 200;
+
+		int32_t absX = (int32_t)round(point.x * (resX - 1));
+		int32_t absY = (int32_t)round(point.y * (resY - 1));
 		
 		MOUSE_EventMoved((float)canvasDelta.x,
-						  (float)canvasDelta.y,
-						  absX,
-						  absY);
+						 (float)canvasDelta.y,
+						 absX,
+						 absY);
 	}
 }
 

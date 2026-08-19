@@ -161,6 +161,7 @@ extern "C" {
     void boxer_setJoystickActive(bool joystickActive);
 	void boxer_setMouseActive(bool mouseActive);
 	void boxer_mouseMovedToPoint(float x, float y);
+	bool boxer_isMouseCaptured();
     
     /// Defined in keyboard.cpp to let Boxer see if there's any room left in the keyboard buffer.
     Bitu boxer_keyboardBufferRemaining();

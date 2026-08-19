@@ -29,6 +29,12 @@
 /// Whether we are responding to mouse input.
 @property (assign, nonatomic, getter=isActive) BOOL active;
 
+/// Whether the mouse is currently locked (captured).
+@property (assign, nonatomic, getter=isLocked) BOOL locked;
+
+/// Whether the mouse tracks unlocked in seamless mode.
+@property (assign, nonatomic) BOOL tracksWhileUnlocked;
+
 /// The current X and Y coordinates of the mouse relative to a 0.0-to-1.0 canvas.
 /// This is synchronised by DOSBox, as the DOS program may warp the mouse itself.
 @property (assign, nonatomic) NSPoint position;
