@@ -998,8 +998,11 @@ static bool bx_gameport_timed = true;
 - (void) _startDOSBox
 {
 	//Initialize the SDL modules that DOSBox will need.
-	NSAssert1(!SDL_Init(SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_EVENTS),
-			  @"SDL failed to initialize with the following error: %s", SDL_GetError());
+	int sdlStatus = SDL_Init(SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_EVENTS);
+	if (sdlStatus < 0)
+	{
+		NSLog(@"[Boxer] SDL_Init failed with error: %s", SDL_GetError());
+	}
 	
 	try
 	{
