@@ -1,134 +1,141 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "What's New in Boxer": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "What's New in Boxer"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Continue" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Boxer 新功能"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续"
           }
         }
       }
     },
-    "Continue": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Continue"
+    "Migrated to upstream OpenEmuShaders with pure Swift 6 Metal rendering and upgraded SPIRV compiler toolchains." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Migrated to upstream OpenEmuShaders with pure Swift 6 Metal rendering and upgraded SPIRV compiler toolchains."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "继续"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基于 Swift 6 与 Metal 升级了着色器管线，搭载现代化 SPIR-V 编译工具链，带来极致流畅的高帧率呈现。"
           }
         }
       }
     },
-    "Modern Metal Rendering Pipeline": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Modern Metal Rendering Pipeline"
+    "Modern Metal Rendering Pipeline" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modern Metal Rendering Pipeline"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "现代化 Metal 渲染管线"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现代化 Metal 渲染管线"
           }
         }
       }
     },
-    "Migrated to upstream OpenEmuShaders with pure Swift 6 Metal rendering and upgraded SPIRV compiler toolchains.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Migrated to upstream OpenEmuShaders with pure Swift 6 Metal rendering and upgraded SPIRV compiler toolchains."
+    "Native Wireless Game Controllers" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Native Wireless Game Controllers"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "基于 Swift 6 与 Metal 升级了着色器管线，搭载现代化 SPIR-V 编译工具链，带来极致流畅的高帧率呈现。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "原生现代无线手柄支持"
           }
         }
       }
     },
-    "Upgraded MT32 MIDI Engine": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Upgraded MT32 MIDI Engine"
+    "Seamless support for modern Xbox, PlayStation DualSense, and Nintendo Switch Pro controllers via Apple GameController framework." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seamless support for modern Xbox, PlayStation DualSense, and Nintendo Switch Pro controllers via Apple GameController framework."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "升级版 MT-32 音频引擎"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基于 Apple GameController 框架无缝支持 Xbox、PlayStation DualSense 与 Switch Pro 无线手柄。"
           }
         }
       }
     },
-    "Updated to Munt 2.8.2 for superior Roland MT-32 emulation accuracy and stability.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Updated to Munt 2.8.2 for superior Roland MT-32 emulation accuracy and stability."
+    "Updated to Munt 2.8.2 for superior Roland MT-32 emulation accuracy and stability." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updated to Munt 2.8.2 for superior Roland MT-32 emulation accuracy and stability."
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "升级至最新 Munt 2.8.2 内核，大幅提升 Roland MT-32 仿真精度与音质表现。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "升级至最新 Munt 2.8.2 内核，大幅提升 Roland MT-32 仿真精度与音质表现。"
           }
         }
       }
     },
-    "Native Wireless Game Controllers": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Native Wireless Game Controllers"
+    "Upgraded MT32 MIDI Engine" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upgraded MT32 MIDI Engine"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "原生现代无线手柄支持"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "升级版 MT-32 音频引擎"
           }
         }
       }
     },
-    "Seamless support for modern Xbox, PlayStation DualSense, and Nintendo Switch Pro controllers via Apple GameController framework.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Seamless support for modern Xbox, PlayStation DualSense, and Nintendo Switch Pro controllers via Apple GameController framework."
+    "What's New in Boxer" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What's New in Boxer"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "基于 Apple GameController 框架无缝支持 Xbox、PlayStation DualSense 与 Switch Pro 无线手柄。"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boxer 新功能"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

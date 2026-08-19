@@ -1,192 +1,210 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "%1$@: %2$@\n": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@: %2$@\n"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%1$@: %2$@\n" : {
+      "comment" : "Format for listing internal DOSBox drives via the DRIVES command: %1$@ is the drive letter, %2$@ is the localized drive type.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@\n"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@: %2$@\n"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@\n"
           }
         }
       }
     },
-    "%1$@: %2$@ from %3$@\n": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@: %2$@ z %3$@\n"
+    "%1$@: %2$@ from %3$@\n" : {
+      "comment" : "Format for listing regular drives via the DRIVES command: %1$@ is the drive letter, %2$@ is the localized drive type, %3$@ is the drive's macOS filesystem path",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@ z %3$@\n"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$@: %2$@ from %3$@\n"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@ from %3$@\n"
           }
         }
       }
     },
-    "Currently mounted drives:": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[33;1mCurrently mounted drives:\u001b[0m\n"
+    "Currently mounted drives:" : {
+      "comment" : "Heading for drive list when drunning DRIVES command.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuálně připojené disky:"
           }
         },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktuálně připojené disky:"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[33;1mCurrently mounted drives:\u001b[0m\n"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[33;1mUnidades montadas actualmente:\u001b[0m\n"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[33;1mUnidades montadas actualmente:\u001b[0m\n"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[33;1mLecteurs actuellement montés :\u001b[0m\n"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[33;1mLecteurs actuellement montés :\u001b[0m\n"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[33;1mCurrently mounted drives:\u001b[0m\n"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[33;1mCurrently mounted drives:\u001b[0m\n"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[33;1mCurrently mounted drives:\u001b[0m\n"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[33;1mCurrently mounted drives:\u001b[0m\n"
           }
         }
       }
     },
-    "Mounting the %@ folder is not permitted.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1mMounting the \u001b[32;1m%@\u001b[31;1m folder is not permitted.\u001b[0m"
+    "Mounting the %@ folder is not permitted." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1mMounting the \u001b[32;1m%@\u001b[31;1m folder is not permitted.\u001b[0m"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1mEl montaje de la carpeta \u001b[32;1m%@\u001b[31;1m no está permitido.\u001b[0m"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1mEl montaje de la carpeta \u001b[32;1m%@\u001b[31;1m no está permitido.\u001b[0m"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1mLe montage du dossier \u001b[32;1m%@\u001b[31;1m n'est pas permis.\u001b[0m"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1mLe montage du dossier \u001b[32;1m%@\u001b[31;1m n'est pas permis.\u001b[0m"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1mMounting the \u001b[32;1m%@\u001b[31;1m folder is not permitted.\u001b[0m"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1mMounting the \u001b[32;1m%@\u001b[31;1m folder is not permitted.\u001b[0m"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1mMounting the \u001b[32;1m%@\u001b[31;1m folder is not permitted.\u001b[0m"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1mMounting the \u001b[32;1m%@\u001b[31;1m folder is not permitted.\u001b[0m"
           }
         }
       }
     },
-    "Shell Command Help": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\n\u001b[33;1mGetting help:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Display this list of DOS commands.\n\u001b[34;1mDRIVES\u001b[0m             List the current DOS drives.\n\u001b[34;1mPROGRAMS\u001b[0m           List the executable programs in the current directory.\n\n\u001b[33;1mMoving around in DOS:\u001b[0m\n\u001b[34;1m[drive]:\u001b[0m           Change to the specified drive (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directory]\u001b[0m     Change to the specified directory.\n\u001b[34;1mDIR\u001b[0m                List the contents of the current directory.\n\u001b[34;1mREVEAL\u001b[0m             Show the current directory in macOS Finder.\n\u001b[34;1mREVEAL [directory]\u001b[0m Show the specified DOS directory in macOS Finder.\n\n\u001b[33;1mUsing files:\u001b[0m\n\u001b[34;1mLAUNCH [program]\u001b[0m   Find and run the specified program (wherever it may be.)\n\u001b[34;1mEDIT [document]\u001b[0m    Open the specified document in a text editor.\n\u001b[34;1mPRINT [document]\u001b[0m   Print the specified document to the emulated printer.\n\n\u001b[33;1mControlling DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Host or join an IPX network session.\n\u001b[34;1mRESTART\u001b[0m            Restart DOS and relaunch any game you started with.\n\u001b[34;1mQUIT\u001b[0m               Close the DOS window.\n"
+    "Shell Command Help" : {
+      "comment" : "A list of common DOS commands, displayed when running HELP at the command line. This should list the commands in the left column (which should be left untranslated) and command descriptions in the right-hand column. Accepts DOSBox-style formatting characters.\n\nNOTE FOR TRANSLATORS: The key for this string is a reference for a much longer text. See the English version of Shell.strings for the actual text to be translated.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nápověda k příkazům"
           }
         },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nápověda k příkazům"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\n\u001b[33;1mGetting help:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Display this list of DOS commands.\n\u001b[34;1mDRIVES\u001b[0m             List the current DOS drives.\n\u001b[34;1mPROGRAMS\u001b[0m           List the executable programs in the current directory.\n\n\u001b[33;1mMoving around in DOS:\u001b[0m\n\u001b[34;1m[drive]:\u001b[0m           Change to the specified drive (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directory]\u001b[0m     Change to the specified directory.\n\u001b[34;1mDIR\u001b[0m                List the contents of the current directory.\n\u001b[34;1mREVEAL\u001b[0m             Show the current directory in macOS Finder.\n\u001b[34;1mREVEAL [directory]\u001b[0m Show the specified DOS directory in macOS Finder.\n\n\u001b[33;1mUsing files:\u001b[0m\n\u001b[34;1mLAUNCH [program]\u001b[0m   Find and run the specified program (wherever it may be.)\n\u001b[34;1mEDIT [document]\u001b[0m    Open the specified document in a text editor.\n\u001b[34;1mPRINT [document]\u001b[0m   Print the specified document to the emulated printer.\n\n\u001b[33;1mControlling DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Host or join an IPX network session.\n\u001b[34;1mRESTART\u001b[0m            Restart DOS and relaunch any game you started with.\n\u001b[34;1mQUIT\u001b[0m               Close the DOS window.\n"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\n\u001b[33;1mObteniendo ayuda:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Muestra esta lista de comandos DOS.\n\u001b[34;1mDRIVES\u001b[0m             Muestra las unidades DOS actuales.\n\u001b[34;1mPROGRAMS\u001b[0m           Muestra los programas ejecutables del directorio actual.\n\n\u001b[33;1mMoverse por DOS:\u001b[0m\n\u001b[34;1m[unidad]:\u001b[0m           Cambia a la unidad especificada (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directorio]\u001b[0m     Cambia al directorio especificado.\n\u001b[34;1mDIR\u001b[0m                 Muestra el contenido del directorio actual.\n\u001b[34;1mREVEAL\u001b[0m              Muestra el directorio actual en Finder de macOS.\n\u001b[34;1mREVEAL [directorio]\u001b[0m Muestra el directorio DOS especificado en Finder de macOS.\n\n\u001b[33;1mUsando archivos:\u001b[0m\n\u001b[34;1mLAUNCH [programa]\u001b[0m   Busca y ejecuta el programa especificado (dondequiera que\n                    esté.)\n\u001b[34;1mEDIT [documento]\u001b[0m    Abre el documento especificado en un editor de texto.\n\u001b[34;1mPRINT [documento]\u001b[0m   Imprime el documento especificado en una impresora emulada.\n\n\u001b[33;1mControlando DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Organiza o participa en una sesión de red IPX.\n\u001b[34;1mRESTART\u001b[0m            Reinicia DOS y ejecuta cualquier juego ya iniciado.\n\u001b[34;1mQUIT\u001b[0m               Cierra la ventana DOS.\n"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\n\u001b[33;1mObteniendo ayuda:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Muestra esta lista de comandos DOS.\n\u001b[34;1mDRIVES\u001b[0m             Muestra las unidades DOS actuales.\n\u001b[34;1mPROGRAMS\u001b[0m           Muestra los programas ejecutables del directorio actual.\n\n\u001b[33;1mMoverse por DOS:\u001b[0m\n\u001b[34;1m[unidad]:\u001b[0m           Cambia a la unidad especificada (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directorio]\u001b[0m     Cambia al directorio especificado.\n\u001b[34;1mDIR\u001b[0m                 Muestra el contenido del directorio actual.\n\u001b[34;1mREVEAL\u001b[0m              Muestra el directorio actual en Finder de macOS.\n\u001b[34;1mREVEAL [directorio]\u001b[0m Muestra el directorio DOS especificado en Finder de macOS.\n\n\u001b[33;1mUsando archivos:\u001b[0m\n\u001b[34;1mLAUNCH [programa]\u001b[0m   Busca y ejecuta el programa especificado (dondequiera que\n                    esté.)\n\u001b[34;1mEDIT [documento]\u001b[0m    Abre el documento especificado en un editor de texto.\n\u001b[34;1mPRINT [documento]\u001b[0m   Imprime el documento especificado en una impresora emulada.\n\n\u001b[33;1mControlando DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Organiza o participa en una sesión de red IPX.\n\u001b[34;1mRESTART\u001b[0m            Reinicia DOS y ejecuta cualquier juego ya iniciado.\n\u001b[34;1mQUIT\u001b[0m               Cierra la ventana DOS.\n"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\n\u001b[33;1mObtenir de l'aide :\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Affiche cette liste de commandes DOS.\n\u001b[34;1mDRIVES\u001b[0m             Liste les lecteurs DOS en cours.\n\u001b[34;1mPROGRAMS\u001b[0m           Liste les programmes exécutables du répertoire en cours.\n\n\u001b[33;1mSe déplacer dans DOS :\u001b[0m\n\u001b[34;1m[lecteur]:\u001b[0m         Modifie le lecteur en cours vers celui spécifié (ex. C:, D:)\n\u001b[34;1mCD [répertoire]\u001b[0m    Modifie le répertoire en cours vers celui spécifié.\n\u001b[34;1mDIR\u001b[0m                Liste le contenu du répertoire en cours.\n\u001b[34;1mREVEAL\u001b[0m             Affiche le répertoire en cours dans le Finder macOS.\n\u001b[34;1mREVEAL [rép]\u001b[0m       Affiche le répertoire DOS spécifié dans le Finder macOS.\n\n\u001b[33;1mUtiliser les fichiers :\u001b[0m\n\u001b[34;1mLAUNCH [programme]\u001b[0m Recherche et exécute le programme (emplacement ignoré.)\n\u001b[34;1mEDIT [document]\u001b[0m    Ouvre le document spécifié dans un éditeur de texte.\n\u001b[34;1mPRINT [document]\u001b[0m   Imprime le document spécifié vers l'imprimante émulée.\n\n\u001b[33;1mContrôler DOS :\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Héberge ou rejoint une session réseau IPX.\n\u001b[34;1mRESTART\u001b[0m            Redémarre DOS et relance le jeu démarré.\n\u001b[34;1mQUIT\u001b[0m               Ferme la fenêtre DOS.\n"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\n\u001b[33;1mObtenir de l'aide :\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Affiche cette liste de commandes DOS.\n\u001b[34;1mDRIVES\u001b[0m             Liste les lecteurs DOS en cours.\n\u001b[34;1mPROGRAMS\u001b[0m           Liste les programmes exécutables du répertoire en cours.\n\n\u001b[33;1mSe déplacer dans DOS :\u001b[0m\n\u001b[34;1m[lecteur]:\u001b[0m         Modifie le lecteur en cours vers celui spécifié (ex. C:, D:)\n\u001b[34;1mCD [répertoire]\u001b[0m    Modifie le répertoire en cours vers celui spécifié.\n\u001b[34;1mDIR\u001b[0m                Liste le contenu du répertoire en cours.\n\u001b[34;1mREVEAL\u001b[0m             Affiche le répertoire en cours dans le Finder macOS.\n\u001b[34;1mREVEAL [rép]\u001b[0m       Affiche le répertoire DOS spécifié dans le Finder macOS.\n\n\u001b[33;1mUtiliser les fichiers :\u001b[0m\n\u001b[34;1mLAUNCH [programme]\u001b[0m Recherche et exécute le programme (emplacement ignoré.)\n\u001b[34;1mEDIT [document]\u001b[0m    Ouvre le document spécifié dans un éditeur de texte.\n\u001b[34;1mPRINT [document]\u001b[0m   Imprime le document spécifié vers l'imprimante émulée.\n\n\u001b[33;1mContrôler DOS :\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Héberge ou rejoint une session réseau IPX.\n\u001b[34;1mRESTART\u001b[0m            Redémarre DOS et relance le jeu démarré.\n\u001b[34;1mQUIT\u001b[0m               Ferme la fenêtre DOS.\n"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\n\u001b[33;1mGetting help:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Display this list of DOS commands.\n\u001b[34;1mDRIVES\u001b[0m             List the current DOS drives.\n\u001b[34;1mPROGRAMS\u001b[0m           List the executable programs in the current directory.\n\n\u001b[33;1mMoving around in DOS:\u001b[0m\n\u001b[34;1m[drive]:\u001b[0m           Change to the specified drive (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directory]\u001b[0m     Change to the specified directory.\n\u001b[34;1mDIR\u001b[0m                List the contents of the current directory.\n\u001b[34;1mREVEAL\u001b[0m             Show the current directory in macOS Finder.\n\u001b[34;1mREVEAL [directory]\u001b[0m Show the specified DOS directory in macOS Finder.\n\n\u001b[33;1mUsing files:\u001b[0m\n\u001b[34;1mLAUNCH [program]\u001b[0m   Find and run the specified program (wherever it may be.)\n\u001b[34;1mEDIT [document]\u001b[0m    Open the specified document in a text editor.\n\u001b[34;1mPRINT [document]\u001b[0m   Print the specified document to the emulated printer.\n\n\u001b[33;1mControlling DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Host or join an IPX network session.\n\u001b[34;1mRESTART\u001b[0m            Restart DOS and relaunch any game you started with.\n\u001b[34;1mQUIT\u001b[0m               Close the DOS window.\n"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\n\u001b[33;1mGetting help:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Display this list of DOS commands.\n\u001b[34;1mDRIVES\u001b[0m             List the current DOS drives.\n\u001b[34;1mPROGRAMS\u001b[0m           List the executable programs in the current directory.\n\n\u001b[33;1mMoving around in DOS:\u001b[0m\n\u001b[34;1m[drive]:\u001b[0m           Change to the specified drive (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directory]\u001b[0m     Change to the specified directory.\n\u001b[34;1mDIR\u001b[0m                List the contents of the current directory.\n\u001b[34;1mREVEAL\u001b[0m             Show the current directory in macOS Finder.\n\u001b[34;1mREVEAL [directory]\u001b[0m Show the specified DOS directory in macOS Finder.\n\n\u001b[33;1mUsing files:\u001b[0m\n\u001b[34;1mLAUNCH [program]\u001b[0m   Find and run the specified program (wherever it may be.)\n\u001b[34;1mEDIT [document]\u001b[0m    Open the specified document in a text editor.\n\u001b[34;1mPRINT [document]\u001b[0m   Print the specified document to the emulated printer.\n\n\u001b[33;1mControlling DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Host or join an IPX network session.\n\u001b[34;1mRESTART\u001b[0m            Restart DOS and relaunch any game you started with.\n\u001b[34;1mQUIT\u001b[0m               Close the DOS window.\n"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\n\u001b[33;1mGetting help:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Display this list of DOS commands.\n\u001b[34;1mDRIVES\u001b[0m             List the current DOS drives.\n\u001b[34;1mPROGRAMS\u001b[0m           List the executable programs in the current directory.\n\n\u001b[33;1mMoving around in DOS:\u001b[0m\n\u001b[34;1m[drive]:\u001b[0m           Change to the specified drive (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directory]\u001b[0m     Change to the specified directory.\n\u001b[34;1mDIR\u001b[0m                List the contents of the current directory.\n\u001b[34;1mREVEAL\u001b[0m             Show the current directory in macOS Finder.\n\u001b[34;1mREVEAL [directory]\u001b[0m Show the specified DOS directory in macOS Finder.\n\n\u001b[33;1mUsing files:\u001b[0m\n\u001b[34;1mLAUNCH [program]\u001b[0m   Find and run the specified program (wherever it may be.)\n\u001b[34;1mEDIT [document]\u001b[0m    Open the specified document in a text editor.\n\u001b[34;1mPRINT [document]\u001b[0m   Print the specified document to the emulated printer.\n\n\u001b[33;1mControlling DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Host or join an IPX network session.\n\u001b[34;1mRESTART\u001b[0m            Restart DOS and relaunch any game you started with.\n\u001b[34;1mQUIT\u001b[0m               Close the DOS window.\n"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\n\u001b[33;1mGetting help:\u001b[0m\n\u001b[34;1mHELP\u001b[0m               Display this list of DOS commands.\n\u001b[34;1mDRIVES\u001b[0m             List the current DOS drives.\n\u001b[34;1mPROGRAMS\u001b[0m           List the executable programs in the current directory.\n\n\u001b[33;1mMoving around in DOS:\u001b[0m\n\u001b[34;1m[drive]:\u001b[0m           Change to the specified drive (e.g. C:, D:, Y:)\n\u001b[34;1mCD [directory]\u001b[0m     Change to the specified directory.\n\u001b[34;1mDIR\u001b[0m                List the contents of the current directory.\n\u001b[34;1mREVEAL\u001b[0m             Show the current directory in macOS Finder.\n\u001b[34;1mREVEAL [directory]\u001b[0m Show the specified DOS directory in macOS Finder.\n\n\u001b[33;1mUsing files:\u001b[0m\n\u001b[34;1mLAUNCH [program]\u001b[0m   Find and run the specified program (wherever it may be.)\n\u001b[34;1mEDIT [document]\u001b[0m    Open the specified document in a text editor.\n\u001b[34;1mPRINT [document]\u001b[0m   Print the specified document to the emulated printer.\n\n\u001b[33;1mControlling DOS:\u001b[0m\n\u001b[34;1mNETWORK\u001b[0m            Host or join an IPX network session.\n\u001b[34;1mRESTART\u001b[0m            Restart DOS and relaunch any game you started with.\n\u001b[34;1mQUIT\u001b[0m               Close the DOS window.\n"
           }
         }
       }
     },
-    "Windows-only game warning": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m is a Windows program, which Boxer does not support.\nYou may be able to run the program in a Windows emulator instead.\u001b[0m\n"
+    "The path \"%1$@\" does not exist in OS X." : {
+      "comment" : "Error message displayed when the REVEAL command cannot reveal a path in macOS because it did not exist. %1$@ is the absolute DOS path, including drive letter."
+    },
+    "The path \"%1$@\" does not exist." : {
+      "comment" : "Error message displayed when the REVEAL command is called on a path that could not be resolved to a full DOS path. %1$@ is the path exactly as the user entered it on the commandline."
+    },
+    "The path \"%1$@\" is a virtual drive used by Boxer and does not exist in OS X." : {
+      "comment" : "Error message displayed when the REVEAL command is called on an internal virtual drive. %1$@ is the absolute DOS path to that drive, including drive letter."
+    },
+    "The path \"%1$@\" is not accessible in OS X." : {
+      "comment" : "Error message displayed when the REVEAL command cannot resolve a DOS path to an OS X filesystem path. %1$@ is the absolute DOS path, including drive letter."
+    },
+    "Windows-only game warning" : {
+      "comment" : "Warning shown at the DOS prompt after a Windows-only game was launched and exited.\n\nNOTE FOR TRANSLATORS: The key for this string is a reference for a much longer text. See the English version of Shell.strings for the actual text to be translated.",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varování ke hře pouze pro Windows"
           }
         },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Varování ke hře pouze pro Windows"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m is a Windows program, which Boxer does not support.\nYou may be able to run the program in a Windows emulator instead.\u001b[0m\n"
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m es un programa de Windows, que Boxer no soporta.\nEs posible que pueda ejecutar el programa en un emulador de Windows en su lugar.\u001b[0m\n"
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m es un programa de Windows, que Boxer no soporta.\nEs posible que pueda ejecutar el programa en un emulador de Windows en su lugar.\u001b[0m\n"
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m est un programme Windows. Ils ne sont pas supportés par Boxer.\nVous pourrez lancer ce programme dans un émulateur Windows.\u001b[0m\n"
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m est un programme Windows. Ils ne sont pas supportés par Boxer.\nVous pourrez lancer ce programme dans un émulateur Windows.\u001b[0m\n"
           }
         },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m is a Windows program, which Boxer does not support.\nYou may be able to run the program in a Windows emulator instead.\u001b[0m\n"
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m is a Windows program, which Boxer does not support.\nYou may be able to run the program in a Windows emulator instead.\u001b[0m\n"
           }
         },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m is a Windows program, which Boxer does not support.\nYou may be able to run the program in a Windows emulator instead.\u001b[0m\n"
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\u001b[31;1m\u001b[32;1m%@\u001b[31;1m is a Windows program, which Boxer does not support.\nYou may be able to run the program in a Windows emulator instead.\u001b[0m\n"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }
