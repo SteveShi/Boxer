@@ -85,50 +85,58 @@
 
 + (void) initialize
 {
-    if (self == [BXBaseAppController class])
-    {
-        //Create common value transformers
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         [self prepareUserDefaults];
         [self prepareValueTransformers];
-    }
+    });
 }
 
 + (void) prepareUserDefaults
 {
     //We carry a plist of initial values for application preferences
     NSString *defaultsPath	= [[NSBundle mainBundle] pathForResource: @"UserDefaults" ofType: @"plist"];
-    NSDictionary *defaults	= [NSDictionary dictionaryWithContentsOfFile: defaultsPath];
-    
-    [[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
-    
+    if (defaultsPath)
+    {
+        NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfFile: defaultsPath];
+        if (defaults)
+        {
+            [[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
+        }
+    }
 }
 
 + (void) prepareValueTransformers
 {
-    NSValueTransformer *isEmpty		= [[BXArraySizeTransformer alloc] initWithMinSize: 0 maxSize: 0];
-    NSValueTransformer *isNotEmpty	= [[BXArraySizeTransformer alloc] initWithMinSize: 1 maxSize: NSIntegerMax];
-    NSValueTransformer *capitalizer	= [[BXCapitalizer alloc] init];
-    
-    BXIconifiedDisplayPathTransformer *pathTransformer = [[BXIconifiedDisplayPathTransformer alloc]
-                                                          initWithJoiner: @" ▸ " maxComponents: 0];
-    pathTransformer.missingFileIcon = [NSImage imageNamed: @"gamefolder"];
-    pathTransformer.hidesSystemRoots = YES;
-    
-    NSMutableParagraphStyle *pathStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    pathStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
-    [pathTransformer.textAttributes setObject: pathStyle
-                                       forKey: NSParagraphStyleAttributeName];
-    
-    [NSValueTransformer setValueTransformer: isEmpty forName: @"BXArrayIsEmpty"];
-    [NSValueTransformer setValueTransformer: isNotEmpty forName: @"BXArrayIsNotEmpty"];	
-    [NSValueTransformer setValueTransformer: capitalizer forName: @"BXCapitalizedString"];	
-    [NSValueTransformer setValueTransformer: pathTransformer forName: @"BXIconifiedGamesFolderPath"];
+    static dispatch_once_t vtToken;
+    dispatch_once(&vtToken, ^{
+        NSValueTransformer *isEmpty		= [[BXArraySizeTransformer alloc] initWithMinSize: 0 maxSize: 0];
+        NSValueTransformer *isNotEmpty	= [[BXArraySizeTransformer alloc] initWithMinSize: 1 maxSize: NSIntegerMax];
+        NSValueTransformer *capitalizer	= [[BXCapitalizer alloc] init];
+        
+        BXIconifiedDisplayPathTransformer *pathTransformer = [[BXIconifiedDisplayPathTransformer alloc]
+                                                              initWithJoiner: @" ▸ " maxComponents: 0];
+        pathTransformer.missingFileIcon = [NSImage imageNamed: @"gamefolder"];
+        pathTransformer.hidesSystemRoots = YES;
+        
+        NSMutableParagraphStyle *pathStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        pathStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        [pathTransformer.textAttributes setObject: pathStyle
+                                           forKey: NSParagraphStyleAttributeName];
+        
+        [NSValueTransformer setValueTransformer: isEmpty forName: @"BXArrayIsEmpty"];
+        [NSValueTransformer setValueTransformer: isNotEmpty forName: @"BXArrayIsNotEmpty"];	
+        [NSValueTransformer setValueTransformer: capitalizer forName: @"BXCapitalizedString"];	
+        [NSValueTransformer setValueTransformer: pathTransformer forName: @"BXIconifiedGamesFolderPath"];
+    });
 }
 
 - (id) init
 {
 	if ((self = [super init]))
 	{
+        [[self class] prepareUserDefaults];
+        [[self class] prepareValueTransformers];
 		self.generalQueue = [[NSOperationQueue alloc] init];
 		[self registerApplicationModeObservers];
 	}
@@ -621,7 +629,9 @@
 
 - (float) masterVolume
 {
-    return [[NSUserDefaults standardUserDefaults] floatForKey: @"masterVolume"];
+    id volumeObj = [[NSUserDefaults standardUserDefaults] objectForKey: @"masterVolume"];
+    if (volumeObj == nil) return 1.0f;
+    return [volumeObj floatValue];
 }
 
 - (void) setMasterVolume: (float)volume

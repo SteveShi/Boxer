@@ -742,6 +742,9 @@ std::deque<std::string> ShaderManager::GenerateShaderInventoryMessage() const { 
 
 void boxer_updateVolumes() {
     float vol = [BXEmulator currentEmulator].masterVolume;
+    if (vol <= 0.0f && [[NSUserDefaults standardUserDefaults] objectForKey: @"masterVolume"] == nil) {
+        vol = 1.0f;
+    }
     AudioFrame frame = {vol, vol};
     MIXER_SetMasterVolume(frame);
 }

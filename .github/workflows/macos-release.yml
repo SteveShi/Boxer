@@ -110,6 +110,11 @@ jobs:
 
       - name: Package release apps
         run: |
+          # Ensure deep ad-hoc signing for all apps and embedded frameworks
+          codesign --force --deep --sign - "build/Build/Products/Release/Boxer.app"
+          codesign --force --deep --sign - "build/Build/Products/Release/Boxer Standalone.app"
+          codesign --force --deep --sign - "build/Build/Products/Release/Boxer Bundler.app"
+
           # Package Boxer
           ditto -c -k --keepParent "build/Build/Products/Release/Boxer.app" Boxer-Apple-Silicon.zip
           hdiutil create -volname Boxer -srcfolder "build/Build/Products/Release/Boxer.app" -ov -format UDZO Boxer-Apple-Silicon.dmg
