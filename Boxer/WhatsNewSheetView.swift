@@ -25,7 +25,7 @@ public struct WhatsNewFeatureItem: Identifiable {
 }
 
 public struct WhatsNewSheetView: View {
-    @Environment(\.dismiss) private var dismiss
+    public var onDismiss: (() -> Void)?
     
     private let features: [WhatsNewFeatureItem] = [
         WhatsNewFeatureItem(
@@ -48,7 +48,9 @@ public struct WhatsNewSheetView: View {
         )
     ]
     
-    public init() {}
+    public init(onDismiss: (() -> Void)? = nil) {
+        self.onDismiss = onDismiss
+    }
     
     public var body: some View {
         VStack(spacing: 28) {
@@ -88,7 +90,15 @@ public struct WhatsNewSheetView: View {
             Spacer(minLength: 16)
             
             Button {
-                dismiss()
+                if let onDismiss = onDismiss {
+                    onDismiss()
+                } else if let window = NSApp.keyWindow {
+                    if let parent = window.sheetParent {
+                        parent.endSheet(window)
+                    } else {
+                        window.close()
+                    }
+                }
             } label: {
                 Text(LocalizedStringKey("Continue"), tableName: "WhatsNew")
                     .frame(maxWidth: .infinity)
@@ -110,10 +120,24 @@ public final class BXWhatsNewController: NSObject {
     @MainActor
     public static func showWhatsNewSheet(presentingWindow: NSWindow? = nil) {
         let targetWindow = presentingWindow ?? NSApp.keyWindow ?? NSApp.mainWindow
-        let hostingController = NSHostingController(rootView: WhatsNewSheetView())
+        var windowRef: NSWindow?
+        
+        let view = WhatsNewSheetView {
+            if let window = windowRef {
+                if let parent = window.sheetParent {
+                    parent.endSheet(window)
+                } else {
+                    window.close()
+                }
+            }
+        }
+        
+        let hostingController = NSHostingController(rootView: view)
         let window = NSWindow(contentViewController: hostingController)
+        windowRef = window
         window.styleMask = [.titled, .closable]
         window.title = String(localized: "What's New in Boxer", table: "WhatsNew")
+        
         if let parent = targetWindow {
             parent.beginSheet(window, completionHandler: nil)
         } else {

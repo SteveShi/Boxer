@@ -896,7 +896,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "快进"
+            "value": "快进加速"
           }
         }
       }
@@ -1004,7 +1004,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "CPU Speed"
+            "value": "CPU 速度"
           }
         }
       }
@@ -1040,7 +1040,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "CPU Speed"
+            "value": "CPU 速度"
           }
         }
       }

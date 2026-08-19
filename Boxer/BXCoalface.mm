@@ -12,6 +12,7 @@
 #import "mapper.h"
 #import "cross.h"
 #import "shell.h"
+#import "mouse.h"
 #import "ADBFilesystem.h"
 
 #pragma mark - Runloop state functions
@@ -121,6 +122,16 @@ Bitu boxer_prepareForFrameSize(Bitu width, Bitu height, Bitu gfx_flags, double s
 	NSSize scale		= NSMakeSize((CGFloat)scalex, (CGFloat)scaley);
 	NSLog(@"BXDIAG boxer_prepareForFrameSize %lux%lu", (unsigned long)width, (unsigned long)height);
 	[[emulator videoHandler] prepareForOutputSize: outputSize atScale: scale withCallback: callback];
+
+	MouseScreenParams params{};
+	params.draw_rect = DosBox::Rect(0, 0, (int)width, (int)height);
+	params.is_fullscreen = false;
+	params.is_multi_display = false;
+	params.x_abs = (int)(width / 2);
+	params.y_abs = (int)(height / 2);
+	MOUSE_NewScreenParams(params);
+	MOUSE_NotifyReadyGFX();
+	MOUSE_NotifyWindowActive(true);
 
 	return GFX_CAN_32;
 }
@@ -708,7 +719,6 @@ extern "C" {
     
     int autofire = 0;
 }
-void boxer_updateVolumes() {}
 const char* RunningProgram = nullptr;
 
 void restart_dosbox(std::vector<std::string>&) {}
@@ -729,4 +739,10 @@ std::deque<std::string> ShaderManager::GenerateShaderInventoryMessage() const { 
 
 #include "mixer.h"
 #include <cmath>
+
+void boxer_updateVolumes() {
+    float vol = [BXEmulator currentEmulator].masterVolume;
+    AudioFrame frame = {vol, vol};
+    MIXER_SetMasterVolume(frame);
+}
 

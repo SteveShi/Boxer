@@ -416,7 +416,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "最近打开"
+            "value": "打开最近使用"
           }
         }
       }
@@ -446,7 +446,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "最近打开"
+            "value": "打开最近使用"
           }
         }
       }
@@ -686,7 +686,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "显示全部"
+            "value": "全部显示"
           }
         }
       }
@@ -1496,7 +1496,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "视图"
+            "value": "显示"
           }
         }
       }
@@ -1526,7 +1526,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "视图"
+            "value": "显示"
           }
         }
       }

@@ -67,6 +67,7 @@
 		if (!flag) [self clearInput];
 		
 		_active = flag;
+		MOUSE_NotifyWindowActive(flag);
 	}
 }
 
@@ -77,16 +78,15 @@
 {
 	if (self.isActive)
 	{
-		//In DOSBox land, absolute position is from 0.0 to 1.0 but delta is in raw pixels,
-		//for some silly reason.
-		//TODO: try making this relative to the DOS driver's max mouse position instead.
 		NSPoint canvasDelta = NSMakePoint(delta.x * canvas.size.width,
 										  delta.y * canvas.size.height);
+		int32_t absX = (int32_t)round(point.x * canvas.size.width);
+		int32_t absY = (int32_t)round(point.y * canvas.size.height);
 		
-		MOUSE_EventMoved(canvasDelta.x,
-						  canvasDelta.y,
-						  point.x,
-						  point.y);
+		MOUSE_EventMoved((float)canvasDelta.x,
+						  (float)canvasDelta.y,
+						  absX,
+						  absY);
 	}
 }
 

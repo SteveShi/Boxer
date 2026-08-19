@@ -416,7 +416,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "显示全部"
+            "value": "全部显示"
           }
         }
       }
@@ -560,7 +560,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "视图"
+            "value": "显示"
           }
         }
       }
@@ -2252,7 +2252,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "视图"
+            "value": "显示"
           }
         }
       }
@@ -2324,7 +2324,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "渲染 Style"
+            "value": "渲染风格"
           }
         }
       }
@@ -2432,7 +2432,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "渲染 Style"
+            "value": "渲染风格"
           }
         }
       }
@@ -2540,7 +2540,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Original"
+            "value": "原始风格"
           }
         }
       }
@@ -2576,7 +2576,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "进入全屏幕"
+            "value": "进入全屏"
           }
         }
       }
@@ -3764,7 +3764,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "快进"
+            "value": "快进加速"
           }
         }
       }

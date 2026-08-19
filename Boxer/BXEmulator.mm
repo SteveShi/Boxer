@@ -998,7 +998,7 @@ static bool bx_gameport_timed = true;
 - (void) _startDOSBox
 {
 	//Initialize the SDL modules that DOSBox will need.
-	NSAssert1(!SDL_Init(SDL_INIT_AUDIO),
+	NSAssert1(!SDL_Init(SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_EVENTS),
 			  @"SDL failed to initialize with the following error: %s", SDL_GetError());
 	
 	try
@@ -1034,6 +1034,7 @@ static bool bx_gameport_timed = true;
             control->Init();
             
             [self _didInitialize];
+            [self _syncVolume];
         }
         
 		//Start up the main machine.

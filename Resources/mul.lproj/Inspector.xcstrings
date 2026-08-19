@@ -1040,7 +1040,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Other视图s"
+            "value": "其他视图"
           }
         }
       }
@@ -1220,7 +1220,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Other视图s"
+            "value": "其他视图"
           }
         }
       }
@@ -1580,7 +1580,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Max"
+            "value": "最大"
           }
         }
       }
@@ -2096,7 +2096,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Other视图s"
+            "value": "其他视图"
           }
         }
       }
@@ -2168,7 +2168,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Other…"
+            "value": "其他…"
           }
         }
       }
@@ -2600,7 +2600,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "CPU "
+            "value": "CPU"
           }
         }
       }
@@ -2636,7 +2636,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "CPU "
+            "value": "CPU"
           }
         }
       }
@@ -2672,7 +2672,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "鼠标 "
+            "value": "鼠标"
           }
         }
       }
@@ -2708,7 +2708,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "鼠标 "
+            "value": "鼠标"
           }
         }
       }
@@ -2744,7 +2744,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "游戏手柄 "
+            "value": "手柄"
           }
         }
       }
@@ -2780,7 +2780,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "游戏手柄 "
+            "value": "手柄"
           }
         }
       }
@@ -2816,7 +2816,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "驱动器 "
+            "value": "驱动器"
           }
         }
       }
@@ -2852,7 +2852,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "驱动器 "
+            "value": "驱动器"
           }
         }
       }

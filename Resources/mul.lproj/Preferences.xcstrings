@@ -32,7 +32,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Boxer Preferences"
+            "value": "Boxer 偏好设置"
           }
         }
       }
@@ -68,7 +68,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "开始 up games in Full Screen mode"
+            "value": "全屏模式启动游戏"
           }
         }
       }
@@ -103,7 +103,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "You can switch to and from Full Screen at any time from the 视图 menu or by pressing ⌘-F."
+            "value": "您可以随时从“显示”菜单或按 ⌘-F 切换全屏状态。"
           }
         }
       }
@@ -139,7 +139,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Always use 4:3 aspect ratio"
+            "value": "始终保持 4:3 画面比例"
           }
         }
       }
@@ -175,7 +175,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "When enabled, games will be stretched to match their original aspect ratio on old PC monitors."
+            "value": "启用后，游戏画面将拉伸以匹配老式 PC 显示器的原始宽高比。"
           }
         }
       }
@@ -211,7 +211,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Original"
+            "value": "原始风格"
           }
         }
       }
@@ -247,7 +247,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "平滑滤镜 (Smooth)"
+            "value": "平滑滤镜"
           }
         }
       }
@@ -283,7 +283,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "CRT 显像管曲面 显示"
+            "value": "CRT 显像管"
           }
         }
       }
@@ -319,7 +319,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "通用   "
+            "value": "通用"
           }
         }
       }
@@ -355,7 +355,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "通用   "
+            "value": "通用"
           }
         }
       }
@@ -391,7 +391,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "显示   "
+            "value": "显示"
           }
         }
       }
@@ -427,7 +427,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "显示   "
+            "value": "显示"
           }
         }
       }
@@ -463,7 +463,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Keep my DOS games in:"
+            "value": "DOS 游戏存放位置："
           }
         }
       }
@@ -499,7 +499,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Other视图s"
+            "value": "其他视图"
           }
         }
       }
@@ -535,7 +535,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "(No folder specified)"
+            "value": "（未指定文件夹）"
           }
         }
       }
@@ -571,7 +571,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Other…"
+            "value": "其他…"
           }
         }
       }
@@ -607,7 +607,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Use shelf appearance in 查找er’s icon view"
+            "value": "在访达图标视图中使用书架外观"
           }
         }
       }
@@ -643,7 +643,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "通用 Preferences"
+            "value": "通用偏好设置"
           }
         }
       }
@@ -679,7 +679,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "显示 Preferences"
+            "value": "显示偏好设置"
           }
         }
       }
@@ -715,7 +715,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "When a program is still running"
+            "value": "当程序仍在运行时"
           }
         }
       }
@@ -751,7 +751,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prompt before closing:"
+            "value": "关闭前确认："
           }
         }
       }
@@ -857,7 +857,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "音频 Preferences"
+            "value": "音频偏好设置"
           }
         }
       }
@@ -893,7 +893,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Boxer does not come with the ROMs needed to play\nMT-32 music, as these are not legal to distribute."
+            "value": "由于版权分发限制，Boxer 未内置播放\nMT-32 音乐所需的 ROM 文件。"
           }
         }
       }
@@ -929,7 +929,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "But if one should stumble across MT-32 ROMs on the internet, then acccidentally download them, one could drag them onto this shelf to bring one’s MT-32 games to life."
+            "value": "如果您从其他渠道获取了 MT-32 ROM，只需将其拖入此书架即可激活真实的 MT-32 游戏音效。"
           }
         }
       }
@@ -965,7 +965,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Show ROMs in 查找er]"
+            "value": "在访达中显示 ROM"
           }
         }
       }
@@ -1001,7 +1001,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "[添加 MT-32 ROMs…]"
+            "value": "添加 MT-32 ROM…"
           }
         }
       }
@@ -1037,7 +1037,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "[Drop MT-32 ROMs here to enable MT-32 emulation]"
+            "value": "将 MT-32 ROM 拖放到此处以启用 MT-32 仿真"
           }
         }
       }
@@ -1073,7 +1073,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Show messages from the MT-32’s LCD"
+            "value": "显示来自 MT-32 液晶屏的消息"
           }
         }
       }
@@ -1109,7 +1109,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Some games will print secret messages on the MT-32’s LCD panel. When enabled, Boxer will display these on-screen."
+            "value": "部分游戏会在 MT-32 液晶面板上输出提示消息。启用后，Boxer 将在屏幕上显示这些提示。"
           }
         }
       }
@@ -1145,7 +1145,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Music in supporting games will be played through your Roland MT-32 声音 Module."
+            "value": "支持的游戏将通过您的 Roland MT-32 声音模块播放音乐。"
           }
         }
       }
@@ -1181,7 +1181,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "As an MT-32 owner, you are also a person of taste and distinction."
+            "value": "作为 MT-32 设备拥有者，您拥有卓越不凡的品味。"
           }
         }
       }
@@ -1217,7 +1217,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose a rendering style for DOS games:"
+            "value": "选取 DOS 游戏的渲染风格："
           }
         }
       }
@@ -1289,7 +1289,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Other视图s"
+            "value": "其他视图"
           }
         }
       }
@@ -1325,7 +1325,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open my games folder in 查找er"
+            "value": "在访达中打开我的游戏文件夹"
           }
         }
       }
@@ -1361,7 +1361,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Show welcome panel"
+            "value": "显示欢迎面板"
           }
         }
       }
@@ -1397,7 +1397,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Do nothing"
+            "value": "不执行任何操作"
           }
         }
       }
@@ -1433,7 +1433,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "When Boxer starts:"
+            "value": "Boxer 启动时："
           }
         }
       }
@@ -1469,7 +1469,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "键盘 Preferences"
+            "value": "键盘偏好设置"
           }
         }
       }
@@ -1505,7 +1505,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Capture function keys and arrow keys for games"
+            "value": "为游戏捕获功能键与方向键"
           }
         }
       }
@@ -1541,7 +1541,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prevents macOS system hotkeys from interfering with the keyboard controls in your DOS games."
+            "value": "防止 macOS 系统快捷键干扰 DOS 游戏的键盘控制。"
           }
         }
       }
@@ -1577,7 +1577,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "“Enable access for assistive devices” must also\nbe enabled in the Universal Access preferences."
+            "value": "还必须在系统“辅助功能”中允许 Boxer 访问。"
           }
         }
       }
@@ -1613,7 +1613,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open System Preferences"
+            "value": "打开系统设置"
           }
         }
       }
@@ -1721,7 +1721,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open a DOS prompt"
+            "value": "打开 DOS 提示符"
           }
         }
       }
