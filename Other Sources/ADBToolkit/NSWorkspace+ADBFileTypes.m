@@ -26,6 +26,7 @@
 
 
 #import "NSWorkspace+ADBFileTypes.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 @implementation NSWorkspace (ADBFileTypes)
 
@@ -36,31 +37,36 @@
 
 - (BOOL) file: (NSString *)filePath matchesTypes: (NSSet *)acceptedTypes
 {
-	NSString *fileType = [self typeOfFile: filePath error: nil];
+    NSURL *fileURL = [NSURL fileURLWithPath: filePath];
+    UTType *fileType = nil;
+    [fileURL getResourceValue: &fileType forKey: NSURLContentTypeKey error: NULL];
     
     //If OS X can determine a UTI for the specified file, then check if that UTI matches one of the specified types
-	if (fileType)
-	{
-		for (NSString *acceptedType in acceptedTypes)
-		{
-			if ([self type: fileType conformsToType: acceptedType]) return YES;
-		}
-	}
+    if (fileType)
+    {
+        for (NSString *acceptedType in acceptedTypes)
+        {
+            UTType *targetType = [UTType typeWithIdentifier: acceptedType];
+            if (targetType && [fileType conformsToType: targetType]) return YES;
+        }
+    }
     
     //If no filetype match was found, check whether the file extension alone matches any of the specified types.
-    //(This allows us to judge filetypes based on filename alone, e.g. for nonexistent/inaccessible files;
-    //and works around an NSWorkspace typeOfFile: limitation whereby it may return an overly generic UTI
-    //for a file or folder instead of a proper specific UTI.
     NSString *fileExtension	= [filePath pathExtension];
     if ([fileExtension length] > 0)
     {
-        for (NSString *acceptedType in acceptedTypes)
-		{
-			if ([self filenameExtension: fileExtension isValidForType: acceptedType]) return YES;
-		}
+        UTType *extType = [UTType typeWithFilenameExtension: fileExtension];
+        if (extType)
+        {
+            for (NSString *acceptedType in acceptedTypes)
+            {
+                UTType *targetType = [UTType typeWithIdentifier: acceptedType];
+                if (targetType && [extType conformsToType: targetType]) return YES;
+            }
+        }
     }
     
-	return NO;
+    return NO;
 }
 
 - (NSURL *) nearestAncestorOfURL: (NSURL *)URL matchingTypes: (NSSet *)acceptedTypes

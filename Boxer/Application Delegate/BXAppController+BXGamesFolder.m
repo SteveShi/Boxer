@@ -184,7 +184,7 @@ NSString * const BXGamesFolderBookmarkUserDefaultsKey = @"gamesFolderURLBookmark
                                           error: NULL];
 		
 		//Bail out if the image could not be saved properly
-		if (!imageSaved) return NO;
+		if (!imageSaved) return nil;
 	}
 	
 	//If we got this far then we have a pre-existing or newly-generated shelf image at the specified path.

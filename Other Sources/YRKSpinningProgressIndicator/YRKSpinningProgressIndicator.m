@@ -93,7 +93,7 @@
 
         NSBezierPath *path = [[NSBezierPath alloc] init];
 		[path setLineWidth: lineWidth];
-        [path setLineCapStyle: NSRoundLineCapStyle];
+        [path setLineCapStyle: NSLineCapStyleRound];
         [path moveToPoint: NSMakePoint(0,lineStart)];
         [path lineToPoint: NSMakePoint(0,lineEnd)];
 

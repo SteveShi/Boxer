@@ -159,68 +159,42 @@
 
 + (NSString *) preferredExtensionForFileType: (NSString *)UTI
 {
-    if (@available(macOS 11.0, *)) {
-        UTType *type = [UTType typeWithIdentifier:UTI];
-        NSString *ext = type.preferredFilenameExtension;
-        if (ext) {
-            return ext;
-        }
-    }
-    
-    CFStringRef extensionForUTI = UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassFilenameExtension);
-    return CFBridgingRelease(extensionForUTI);
+    UTType *type = [UTType typeWithIdentifier:UTI];
+    return type.preferredFilenameExtension;
 }
 
-+ (NSArray<NSString*> *) fileTypesForExtension: (NSString *)UTI;
++ (NSArray<NSString*> *) fileTypesForExtension: (NSString *)extension
 {
-    if (@available(macOS 11.0, *)) {
-        NSArray *theUTIs = [UTType typesWithTag:UTI tagClass:UTTagClassFilenameExtension conformingToType:nil];
-        if (theUTIs) {
-            NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:theUTIs.count];
-            for (UTType *type in theUTIs) {
-                [arr addObject:type.identifier];
-            }
-            return arr;
+    NSArray<UTType *> *theUTIs = [UTType typesWithTag:extension tagClass:UTTagClassFilenameExtension conformingToType:nil];
+    if (theUTIs) {
+        NSMutableArray *arr = [[NSMutableArray alloc] initWithCapacity:theUTIs.count];
+        for (UTType *type in theUTIs) {
+            [arr addObject:type.identifier];
         }
+        return arr;
     }
-    
-    CFArrayRef extensionsForUTI = UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension,
-                                                                   (__bridge CFStringRef)UTI,
-                                                                   NULL);
-    return CFBridgingRelease(extensionsForUTI);
+    return @[];
 }
 
 + (NSString *) fileTypeForExtension: (NSString *)extension
 {
-    if (@available(macOS 11.0, *)) {
-        UTType *type = [UTType typeWithFilenameExtension:extension];
-        NSString *utiForExt = type.identifier;
-        if (utiForExt) {
-            return utiForExt;
-        }
-    }
-    
-    CFStringRef UTIForExtension = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
-                                                                        (__bridge CFStringRef)extension,
-                                                                        NULL);
-    
-    return CFBridgingRelease(UTIForExtension);
+    UTType *type = [UTType typeWithFilenameExtension:extension];
+    return type.identifier;
 }
 
 - (NSString *) typeIdentifier
 {
     NSString *UTI = nil;
     BOOL retrievedUTI = [self getResourceValue: &UTI forKey: NSURLTypeIdentifierKey error: NULL];
-    if (retrievedUTI)
+    if (retrievedUTI && UTI.length > 0)
     {
         return UTI;
     }
     else
     {
         NSString *pathExtension = self.pathExtension;
-        if (pathExtension)
+        if (pathExtension.length > 0)
         {
-            //Attempt to return a UTI based solely on our file extension instead.
             return [self.class fileTypeForExtension: pathExtension];
         }
         else
@@ -229,23 +203,24 @@
         }
     }
 }
+
 - (BOOL) conformsToFileType: (NSString *)comparisonUTI
 {
+    UTType *targetType = [UTType typeWithIdentifier: comparisonUTI];
+    if (!targetType) return NO;
+
     NSString *reportedUTI = self.typeIdentifier;
-    if (reportedUTI != nil && UTTypeConformsTo((__bridge CFStringRef)reportedUTI, (__bridge CFStringRef)comparisonUTI))
-        return YES;
+    if (reportedUTI != nil)
+    {
+        UTType *itemType = [UTType typeWithIdentifier: reportedUTI];
+        if ([itemType conformsToType: targetType]) return YES;
+    }
     
-    //Also check if the file extension is suitable for the given type, in case an overly generic
-    //UTI definition was returned. This has been observed to happen with folder-derived UTIs in
-    //10.5-10.8, where NSURLTypeIdentifierKey reports public.folder as the UTI when the extension
-    //conforms to a more specific UTI.
     NSString *extension = self.pathExtension;
     if (extension.length)
     {
-        NSString *UTIForExtension = [self.class fileTypeForExtension: extension];
-        if (UTIForExtension != nil &&
-            ![UTIForExtension isEqualToString: reportedUTI] &&
-            UTTypeConformsTo((__bridge CFStringRef)UTIForExtension, (__bridge CFStringRef)comparisonUTI))
+        UTType *extType = [UTType typeWithFilenameExtension: extension];
+        if (extType != nil && [extType conformsToType: targetType])
             return YES;
     }
     
@@ -255,26 +230,25 @@
 - (NSString *) matchingFileType: (NSSet<NSString*> *)UTIs
 {
     NSString *reportedUTI = self.typeIdentifier;
-    if (reportedUTI != nil)
+    UTType *itemType = (reportedUTI != nil) ? [UTType typeWithIdentifier: reportedUTI] : nil;
+    
+    for (NSString *comparisonUTI in UTIs)
     {
-        for (NSString *comparisonUTI in UTIs)
-        {
-            if (UTTypeConformsTo((__bridge CFStringRef)reportedUTI, (__bridge CFStringRef)comparisonUTI))
-                return comparisonUTI;
-        }
+        UTType *targetType = [UTType typeWithIdentifier: comparisonUTI];
+        if (targetType && itemType && [itemType conformsToType: targetType])
+            return comparisonUTI;
     }
     
-    //If we couldn't match against the URL's reported UTI, check again against the UTI for the URL's
-    //path extension. (See note under conformsToUTI: for details on when this is necessary.)
     NSString *extension = self.pathExtension;
     if (extension.length)
     {
-        NSString *UTIForExtension = [self.class fileTypeForExtension: extension];
-        if (UTIForExtension != nil && ![UTIForExtension isEqualToString: reportedUTI])
+        UTType *extType = [UTType typeWithFilenameExtension: extension];
+        if (extType != nil)
         {
             for (NSString *comparisonUTI in UTIs)
             {
-                if (UTTypeConformsTo((__bridge CFStringRef)UTIForExtension, (__bridge CFStringRef)comparisonUTI))
+                UTType *targetType = [UTType typeWithIdentifier: comparisonUTI];
+                if (targetType && [extType conformsToType: targetType])
                     return comparisonUTI;
             }
         }

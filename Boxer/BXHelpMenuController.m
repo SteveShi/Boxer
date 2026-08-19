@@ -116,7 +116,7 @@
 	if (documentURL)
     {
         [(BXBaseAppController *)[NSApp delegate] openURLsInPreferredApplications: @[documentURL]
-                                                                         options: NSWorkspaceLaunchDefault];
+                                                                         options: 0];
     }
 }
 

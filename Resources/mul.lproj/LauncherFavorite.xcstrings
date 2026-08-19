@@ -140,7 +140,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Program Title"
+            "value": "程序标题"
           }
         }
       }
@@ -212,7 +212,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "移除 From List"
+            "value": "从列表中移除"
           }
         }
       }
@@ -248,7 +248,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Launch"
+            "value": "启动"
           }
         }
       }

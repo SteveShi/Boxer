@@ -62,7 +62,7 @@ static NSUserInterfaceItemIdentifier const GroupType     = @"Group";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
-    OEShaderParameter *param = (OEShaderParameter *)object;
+    __unused OEShaderParameter *param = (OEShaderParameter *)object;
 //    [_controller.document gameViewController:_controller
 //    setShaderParameterValue:param.value
 //                    atIndex:param.index

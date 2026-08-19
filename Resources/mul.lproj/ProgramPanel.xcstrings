@@ -32,7 +32,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Not now"
+            "value": "暂不"
           }
         }
       }
@@ -68,7 +68,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Launch every time"
+            "value": "每次均启动"
           }
         }
       }
@@ -104,7 +104,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Click a program to launch:"
+            "value": "点击要启动的程序："
           }
         }
       }
@@ -140,7 +140,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Hold down Option during startup to get the DOS prompt instead."
+            "value": "在启动时按住 Option 键可直接进入 DOS 提示符。"
           }
         }
       }
@@ -176,7 +176,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Launch wwwwwww.exe every time I start this gamebox."
+            "value": "每次启动此游戏盒时均运行 wwwwwww.exe。"
           }
         }
       }
@@ -212,7 +212,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Launch wwwwwwww.exe every time?"
+            "value": "每次均启动 wwwwwwww.exe 吗？"
           }
         }
       }
@@ -248,7 +248,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "You can change your choice later from the 检查器 Panel."
+            "value": "您之后随时可以在检查器面板中修改此选项。"
           }
         }
       }
@@ -284,7 +284,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "There are no programs in this gamebox."
+            "value": "此游戏盒内没有程序。"
           }
         }
       }
@@ -320,7 +320,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Once you’ve installed some programs, they will be listed here."
+            "value": "安装程序后，它们将在此处列出。"
           }
         }
       }

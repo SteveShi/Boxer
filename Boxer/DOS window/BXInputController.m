@@ -1020,7 +1020,10 @@ void _inputSourceChanged(CFNotificationCenterRef center,
         //Checking CGCursorIsVisible() ensures we don't "over-hide"
         //the cursor if it's already hidden, since [NSCursor hide] stacks
         //and we have no way of knowing the current stack depth.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         if (CGCursorIsVisible()) [NSCursor hide];
+#pragma clang diagnostic pop
         
         //Disassociate the mouse and the OS X cursor. This prevents the OS X cursor
         //from moving as long as the mouse is locked (which prevents it leaving the

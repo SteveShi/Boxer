@@ -499,18 +499,35 @@
     {
         NSArray *URLsForApp = [appIdentifiersAndURLs objectForKey: appIdentifier];
         
-        //The null identifier is special
-        if ([appIdentifier isEqual: [NSNull null]])
-            appIdentifier = nil;
-        
-        BOOL succeeded = [[NSWorkspace sharedWorkspace] openURLs: URLsForApp
-                                         withAppBundleIdentifier: appIdentifier
-                                                         options: launchOptions
-                                  additionalEventParamDescriptor: nil
-                                               launchIdentifiers: NULL];
-        
-        if (succeeded)
+        NSWorkspaceOpenConfiguration *config = [NSWorkspaceOpenConfiguration configuration];
+        if (appIdentifier != nil && ![appIdentifier isEqual: [NSNull null]])
+        {
+            NSURL *appURL = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier: appIdentifier];
+            if (appURL)
+            {
+                [[NSWorkspace sharedWorkspace] openURLs: URLsForApp
+                                   withApplicationAtURL: appURL
+                                          configuration: config
+                                      completionHandler: nil];
+                openedAnyFiles = YES;
+            }
+            else
+            {
+                for (NSURL *url in URLsForApp)
+                {
+                    [[NSWorkspace sharedWorkspace] openURL: url];
+                }
+                openedAnyFiles = YES;
+            }
+        }
+        else
+        {
+            for (NSURL *url in URLsForApp)
+            {
+                [[NSWorkspace sharedWorkspace] openURL: url];
+            }
             openedAnyFiles = YES;
+        }
     }
     
     return openedAnyFiles;

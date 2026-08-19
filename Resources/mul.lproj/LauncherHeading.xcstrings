@@ -68,7 +68,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "HEADING TITLE"
+            "value": "标题"
           }
         }
       }
@@ -104,7 +104,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Switch to 驱动器"
+            "value": "切换到驱动器"
           }
         }
       }

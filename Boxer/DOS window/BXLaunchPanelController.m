@@ -1012,7 +1012,7 @@
     {
         if (self.isActive)
         {
-            NSColor *fillColor = [[NSColor alternateSelectedControlColor] colorWithAlphaComponent: 0.25];
+            NSColor *fillColor = [[NSColor selectedContentBackgroundColor] colorWithAlphaComponent: 0.25];
             NSColor *borderColor = [[NSColor whiteColor] colorWithAlphaComponent: 0.1];
             NSShadow *innerShadow = [NSShadow shadowWithBlurRadius: 4.0
                                                             offset: NSMakeSize(0, -1.0)

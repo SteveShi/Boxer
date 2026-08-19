@@ -1307,7 +1307,7 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
         {
             //If the Option key is held down during the startup process, skip the default program.
             CGEventFlags currentModifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
-            _userSkippedDefaultProgram = (currentModifiers & NSEventModifierFlagOption) == NSEventModifierFlagOption;
+            _userSkippedDefaultProgram = (currentModifiers & kCGEventFlagMaskAlternate) == kCGEventFlagMaskAlternate;
         }
         
 		[self _mountDrivesForSession];
@@ -1345,7 +1345,7 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
         if ([self _shouldAllowSkippingStartupProgram] && !_userSkippedDefaultProgram)
         {
             CGEventFlags currentModifiers = CGEventSourceFlagsState(kCGEventSourceStateCombinedSessionState);
-            _userSkippedDefaultProgram = (currentModifiers & NSEventModifierFlagOption) == NSEventModifierFlagOption;
+            _userSkippedDefaultProgram = (currentModifiers & kCGEventFlagMaskAlternate) == kCGEventFlagMaskAlternate;
         }
         
 		//If the Option key was held down, don't launch the gamebox's target;

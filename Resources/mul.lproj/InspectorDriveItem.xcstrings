@@ -32,7 +32,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "导入 into 游戏盒"
+            "value": "导入到游戏盒中"
           }
         }
       }
@@ -176,7 +176,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "[显示 name]"
+            "value": "[显示名称]"
           }
         }
       }
@@ -212,7 +212,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "[驱动器 type]"
+            "value": "[驱动器类型]"
           }
         }
       }
@@ -248,7 +248,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "100% of 999MB"
+            "value": "100% / 999MB"
           }
         }
       }

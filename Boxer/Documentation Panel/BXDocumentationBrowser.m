@@ -343,7 +343,7 @@ NS_ENUM(NSInteger) {
     if (self.documentationSelectionIndexes.count)
     {
         [(BXBaseAppController *)[NSApp delegate] openURLsInPreferredApplications: self.selectedDocumentationURLs
-                                                                         options: NSWorkspaceLaunchDefault];
+                                                                         options: 0];
         
         if ([self.delegate respondsToSelector: @selector(documentationBrowser:didOpenURLs:)])
             [self.delegate documentationBrowser: self didOpenURLs: self.selectedDocumentationURLs];
@@ -885,7 +885,6 @@ NS_ENUM(NSInteger) {
 		CABasicAnimation *animation = [CABasicAnimation animation];
         animation.duration = 0.2;
         animation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn];
-        animation.delegate = self;
         return animation;
     }
     else
@@ -1002,6 +1001,8 @@ NS_ENUM(NSInteger) {
     }
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 // TODO: re-write to use NSCollectionViewGridLayout for NSCollectionView.
 - (NSSize) minContentSizeForNumberOfItems: (NSUInteger)numItems
 {
@@ -1050,6 +1051,7 @@ NS_ENUM(NSInteger) {
     
     return roundedWidth;
 }
+#pragma clang diagnostic pop
 
 @end
 

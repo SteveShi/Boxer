@@ -146,6 +146,8 @@
 {
     NSUInteger oldCount = oldURLs.count, newCount = newURLs.count;
     
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     //Freeze the size of the browser's existing documentation items while it updates, to prevent them reflowing.
     //TODO: find a less destructive way to do this, e.g. by temporarily disabling autoresizing.
     NSCollectionView *collection = browser.documentationList;
@@ -176,6 +178,7 @@
     NSCollectionView *collection = browser.documentationList;
     collection.minItemSize = NSZeroSize;
     collection.maxItemSize = NSZeroSize;
+#pragma clang diagnostic pop
     
     //If items were deleted from the browser, then shrink the popover/window
     //after they're gone to accommodate the now-reduced browser dimensions.

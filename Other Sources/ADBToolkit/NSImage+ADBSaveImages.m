@@ -26,6 +26,7 @@
 
 #import "NSImage+ADBSaveImages.h"
 #import "ADBGeometry.h"
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 /// The maximum number of representations that @c CGImageDestinationCreateWithURL
 /// can prepare to store in an @c icns file before it chokes. 10 as of OS X 10.9.
@@ -109,7 +110,7 @@
     }
     
     CGImageDestinationRef destination = CGImageDestinationCreateWithURL((__bridge CFURLRef)URL,
-                                                                        kUTTypeAppleICNS,
+                                                                        (__bridge CFStringRef)UTTypeICNS.identifier,
                                                                         numImages,
                                                                         NULL);
     

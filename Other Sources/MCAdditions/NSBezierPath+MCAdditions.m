@@ -158,7 +158,7 @@ static void CGPathCallback(void *info, const CGPathElement *element)
 		[transform translateXBy:0 yBy:-bounds.size.height];
 	
 	NSBezierPath *drawingPath = [NSBezierPath bezierPathWithRect:bounds];
-	[drawingPath setWindingRule:NSEvenOddWindingRule];
+	[drawingPath setWindingRule:NSWindingRuleEvenOdd];
 	[drawingPath appendBezierPath:self];
 	[drawingPath transformUsingAffineTransform:transform];
 	

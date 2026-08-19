@@ -32,7 +32,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "[6 pages ready to print.]"
+            "value": "[6 页准备打印。]"
           }
         }
       }
@@ -68,7 +68,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Printer Status"
+            "value": "打印机状态"
           }
         }
       }
@@ -104,7 +104,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Print"
+            "value": "打印"
           }
         }
       }
@@ -140,7 +140,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "光盘ard"
+            "value": "舍弃"
           }
         }
       }
@@ -176,7 +176,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Instruct your DOS program to print to LPT1 using A4 paper."
+            "value": "在您的 DOS 程序中设置使用 A4 纸张打印到 LPT1。"
           }
         }
       }
@@ -212,7 +212,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "The emulated printer is currently idle."
+            "value": "仿真打印机当前处于空闲状态。"
           }
         }
       }

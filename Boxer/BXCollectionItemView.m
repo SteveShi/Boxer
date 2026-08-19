@@ -17,7 +17,10 @@
 //Returns the original prototype we were copied from, to access properties that weren't copied.
 - (NSView *) prototype
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	NSView *prototype = self.delegate.collectionView.itemPrototype.view;
+#pragma clang diagnostic pop
 	//If we're already a prototype, then return nil instead of a reference to self.
 	if (self != prototype) return prototype;
 	else return nil;
@@ -70,7 +73,7 @@
 	{
 		[NSBezierPath clipRect: dirtyRect];
 		
-		NSColor *selectionColor	= [NSColor alternateSelectedControlColor];
+		NSColor *selectionColor	= [NSColor selectedContentBackgroundColor];
 		NSColor *shadowColor	= [selectionColor shadowWithLevel: 0.4f];
 		NSGradient *background	= [[NSGradient alloc] initWithStartingColor: selectionColor
 																endingColor: shadowColor];
@@ -165,7 +168,7 @@
 {
 	if (self.delegate.isSelected)
 	{
-		NSColor *selectionColor	= (self.windowIsActive) ? [NSColor alternateSelectedControlColor] : [NSColor secondarySelectedControlColor];
+		NSColor *selectionColor	= (self.windowIsActive) ? [NSColor selectedContentBackgroundColor] : [NSColor unemphasizedSelectedContentBackgroundColor];
         
 		NSColor *fadeColor      = [selectionColor shadowWithLevel: 0.20f];
 		NSColor *shadowColor	= [selectionColor shadowWithLevel: 0.33f];

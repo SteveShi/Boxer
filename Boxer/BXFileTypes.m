@@ -14,6 +14,8 @@
 #import "ADBMountableImage.h"
 #import "ADBLocalFilesystem.h"
 
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
+
 NSString * const BXGameboxType      = @"net.washboardabs.boxer-game-package";
 NSString * const BXGameStateType    = @"net.washboardabs.boxer-game-state";
 
@@ -29,15 +31,17 @@ NSString * const BXVirtualPCImageType   = @"com.microsoft.virtualpc-disk-image";
 NSString * const BXRawFloppyImageType   = @"com.winimage.raw-disk-image";
 NSString * const BXNDIFImageType        = @"com.apple.disk-image-ndif";
 NSString * const BXUDIFImageType        = @"com.apple.disk-image-udif";
+NSString * const BXHardDiskImageType    = @"net.washboardabs.boxer-harddisk-image";
+NSString * const BXFloppyDiskImageType  = @"net.washboardabs.boxer-floppydisk-image";
 
 NSString * const BXDiskBundleType       = @"net.washboardabs.boxer-disk-bundle";
 NSString * const BXCDROMImageBundleType = @"net.washboardabs.boxer-cdrom-bundle";
 
-NSString * const BXEXEProgramType   = @"com.microsoft.windows-executable";
-NSString * const BXCOMProgramType   = @"com.microsoft.msdos-executable";
-NSString * const BXBatchProgramType = @"com.microsoft.batch-file";
+NSString * const BXEXEProgramType       = @"com.microsoft.windows-executable";
+NSString * const BXCOMProgramType       = @"com.microsoft.ms-dos-executable";
+NSString * const BXBatchProgramType     = @"com.microsoft.windows-batch-script";
 
-NSString * const BXDOCFileType      = @"com.microsoft.word.doc";
+NSString * const BXDOCFileType          = @"net.washboardabs.boxer-plain-text";
 
 
 @implementation BXFileTypes
@@ -78,7 +82,7 @@ NSString * const BXDOCFileType      = @"com.microsoft.word.doc";
                  BXFloppyFolderType,
                  BXRawFloppyImageType,
                  BXNDIFImageType,
-                 BXUDIFImageType,
+                 BXFloppyDiskImageType,
                  BXVirtualPCImageType,
                  nil];
     });
@@ -101,9 +105,16 @@ NSString * const BXDOCFileType      = @"com.microsoft.word.doc";
     static NSSet *types;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        types = [[self OSXMountableImageTypes] setByAddingObjectsFromArray:
-                 @[BXDiskBundleType,
-                   BXCuesheetImageType]];
+        types = [[NSSet alloc] initWithObjects:
+                 BXCuesheetImageType,
+                 BXISOImageType,
+                 BXCDRImageType,
+                 BXVirtualPCImageType,
+                 BXRawFloppyImageType,
+                 BXNDIFImageType,
+                 BXHardDiskImageType,
+                 BXFloppyDiskImageType,
+                 nil];
     });
     return types;
 }
@@ -119,7 +130,7 @@ NSString * const BXDOCFileType      = @"com.microsoft.word.doc";
                  BXRawFloppyImageType,
                  BXVirtualPCImageType,
                  BXNDIFImageType,
-                 BXUDIFImageType,
+                 BXFloppyDiskImageType,
                  nil];
     });
     return types;
@@ -130,7 +141,7 @@ NSString * const BXDOCFileType      = @"com.microsoft.word.doc";
     static NSSet *types;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        types = [[self mountableImageTypes] setByAddingObject: (NSString *)kUTTypeDirectory];
+        types = [[self mountableImageTypes] setByAddingObject: UTTypeFolder.identifier];
     });
     
     return types;
@@ -156,8 +167,8 @@ NSString * const BXDOCFileType      = @"com.microsoft.word.doc";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         types = [[NSSet alloc] initWithObjects:
-                 (NSString *)kUTTypeApplicationFile,
-                 (NSString *)kUTTypeApplicationBundle,
+                 UTTypeApplication.identifier,
+                 UTTypeApplicationBundle.identifier,
                  nil];
     });
     return types;
@@ -169,15 +180,15 @@ NSString * const BXDOCFileType      = @"com.microsoft.word.doc";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         types = [[NSSet alloc] initWithObjects:
-                 (NSString *)kUTTypeJPEG,
-                 (NSString *)kUTTypePlainText,
-                 (NSString *)kUTTypePNG,
-                 (NSString *)kUTTypeGIF,
-                 (NSString *)kUTTypePDF,
-                 (NSString *)kUTTypeRTF,
-                 (NSString *)kUTTypeBMP,
+                 UTTypeJPEG.identifier,
+                 UTTypePlainText.identifier,
+                 UTTypePNG.identifier,
+                 UTTypeGIF.identifier,
+                 UTTypePDF.identifier,
+                 UTTypeRTF.identifier,
+                 UTTypeBMP.identifier,
                  BXDOCFileType,
-                 (NSString *)kUTTypeHTML,
+                 UTTypeHTML.identifier,
                  nil];
     });
     return types;
@@ -390,7 +401,7 @@ NSString * const BXExecutableTypesErrorDomain = @"BXExecutableTypesErrorDomain";
                                     relativeTo: ADBSeekFromStart
                                          error: &handleError];
     
-    NSUInteger markerBytesRead;
+    NSUInteger markerBytesRead = 0;
     BOOL readMarker = soughtToMarker && [handle readBytes: &newTypeMarker
                                                 maxLength: markerLength
                                                 bytesRead: &markerBytesRead
@@ -502,7 +513,7 @@ NSString * const BXExecutableTypesErrorDomain = @"BXExecutableTypesErrorDomain";
 {
     // FIRST: Check by extension (authoritative for Boxer-specific types)
     NSString *extension = URL.pathExtension.lowercaseString;
-    NSString *extensionType = [self extensionToTypeMapping][extension];
+    __unused NSString *extensionType = [self extensionToTypeMapping][extension];
 
     // CUE/INST files
     if ([extension isEqualToString:@"cue"] || [extension isEqualToString:@"inst"] ||

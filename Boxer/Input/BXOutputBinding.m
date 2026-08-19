@@ -124,7 +124,7 @@
 
 - (float) normalizedValue: (float)value
 {
-    return [super normalizedValue: value] * self.polarity;
+    return [super normalizedValue: value] * (float)self.polarity;
 }
 
 - (void) applyNormalizedInputValue: (float)value

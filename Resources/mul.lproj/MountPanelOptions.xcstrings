@@ -32,7 +32,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "驱动器 type:"
+            "value": "驱动器类型："
           }
         }
       }
@@ -176,7 +176,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "自动matic"
+            "value": "自动"
           }
         }
       }
@@ -284,7 +284,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "自动matic"
+            "value": "自动"
           }
         }
       }
@@ -320,7 +320,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "驱动器 letter:"
+            "value": "盘符："
           }
         }
       }
@@ -356,7 +356,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Read-only"
+            "value": "只读"
           }
         }
       }
