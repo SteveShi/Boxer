@@ -2,7 +2,7 @@
 
 **Boxer** 是一款专为 macOS 设计的高端、现代 DOS 模拟器，旨在为游玩经典 DOS 游戏提供最完美、优雅且无痛的体验。
 
-在底层，本版 Boxer 进行了重大的现代化架构重构，采用当今最活跃、最先进的 **DOSBox-Staging** 作为其模拟核心，并针对 Apple Silicon (M1/M2/M3/M4) 以及 Intel 芯片的 Mac 进行了完全的 Swift 6 严格并发安全性重写，提供纯原生运行效率。
+在底层，本版 Boxer 进行了重大的现代化架构重构，采用当今最活跃、最先进的 **DOSBox-Staging** 作为其模拟核心，并全面转向**仅原生支持 Apple Silicon (M1/M2/M3/M4/M 系列芯片)** 架构，结合 Swift 6 严格并发安全性重写，提供极致纯粹的原生运行效率与能耗比。**官方发布包不再提供 Intel (x86_64) 架构预编译版本，如需 Intel 架构，请自行从源代码编译。**
 
 *其他语言版本：[English](README.md) | [简体中文](README.zh-CN.md)*
 
@@ -10,7 +10,7 @@
 
 ## ✨ 核心特性与现代化架构
 
-- **⚡ 原生 Apple Silicon 与 Swift 6.0+**：原生针对 ARM64 与 x86_64 双架构深度优化，完美兼容最新 macOS 系统（Ventura、Sonoma、Sequoia 及 macOS 15+）。
+- **⚡ 专为 Apple Silicon (ARM64) 打造与 Swift 6.0+**：原生针对 Apple Silicon (M1/M2/M3/M4) 深度打造，完美兼容最新 macOS 系统（Ventura、Sonoma、Sequoia 及 macOS 15+）。官方 Release 仅提供 Apple Silicon 架构二进制（如需 Intel 架构请自行从源码编译）。
 - **🎨 现代 Metal 着色器渲染管线**：基于纯 Swift 6 与 MetalKit 重构着色器引擎，搭载上游 OpenEmuShaders 与现代 SPIR-V 编译工具链，带来零延迟的 CRT Geom 显像管曲面、Smooth 双三次平滑滤镜与经典像素风格。
 - **🎮 3D 鼠标指针捕获与完整输入子系统**：针对《创世纪地下世界》(Ultima Underworld)、《网络奇兵》(System Shock)、《毁灭战士》(DOOM)、《毁灭公爵 3D》(Duke Nukem 3D) 等复杂 3D 游戏提供精准的相对鼠标指针锁定与绝对坐标映射，同时支持完整 DOS 键盘布局与小键盘仿真。
 - **🎼 升级版 Roland MT-32 音频引擎**：内置升级至 Munt 2.8.2 内核，大幅提升 Roland MT-32 与 CM-32L 仿真精度与音质表现，配合 Sound Blaster 16、Gravis UltraSound 以及多通道 SDL 混音器。

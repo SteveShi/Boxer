@@ -2,7 +2,7 @@
 
 **Boxer** is a premium, modern DOS emulator for macOS, designed to make playing classic DOS games a painless and beautiful experience. 
 
-Under the hood, Boxer features a major architectural modernization, leveraging the state-of-the-art **DOSBox-Staging** as its core emulation engine, and fully modernized to run natively on Apple Silicon (M1/M2/M3/M4) and Intel Macs with strict Swift 6 concurrency safety.
+Under the hood, Boxer features a major architectural modernization, leveraging the state-of-the-art **DOSBox-Staging** as its core emulation engine, and has transitioned to **exclusively support Apple Silicon (M1/M2/M3/M4/M-series)** architecture with pure Swift 6 concurrency safety, delivering native performance and efficiency on modern Macs. **Prebuilt binaries for Intel (x86_64) architecture are no longer provided; users requiring Intel support may compile the project from source.**
 
 *Read this in other languages: [English](README.md) | [简体中文](README.zh-CN.md)*
 
@@ -10,7 +10,7 @@ Under the hood, Boxer features a major architectural modernization, leveraging t
 
 ## ✨ Key Features & Modern Architecture
 
-- **⚡ Native Apple Silicon & Swift 6.0+**: Built natively for ARM64 and x86_64, fully compliant with modern macOS standards (Ventura, Sonoma, Sequoia, and macOS 15+).
+- **⚡ Exclusively Built for Apple Silicon (ARM64) & Swift 6.0+**: Engineered specifically for Apple Silicon (M1/M2/M3/M4) Macs, fully compliant with modern macOS standards (Ventura, Sonoma, Sequoia, and macOS 15+). Official releases are Apple Silicon only (Intel users can build from source).
 - **🎨 Modern Metal Shader Rendering Pipeline**: Rebuilt on pure Swift 6 and MetalKit using upstream OpenEmuShaders with modern SPIR-V translation. Enjoy zero-latency CRT Geom, Smooth bicubic interpolation, and pixel-crisp rendering styles.
 - **🎮 3D Pointer Locking & Input Subsystem**: Comprehensive relative mouse capture and absolute pointer coordination for complex 3D titles (e.g., *Ultima Underworld*, *System Shock*, *DOOM*, *Duke Nukem 3D*), alongside full keyboard layouts and numpad emulation.
 - **🎼 Upgraded Roland MT-32 Audio Engine**: Integrated with Munt 2.8.2 for superior Roland MT-32 and CM-32L emulation accuracy, full Sound Blaster 16, Gravis UltraSound, and multi-channel SDL mixer output.

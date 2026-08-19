@@ -36,6 +36,19 @@ jobs:
             perl -0pi -e 's/\$\(CMAKE\) -B \$\(SPIRV_TOOLS_BUILD_DIR\) -S \$\(SPIRV_TOOLS_DIR\) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''\$\(TARGET_ARCHITECTURES\)'\'' -DSPIRV_WERROR=OFF/\$(CMAKE) -B \$(SPIRV_TOOLS_BUILD_DIR) -S \$(SPIRV_TOOLS_DIR) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_OSX_ARCHITECTURES='\''\$(TARGET_ARCHITECTURES)'\'' -DSPIRV_WERROR=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5/' Vendor/OpenEmuShaders/3rdparty/Makefile
           fi
 
+      - name: Configure version from Git Tag
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          if [ -z "$VERSION" ]; then
+            VERSION="2.0.0-Alpha9"
+          fi
+          DATE=$(date +%Y%m%d)
+          echo "Building Boxer version ${VERSION} (${DATE}) from tag ${TAG}"
+          perl -0pi -e "s/MARKETING_VERSION: .*/MARKETING_VERSION: ${VERSION}/g" project.yml
+          perl -0pi -e "s/CURRENT_PROJECT_VERSION: .*/CURRENT_PROJECT_VERSION: ${VERSION}+${DATE}/g" project.yml
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+
       - name: Generate Xcode project
         run: xcodegen generate
 
@@ -46,7 +59,7 @@ jobs:
           tag = os.environ.get('GITHUB_REF_NAME', '')
           version = tag[1:] if tag.startswith('v') else tag
           if not version:
-              version = '2.0.0-Alpha2'
+              version = os.environ.get('VERSION', '2.0.0-Alpha9')
           with open('CHANGELOG.md', 'r', encoding='utf-8') as f:
               content = f.read()
           en_pattern = rf'## Version {re.escape(version)} \(English\)(.*?)(?:\r?\n##\s|\r?\n---\r?\n|\Z)'
@@ -116,28 +129,46 @@ jobs:
 
       - name: Package release apps
         run: |
+          VERSION="${{ env.VERSION }}"
+          if [ -z "$VERSION" ]; then
+            TAG="${GITHUB_REF_NAME}"
+            VERSION="${TAG#v}"
+          fi
+          if [ -z "$VERSION" ]; then
+            VERSION="2.0.0-Alpha9"
+          fi
+
           # Ensure deep ad-hoc signing for all apps and embedded frameworks
           codesign --force --deep --sign - "build/Build/Products/Release/Boxer.app"
           codesign --force --deep --sign - "build/Build/Products/Release/Boxer Standalone.app"
           codesign --force --deep --sign - "build/Build/Products/Release/Boxer Bundler.app"
 
           # Package Boxer
-          ditto -c -k --keepParent "build/Build/Products/Release/Boxer.app" Boxer-Apple-Silicon.zip
-          hdiutil create -volname Boxer -srcfolder "build/Build/Products/Release/Boxer.app" -ov -format UDZO Boxer-Apple-Silicon.dmg
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer.app" "Boxer-${VERSION}-Apple-Silicon.zip"
+          hdiutil create -volname Boxer -srcfolder "build/Build/Products/Release/Boxer.app" -ov -format UDZO "Boxer-${VERSION}-Apple-Silicon.dmg"
 
           # Package Boxer Standalone
-          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Standalone.app" Boxer-Standalone-Apple-Silicon.zip
-          hdiutil create -volname "Boxer Standalone" -srcfolder "build/Build/Products/Release/Boxer Standalone.app" -ov -format UDZO Boxer-Standalone-Apple-Silicon.dmg
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Standalone.app" "Boxer-Standalone-${VERSION}-Apple-Silicon.zip"
+          hdiutil create -volname "Boxer Standalone" -srcfolder "build/Build/Products/Release/Boxer Standalone.app" -ov -format UDZO "Boxer-Standalone-${VERSION}-Apple-Silicon.dmg"
 
           # Package Boxer Bundler
-          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Bundler.app" Boxer-Bundler-Apple-Silicon.zip
-          hdiutil create -volname "Boxer Bundler" -srcfolder "build/Build/Products/Release/Boxer Bundler.app" -ov -format UDZO Boxer-Bundler-Apple-Silicon.dmg
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Bundler.app" "Boxer-Bundler-${VERSION}-Apple-Silicon.zip"
+          hdiutil create -volname "Boxer Bundler" -srcfolder "build/Build/Products/Release/Boxer Bundler.app" -ov -format UDZO "Boxer-Bundler-${VERSION}-Apple-Silicon.dmg"
 
       - name: Generate Sparkle Appcast
         env:
           SPARKLE_SECRET: ${{ secrets.SPARKLE_PRIVATE_KEY }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          VERSION="${{ env.VERSION }}"
+          if [ -z "$VERSION" ]; then
+            TAG="${GITHUB_REF_NAME}"
+            VERSION="${TAG#v}"
+          fi
+          if [ -z "$VERSION" ]; then
+            VERSION="2.0.0-Alpha9"
+          fi
+
           # 1. 获取最新 Sparkle 版本并下载工具
           SPARKLE_VERSION=$(gh api repos/sparkle-project/Sparkle/releases/latest --jq '.tag_name' | sed 's/^v//')
           curl -fL -H "User-Agent: curl" -o Sparkle.tar.xz "https://github.com/sparkle-project/Sparkle/releases/download/${SPARKLE_VERSION}/Sparkle-${SPARKLE_VERSION}.tar.xz"
@@ -153,7 +184,7 @@ jobs:
 
           # 3. 准备发布目录
           mkdir -p deploy
-          cp Boxer-Apple-Silicon.zip deploy/
+          cp Boxer-${VERSION}-Apple-Silicon.zip deploy/
           # 准备多语言更新日志文件
           cp release_notes_en.md "deploy/release_notes_en.md"
           cp release_notes_zh.md "deploy/release_notes_zh.md"
@@ -200,12 +231,8 @@ jobs:
         with:
           body_path: release_notes.md
           files: |
-            Boxer-Apple-Silicon.zip
-            Boxer-Apple-Silicon.dmg
-            Boxer-Standalone-Apple-Silicon.zip
-            Boxer-Standalone-Apple-Silicon.dmg
-            Boxer-Bundler-Apple-Silicon.zip
-            Boxer-Bundler-Apple-Silicon.dmg
+            Boxer-*-Apple-Silicon.zip
+            Boxer-*-Apple-Silicon.dmg
             release_notes_en.md
             release_notes_zh.md
             appcast.xml
