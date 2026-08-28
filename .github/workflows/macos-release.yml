@@ -144,16 +144,16 @@ jobs:
           codesign --force --deep --sign - "build/Build/Products/Release/Boxer Bundler.app"
 
           # Package Boxer
-          ditto -c -k --keepParent "build/Build/Products/Release/Boxer.app" "Boxer-${VERSION}-Apple-Silicon.zip"
-          hdiutil create -volname Boxer -srcfolder "build/Build/Products/Release/Boxer.app" -ov -format UDZO "Boxer-${VERSION}-Apple-Silicon.dmg"
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer.app" "Boxer-${VERSION}-arm64.zip"
+          hdiutil create -volname Boxer -srcfolder "build/Build/Products/Release/Boxer.app" -ov -format UDZO "Boxer-${VERSION}-arm64.dmg"
 
           # Package Boxer Standalone
-          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Standalone.app" "Boxer-Standalone-${VERSION}-Apple-Silicon.zip"
-          hdiutil create -volname "Boxer Standalone" -srcfolder "build/Build/Products/Release/Boxer Standalone.app" -ov -format UDZO "Boxer-Standalone-${VERSION}-Apple-Silicon.dmg"
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Standalone.app" "Boxer-Standalone-${VERSION}-arm64.zip"
+          hdiutil create -volname "Boxer Standalone" -srcfolder "build/Build/Products/Release/Boxer Standalone.app" -ov -format UDZO "Boxer-Standalone-${VERSION}-arm64.dmg"
 
           # Package Boxer Bundler
-          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Bundler.app" "Boxer-Bundler-${VERSION}-Apple-Silicon.zip"
-          hdiutil create -volname "Boxer Bundler" -srcfolder "build/Build/Products/Release/Boxer Bundler.app" -ov -format UDZO "Boxer-Bundler-${VERSION}-Apple-Silicon.dmg"
+          ditto -c -k --keepParent "build/Build/Products/Release/Boxer Bundler.app" "Boxer-Bundler-${VERSION}-arm64.zip"
+          hdiutil create -volname "Boxer Bundler" -srcfolder "build/Build/Products/Release/Boxer Bundler.app" -ov -format UDZO "Boxer-Bundler-${VERSION}-arm64.dmg"
 
       - name: Generate Sparkle Appcast
         env:
@@ -184,7 +184,7 @@ jobs:
 
           # 3. 准备发布目录
           mkdir -p deploy
-          cp Boxer-${VERSION}-Apple-Silicon.zip deploy/
+          cp Boxer-${VERSION}-arm64.zip deploy/
           # 准备多语言更新日志文件
           cp release_notes_en.md "deploy/release_notes_en.md"
           cp release_notes_zh.md "deploy/release_notes_zh.md"
@@ -231,8 +231,12 @@ jobs:
         with:
           body_path: release_notes.md
           files: |
-            Boxer-*-Apple-Silicon.zip
-            Boxer-*-Apple-Silicon.dmg
+            Boxer-*-arm64.zip
+            Boxer-*-arm64.dmg
+            Boxer-Standalone-*-arm64.zip
+            Boxer-Standalone-*-arm64.dmg
+            Boxer-Bundler-*-arm64.zip
+            Boxer-Bundler-*-arm64.dmg
             release_notes_en.md
             release_notes_zh.md
             appcast.xml
