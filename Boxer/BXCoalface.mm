@@ -665,6 +665,41 @@ std::vector<std::string> MAPPER_GetEventNames(const std::string &prefix) {return
 #undef GFX_GetBestMode
 
 #include "gui/private/common.h"
+#include "gui/render/render_backend.h"
+
+class BoxerRenderBackend final : public RenderBackend {
+public:
+	SDL_Window* GetWindow() override { return nullptr; }
+	DosBox::Rect GetCanvasSizeInPixels() override { return DosBox::Rect(0, 0, 640, 480); }
+	void NotifyViewportSizeChanged(const DosBox::Rect) override {}
+	void NotifyRenderSizeChanged(const int, const int) override {}
+	void NotifyVideoModeChanged(const VideoMode&) override {}
+	SetShaderResult SetShader(const std::string&) override { return SetShaderResult::Ok; }
+	void ForceReloadCurrentShader() override {}
+	ShaderInfo GetCurrentShaderInfo() override { return {}; }
+	ShaderPreset GetCurrentShaderPreset() override { return {}; }
+	std::string GetCurrentSymbolicShaderDescriptor() override { return "default"; }
+	ShaderDescriptor GetCurrentShaderDescriptor() override { return {}; }
+	void StartFrame(uint32_t*& pixels_out, int& pitch_out) override {
+		Bit8u* bytePixels = reinterpret_cast<Bit8u*>(pixels_out);
+		boxer_startFrame(bytePixels, pitch_out);
+		pixels_out = reinterpret_cast<uint32_t*>(bytePixels);
+	}
+	void EndFrame() override { boxer_finishFrame(NULL); }
+	void PrepareFrame() override {}
+	void PresentFrame() override {}
+	void SetVsync(const bool) override {}
+	void SetColorSpace(const ColorSpace) override {}
+	void EnableImageAdjustments(const bool) override {}
+	void SetImageAdjustmentSettings(const ImageAdjustmentSettings&) override {}
+	void SetDeditheringStrength(const float) override {}
+	RenderedImage ReadPixelsPostShader(const DosBox::Rect) override { return {}; }
+	uint32_t MakePixel(const uint8_t red, const uint8_t green, const uint8_t blue) override {
+		return boxer_getRGBPaletteEntry(red, green, blue);
+	}
+};
+
+static BoxerRenderBackend s_boxerRenderer;
 
 // GFX Implementation (Wrappers for DOSBox-Staging 0.83.0 core)
 bool GFX_Events() { return boxer_processEvents(); }
@@ -700,7 +735,7 @@ float GFX_GetDpiScaleFactor() { return 1.0f; }
 DosBox::Rect GFX_CalcDrawRectInPixels(const DosBox::Rect& canvas_size_px) { return canvas_size_px; }
 void GFX_CaptureRenderedImage() {}
 RenderBackendType GFX_GetRenderBackendType() { return RenderBackendType::OpenGl; }
-RenderBackend* GFX_GetRenderer() { return nullptr; }
+RenderBackend* GFX_GetRenderer() { return &s_boxerRenderer; }
 TextureFilterMode GFX_GetTextureFilterMode() { return TextureFilterMode::NearestNeighbour; }
 
 void GFX_AddConfigSection() {}
