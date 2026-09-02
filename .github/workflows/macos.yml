@@ -2,12 +2,9 @@ name: macOS
 
 on:
   push:
-    branches:
-      - "**"
     tags:
       - "v*"
       - "[0-9]*"
-  pull_request:
   workflow_dispatch:
 
 concurrency:
