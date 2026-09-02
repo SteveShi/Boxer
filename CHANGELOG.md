@@ -1,5 +1,31 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Alpha10 (English)
+
+This release ports key stability enhancements and diagnostics from upstream (`MaddTheSane/Boxer`), suppressing intrusive macOS Accessibility prompts, resolving emulator state leaks on unrecoverable exceptions, introducing a local crash dump and diagnostics system, and improving multithreaded startup resilience.
+
+### Key Changes
+- **TCC Accessibility Spam Fix**: Replaced intrusive accessibility checks with a non-prompting status query. Key event capturing is enabled only when authorization has already been granted, falling back to system media key listening and eliminating repetitive macOS TCC permission dialogs on every launch.
+- **Emulator State Leak Remediation**: In `_startDOSBox`, explicitly teardown SDL, the video renderer, and the global emulator configuration whenever an unrecoverable exception is caught before re-raising as an Objective-C exception, preventing configuration leaks and IO state corruption across sessions.
+- **Local Crash Dump & Diagnostics System**: Retired defunct legacy bug report URLs and added an automated local diagnostic system that saves structured Markdown and plain text crash dumps to `~/Library/Application Support/Boxer/Crash Dumps/`. Selecting "Report" in error alerts reveals the crash dump directly in Finder.
+- **Multithreaded Background Startup Protection**: Wrapped background emulator startup in structured exception handling, ensuring unrecoverable errors on background threads are cleanly surfaced to the main thread instead of terminating the application silently.
+- **Gamebox Bundle Compatibility Fallback**: Added resource URL and path fallback handling in `BXGamebox` for packages lacking explicit bundle directory structures.
+
+---
+
+## 版本 2.0.0-Alpha10 (中文)
+
+本版本合入了来自上游（`MaddTheSane/Boxer`）的核心稳定性改进与诊断增强，彻底杜绝了 macOS 辅助功能授权弹窗的频繁骚扰，修复了底层致命异常退出时的状态泄漏隐患，引入了本地 Crash Dump 诊断系统，并加强了多线程启动的异常容错。
+
+### 主要更新
+- **辅助功能弹窗防骚扰**：将系统权限检查调整为非侵入式检测，仅在已授权辅助功能时挂载按键监听，未授权时优雅降级为仅监听媒体键，彻底杜绝了每次打开应用反复弹出 macOS TCC 辅助功能授权请求的困扰。
+- **模拟器底层状态泄漏清理**：在 `_startDOSBox` 捕获致命底层异常重抛为 Objective-C 异常前，显式释放 SDL、关闭视频渲染器并重置全局 Config 配置，彻底根除了跨语言异常绕过 C++ 栈展开析构导致的全局状态与 IO 句柄残留问题。
+- **本地 Crash Dump 诊断系统**：彻底废弃失效的旧官网报错外链，崩溃时自动在 `~/Library/Application Support/Boxer/Crash Dumps/` 本地生成详尽的结构化 Markdown/文本诊断文件（包含 DOS 进程、驱动器挂载与完整调用栈），并在错误对话框点击“Report”时一键在 Finder 中定位。
+- **多线程启动异常安全防护**：为多线程仿真启动流程包裹线程级异常捕获并安全调度回主线程展示，防止后台线程未恢复异常导致应用静默闪退。
+- **游戏包资源路径容错兜底**：在 `BXGamebox` 中为缺少标准包层级结构的旧格式 Gamebox 增加了资源路径回退，增强旧游戏包的加载容错性。
+
+---
+
 ## Version 2.0.0-Alpha9 (English)
 
 This release resolves the audio freezing/stuttering bug during game pause, refines Simplified Chinese localization across the entire application, and removes legacy code and unused dependencies.
