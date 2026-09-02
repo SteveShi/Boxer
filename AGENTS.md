@@ -102,10 +102,9 @@ The project is migrating to Swift 6 strict concurrency mode. When working with S
 
 ## CI/CD
 
-GitHub Actions workflows in `.github/workflows/`:
+GitHub Actions workflow in `.github/workflows/`:
 
-- **`macos.yml`**: Runs on all pushes and PRs. Builds all three targets for Apple Silicon to verify build stability.
-- **`macos-release.yml`**: Triggers on version tags (e.g., `v2.0.0-Alpha3`). Builds all targets, packages them into `.zip` and `.dmg` files, extracts localized release notes from `CHANGELOG.md`, and publishes a GitHub Release.
+- **`macos.yml`**: Unified CI/CD workflow running on pushes, PRs, and version tags. Builds all three targets for Apple Silicon (ARM64). When triggered by a version tag (e.g., `v2.0.0-Beta1`), it automatically packages `.zip` and `.dmg` files, generates Sparkle Appcast, extracts localized release notes from `CHANGELOG.md`, and publishes a GitHub Release.
 
 ### Release Process
 

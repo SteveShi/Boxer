@@ -78,9 +78,8 @@ All required dependencies and frameworks (DOSBox-Staging, OpenEmuShaders, Munt, 
 
 ## 🔄 CI/CD Automation
 
-The repository contains automated GitHub Actions workflows in [`.github/workflows/`](.github/workflows/):
-- **Verification Workflow (`macos.yml`)**: Builds all three targets on every push and pull request to ensure strict compilation correctness on macOS Apple Silicon.
-- **Release Workflow (`macos-release.yml`)**: Triggered when a semantic version tag is pushed (e.g. `v2.0.0-Alpha7`). Automatically builds and signs all three targets, packages them into individual `.zip` and `.dmg` binaries (6 release assets), dynamically extracts bilingual release notes from `CHANGELOG.md`, and creates a GitHub Release.
+The repository contains an automated GitHub Actions workflow in [`.github/workflows/`](.github/workflows/):
+- **Unified Workflow (`macos.yml`)**: Builds all three targets on every push and pull request to ensure strict compilation correctness on macOS Apple Silicon. When triggered by a semantic version tag (e.g. `v2.0.0-Beta1`), it automatically builds and signs all three targets, packages them into individual `.zip` and `.dmg` binaries (6 release assets), generates the Sparkle Appcast update feed, dynamically extracts bilingual release notes from `CHANGELOG.md`, and creates a GitHub Release.
 
 ---
 

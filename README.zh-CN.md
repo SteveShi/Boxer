@@ -77,10 +77,9 @@
 ---
 
 ## 🔄 CI/CD 自动化
-
-项目在 [`.github/workflows/`](.github/workflows/) 中配置了完善的 GitHub Actions 自动化流水线：
-- **编译验证流水线 (`macos.yml`)**：在每次分支 Push 或 Pull Request 时触发，自动完成 Apple Silicon 下全部 3 个 Target 的编译构建，确保代码变更的稳定性。
-- **版本发布流水线 (`macos-release.yml`)**：在推送版本 Tag（如 `v2.0.0-Alpha7`）时自动触发，编译并签名 3 个 App，分别打包为 `.zip` 与 `.dmg` 文件（共 6 个发布资产），智能解析 `CHANGELOG.md` 中对应的中英文更新日志并发布至 GitHub Release。
+ 
+项目在 [`.github/workflows/`](.github/workflows/) 中配置了统一的 GitHub Actions 自动化流水线：
+- **融合流水线 (`macos.yml`)**：在每次分支 Push 或 Pull Request 时自动完成 Apple Silicon 下全部 3 个 Target 的编译构建，确保代码变更的稳定性；在推送版本 Tag（如 `v2.0.0-Beta1`）时，自动执行签名、分别打包为 `.zip` 与 `.dmg` 文件（共 6 个发布资产）、生成 Sparkle Appcast 自动更新源、智能解析 `CHANGELOG.md` 中对应的中英文更新日志并发布至 GitHub Release。
 
 ---
 
