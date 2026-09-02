@@ -251,6 +251,28 @@
                     return comparisonUTI;
             }
         }
+        
+        // Also support direct extension matching for DOS executables and scripts
+        NSString *lowercaseExt = extension.lowercaseString;
+        if ([lowercaseExt isEqualToString: @"exe"])
+        {
+            if ([UTIs containsObject: @"com.microsoft.windows-executable"])
+                return @"com.microsoft.windows-executable";
+        }
+        else if ([lowercaseExt isEqualToString: @"com"])
+        {
+            if ([UTIs containsObject: @"com.microsoft.msdos-executable"])
+                return @"com.microsoft.msdos-executable";
+            if ([UTIs containsObject: @"com.microsoft.ms-dos-executable"])
+                return @"com.microsoft.ms-dos-executable";
+        }
+        else if ([lowercaseExt isEqualToString: @"bat"] || [lowercaseExt isEqualToString: @"cmd"])
+        {
+            if ([UTIs containsObject: @"com.microsoft.batch-file"])
+                return @"com.microsoft.batch-file";
+            if ([UTIs containsObject: @"com.microsoft.windows-batch-script"])
+                return @"com.microsoft.windows-batch-script";
+        }
     }
     
     return nil;

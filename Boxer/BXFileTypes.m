@@ -38,8 +38,8 @@ NSString * const BXDiskBundleType       = @"net.washboardabs.boxer-disk-bundle";
 NSString * const BXCDROMImageBundleType = @"net.washboardabs.boxer-cdrom-bundle";
 
 NSString * const BXEXEProgramType       = @"com.microsoft.windows-executable";
-NSString * const BXCOMProgramType       = @"com.microsoft.ms-dos-executable";
-NSString * const BXBatchProgramType     = @"com.microsoft.windows-batch-script";
+NSString * const BXCOMProgramType       = @"com.microsoft.msdos-executable";
+NSString * const BXBatchProgramType     = @"com.microsoft.batch-file";
 
 NSString * const BXDOCFileType          = @"net.washboardabs.boxer-plain-text";
 
@@ -156,6 +156,8 @@ NSString * const BXDOCFileType          = @"net.washboardabs.boxer-plain-text";
                  BXEXEProgramType,
                  BXCOMProgramType,
                  BXBatchProgramType,
+                 @"com.microsoft.ms-dos-executable",
+                 @"com.microsoft.windows-batch-script",
                  nil];
     });
     return types;
