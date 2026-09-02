@@ -1,5 +1,33 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Beta1 (English)
+
+This landmark Beta release marks the full modernization of Boxer's emulation core, upgrading to the latest **DOSBox-Staging 0.83.0** specifically optimized for Apple Silicon (ARM64). It incorporates deep architectural advancements, C++20 modernizations, native ARM64 dynamic recompiler core, enhanced audio synthesis, and improved FAT filesystem handling while preserving Boxer's native macOS interface, Metal shaders, and CoreAudio integration.
+
+### Key Changes
+- **DOSBox-Staging 0.83.0 Core**: Completely upgraded the core DOS emulation engine to 0.83.0, incorporating modern C++20 design, modern configuration management, improved CPU emulation accuracy, and new sound modules.
+- **Native Apple Silicon (ARM64) Dynamic Core**: Fully adapted upstream `C_TARGET_CPU_ARM` dynrec core, ensuring blazing-fast native JIT emulation on Apple Silicon.
+- **Modernized Audio Pipeline & Synthesizers**: Integrated the latest Roland SoundCanvas synthesizer, iir1 filtering, speexdsp floating-point audio resampling, and adapted `MixerChannel` sample conversion APIs.
+- **FAT File System & Media ID Detection**: Upgraded drive mounting and floppy drive emulation with explicit 1.44MB media identification, enabling authentic floppy seek acoustics and improved disc image compatibility.
+- **Seamless Cocoa & Metal Host Bridge**: Re-architected `BXCoalface` run loop, window, and render event callbacks, cleanly bridging DOSBox-Staging 0.83.0 into Boxer's pure Swift 6 Metal pipeline and native macOS UI.
+- **Updated What's New Sheet**: Highlights the new DOSBox-Staging 0.83.0 core upon launching this major milestone.
+
+---
+
+## 版本 2.0.0-Beta1 (中文)
+
+本里程碑 Beta 版本标志着 Boxer 底层仿真内核的全面现代化飞跃，正式将仿真引擎全面升级至最新的 **DOSBox-Staging 0.83.0**，专为 Apple Silicon (ARM64) 架构深度优化。本次升级深度适配了其 C++20 现代架构、原生 ARM64 动态重译核心、升级音频合成器以及更精准的 FAT 软驱介质模拟，同时完美保留了 Boxer 原生 macOS Cocoa 界面、Metal 着色器和 CoreAudio 原生音效管线。
+
+### 主要更新
+- **全面升级 DOSBox-Staging 0.83.0 内核**：将底层 DOSBox 核心升级至 0.83.0 正式版，引入现代 C++20 代码架构、全新配置系统、更精准的 CPU 周期与中断仿真及全新音频合成器。
+- **原生 Apple Silicon (ARM64) 动态重译核心**：深度适配 0.83.0 的 `C_TARGET_CPU_ARM` dynrec 核心，在 Apple Silicon 上提供极致流畅的原生 JIT 动态重译仿真性能。
+- **现代化音频管线与合成器**：集成全新的 Roland SoundCanvas 软波表合成器、iir1 数字滤波器、speexdsp 浮点重采样算法，并重构了 `MixerChannel` 音频采样适配层。
+- **FAT 文件系统与软驱寻道音效**：升级虚拟驱动器构造器，精准支持 1.44MB 介质类型识别与更真实的物理软驱寻道音效。
+- **无缝衔接 Cocoa 与 Metal 宿主桥接**：在 `BXCoalface` 中完全对齐 0.83.0 的主事件循环、窗口及渲染管理新接口，让 0.83.0 的仿真数据无缝流经 Boxer 原生 Swift 6 Metal 着色器引擎与系统界面。
+- **新版本特性弹窗**：更新了应用启动时的“新功能”弹窗（WhatsNewSheetView），直观向用户展示 0.83.0 全新内核特性。
+
+---
+
 ## Version 2.0.0-Alpha10 (English)
 
 This release ports key stability enhancements and diagnostics from upstream (`MaddTheSane/Boxer`), suppressing intrusive macOS Accessibility prompts, resolving emulator state leaks on unrecoverable exceptions, introducing a local crash dump and diagnostics system, and improving multithreaded startup resilience.

@@ -29,6 +29,12 @@ public struct WhatsNewSheetView: View {
     
     private let features: [WhatsNewFeatureItem] = [
         WhatsNewFeatureItem(
+            systemImage: "cpu",
+            color: .orange,
+            titleKey: LocalizedStringKey("DOSBox-Staging 0.83.0 Core"),
+            subtitleKey: LocalizedStringKey("Upgraded to the latest DOSBox-Staging 0.83.0 engine with modern C++20 architecture, native ARM64 dynamic core, and improved FAT filesystem compatibility.")
+        ),
+        WhatsNewFeatureItem(
             systemImage: "display.2",
             color: .blue,
             titleKey: LocalizedStringKey("Modern Metal Rendering Pipeline"),
