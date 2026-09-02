@@ -939,7 +939,15 @@ void MSCDEX_SetCDInterface(int intNr, int forceCD);
 	//TODO: populate an NSError object as well?
 	if (Drives[index]) return NO;
 	
-	Drives[index].reset(drive);
+	if (auto local = dynamic_cast<localDrive*>(drive)) {
+		Drives[index] = std::shared_ptr<localDrive>(local);
+	} else if (auto fat = dynamic_cast<fatDrive*>(drive)) {
+		Drives[index] = std::shared_ptr<fatDrive>(fat);
+	} else if (auto iso = dynamic_cast<isoDrive*>(drive)) {
+		Drives[index] = std::shared_ptr<isoDrive>(iso);
+	} else {
+		Drives[index].reset(drive);
+	}
 	mem_writeb(RealToPhysical(dos.tables.mediaid)+((PhysPt)index)*2, drive->GetMediaByte());
 	
 	return YES;
