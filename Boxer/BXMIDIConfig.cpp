@@ -10,18 +10,17 @@
 #include "string_utils.h"
 
 
-static void mt32_init([[maybe_unused]] Section *secprop)
-{}
-
-static void init_mt32_dosbox_settings(Section_prop &sec_prop)
+static void init_mt32_dosbox_settings(SectionProp &sec_prop)
 {
-    Prop_string *Pstring = sec_prop.Add_string("ReverseStereo",Property::Changeable::WhenIdle,"off");
-    Pstring->Set_values({"off", "on"});
-    Pstring->Set_help("Reverse stereo channels for MT-32 output");
+    constexpr auto when_idle = Property::Changeable::WhenIdle;
 
-    Pstring = sec_prop.Add_string("DAC",Property::Changeable::WhenIdle,"auto");
-    Pstring->Set_values({"0", "1", "2", "3", "auto"});
-    Pstring->Set_help("MT-32 DAC input mode\n"
+    auto *str_prop = sec_prop.AddString("ReverseStereo", when_idle, "off");
+    str_prop->SetValues({"off", "on"});
+    str_prop->SetHelp("Reverse stereo channels for MT-32 output");
+
+    str_prop = sec_prop.AddString("DAC", when_idle, "auto");
+    str_prop->SetValues({"0", "1", "2", "3", "auto"});
+    str_prop->SetHelp("MT-32 DAC input mode\n"
                       "Nice = 0 - default\n"
                       "Produces samples at double the volume, without tricks.\n"
                       "Higher quality than the real devices\n\n"
@@ -43,23 +42,23 @@ static void init_mt32_dosbox_settings(Section_prop &sec_prop)
                       "Re-orders the LA32 output bits as in later generations (personally confirmed on my CM-32L - KG).\n"
                       "Bit order at DAC (where each number represents the original LA32 output bit number):\n"
                       "15 13 12 11 10 09 08 07 06 05 04 03 02 01 00 14\n\n");
-    Pstring = sec_prop.Add_string("reverbmode",Property::Changeable::WhenIdle,"auto");
-    Pstring->Set_values({"0", "1", "2", "3", "auto"});
-    Pstring->Set_help("MT-32 reverb mode");
+    str_prop = sec_prop.AddString("reverbmode", when_idle, "auto");
+    str_prop->SetValues({"0", "1", "2", "3", "auto"});
+    str_prop->SetHelp("MT-32 reverb mode");
 
-    Prop_int *Pint = sec_prop.Add_int("reverbtime",Property::Changeable::WhenIdle,5);
-    Pint->Set_values({"0", "1", "2", "3", "4", "5", "6", "7"});
-    Pint->Set_help("MT-32 reverb time");
+    auto *int_prop = sec_prop.AddInt("reverbtime", when_idle, 5);
+    int_prop->SetValues({"0", "1", "2", "3", "4", "5", "6", "7"});
+    int_prop->SetHelp("MT-32 reverb time");
 
-    Pint = sec_prop.Add_int("reverblevel",Property::Changeable::WhenIdle,3);
-    Pint->Set_values({"0", "1", "2", "3", "4", "5", "6", "7"});
-    Pint->Set_help("MT-32 reverb level");
+    int_prop = sec_prop.AddInt("reverblevel", when_idle, 3);
+    int_prop->SetValues({"0", "1", "2", "3", "4", "5", "6", "7"});
+    int_prop->SetHelp("MT-32 reverb level");
 }
 
 void BXMIDIMT32_AddConfigSection(Config *conf)
 {
     assert(conf);
-    Section_prop *sec_prop = conf->AddSection_prop("mt32", &mt32_init);
+    SectionProp *sec_prop = conf->AddSection("mt32");
     assert(sec_prop);
     init_mt32_dosbox_settings(*sec_prop);
 }

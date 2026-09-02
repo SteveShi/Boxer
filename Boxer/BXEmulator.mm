@@ -15,6 +15,10 @@
 #import "mapper.h"
 #import "joystick.h"
 #import "cross.h"
+#import "dosbox.h"
+#import "dos/dos_locale.h"
+#import "gui/render/render.h"
+#import "gui/common.h"
 
 
 #pragma mark - Constants
@@ -283,7 +287,7 @@ static BOOL _hasStartedEmulator = NO;
         
             //Tells DOSBox to close the current shell at the end of the commandline input loop
             DOS_Shell *shell = self._currentShell;
-            if (shell) shutdown_requested = YES;
+            if (shell) DOSBOX_RequestShutdown();
         }
 
         self.cancelled = YES;
@@ -832,7 +836,7 @@ static bool bx_gameport_timed = true;
 
 - (DOS_Shell *) _currentShell
 {
-	return first_shell;
+	return DOS_GetFirstShell();
 }
 
 - (void) _postNotificationName: (NSString *)name
@@ -962,7 +966,7 @@ static bool bx_gameport_timed = true;
 	//TWEAK: it's only safe to break out once initialization is done, since some
 	//of DOSBox's initialization routines rely on running tasks on the run loop
 	//and may crash if they fail to complete.
-	if ((self.isCancelled || shutdown_requested) && self.isInitialized)
+	if ((self.isCancelled || DOSBOX_IsShutdownRequested()) && self.isInitialized)
     {
         return NO;
 	}
@@ -1019,11 +1023,14 @@ static bool bx_gameport_timed = true;
             control.reset(configuration);
             
             //Sets up the config directory location.
-            InitConfigDir();
+            init_config_dir();
 
             //Sets up the vast swathes of DOSBox configuration file parameters,
             //and registers the shell to start up when we finish initializing.
-            DOSBOX_Init();
+            DOS_Locale_AddMessages();
+            RENDER_AddMessages();
+            GFX_AddConfigSection();
+            DOSBOX_InitModuleConfigsAndMessages();
 
             //Ask our delegate for the configuration files we should be loading today.
             NSArray *configURLs = [self.delegate configurationURLsForEmulator: self];
@@ -1034,14 +1041,14 @@ static bool bx_gameport_timed = true;
             }
 
             //Initialise each DOSBox module based on the loaded configuration.
-            control->Init();
+            DOSBOX_InitModules();
             
             [self _didInitialize];
             [self _syncVolume];
         }
         
 		//Start up the main machine.
-		control->StartUp();
+		SHELL_InitAndRun();
 	}
 	catch (char *errMessage)
 	{
@@ -1049,6 +1056,7 @@ static bool bx_gameport_timed = true;
         
         // ObjC exceptions don't trigger C++ stack unwinding, so we must
         // clean up DOSBox state explicitly before raising.
+        DOSBOX_DestroyModules();
         SDL_Quit();
         [self.videoHandler shutdown];
         control = NULL;
@@ -1066,6 +1074,7 @@ static bool bx_gameport_timed = true;
 
         // ObjC exceptions don't trigger C++ stack unwinding, so we must
         // clean up DOSBox state explicitly before raising.
+        DOSBOX_DestroyModules();
         SDL_Quit();
         [self.videoHandler shutdown];
         control = NULL;
@@ -1085,6 +1094,7 @@ static bool bx_gameport_timed = true;
 	//Any other exception is a genuine fuckup and needs to be thrown all the way up.
 	
 	//Clean up after DOSBox finishes.
+	DOSBOX_DestroyModules();
 	SDL_Quit();
 	[self.videoHandler shutdown];
     control = NULL;

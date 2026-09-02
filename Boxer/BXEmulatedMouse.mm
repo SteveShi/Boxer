@@ -13,7 +13,8 @@
 #import "mouse.h"
 
 
-#import "mouse_common.h"
+#import "hardware/input/private/mouse_common.h"
+#import "hardware/input/private/mouse_interfaces.h"
 
 #pragma mark -
 #pragma mark Private method declarations

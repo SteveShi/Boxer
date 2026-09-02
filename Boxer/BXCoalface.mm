@@ -12,7 +12,10 @@
 #import "mapper.h"
 #import "cross.h"
 #import "shell.h"
-#import "mouse.h"
+#import "hardware/input/mouse.h"
+#import "utils/rect.h"
+#import "gui/private/common.h"
+#import "dosbox.h"
 #import "ADBFilesystem.h"
 
 #pragma mark - Runloop state functions
@@ -22,7 +25,7 @@
 bool boxer_processEvents()
 {
 	[[BXEmulator currentEmulator] _processEvents];
-    return !shutdown_requested || !boxer_runLoopShouldContinue();
+    return !DOSBOX_IsShutdownRequested() || !boxer_runLoopShouldContinue();
 }
 
 /*
@@ -659,42 +662,72 @@ std::vector<std::string> MAPPER_GetEventNames(const std::string &prefix) {return
 #undef GFX_EndUpdate
 #undef GFX_SetSize
 #undef GFX_GetRGB
-#undef GFX_SetShader
 #undef GFX_GetBestMode
 
-// GFX Stubs (Wrappers for DOSBox-Staging core)
+#include "gui/private/common.h"
+
+// GFX Implementation (Wrappers for DOSBox-Staging 0.83.0 core)
 bool GFX_Events() { return boxer_processEvents(); }
 uint32_t GFX_GetRGB(const uint8_t red, const uint8_t green, const uint8_t blue) { return boxer_getRGBPaletteEntry(red, green, blue); }
-uint8_t GFX_SetSize(const int w, const int h, const Fraction& fa, const uint8_t flags, const VideoMode& vm, GFX_CallBack_t cb) { return boxer_prepareForFrameSize(w, h, flags, 1.0, 1.0, cb, 1.0); }
-void GFX_EndUpdate(const uint16_t* dirtyBlocks) { boxer_finishFrame(dirtyBlocks); }
-void GFX_SetShader(const ShaderInfo&, const std::string& source) { boxer_setShader(source.c_str()); }
-void GFX_CenterMouse() {}
-uint8_t GFX_GetBestMode(const uint8_t flags) { return boxer_idealOutputMode(flags); }
-bool GFX_StartUpdate(uint8_t * &pixels, int &pitch) { return boxer_startFrame(pixels, pitch); }
-void GFX_RefreshTitle() {}
-void GFX_SetMouseHint(MouseHint) {}
-void GFX_NotifyBooting() {}
-DosBox::Rect GFX_GetDesktopSize() { return DosBox::Rect(640, 480); }
-void GFX_SetMouseCapture(bool) {}
-void GFX_SetMouseRawInput(bool) {}
-float GFX_GetDpiScaleFactor() { return 1.0f; }
 
-void GFX_NotifyProgramName(const std::string&, const std::string&) {}
-void GFX_SetMouseVisibility(bool) {}
-const char* GFX_GetRenderingBackend_String() { return "opengl"; } // Removed GFX_GetRenderingBackend string stub
-void GFX_NotifyCyclesChanged() {}
-DosBox::Rect GFX_GetCanvasSizeInPixels() { return DosBox::Rect(640, 480); }
-IntegerScalingMode GFX_GetIntegerScalingMode() { return IntegerScalingMode::Off; }
-void GFX_SetIntegerScalingMode(IntegerScalingMode) {}
+void GFX_SetSize(const int w, const int h, const Fraction& fa, const bool double_width, const bool double_height, const VideoMode& vm, GFX_Callback_t cb) {
+	boxer_prepareForFrameSize(w, h, 0, double_width ? 2.0 : 1.0, double_height ? 2.0 : 1.0, cb, 1.0);
+}
+uint8_t GFX_SetSize(const int w, const int h, const Fraction& fa, const uint8_t flags, const VideoMode& vm, GFX_CallBack_t cb) {
+	return boxer_prepareForFrameSize(w, h, flags, 1.0, 1.0, cb, 1.0);
+}
+
+void GFX_EndUpdate() { boxer_finishFrame(NULL); }
+void GFX_EndUpdate(const uint16_t* dirtyBlocks) { boxer_finishFrame(dirtyBlocks); }
+uint8_t GFX_GetBestMode(const uint8_t flags) { return boxer_idealOutputMode(flags); }
+
+bool GFX_StartUpdate(uint32_t*& pixels, int& pitch) {
+	Bit8u* bytePixels = reinterpret_cast<Bit8u*>(pixels);
+	bool res = boxer_startFrame(bytePixels, pitch);
+	pixels = reinterpret_cast<uint32_t*>(bytePixels);
+	return res;
+}
+bool GFX_StartUpdate(uint8_t * &pixels, int &pitch) { return boxer_startFrame(pixels, pitch); }
+
+void GFX_ResetScreen() {}
+void GFX_Start() {}
+void GFX_Stop() {}
+SDL_Window* GFX_GetWindow() { return nullptr; }
+uint32_t GFX_MakePixel(const uint8_t red, const uint8_t green, const uint8_t blue) { return boxer_getRGBPaletteEntry(red, green, blue); }
+
+DosBox::Rect GFX_GetDesktopSize() { return DosBox::Rect(0, 0, 640, 480); }
+float GFX_GetDpiScaleFactor() { return 1.0f; }
+DosBox::Rect GFX_CalcDrawRectInPixels(const DosBox::Rect& canvas_size_px) { return canvas_size_px; }
+void GFX_CaptureRenderedImage() {}
+RenderBackendType GFX_GetRenderBackendType() { return RenderBackendType::OpenGl; }
+RenderBackend* GFX_GetRenderer() { return nullptr; }
+TextureFilterMode GFX_GetTextureFilterMode() { return TextureFilterMode::NearestNeighbour; }
+
+void GFX_AddConfigSection() {}
+void GFX_InitSdl() {}
+void GFX_InitAndStartGui() {}
+void GFX_Destroy() {}
+void GFX_RequestExit(const bool) { DOSBOX_RequestShutdown(); }
+void GFX_Quit() {}
+void GFX_LosingFocus() {}
+void GFX_CenterMouse() {}
+void GFX_SetMouseHint(const MouseHint) {}
+void GFX_SetMouseCapture(const bool) {}
+void GFX_SetMouseVisibility(const bool) {}
+void GFX_SetMouseRawInput(const bool) {}
 bool GFX_HaveDesktopEnvironment() { return true; }
-void GFX_NotifyAudioMutedStatus(bool) {}
-DosBox::Rect GFX_GetViewportSizeInPixels() { return DosBox::Rect(640, 480); }
-InterpolationMode GFX_GetTextureInterpolationMode() { return InterpolationMode::NearestNeighbour; }
-RenderingBackend GFX_GetRenderingBackend() { return RenderingBackend::Texture; }
+DosBox::Rect GFX_GetCanvasSizeInPixels() { return DosBox::Rect(0, 0, 640, 480); }
+DosBox::Rect GFX_GetViewportSizeInPixels() { return DosBox::Rect(0, 0, 640, 480); }
+double GFX_GetHostRefreshRate() { return 60.0; }
+PresentationMode GFX_GetPresentationMode() { return PresentationMode::DosRate; }
+void GFX_MaybePresentFrame() {}
+bool GFX_PollAndHandleEvents() { return boxer_processEvents(); }
 
 #include "capture/capture.h"
 
 // CAPTURE Stubs
+void CAPTURE_Init() {}
+void CAPTURE_Destroy() {}
 bool CAPTURE_IsCapturingMidi() { return false; }
 bool CAPTURE_IsCapturingAudio() { return false; }
 bool CAPTURE_IsCapturingImage() { return false; }
@@ -709,11 +742,71 @@ void CAPTURE_AddMidiData(const bool, const size_t, const uint8_t*) {}
 void CAPTURE_AddAudioData(const uint32_t, const uint32_t, const int16_t*) {}
 void CAPTURE_AddPostRenderImage(const RenderedImage&) {}
 
-// IMFC Stubs
-void IMFC_AddConfigSection(const ConfigPtr&) {}
+// ETHERNET Stubs
+#include "network/ethernet.h"
+EthernetConnection *ETHERNET_OpenConnection(const std::string &) { return nullptr; }
+void ETHERNET_AddConfigSection(const ConfigPtr&) {}
+void ETHERNET_Init() {}
+void ETHERNET_Destroy() {}
 
 // MAPPER Stubs
 void MAPPER_StopAutoTyping() {}
+
+// TITLEBAR Stubs
+void TITLEBAR_RefreshTitle() {}
+void TITLEBAR_NotifyBooting() {}
+void TITLEBAR_NotifyProgramName(const std::string&, const std::string&) {}
+void TITLEBAR_NotifyCyclesChanged() {}
+void TITLEBAR_NotifyAudioMutedStatus(bool) {}
+
+// WEBSERVER Stubs
+#include "webserver/bridge.h"
+void WEBSERVER_Init() {}
+void WEBSERVER_Destroy() {}
+void WEBSERVER_AddConfigSection(const ConfigPtr&) {}
+bool WEBSERVER_IsEnabled() { return false; }
+Webserver::Bridge& Webserver::Bridge::Instance() {
+    static Webserver::Bridge bridge;
+    return bridge;
+}
+void Webserver::Bridge::ProcessRequests() {}
+
+// FSYNTH Stub
+void FSYNTH_AddConfigSection(const ConfigPtr&) {}
+
+// Deinterlacer Stub
+#include "gui/render/private/deinterlacer.h"
+RenderedImage Deinterlacer::Deinterlace(const RenderedImage& image, const DeinterlacingStrength) {
+    return image;
+}
+
+// Shader & Render Stubs
+#include "gui/render/private/shader_manager.h"
+#include "gui/render/private/shader_common.h"
+#include "gui/render/private/auto_image_adjustments.h"
+
+void ShaderManager::AddMessages() {}
+std::deque<std::string> ShaderManager::GenerateShaderInventoryMessage() const { return {}; }
+
+bool ShaderDescriptor::EnforceAutoIntegerScaling() const {
+    return shader_name.starts_with("crt/");
+}
+
+std::optional<AutoImageAdjustments> AutoImageAdjustmentsManager::GetSettings(
+        const MachineType, const VideoMode&,
+        const ColorSpace,
+        const ShaderDescriptor&) const {
+    return std::nullopt;
+}
+
+// Keyboard Layout Compatibility Bridge
+#include "dos/dos_keyboard_layout.h"
+Bitu DOS_SwitchKeyboardLayout(const char* new_layout, Bit32s& tried_cp) {
+    uint16_t cp = (tried_cp > 0) ? (uint16_t)tried_cp : 0;
+    auto res = DOS_LoadKeyboardLayout(new_layout ? new_layout : "", cp);
+    tried_cp = cp;
+    return (res == KeyboardLayoutResult::OK) ? 0 : 1;
+}
 
 // _boxer stubs (from the missing DOSBox-Staging core patches)
 extern "C" {
@@ -732,20 +825,6 @@ extern "C" {
 const char* RunningProgram = nullptr;
 
 void restart_dosbox(std::vector<std::string>&) {}
-
-
-#include "render.h"
-#include "shader_manager.h"
-#include <deque>
-
-void ShaderManager::AddMessages() {}
-void ShaderManager::ReloadCurrentShader() {}
-void ShaderManager::NotifyGlshaderSettingChanged(const std::string&) {}
-void ShaderManager::NotifyRenderParametersChanged(DosBox::Rect, const VideoMode&) {}
-std::string ShaderManager::MapShaderName(const std::string& name) const { return name; }
-const ShaderInfo& ShaderManager::GetCurrentShaderInfo() const { static ShaderInfo s; return s; }
-const std::string& ShaderManager::GetCurrentShaderSource() const { static std::string s; return s; }
-std::deque<std::string> ShaderManager::GenerateShaderInventoryMessage() const { return std::deque<std::string>(); }
 
 #include "mixer.h"
 #include <cmath>

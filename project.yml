@@ -214,10 +214,10 @@ targets:
       - path: DOSBox-Staging/src/cpu/mmx.cpp
       - path: DOSBox-Staging/src/cpu/modrm.cpp
       - path: DOSBox-Staging/src/cpu/paging.cpp
-      - path: DOSBox-Staging/src/debug/debug_disasm.cpp
-      - path: DOSBox-Staging/src/debug/debug_gui.cpp
-      - path: DOSBox-Staging/src/debug/debug_win32.cpp
-      - path: DOSBox-Staging/src/debug/debug.cpp
+      - path: DOSBox-Staging/src/debugger/debugger_disasm.cpp
+      - path: DOSBox-Staging/src/debugger/debugger_gui.cpp
+      - path: DOSBox-Staging/src/debugger/debugger_win32.cpp
+      - path: DOSBox-Staging/src/debugger/debugger.cpp
       - path: DOSBox-Staging/src/dos/cdrom_image.cpp
       - path: DOSBox-Staging/src/dos/cdrom.cpp
       - path: DOSBox-Staging/src/dos/dos_classes.cpp
@@ -240,124 +240,154 @@ targets:
       - path: DOSBox-Staging/src/dos/drive_overlay.cpp
       - path: DOSBox-Staging/src/dos/drive_virtual.cpp
       - path: DOSBox-Staging/src/dos/drives.cpp
-      - path: DOSBox-Staging/src/dos/program_autotype.cpp
-      - path: DOSBox-Staging/src/dos/program_attrib.cpp
-      - path: DOSBox-Staging/src/dos/program_biostest.cpp
-      - path: DOSBox-Staging/src/dos/program_boot.cpp
-      - path: DOSBox-Staging/src/dos/program_choice.cpp
-      - path: DOSBox-Staging/src/dos/program_help.cpp
-      - path: DOSBox-Staging/src/dos/program_imgmount.cpp
-      - path: DOSBox-Staging/src/dos/program_intro.cpp
-      - path: DOSBox-Staging/src/dos/program_keyb.cpp
-      - path: DOSBox-Staging/src/dos/program_loadfix.cpp
-      - path: DOSBox-Staging/src/dos/program_loadrom.cpp
-      - path: DOSBox-Staging/src/dos/program_ls.cpp
-      - path: DOSBox-Staging/src/dos/program_mem.cpp
-      - path: DOSBox-Staging/src/dos/program_mixer.cpp
-      - path: DOSBox-Staging/src/dos/program_mode.cpp
-      - path: DOSBox-Staging/src/dos/program_more.cpp
-      - path: DOSBox-Staging/src/dos/program_more_output.cpp
-      - path: DOSBox-Staging/src/dos/program_mount_common.cpp
-      - path: DOSBox-Staging/src/dos/program_mount.cpp
-      - path: DOSBox-Staging/src/dos/program_mousectl.cpp
-      - path: DOSBox-Staging/src/dos/program_move.cpp
-      - path: DOSBox-Staging/src/dos/program_placeholder.cpp
-      - path: DOSBox-Staging/src/dos/program_rescan.cpp
-      - path: DOSBox-Staging/src/dos/program_serial.cpp
-      - path: DOSBox-Staging/src/dos/program_setver.cpp
-      - path: DOSBox-Staging/src/dos/program_subst.cpp
-      - path: DOSBox-Staging/src/dos/program_tree.cpp
+      - path: DOSBox-Staging/src/dos/programs.cpp
+      - path: DOSBox-Staging/src/dos/programs/attrib.cpp
+      - path: DOSBox-Staging/src/dos/programs/autotype.cpp
+      - path: DOSBox-Staging/src/dos/programs/biostest.cpp
+      - path: DOSBox-Staging/src/dos/programs/boot.cpp
+      - path: DOSBox-Staging/src/dos/programs/choice.cpp
+      - path: DOSBox-Staging/src/dos/programs/clip.cpp
+      - path: DOSBox-Staging/src/dos/programs/guide.cpp
+      - path: DOSBox-Staging/src/dos/programs/help.cpp
+      - path: DOSBox-Staging/src/dos/programs/keyb.cpp
+      - path: DOSBox-Staging/src/dos/programs/loadfix.cpp
+      - path: DOSBox-Staging/src/dos/programs/loadrom.cpp
+      - path: DOSBox-Staging/src/dos/programs/ls.cpp
+      - path: DOSBox-Staging/src/dos/programs/makeimg.cpp
+      - path: DOSBox-Staging/src/dos/programs/manual.cpp
+      - path: DOSBox-Staging/src/dos/programs/mem.cpp
+      - path: DOSBox-Staging/src/dos/programs/mixer.cpp
+      - path: DOSBox-Staging/src/dos/programs/mode.cpp
+      - path: DOSBox-Staging/src/dos/programs/more.cpp
+      - path: DOSBox-Staging/src/dos/programs/more_output.cpp
+      - path: DOSBox-Staging/src/dos/programs/mount.cpp
+      - path: DOSBox-Staging/src/dos/programs/mount_common.cpp
+      - path: DOSBox-Staging/src/dos/programs/mouse.cpp
+      - path: DOSBox-Staging/src/dos/programs/mousectl.cpp
+      - path: DOSBox-Staging/src/dos/programs/move.cpp
+      - path: DOSBox-Staging/src/dos/programs/rescan.cpp
+      - path: DOSBox-Staging/src/dos/programs/serial.cpp
+      - path: DOSBox-Staging/src/dos/programs/setver.cpp
+      - path: DOSBox-Staging/src/dos/programs/subst.cpp
+      - path: DOSBox-Staging/src/dos/programs/tree.cpp
       - path: DOSBox-Staging/src/dosbox.cpp
       - path: DOSBox-Staging/src/fpu/fpu.cpp
-      - path: DOSBox-Staging/src/gui/render_scalers.cpp
-        compilerFlags: -Wno-unused-function
-      - path: DOSBox-Staging/src/gui/render.cpp
-      - path: DOSBox-Staging/src/hardware/adlib_gold.cpp
+      - path: DOSBox-Staging/src/gui/render/render.cpp
+      - path: DOSBox-Staging/src/gui/render/scaler/scalers.cpp
+      - path: DOSBox-Staging/src/audio/compressor.cpp
+      - path: DOSBox-Staging/src/audio/disk_noise.cpp
+      - path: DOSBox-Staging/src/audio/envelope.cpp
+      - path: DOSBox-Staging/src/audio/mixer.cpp
+      - path: DOSBox-Staging/src/audio/noise_gate.cpp
+      - path: DOSBox-Staging/src/audio/opl_capture.cpp
       - path: DOSBox-Staging/src/hardware/cmos.cpp
-      - path: DOSBox-Staging/src/hardware/compressor.cpp
-      - path: DOSBox-Staging/src/hardware/covox.cpp
-      - path: DOSBox-Staging/src/hardware/disney.cpp
       - path: DOSBox-Staging/src/hardware/dma.cpp
-      - path: DOSBox-Staging/src/hardware/envelope.cpp
-      - path: DOSBox-Staging/src/hardware/gameblaster.cpp
-      - path: DOSBox-Staging/src/hardware/gus.cpp
       - path: DOSBox-Staging/src/hardware/ide.cpp
-      - path: DOSBox-Staging/src/hardware/innovation.cpp
+      - path: DOSBox-Staging/src/hardware/port.cpp
+      - path: DOSBox-Staging/src/hardware/port_containers.cpp
+      - path: DOSBox-Staging/src/hardware/memory.cpp
+      - path: DOSBox-Staging/src/hardware/pci_bus.cpp
+      - path: DOSBox-Staging/src/hardware/pic.cpp
+      - path: DOSBox-Staging/src/hardware/timer.cpp
       - path: DOSBox-Staging/src/hardware/input/intel8042.cpp
       - path: DOSBox-Staging/src/hardware/input/intel8255.cpp
-      - path: DOSBox-Staging/src/hardware/input/keyboard.cpp
+      - path: DOSBox-Staging/src/hardware/input/joystick.cpp
       - path: DOSBox-Staging/src/hardware/input/keyboard_scancodes.cpp
-      - path: DOSBox-Staging/src/hardware/input/mouse.cpp
+      - path: DOSBox-Staging/src/hardware/input/keyboard.cpp
       - path: DOSBox-Staging/src/hardware/input/mouse_common.cpp
       - path: DOSBox-Staging/src/hardware/input/mouse_config.cpp
       - path: DOSBox-Staging/src/hardware/input/mouse_interfaces.cpp
       - path: DOSBox-Staging/src/hardware/input/mouse_manymouse.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouse.cpp
       - path: DOSBox-Staging/src/hardware/input/mouseif_dos_driver.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouseif_dos_driver_state.cpp
       - path: DOSBox-Staging/src/hardware/input/mouseif_ps2_bios.cpp
       - path: DOSBox-Staging/src/hardware/input/mouseif_virtual_machines.cpp
-      - path: DOSBox-Staging/src/hardware/iohandler_containers.cpp
-      - path: DOSBox-Staging/src/hardware/iohandler.cpp
-      - path: DOSBox-Staging/src/hardware/ipx.cpp
-      - path: DOSBox-Staging/src/hardware/ipxserver.cpp
-      - path: DOSBox-Staging/src/hardware/joystick.cpp
-      - path: DOSBox-Staging/src/hardware/lpt_dac.cpp
-      - path: DOSBox-Staging/src/hardware/mame/saa1099.cpp
-      - path: DOSBox-Staging/src/hardware/mame/sn76496.cpp
-      - path: DOSBox-Staging/src/hardware/memory.cpp
-      - path: DOSBox-Staging/src/hardware/mixer.cpp
-      - path: DOSBox-Staging/src/hardware/mpu401.cpp
-      - path: DOSBox-Staging/src/hardware/ne2000.cpp
-      - path: DOSBox-Staging/src/hardware/opl.cpp
-      - path: DOSBox-Staging/src/hardware/opl_capture.cpp
+      - path: DOSBox-Staging/src/hardware/audio/adlib_gold.cpp
+      - path: DOSBox-Staging/src/hardware/audio/cms.cpp
+      - path: DOSBox-Staging/src/hardware/audio/covox.cpp
+      - path: DOSBox-Staging/src/hardware/audio/disney.cpp
+      - path: DOSBox-Staging/src/hardware/audio/gus.cpp
+      - path: DOSBox-Staging/src/hardware/audio/imfc.cpp
+      - path: DOSBox-Staging/src/hardware/audio/innovation.cpp
+      - path: DOSBox-Staging/src/hardware/audio/lpt_dac.cpp
+      - path: DOSBox-Staging/src/hardware/audio/mame/saa1099.cpp
+      - path: DOSBox-Staging/src/hardware/audio/mame/sn76496.cpp
+      - path: DOSBox-Staging/src/hardware/audio/mpu401.cpp
+      - path: DOSBox-Staging/src/hardware/audio/opl.cpp
+      - path: DOSBox-Staging/src/hardware/audio/pcspeaker.cpp
+      - path: DOSBox-Staging/src/hardware/audio/pcspeaker_discrete.cpp
+      - path: DOSBox-Staging/src/hardware/audio/pcspeaker_impulse.cpp
+      - path: DOSBox-Staging/src/hardware/audio/ps1audio.cpp
+      - path: DOSBox-Staging/src/hardware/audio/soundblaster.cpp
+      - path: DOSBox-Staging/src/hardware/audio/speaker.cpp
+      - path: DOSBox-Staging/src/hardware/audio/ston1_dac.cpp
+      - path: DOSBox-Staging/src/hardware/audio/tandy_sound.cpp
       - path: DOSBox-Staging/src/hardware/parport/printer_charmaps.cpp
-      - path: DOSBox-Staging/src/hardware/pci_bus.cpp
-      - path: DOSBox-Staging/src/hardware/pcspeaker.cpp
-      - path: DOSBox-Staging/src/hardware/pcspeaker_discrete.cpp
-      - path: DOSBox-Staging/src/hardware/pcspeaker_impulse.cpp
-      - path: DOSBox-Staging/src/hardware/pic.cpp
-      - path: DOSBox-Staging/src/hardware/ps1audio.cpp
-      - path: DOSBox-Staging/src/hardware/reelmagic/driver.cpp
-      - path: DOSBox-Staging/src/hardware/reelmagic/player.cpp
-      - path: DOSBox-Staging/src/hardware/reelmagic/video_mixer.cpp
-      - path: DOSBox-Staging/src/hardware/sblaster.cpp
-      - path: DOSBox-Staging/src/hardware/serialport/directserial.cpp
-      - path: DOSBox-Staging/src/hardware/serialport/libserial.cpp
+      - path: DOSBox-Staging/src/hardware/video/reelmagic/driver.cpp
+      - path: DOSBox-Staging/src/hardware/video/reelmagic/player.cpp
+      - path: DOSBox-Staging/src/hardware/video/reelmagic/video_mixer.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_attr.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_crtc.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_dac.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_draw.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_gfx.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_memory.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_misc.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_other.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_paradise.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_s3.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_seq.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_tseng.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_xga.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga.cpp
+      - path: DOSBox-Staging/src/hardware/video/voodoo.cpp
+      - path: DOSBox-Staging/src/hardware/network/ipx.cpp
+      - path: DOSBox-Staging/src/hardware/network/ipxserver.cpp
+      - path: DOSBox-Staging/src/hardware/network/ne2000.cpp
       - path: DOSBox-Staging/src/hardware/serialport/misc_util.cpp
       - path: DOSBox-Staging/src/hardware/serialport/nullmodem.cpp
       - path: DOSBox-Staging/src/hardware/serialport/serialdummy.cpp
       - path: DOSBox-Staging/src/hardware/serialport/serialmouse.cpp
       - path: DOSBox-Staging/src/hardware/serialport/serialport.cpp
       - path: DOSBox-Staging/src/hardware/serialport/softmodem.cpp
-      - path: DOSBox-Staging/src/hardware/ston1_dac.cpp
-      - path: DOSBox-Staging/src/hardware/tandy_sound.cpp
-      - path: DOSBox-Staging/src/hardware/timer.cpp
-      - path: DOSBox-Staging/src/hardware/vga_attr.cpp
-      - path: DOSBox-Staging/src/hardware/vga_crtc.cpp
-      - path: DOSBox-Staging/src/hardware/vga_dac.cpp
-      - path: DOSBox-Staging/src/hardware/vga_draw.cpp
-      - path: DOSBox-Staging/src/hardware/vga_gfx.cpp
-      - path: DOSBox-Staging/src/hardware/vga_memory.cpp
-      - path: DOSBox-Staging/src/hardware/vga_misc.cpp
-      - path: DOSBox-Staging/src/hardware/vga_other.cpp
-      - path: DOSBox-Staging/src/hardware/vga_paradise.cpp
-      - path: DOSBox-Staging/src/hardware/vga_s3.cpp
-      - path: DOSBox-Staging/src/hardware/vga_seq.cpp
-      - path: DOSBox-Staging/src/hardware/vga_tseng.cpp
-      - path: DOSBox-Staging/src/hardware/vga_xga.cpp
-      - path: DOSBox-Staging/src/hardware/vga.cpp
-      - path: DOSBox-Staging/src/hardware/virtualbox.cpp
-      - path: DOSBox-Staging/src/hardware/vmware.cpp
-      - path: DOSBox-Staging/src/hardware/voodoo.cpp
       - path: DOSBox-Staging/src/libs/decoders/flac.c
-      - path: DOSBox-Staging/src/libs/decoders/mp3_seek_table.cpp
       - path: DOSBox-Staging/src/libs/decoders/mp3.cpp
+      - path: DOSBox-Staging/src/libs/decoders/mp3_seek_table.cpp
       - path: DOSBox-Staging/src/libs/decoders/SDL_sound.c
       - path: DOSBox-Staging/src/libs/decoders/vorbis.c
       - path: DOSBox-Staging/src/libs/decoders/wav.c
       - path: DOSBox-Staging/src/libs/ESFMu/esfm.c
-      - path: DOSBox-Staging/src/libs/ESFMu/esfm_registers.c
-      - path: DOSBox-Staging/src/libs/ghc/fs_std_impl.cpp
-      - path: DOSBox-Staging/src/libs/tal-chorus/Lfo.cpp
+      - path: DOSBox-Staging/src/libs/nuked/opl3.c
+      - path: DOSBox-Staging/src/libs/residfp/Dac.cpp
+      - path: DOSBox-Staging/src/libs/residfp/EnvelopeGenerator.cpp
+      - path: DOSBox-Staging/src/libs/residfp/ExternalFilter.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Integrator6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Integrator8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/OpAmp.cpp
+      - path: DOSBox-Staging/src/libs/residfp/SID.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Spline.cpp
+      - path: DOSBox-Staging/src/libs/residfp/WaveformCalculator.cpp
+      - path: DOSBox-Staging/src/libs/residfp/WaveformGenerator.cpp
+      - path: DOSBox-Staging/src/libs/residfp/resample/SincResampler.cpp
+      - path: DOSBox-Staging/src/libs/residfp/version.cc
+      - path: DOSBox-Staging/src/libs/whereami/whereami.c
+      - path: DOSBox-Staging/src/libs/YM7128B_emu/YM7128B_emu.c
+      - path: DOSBox-Staging/src/libs/riffcpp/membuffer.cpp
+      - path: DOSBox-Staging/src/libs/riffcpp/riffcpp.cpp
+      - path: DOSBox-Staging/src/midi/midi.cpp
+      - path: DOSBox-Staging/src/midi/coreaudio.cpp
+      - path: DOSBox-Staging/src/midi/coremidi.cpp
+      - path: DOSBox-Staging/src/config/setup.cpp
+      - path: DOSBox-Staging/src/config/config.cpp
+      - path: DOSBox-Staging/src/misc/messages_po_entry.cpp
+      - path: DOSBox-Staging/src/midi/soundcanvas.cpp
       - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Biquad.cpp
       - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Butterworth.cpp
       - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Cascade.cpp
@@ -368,41 +398,41 @@ targets:
       - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/RBJ.cpp
       - path: DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp/resample.c
         compilerFlags: -DFLOATING_POINT
-      - path: DOSBox-Staging/src/libs/nuked/opl3.c
-      - path: DOSBox-Staging/src/libs/residfp/Dac.cpp
-      - path: DOSBox-Staging/src/libs/residfp/EnvelopeGenerator.cpp
-      - path: DOSBox-Staging/src/libs/residfp/ExternalFilter.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Filter.cpp
-      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Filter6581.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Filter8580.cpp
-      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig6581.cpp
-      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig8580.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Integrator6581.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Integrator8580.cpp
-      - path: DOSBox-Staging/src/libs/residfp/OpAmp.cpp
-      - path: DOSBox-Staging/src/libs/residfp/resample/SincResampler.cpp
-      - path: DOSBox-Staging/src/libs/residfp/SID.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Spline.cpp
-      - path: DOSBox-Staging/src/libs/residfp/version.cc
-      - path: DOSBox-Staging/src/libs/residfp/WaveformCalculator.cpp
-      - path: DOSBox-Staging/src/libs/residfp/WaveformGenerator.cpp
-      - path: DOSBox-Staging/src/libs/whereami/whereami.c
-      - path: DOSBox-Staging/src/libs/YM7128B_emu/YM7128B_emu.c
-      - path: DOSBox-Staging/src/midi/midi.cpp
+      - path: DOSBox-Staging/src/dos/dos_code_page.cpp
+      - path: DOSBox-Staging/src/dos/dos_locale_data.cpp
+      - path: DOSBox-Staging/src/dos/dos_windows.cpp
+      - path: DOSBox-Staging/src/gui/clipboard.cpp
+      - path: DOSBox-Staging/src/hardware/virtualbox.cpp
+      - path: DOSBox-Staging/src/hardware/vmware.cpp
+      - path: DOSBox-Staging/src/libs/ESFMu/esfm_registers.c
+      - path: DOSBox-Staging/src/libs/tal-chorus/Lfo.cpp
+      - path: DOSBox-Staging/src/libs/zmbv/zmbv.cpp
+      - path: DOSBox-Staging/src/midi/midi_synth.cpp
+      - path: DOSBox-Staging/src/misc/console.cpp
+      - path: DOSBox-Staging/src/misc/dos_rwops.cpp
+      - path: DOSBox-Staging/src/misc/fs_utils.cpp
+      - path: DOSBox-Staging/src/misc/help_util.cpp
+      - path: DOSBox-Staging/src/misc/host_locale_macos.cpp
+      - path: DOSBox-Staging/src/misc/image_decoder.cpp
+      - path: DOSBox-Staging/src/misc/iso_locale_codes.cpp
+      - path: DOSBox-Staging/src/misc/messages_adjust.cpp
+      - path: DOSBox-Staging/src/misc/unicode.cpp
+      - path: DOSBox-Staging/src/misc/unicode_encodings.cpp
+      - path: DOSBox-Staging/src/misc/video.cpp
+      - path: DOSBox-Staging/src/utils/env_utils.cpp
+      - path: DOSBox-Staging/src/audio/clap/event_list.cpp
+      - path: DOSBox-Staging/src/audio/clap/library.cpp
+      - path: DOSBox-Staging/src/audio/clap/plugin.cpp
+      - path: DOSBox-Staging/src/audio/clap/plugin_manager.cpp
       - path: DOSBox-Staging/src/misc/ansi_code_markup.cpp
       - path: DOSBox-Staging/src/misc/cross.cpp
-      - path: DOSBox-Staging/src/misc/fs_utils.cpp
       - path: DOSBox-Staging/src/misc/fs_utils_posix.cpp
-      - path: DOSBox-Staging/src/misc/help_util.cpp
+      - path: DOSBox-Staging/src/misc/fs_utils_win32.cpp
+      - path: DOSBox-Staging/src/misc/host_locale.cpp
       - path: DOSBox-Staging/src/misc/messages.cpp
-      - path: DOSBox-Staging/src/misc/pacer.cpp
-      - path: DOSBox-Staging/src/misc/programs.cpp
       - path: DOSBox-Staging/src/misc/rwqueue.cpp
-      - path: DOSBox-Staging/src/misc/setup.cpp
-      - path: DOSBox-Staging/src/misc/string_utils.cpp
       - path: DOSBox-Staging/src/misc/support.cpp
-      - path: DOSBox-Staging/src/misc/unicode.cpp
+      - path: DOSBox-Staging/src/utils/string_utils.cpp
       - path: DOSBox-Staging/src/shell/autoexec.cpp
       - path: DOSBox-Staging/src/shell/command_line.cpp
       - path: DOSBox-Staging/src/shell/file_reader.cpp
@@ -412,6 +442,7 @@ targets:
       - path: DOSBox-Staging/src/shell/shell_misc.cpp
       - path: DOSBox-Staging/src/shell/shell.cpp
       - path: DOSBox-Staging/src/libs/loguru/loguru.cpp
+      - path: DOSBox-Staging/src/libs/glad/release/src/gl.c
       - path: "Other Sources/ADBToolkit/ADBBinCueImage.m"
       - path: "Other Sources/ADBToolkit/ADBContinuousThread.m"
       - path: "Other Sources/ADBToolkit/ADBDelegatedView.m"
@@ -686,7 +717,7 @@ targets:
         "LD_NO_PIE[arch=arm64]": NO
         FRAMEWORK_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks $(PROJECT_DIR)/Frameworks"
         LIBRARY_SEARCH_PATHS: "$(inherited)"
-        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debug $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/mame $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/reelmagic $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/ghc $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/shell \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
+        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/config $(SRCROOT)/DOSBox-Staging/src/audio $(SRCROOT)/DOSBox-Staging/src/capture $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debugger $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src/dos/programs $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/gui/render $(SRCROOT)/DOSBox-Staging/src/gui/render/scaler $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/audio $(SRCROOT)/DOSBox-Staging/src/hardware/audio/mame $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/network $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/hardware/video $(SRCROOT)/DOSBox-Staging/src/hardware/video/reelmagic $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/network $(SRCROOT)/DOSBox-Staging/src/shell $(SRCROOT)/DOSBox-Staging/src/utils $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/riffcpp $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/subprojects/asio/include $(SRCROOT)/DOSBox-Staging/src/libs/glad/release/include $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
         GCC_PREPROCESSOR_DEFINITIONS: "BOXER_DEBUG USE_PRIVATE_APIS C_SRECORD HAVE_CXX11 EXPORT="
         GCC_WARN_CHECK_SWITCH_STATEMENTS: NO
         GCC_WARN_64_TO_32_BIT_CONVERSION: NO
@@ -843,10 +874,10 @@ targets:
       - path: DOSBox-Staging/src/cpu/mmx.cpp
       - path: DOSBox-Staging/src/cpu/modrm.cpp
       - path: DOSBox-Staging/src/cpu/paging.cpp
-      - path: DOSBox-Staging/src/debug/debug_disasm.cpp
-      - path: DOSBox-Staging/src/debug/debug_gui.cpp
-      - path: DOSBox-Staging/src/debug/debug_win32.cpp
-      - path: DOSBox-Staging/src/debug/debug.cpp
+      - path: DOSBox-Staging/src/debugger/debugger_disasm.cpp
+      - path: DOSBox-Staging/src/debugger/debugger_gui.cpp
+      - path: DOSBox-Staging/src/debugger/debugger_win32.cpp
+      - path: DOSBox-Staging/src/debugger/debugger.cpp
       - path: DOSBox-Staging/src/dos/cdrom_image.cpp
       - path: DOSBox-Staging/src/dos/cdrom.cpp
       - path: DOSBox-Staging/src/dos/dos_classes.cpp
@@ -869,124 +900,154 @@ targets:
       - path: DOSBox-Staging/src/dos/drive_overlay.cpp
       - path: DOSBox-Staging/src/dos/drive_virtual.cpp
       - path: DOSBox-Staging/src/dos/drives.cpp
-      - path: DOSBox-Staging/src/dos/program_autotype.cpp
-      - path: DOSBox-Staging/src/dos/program_attrib.cpp
-      - path: DOSBox-Staging/src/dos/program_biostest.cpp
-      - path: DOSBox-Staging/src/dos/program_boot.cpp
-      - path: DOSBox-Staging/src/dos/program_choice.cpp
-      - path: DOSBox-Staging/src/dos/program_help.cpp
-      - path: DOSBox-Staging/src/dos/program_imgmount.cpp
-      - path: DOSBox-Staging/src/dos/program_intro.cpp
-      - path: DOSBox-Staging/src/dos/program_keyb.cpp
-      - path: DOSBox-Staging/src/dos/program_loadfix.cpp
-      - path: DOSBox-Staging/src/dos/program_loadrom.cpp
-      - path: DOSBox-Staging/src/dos/program_ls.cpp
-      - path: DOSBox-Staging/src/dos/program_mem.cpp
-      - path: DOSBox-Staging/src/dos/program_mixer.cpp
-      - path: DOSBox-Staging/src/dos/program_mode.cpp
-      - path: DOSBox-Staging/src/dos/program_more.cpp
-      - path: DOSBox-Staging/src/dos/program_more_output.cpp
-      - path: DOSBox-Staging/src/dos/program_mount_common.cpp
-      - path: DOSBox-Staging/src/dos/program_mount.cpp
-      - path: DOSBox-Staging/src/dos/program_mousectl.cpp
-      - path: DOSBox-Staging/src/dos/program_move.cpp
-      - path: DOSBox-Staging/src/dos/program_placeholder.cpp
-      - path: DOSBox-Staging/src/dos/program_rescan.cpp
-      - path: DOSBox-Staging/src/dos/program_serial.cpp
-      - path: DOSBox-Staging/src/dos/program_setver.cpp
-      - path: DOSBox-Staging/src/dos/program_subst.cpp
-      - path: DOSBox-Staging/src/dos/program_tree.cpp
+      - path: DOSBox-Staging/src/dos/programs.cpp
+      - path: DOSBox-Staging/src/dos/programs/attrib.cpp
+      - path: DOSBox-Staging/src/dos/programs/autotype.cpp
+      - path: DOSBox-Staging/src/dos/programs/biostest.cpp
+      - path: DOSBox-Staging/src/dos/programs/boot.cpp
+      - path: DOSBox-Staging/src/dos/programs/choice.cpp
+      - path: DOSBox-Staging/src/dos/programs/clip.cpp
+      - path: DOSBox-Staging/src/dos/programs/guide.cpp
+      - path: DOSBox-Staging/src/dos/programs/help.cpp
+      - path: DOSBox-Staging/src/dos/programs/keyb.cpp
+      - path: DOSBox-Staging/src/dos/programs/loadfix.cpp
+      - path: DOSBox-Staging/src/dos/programs/loadrom.cpp
+      - path: DOSBox-Staging/src/dos/programs/ls.cpp
+      - path: DOSBox-Staging/src/dos/programs/makeimg.cpp
+      - path: DOSBox-Staging/src/dos/programs/manual.cpp
+      - path: DOSBox-Staging/src/dos/programs/mem.cpp
+      - path: DOSBox-Staging/src/dos/programs/mixer.cpp
+      - path: DOSBox-Staging/src/dos/programs/mode.cpp
+      - path: DOSBox-Staging/src/dos/programs/more.cpp
+      - path: DOSBox-Staging/src/dos/programs/more_output.cpp
+      - path: DOSBox-Staging/src/dos/programs/mount.cpp
+      - path: DOSBox-Staging/src/dos/programs/mount_common.cpp
+      - path: DOSBox-Staging/src/dos/programs/mouse.cpp
+      - path: DOSBox-Staging/src/dos/programs/mousectl.cpp
+      - path: DOSBox-Staging/src/dos/programs/move.cpp
+      - path: DOSBox-Staging/src/dos/programs/rescan.cpp
+      - path: DOSBox-Staging/src/dos/programs/serial.cpp
+      - path: DOSBox-Staging/src/dos/programs/setver.cpp
+      - path: DOSBox-Staging/src/dos/programs/subst.cpp
+      - path: DOSBox-Staging/src/dos/programs/tree.cpp
       - path: DOSBox-Staging/src/dosbox.cpp
       - path: DOSBox-Staging/src/fpu/fpu.cpp
-      - path: DOSBox-Staging/src/gui/render_scalers.cpp
-        compilerFlags: -Wno-unused-function
-      - path: DOSBox-Staging/src/gui/render.cpp
-      - path: DOSBox-Staging/src/hardware/adlib_gold.cpp
+      - path: DOSBox-Staging/src/gui/render/render.cpp
+      - path: DOSBox-Staging/src/gui/render/scaler/scalers.cpp
+      - path: DOSBox-Staging/src/audio/compressor.cpp
+      - path: DOSBox-Staging/src/audio/disk_noise.cpp
+      - path: DOSBox-Staging/src/audio/envelope.cpp
+      - path: DOSBox-Staging/src/audio/mixer.cpp
+      - path: DOSBox-Staging/src/audio/noise_gate.cpp
+      - path: DOSBox-Staging/src/audio/opl_capture.cpp
       - path: DOSBox-Staging/src/hardware/cmos.cpp
-      - path: DOSBox-Staging/src/hardware/compressor.cpp
-      - path: DOSBox-Staging/src/hardware/covox.cpp
-      - path: DOSBox-Staging/src/hardware/disney.cpp
       - path: DOSBox-Staging/src/hardware/dma.cpp
-      - path: DOSBox-Staging/src/hardware/envelope.cpp
-      - path: DOSBox-Staging/src/hardware/gameblaster.cpp
-      - path: DOSBox-Staging/src/hardware/gus.cpp
       - path: DOSBox-Staging/src/hardware/ide.cpp
-      - path: DOSBox-Staging/src/hardware/innovation.cpp
+      - path: DOSBox-Staging/src/hardware/port.cpp
+      - path: DOSBox-Staging/src/hardware/port_containers.cpp
+      - path: DOSBox-Staging/src/hardware/memory.cpp
+      - path: DOSBox-Staging/src/hardware/pci_bus.cpp
+      - path: DOSBox-Staging/src/hardware/pic.cpp
+      - path: DOSBox-Staging/src/hardware/timer.cpp
       - path: DOSBox-Staging/src/hardware/input/intel8042.cpp
       - path: DOSBox-Staging/src/hardware/input/intel8255.cpp
-      - path: DOSBox-Staging/src/hardware/input/keyboard.cpp
+      - path: DOSBox-Staging/src/hardware/input/joystick.cpp
       - path: DOSBox-Staging/src/hardware/input/keyboard_scancodes.cpp
-      - path: DOSBox-Staging/src/hardware/input/mouse.cpp
+      - path: DOSBox-Staging/src/hardware/input/keyboard.cpp
       - path: DOSBox-Staging/src/hardware/input/mouse_common.cpp
       - path: DOSBox-Staging/src/hardware/input/mouse_config.cpp
       - path: DOSBox-Staging/src/hardware/input/mouse_interfaces.cpp
       - path: DOSBox-Staging/src/hardware/input/mouse_manymouse.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouse.cpp
       - path: DOSBox-Staging/src/hardware/input/mouseif_dos_driver.cpp
+      - path: DOSBox-Staging/src/hardware/input/mouseif_dos_driver_state.cpp
       - path: DOSBox-Staging/src/hardware/input/mouseif_ps2_bios.cpp
       - path: DOSBox-Staging/src/hardware/input/mouseif_virtual_machines.cpp
-      - path: DOSBox-Staging/src/hardware/iohandler_containers.cpp
-      - path: DOSBox-Staging/src/hardware/iohandler.cpp
-      - path: DOSBox-Staging/src/hardware/ipx.cpp
-      - path: DOSBox-Staging/src/hardware/ipxserver.cpp
-      - path: DOSBox-Staging/src/hardware/joystick.cpp
-      - path: DOSBox-Staging/src/hardware/lpt_dac.cpp
-      - path: DOSBox-Staging/src/hardware/mame/saa1099.cpp
-      - path: DOSBox-Staging/src/hardware/mame/sn76496.cpp
-      - path: DOSBox-Staging/src/hardware/memory.cpp
-      - path: DOSBox-Staging/src/hardware/mixer.cpp
-      - path: DOSBox-Staging/src/hardware/mpu401.cpp
-      - path: DOSBox-Staging/src/hardware/ne2000.cpp
-      - path: DOSBox-Staging/src/hardware/opl.cpp
-      - path: DOSBox-Staging/src/hardware/opl_capture.cpp
+      - path: DOSBox-Staging/src/hardware/audio/adlib_gold.cpp
+      - path: DOSBox-Staging/src/hardware/audio/cms.cpp
+      - path: DOSBox-Staging/src/hardware/audio/covox.cpp
+      - path: DOSBox-Staging/src/hardware/audio/disney.cpp
+      - path: DOSBox-Staging/src/hardware/audio/gus.cpp
+      - path: DOSBox-Staging/src/hardware/audio/imfc.cpp
+      - path: DOSBox-Staging/src/hardware/audio/innovation.cpp
+      - path: DOSBox-Staging/src/hardware/audio/lpt_dac.cpp
+      - path: DOSBox-Staging/src/hardware/audio/mame/saa1099.cpp
+      - path: DOSBox-Staging/src/hardware/audio/mame/sn76496.cpp
+      - path: DOSBox-Staging/src/hardware/audio/mpu401.cpp
+      - path: DOSBox-Staging/src/hardware/audio/opl.cpp
+      - path: DOSBox-Staging/src/hardware/audio/pcspeaker.cpp
+      - path: DOSBox-Staging/src/hardware/audio/pcspeaker_discrete.cpp
+      - path: DOSBox-Staging/src/hardware/audio/pcspeaker_impulse.cpp
+      - path: DOSBox-Staging/src/hardware/audio/ps1audio.cpp
+      - path: DOSBox-Staging/src/hardware/audio/soundblaster.cpp
+      - path: DOSBox-Staging/src/hardware/audio/speaker.cpp
+      - path: DOSBox-Staging/src/hardware/audio/ston1_dac.cpp
+      - path: DOSBox-Staging/src/hardware/audio/tandy_sound.cpp
       - path: DOSBox-Staging/src/hardware/parport/printer_charmaps.cpp
-      - path: DOSBox-Staging/src/hardware/pci_bus.cpp
-      - path: DOSBox-Staging/src/hardware/pcspeaker.cpp
-      - path: DOSBox-Staging/src/hardware/pcspeaker_discrete.cpp
-      - path: DOSBox-Staging/src/hardware/pcspeaker_impulse.cpp
-      - path: DOSBox-Staging/src/hardware/pic.cpp
-      - path: DOSBox-Staging/src/hardware/ps1audio.cpp
-      - path: DOSBox-Staging/src/hardware/reelmagic/driver.cpp
-      - path: DOSBox-Staging/src/hardware/reelmagic/player.cpp
-      - path: DOSBox-Staging/src/hardware/reelmagic/video_mixer.cpp
-      - path: DOSBox-Staging/src/hardware/sblaster.cpp
-      - path: DOSBox-Staging/src/hardware/serialport/directserial.cpp
-      - path: DOSBox-Staging/src/hardware/serialport/libserial.cpp
+      - path: DOSBox-Staging/src/hardware/video/reelmagic/driver.cpp
+      - path: DOSBox-Staging/src/hardware/video/reelmagic/player.cpp
+      - path: DOSBox-Staging/src/hardware/video/reelmagic/video_mixer.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_attr.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_crtc.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_dac.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_draw.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_gfx.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_memory.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_misc.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_other.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_paradise.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_s3.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_seq.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_tseng.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga_xga.cpp
+      - path: DOSBox-Staging/src/hardware/video/vga.cpp
+      - path: DOSBox-Staging/src/hardware/video/voodoo.cpp
+      - path: DOSBox-Staging/src/hardware/network/ipx.cpp
+      - path: DOSBox-Staging/src/hardware/network/ipxserver.cpp
+      - path: DOSBox-Staging/src/hardware/network/ne2000.cpp
       - path: DOSBox-Staging/src/hardware/serialport/misc_util.cpp
       - path: DOSBox-Staging/src/hardware/serialport/nullmodem.cpp
       - path: DOSBox-Staging/src/hardware/serialport/serialdummy.cpp
       - path: DOSBox-Staging/src/hardware/serialport/serialmouse.cpp
       - path: DOSBox-Staging/src/hardware/serialport/serialport.cpp
       - path: DOSBox-Staging/src/hardware/serialport/softmodem.cpp
-      - path: DOSBox-Staging/src/hardware/ston1_dac.cpp
-      - path: DOSBox-Staging/src/hardware/tandy_sound.cpp
-      - path: DOSBox-Staging/src/hardware/timer.cpp
-      - path: DOSBox-Staging/src/hardware/vga_attr.cpp
-      - path: DOSBox-Staging/src/hardware/vga_crtc.cpp
-      - path: DOSBox-Staging/src/hardware/vga_dac.cpp
-      - path: DOSBox-Staging/src/hardware/vga_draw.cpp
-      - path: DOSBox-Staging/src/hardware/vga_gfx.cpp
-      - path: DOSBox-Staging/src/hardware/vga_memory.cpp
-      - path: DOSBox-Staging/src/hardware/vga_misc.cpp
-      - path: DOSBox-Staging/src/hardware/vga_other.cpp
-      - path: DOSBox-Staging/src/hardware/vga_paradise.cpp
-      - path: DOSBox-Staging/src/hardware/vga_s3.cpp
-      - path: DOSBox-Staging/src/hardware/vga_seq.cpp
-      - path: DOSBox-Staging/src/hardware/vga_tseng.cpp
-      - path: DOSBox-Staging/src/hardware/vga_xga.cpp
-      - path: DOSBox-Staging/src/hardware/vga.cpp
-      - path: DOSBox-Staging/src/hardware/virtualbox.cpp
-      - path: DOSBox-Staging/src/hardware/vmware.cpp
-      - path: DOSBox-Staging/src/hardware/voodoo.cpp
       - path: DOSBox-Staging/src/libs/decoders/flac.c
-      - path: DOSBox-Staging/src/libs/decoders/mp3_seek_table.cpp
       - path: DOSBox-Staging/src/libs/decoders/mp3.cpp
+      - path: DOSBox-Staging/src/libs/decoders/mp3_seek_table.cpp
       - path: DOSBox-Staging/src/libs/decoders/SDL_sound.c
       - path: DOSBox-Staging/src/libs/decoders/vorbis.c
       - path: DOSBox-Staging/src/libs/decoders/wav.c
       - path: DOSBox-Staging/src/libs/ESFMu/esfm.c
-      - path: DOSBox-Staging/src/libs/ESFMu/esfm_registers.c
-      - path: DOSBox-Staging/src/libs/ghc/fs_std_impl.cpp
-      - path: DOSBox-Staging/src/libs/tal-chorus/Lfo.cpp
+      - path: DOSBox-Staging/src/libs/nuked/opl3.c
+      - path: DOSBox-Staging/src/libs/residfp/Dac.cpp
+      - path: DOSBox-Staging/src/libs/residfp/EnvelopeGenerator.cpp
+      - path: DOSBox-Staging/src/libs/residfp/ExternalFilter.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Filter8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Integrator6581.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Integrator8580.cpp
+      - path: DOSBox-Staging/src/libs/residfp/OpAmp.cpp
+      - path: DOSBox-Staging/src/libs/residfp/SID.cpp
+      - path: DOSBox-Staging/src/libs/residfp/Spline.cpp
+      - path: DOSBox-Staging/src/libs/residfp/WaveformCalculator.cpp
+      - path: DOSBox-Staging/src/libs/residfp/WaveformGenerator.cpp
+      - path: DOSBox-Staging/src/libs/residfp/resample/SincResampler.cpp
+      - path: DOSBox-Staging/src/libs/residfp/version.cc
+      - path: DOSBox-Staging/src/libs/whereami/whereami.c
+      - path: DOSBox-Staging/src/libs/YM7128B_emu/YM7128B_emu.c
+      - path: DOSBox-Staging/src/libs/riffcpp/membuffer.cpp
+      - path: DOSBox-Staging/src/libs/riffcpp/riffcpp.cpp
+      - path: DOSBox-Staging/src/midi/midi.cpp
+      - path: DOSBox-Staging/src/midi/coreaudio.cpp
+      - path: DOSBox-Staging/src/midi/coremidi.cpp
+      - path: DOSBox-Staging/src/config/setup.cpp
+      - path: DOSBox-Staging/src/config/config.cpp
+      - path: DOSBox-Staging/src/misc/messages_po_entry.cpp
+      - path: DOSBox-Staging/src/midi/soundcanvas.cpp
       - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Biquad.cpp
       - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Butterworth.cpp
       - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/Cascade.cpp
@@ -997,41 +1058,41 @@ targets:
       - path: DOSBox-Staging/subprojects/iir1-1.9.3/iir/RBJ.cpp
       - path: DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp/resample.c
         compilerFlags: -DFLOATING_POINT
-      - path: DOSBox-Staging/src/libs/nuked/opl3.c
-      - path: DOSBox-Staging/src/libs/residfp/Dac.cpp
-      - path: DOSBox-Staging/src/libs/residfp/EnvelopeGenerator.cpp
-      - path: DOSBox-Staging/src/libs/residfp/ExternalFilter.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Filter.cpp
-      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Filter6581.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Filter8580.cpp
-      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig6581.cpp
-      - path: DOSBox-Staging/src/libs/residfp/FilterModelConfig8580.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Integrator6581.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Integrator8580.cpp
-      - path: DOSBox-Staging/src/libs/residfp/OpAmp.cpp
-      - path: DOSBox-Staging/src/libs/residfp/resample/SincResampler.cpp
-      - path: DOSBox-Staging/src/libs/residfp/SID.cpp
-      - path: DOSBox-Staging/src/libs/residfp/Spline.cpp
-      - path: DOSBox-Staging/src/libs/residfp/version.cc
-      - path: DOSBox-Staging/src/libs/residfp/WaveformCalculator.cpp
-      - path: DOSBox-Staging/src/libs/residfp/WaveformGenerator.cpp
-      - path: DOSBox-Staging/src/libs/whereami/whereami.c
-      - path: DOSBox-Staging/src/libs/YM7128B_emu/YM7128B_emu.c
-      - path: DOSBox-Staging/src/midi/midi.cpp
+      - path: DOSBox-Staging/src/dos/dos_code_page.cpp
+      - path: DOSBox-Staging/src/dos/dos_locale_data.cpp
+      - path: DOSBox-Staging/src/dos/dos_windows.cpp
+      - path: DOSBox-Staging/src/gui/clipboard.cpp
+      - path: DOSBox-Staging/src/hardware/virtualbox.cpp
+      - path: DOSBox-Staging/src/hardware/vmware.cpp
+      - path: DOSBox-Staging/src/libs/ESFMu/esfm_registers.c
+      - path: DOSBox-Staging/src/libs/tal-chorus/Lfo.cpp
+      - path: DOSBox-Staging/src/libs/zmbv/zmbv.cpp
+      - path: DOSBox-Staging/src/midi/midi_synth.cpp
+      - path: DOSBox-Staging/src/misc/console.cpp
+      - path: DOSBox-Staging/src/misc/dos_rwops.cpp
+      - path: DOSBox-Staging/src/misc/fs_utils.cpp
+      - path: DOSBox-Staging/src/misc/help_util.cpp
+      - path: DOSBox-Staging/src/misc/host_locale_macos.cpp
+      - path: DOSBox-Staging/src/misc/image_decoder.cpp
+      - path: DOSBox-Staging/src/misc/iso_locale_codes.cpp
+      - path: DOSBox-Staging/src/misc/messages_adjust.cpp
+      - path: DOSBox-Staging/src/misc/unicode.cpp
+      - path: DOSBox-Staging/src/misc/unicode_encodings.cpp
+      - path: DOSBox-Staging/src/misc/video.cpp
+      - path: DOSBox-Staging/src/utils/env_utils.cpp
+      - path: DOSBox-Staging/src/audio/clap/event_list.cpp
+      - path: DOSBox-Staging/src/audio/clap/library.cpp
+      - path: DOSBox-Staging/src/audio/clap/plugin.cpp
+      - path: DOSBox-Staging/src/audio/clap/plugin_manager.cpp
       - path: DOSBox-Staging/src/misc/ansi_code_markup.cpp
       - path: DOSBox-Staging/src/misc/cross.cpp
-      - path: DOSBox-Staging/src/misc/fs_utils.cpp
       - path: DOSBox-Staging/src/misc/fs_utils_posix.cpp
-      - path: DOSBox-Staging/src/misc/help_util.cpp
+      - path: DOSBox-Staging/src/misc/fs_utils_win32.cpp
+      - path: DOSBox-Staging/src/misc/host_locale.cpp
       - path: DOSBox-Staging/src/misc/messages.cpp
-      - path: DOSBox-Staging/src/misc/pacer.cpp
-      - path: DOSBox-Staging/src/misc/programs.cpp
       - path: DOSBox-Staging/src/misc/rwqueue.cpp
-      - path: DOSBox-Staging/src/misc/setup.cpp
-      - path: DOSBox-Staging/src/misc/string_utils.cpp
       - path: DOSBox-Staging/src/misc/support.cpp
-      - path: DOSBox-Staging/src/misc/unicode.cpp
+      - path: DOSBox-Staging/src/utils/string_utils.cpp
       - path: DOSBox-Staging/src/shell/autoexec.cpp
       - path: DOSBox-Staging/src/shell/command_line.cpp
       - path: DOSBox-Staging/src/shell/file_reader.cpp
@@ -1041,6 +1102,7 @@ targets:
       - path: DOSBox-Staging/src/shell/shell_misc.cpp
       - path: DOSBox-Staging/src/shell/shell.cpp
       - path: DOSBox-Staging/src/libs/loguru/loguru.cpp
+      - path: DOSBox-Staging/src/libs/glad/release/src/gl.c
       - path: "Other Sources/ADBToolkit/ADBBinCueImage.m"
       - path: "Other Sources/ADBToolkit/ADBContinuousThread.m"
       - path: "Other Sources/ADBToolkit/ADBDelegatedView.m"
@@ -1256,7 +1318,7 @@ targets:
         "LD_NO_PIE[arch=arm64]": NO
         FRAMEWORK_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks $(PROJECT_DIR)/Frameworks"
         LIBRARY_SEARCH_PATHS: "$(inherited)"
-        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debug $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/intel8255.cpp $(SRCROOT)/DOSBox-Staging/src/hardware/mame $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/reelmagic $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/ghc $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/shell \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
+        HEADER_SEARCH_PATHS: "$(inherited) $(SRCROOT)/Frameworks/SDL2.framework/Headers $(SRCROOT)/Frameworks/SDL2_net.framework/Headers $(SRCROOT)/DOSBox-Staging $(SRCROOT)/DOSBox-Staging/include $(SRCROOT)/DOSBox-Staging/src $(SRCROOT)/DOSBox-Staging/src/config $(SRCROOT)/DOSBox-Staging/src/audio $(SRCROOT)/DOSBox-Staging/src/capture $(SRCROOT)/DOSBox-Staging/src/cpu $(SRCROOT)/DOSBox-Staging/src/debugger $(SRCROOT)/DOSBox-Staging/src/dos $(SRCROOT)/DOSBox-Staging/src/dos/programs $(SRCROOT)/DOSBox-Staging/src/fpu $(SRCROOT)/DOSBox-Staging/src/gui $(SRCROOT)/DOSBox-Staging/src/gui/render $(SRCROOT)/DOSBox-Staging/src/gui/render/scaler $(SRCROOT)/DOSBox-Staging/src/hardware $(SRCROOT)/DOSBox-Staging/src/hardware/audio $(SRCROOT)/DOSBox-Staging/src/hardware/audio/mame $(SRCROOT)/DOSBox-Staging/src/hardware/input $(SRCROOT)/DOSBox-Staging/src/hardware/network $(SRCROOT)/DOSBox-Staging/src/hardware/parport $(SRCROOT)/DOSBox-Staging/src/hardware/serialport $(SRCROOT)/DOSBox-Staging/src/hardware/video $(SRCROOT)/DOSBox-Staging/src/hardware/video/reelmagic $(SRCROOT)/DOSBox-Staging/src/ints $(SRCROOT)/DOSBox-Staging/src/midi $(SRCROOT)/DOSBox-Staging/src/misc $(SRCROOT)/DOSBox-Staging/src/network $(SRCROOT)/DOSBox-Staging/src/shell $(SRCROOT)/DOSBox-Staging/src/utils $(SRCROOT)/DOSBox-Staging/src/libs $(SRCROOT)/DOSBox-Staging/src/libs/decoders $(SRCROOT)/DOSBox-Staging/src/libs/ESFMu $(SRCROOT)/DOSBox-Staging/src/libs/loguru $(SRCROOT)/DOSBox-Staging/src/libs/nuked $(SRCROOT)/DOSBox-Staging/src/libs/residfp $(SRCROOT)/DOSBox-Staging/src/libs/residfp/resample $(SRCROOT)/DOSBox-Staging/src/libs/riffcpp $(SRCROOT)/DOSBox-Staging/src/libs/whereami $(SRCROOT)/DOSBox-Staging/src/libs/YM7128B_emu $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3 $(SRCROOT)/DOSBox-Staging/subprojects/iir1-1.9.3/iir $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/include $(SRCROOT)/DOSBox-Staging/subprojects/speexdsp-1.2.1/libspeexdsp $(SRCROOT)/DOSBox-Staging/subprojects/asio/include $(SRCROOT)/DOSBox-Staging/src/libs/glad/release/include $(SRCROOT)/Standalone \"$(SRCROOT)/Boxer/Application Delegate\" $(SRCROOT)/Boxer \"$(SRCROOT)/Boxer/Documentation Panel\" \"$(SRCROOT)/Boxer/DOS window\" $(SRCROOT)/Boxer/Input \"$(SRCROOT)/Boxer/Inspector Panel\" \"$(SRCROOT)/Boxer/Metal Rendering\" \"$(SRCROOT)/Other Sources/BGHUDAppKit\" $(SRCROOT)/Boxer/Printing $(SRCROOT)/Boxer/Rendering $(SRCROOT)/Boxer/Shaders \"$(SRCROOT)/Other Sources/ADBToolkit\" \"$(SRCROOT)/Other Sources/MCAdditions\" \"$(SRCROOT)/Other Sources\" \"$(SRCROOT)/Other Sources/RegexKitLite\" \"$(SRCROOT)/Other Sources/YRKSpinningProgressIndicator\""
         GCC_PREPROCESSOR_DEFINITIONS: "BOXER_DEBUG STANDALONE=1 USE_PRIVATE_APIS C_SRECORD HAVE_CXX11 EXPORT="
         GCC_WARN_CHECK_SWITCH_STATEMENTS: NO
         GCC_WARN_64_TO_32_BIT_CONVERSION: NO

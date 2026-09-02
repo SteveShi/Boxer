@@ -99,7 +99,7 @@
 {
     if (self.emulator.isInitialized)
     {
-        return (machine == MCH_HERC);
+        return is_machine_hercules();
     }
     else
     {
@@ -115,7 +115,7 @@
 - (BOOL) isInCGAMode
 {
     if (self.emulator.isInitialized)
-        return (machine == MCH_CGA);
+        return is_machine_cga();
     else return NO;
 }
 
@@ -377,7 +377,6 @@
 	
 	
 	//Finally, apply the values to DOSBox
-	render.scale.size	= (Bitu)filterScale;
 	_activeFilterType	= activeType;
     
     
