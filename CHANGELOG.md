@@ -7,7 +7,8 @@ This landmark Beta release marks the full modernization of Boxer's emulation cor
 ### Key Changes
 - **DOSBox-Staging 0.83.0 Core**: Completely upgraded the core DOS emulation engine to 0.83.0, incorporating modern C++20 design, modern configuration management, improved CPU emulation accuracy, and new sound modules.
 - **Native Apple Silicon (ARM64) Dynamic Core**: Fully adapted upstream `C_TARGET_CPU_ARM` dynrec core, ensuring blazing-fast native JIT emulation on Apple Silicon.
-- **Modernized Audio Pipeline & Synthesizers**: Integrated the latest Roland SoundCanvas synthesizer, iir1 filtering, speexdsp floating-point audio resampling, and adapted `MixerChannel` sample conversion APIs.
+- **CoreMIDI & MT-32 Sound Pipeline Integration**: Hooked DOSBox-Staging 0.83.0 MIDI message streaming directly into Boxer's built-in General MIDI (`BXMIDISynth`) and Roland MT-32 (`BXEmulatedMT32`) synthesis pipelines, ensuring authentic music playback for all classic titles without requiring external hardware.
+- **Batch & Executable Type Resolution**: Updated DOS batch (.BAT) and COM UTIs to conform to modern macOS UniformTypeIdentifiers standards, ensuring reliable automatic program execution.
 - **FAT File System & Media ID Detection**: Upgraded drive mounting and floppy drive emulation with explicit 1.44MB media identification, enabling authentic floppy seek acoustics and improved disc image compatibility.
 - **Seamless Cocoa & Metal Host Bridge**: Re-architected `BXCoalface` run loop, window, and render event callbacks, cleanly bridging DOSBox-Staging 0.83.0 into Boxer's pure Swift 6 Metal pipeline and native macOS UI.
 - **Updated What's New Sheet**: Highlights the new DOSBox-Staging 0.83.0 core upon launching this major milestone.
@@ -21,7 +22,8 @@ This landmark Beta release marks the full modernization of Boxer's emulation cor
 ### 主要更新
 - **全面升级 DOSBox-Staging 0.83.0 内核**：将底层 DOSBox 核心升级至 0.83.0 正式版，引入现代 C++20 代码架构、全新配置系统、更精准的 CPU 周期与中断仿真及全新音频合成器。
 - **原生 Apple Silicon (ARM64) 动态重译核心**：深度适配 0.83.0 的 `C_TARGET_CPU_ARM` dynrec 核心，在 Apple Silicon 上提供极致流畅的原生 JIT 动态重译仿真性能。
-- **现代化音频管线与合成器**：集成全新的 Roland SoundCanvas 软波表合成器、iir1 数字滤波器、speexdsp 浮点重采样算法，并重构了 `MixerChannel` 音频采样适配层。
+- **CoreMIDI 与内置 MT-32 音频管线桥接**：深度重构并打通 0.83.0 与 Boxer 内置音频合成器的消息总线，使 General MIDI（`BXMIDISynth`）与 Roland MT-32（`BXEmulatedMT32`）无需外接物理硬件即可享受原汁原味的内置高品质数字音乐与音效。
+- **批处理文件与执行体类型修正**：更新 DOS 批处理文件（.BAT）及 COM 程序的 UTI 标准，对齐 macOS UniformTypeIdentifiers 规范，彻底解决批处理脚本无法直接启动运行的问题。
 - **FAT 文件系统与软驱寻道音效**：升级虚拟驱动器构造器，精准支持 1.44MB 介质类型识别与更真实的物理软驱寻道音效。
 - **无缝衔接 Cocoa 与 Metal 宿主桥接**：在 `BXCoalface` 中完全对齐 0.83.0 的主事件循环、窗口及渲染管理新接口，让 0.83.0 的仿真数据无缝流经 Boxer 原生 Swift 6 Metal 着色器引擎与系统界面。
 - **新版本特性弹窗**：更新了应用启动时的“新功能”弹窗（WhatsNewSheetView），直观向用户展示 0.83.0 全新内核特性。
