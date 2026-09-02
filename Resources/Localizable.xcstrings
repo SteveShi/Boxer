@@ -11526,6 +11526,64 @@
         }
       }
     },
+    "Save Report…": {
+      "comment": "Button to save a local error report, shown in alert when Boxer encounters an unrecoverable emulation error.",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uložit hlášení…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save Report…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar informe…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer le rapport…"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvar relatório…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "存储报告…"
+          }
+        }
+      }
+    },
+    "%@\n\nA crash dump has been saved to:\n%@": {
+      "comment": "Suggestion text shown in alert when an unrecoverable emulation error is encountered and a crash dump was saved. The first placeholder is the normal suggestion and the second is the crash dump path.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@\n\nA crash dump has been saved to:\n%2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@\n\n崩溃转储已保存至：\n%2$@"
+          }
+        }
+      }
+    },
     "Restart at Launch Panel": {
       "extractionState": "manual",
       "localizations": {
