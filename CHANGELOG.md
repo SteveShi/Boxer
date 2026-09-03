@@ -7,11 +7,15 @@ This landmark Beta release marks the full modernization of Boxer's emulation cor
 ### Key Changes
 - **DOSBox-Staging 0.83.0 Core**: Completely upgraded the core DOS emulation engine to 0.83.0, incorporating modern C++20 design, modern configuration management, improved CPU emulation accuracy, and new sound modules.
 - **Native Apple Silicon (ARM64) Dynamic Core**: Fully adapted upstream `C_TARGET_CPU_ARM` dynrec core, ensuring blazing-fast native JIT emulation on Apple Silicon.
+- **Physical Drive Noise Emulation**: Integrated 22 authentic floppy drive and mechanical hard drive head seek audio samples from DOSBox-Staging 0.83.0. Added settings toggles in Preferences (General) and Drives menu with instant runtime hot-reloading.
+- **Roland Sound Canvas (SC-55) Support**: Bundled the latest universal Nuked-SC55 CLAP plugin with native ARM64 & x86_64 binaries. Added automatic ROM discovery in `~/Library/Application Support/Boxer/Sound Canvas ROMs/` and one-click reveal actions in Preferences and Help menu.
+- **FMV Video Deinterlacing**: Integrated DOSBox-Staging's adaptive deinterlacer for FMV cutscenes, with real-time strength controls (Off, Light, Medium, Strong, Full) directly in the Display menu.
+- **Native MDS/MDF Disc Image Support**: Added native UTI recognition and mounting support for multi-track CD images in `.mds`/`.mdf` format.
 - **CoreMIDI & MT-32 Sound Pipeline Integration**: Hooked DOSBox-Staging 0.83.0 MIDI message streaming directly into Boxer's built-in General MIDI (`BXMIDISynth`) and Roland MT-32 (`BXEmulatedMT32`) synthesis pipelines, ensuring authentic music playback for all classic titles without requiring external hardware.
 - **Batch & Executable Type Resolution**: Updated DOS batch (.BAT) and COM UTIs to conform to modern macOS UniformTypeIdentifiers standards, ensuring reliable automatic program execution.
 - **FAT File System & Media ID Detection**: Upgraded drive mounting and floppy drive emulation with explicit 1.44MB media identification, enabling authentic floppy seek acoustics and improved disc image compatibility.
 - **Seamless Cocoa & Metal Host Bridge**: Re-architected `BXCoalface` run loop, window, and render event callbacks, cleanly bridging DOSBox-Staging 0.83.0 into Boxer's pure Swift 6 Metal pipeline and native macOS UI.
-- **Updated What's New Sheet**: Highlights the new DOSBox-Staging 0.83.0 core upon launching this major milestone.
+- **Updated What's New Sheet**: Highlights the new DOSBox-Staging 0.83.0 features upon launching this major milestone.
 
 ---
 
@@ -22,6 +26,10 @@ This landmark Beta release marks the full modernization of Boxer's emulation cor
 ### 主要更新
 - **全面升级 DOSBox-Staging 0.83.0 内核**：将底层 DOSBox 核心升级至 0.83.0 正式版，引入现代 C++20 代码架构、全新配置系统、更精准的 CPU 周期与中断仿真及全新音频合成器。
 - **原生 Apple Silicon (ARM64) 动态重译核心**：深度适配 0.83.0 的 `C_TARGET_CPU_ARM` dynrec 核心，在 Apple Silicon 上提供极致流畅的原生 JIT 动态重译仿真性能。
+- **物理驱动器机械寻道音效仿真**：完整提取并集成 DOSBox-Staging 0.83.0 全部 22 个真实软盘与机械硬盘磁头寻道音效样本，在“偏好设置 - 通用”及“驱动器”菜单中提供开关控制，并支持运行时热重载。
+- **Roland Sound Canvas (SC-55) 仿真支持**：集成最新通用架构（ARM64 + x86_64）Nuked-SC55 CLAP 插件，原生支持扫描 `~/Library/Application Support/Boxer/Sound Canvas ROMs/` 目录，并在帮助菜单与音频设置中提供一键在访达中定位 ROM 文件夹功能。
+- **全动态视频 (FMV) 去隔行器**：接入 0.83.0 官方自适应视频去隔行算法，并在“显示”菜单中提供关闭、轻度、适中、强力、完全 5 档实时切换选项。
+- **原生 MDS/MDF 多音轨光盘镜像支持**：注册 `org.cdemu.mds-image` 原生类型，支持直接挂载与导入含多音轨的 MDS/MDF 复杂光盘镜像。
 - **CoreMIDI 与内置 MT-32 音频管线桥接**：深度重构并打通 0.83.0 与 Boxer 内置音频合成器的消息总线，使 General MIDI（`BXMIDISynth`）与 Roland MT-32（`BXEmulatedMT32`）无需外接物理硬件即可享受原汁原味的内置高品质数字音乐与音效。
 - **批处理文件与执行体类型修正**：更新 DOS 批处理文件（.BAT）及 COM 程序的 UTI 标准，对齐 macOS UniformTypeIdentifiers 规范，彻底解决批处理脚本无法直接启动运行的问题。
 - **FAT 文件系统与软驱寻道音效**：升级虚拟驱动器构造器，精准支持 1.44MB 介质类型识别与更真实的物理软驱寻道音效。

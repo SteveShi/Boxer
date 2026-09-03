@@ -87,6 +87,10 @@
 /// @see BXBaseAppController+BXSupportFiles @c -MT32ROMURLCreatingIfMissing:error:
 - (IBAction) showMT32ROMsInFinder: (id)sender;
 
+/// Reveal Boxer's Sound Canvas ROMs folder (located inside Application Support) in a Finder window.
+/// This creates the folder if it doesn't already exist.
+- (IBAction) showSoundCanvasROMsInFinder: (id)sender;
+
 /// Show a standard OS X open panel for choosing MT-32 ROMs to install.
 - (IBAction) showMT32ROMFileChooser: (id)sender;
 

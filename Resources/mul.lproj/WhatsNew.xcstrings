@@ -167,6 +167,102 @@
           }
         }
       }
+    },
+    "Physical Drive Noise Emulation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Physical Drive Noise Emulation"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "物理驱动器寻道音效仿真"
+          }
+        }
+      }
+    },
+    "Authentic acoustic simulation of vintage 3.5\" floppy disk and mechanical hard drive head seek sounds.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentic acoustic simulation of vintage 3.5\" floppy disk and mechanical hard drive head seek sounds."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "逼真模拟复古 3.5 英寸软盘与机械硬盘的磁头寻道与转动音效，重温经典硬件声音记忆。"
+          }
+        }
+      }
+    },
+    "Roland Sound Canvas (SC-55)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roland Sound Canvas (SC-55)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roland Sound Canvas (SC-55) 仿真"
+          }
+        }
+      }
+    },
+    "Integrated Nuked-SC55 emulation plugin with automatic ROM detection in Application Support.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integrated Nuked-SC55 emulation plugin with automatic ROM detection in Application Support."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全新集成 Nuked-SC55 仿真插件，自动扫描 Application Support 目录下的 ROM 文件，带来极具临场感的通用 MIDI 乐声。"
+          }
+        }
+      }
+    },
+    "FMV Deinterlacing & MDS Disc Support": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "FMV Deinterlacing & MDS Disc Support"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全动态视频去隔行与 MDS 镜像支持"
+          }
+        }
+      }
+    },
+    "Adaptive scanline deinterlacing for FMV cutscenes and seamless mounting of multi-track MDS/MDF images.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adaptive scanline deinterlacing for FMV cutscenes and seamless mounting of multi-track MDS/MDF images."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支持全动态过场动画自适应去隔行平滑处理，并原生兼容多音轨 MDS/MDF 光盘镜像无损挂载。"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

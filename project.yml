@@ -275,6 +275,7 @@ targets:
       - path: DOSBox-Staging/src/dosbox.cpp
       - path: DOSBox-Staging/src/fpu/fpu.cpp
       - path: DOSBox-Staging/src/gui/render/render.cpp
+      - path: DOSBox-Staging/src/gui/render/deinterlacer.cpp
       - path: DOSBox-Staging/src/gui/render/scaler/scalers.cpp
       - path: DOSBox-Staging/src/audio/compressor.cpp
       - path: DOSBox-Staging/src/audio/disk_noise.cpp
@@ -526,6 +527,24 @@ targets:
       - path: Resources/Configurations
         buildPhase: resources
         type: folder
+      - path: Resources/disk-noises
+        buildPhase: resources
+        type: folder
+      - path: Resources/cdrdao
+        type: file
+        buildPhase:
+          copyFiles:
+            destination: resources
+      - path: Resources/toc2cue
+        type: file
+        buildPhase:
+          copyFiles:
+            destination: resources
+      - path: PlugIns/Nuked-SC55.clap
+        type: folder
+        buildPhase:
+          copyFiles:
+            destination: plugins
       - path: Resources/Brand.png
         buildPhase: resources
       - path: Resources/Base.lproj/GamesFolderPanelOptions.xib
@@ -688,13 +707,6 @@ targets:
       - target: DDHidLib/DDHidLib
         embed: true
         codeSign: true
-    copyFiles:
-      - destination: resources
-        files:
-          - path: Resources/cdrdao
-            codeSignOnCopy: true
-          - path: Resources/toc2cue
-            codeSignOnCopy: true
     settings:
       base:
         PRODUCT_NAME: Boxer
@@ -935,6 +947,7 @@ targets:
       - path: DOSBox-Staging/src/dosbox.cpp
       - path: DOSBox-Staging/src/fpu/fpu.cpp
       - path: DOSBox-Staging/src/gui/render/render.cpp
+      - path: DOSBox-Staging/src/gui/render/deinterlacer.cpp
       - path: DOSBox-Staging/src/gui/render/scaler/scalers.cpp
       - path: DOSBox-Staging/src/audio/compressor.cpp
       - path: DOSBox-Staging/src/audio/disk_noise.cpp
@@ -1182,6 +1195,24 @@ targets:
       - path: Resources/Configurations
         buildPhase: resources
         type: folder
+      - path: Resources/disk-noises
+        buildPhase: resources
+        type: folder
+      - path: Resources/cdrdao
+        type: file
+        buildPhase:
+          copyFiles:
+            destination: resources
+      - path: Resources/toc2cue
+        type: file
+        buildPhase:
+          copyFiles:
+            destination: resources
+      - path: PlugIns/Nuked-SC55.clap
+        type: folder
+        buildPhase:
+          copyFiles:
+            destination: plugins
       - path: Resources/Brand.png
         buildPhase: resources
       - path: Resources/Base.lproj/GamesFolderPanelOptions.xib
@@ -1295,13 +1326,6 @@ targets:
       - target: DDHidLib/DDHidLib
         embed: true
         codeSign: true
-    copyFiles:
-      - destination: resources
-        files:
-          - path: Resources/cdrdao
-            codeSignOnCopy: true
-          - path: Resources/toc2cue
-            codeSignOnCopy: true
     settings:
       base:
         PRODUCT_NAME: "Boxer Standalone"

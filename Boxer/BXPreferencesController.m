@@ -358,6 +358,16 @@ enum {
 
 }
 
+- (IBAction) showSoundCanvasROMsInFinder: (id)sender
+{
+    BXBaseAppController *appController = (BXBaseAppController *)[NSApp delegate];
+    NSURL *baseROMURL = [appController soundCanvasROMURLCreatingIfMissing: YES error: NULL];
+    if (baseROMURL)
+    {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs: @[baseROMURL]];
+    }
+}
+
 - (IBAction) showMT32ROMFileChooser: (id)sender
 {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];

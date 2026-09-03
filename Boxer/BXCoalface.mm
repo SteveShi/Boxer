@@ -809,12 +809,6 @@ void Webserver::Bridge::ProcessRequests() {}
 // FSYNTH Stub
 void FSYNTH_AddConfigSection(const ConfigPtr&) {}
 
-// Deinterlacer Stub
-#include "gui/render/private/deinterlacer.h"
-RenderedImage Deinterlacer::Deinterlace(const RenderedImage& image, const DeinterlacingStrength) {
-    return image;
-}
-
 // Shader & Render Stubs
 #include "gui/render/private/shader_manager.h"
 #include "gui/render/private/shader_common.h"

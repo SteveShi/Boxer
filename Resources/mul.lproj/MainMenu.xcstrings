@@ -6157,6 +6157,168 @@
           }
         }
       }
+    },
+    "3402.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Emulate Drive Seek Sounds\"; ObjectID = \"3402\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emulate Drive Seek Sounds"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模拟驱动器寻道音效"
+          }
+        }
+      }
+    },
+    "3410.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Deinterlace Video (FMV)\"; ObjectID = \"3410\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deinterlace Video (FMV)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全动态视频去隔行"
+          }
+        }
+      }
+    },
+    "3411.title": {
+      "comment": "Class = \"NSMenu\"; title = \"Deinterlace Video (FMV)\"; ObjectID = \"3411\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deinterlace Video (FMV)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全动态视频去隔行"
+          }
+        }
+      }
+    },
+    "3412.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Off\"; ObjectID = \"3412\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关闭"
+          }
+        }
+      }
+    },
+    "3413.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Light\"; ObjectID = \"3413\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻度"
+          }
+        }
+      }
+    },
+    "3414.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Medium\"; ObjectID = \"3414\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Medium"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "适中"
+          }
+        }
+      }
+    },
+    "3415.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Strong\"; ObjectID = \"3415\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strong"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "强力"
+          }
+        }
+      }
+    },
+    "3416.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Full\"; ObjectID = \"3416\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完全"
+          }
+        }
+      }
+    },
+    "3430.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Open Sound Canvas ROMs Folder\"; ObjectID = \"3430\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Sound Canvas ROMs Folder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开 Sound Canvas ROM 文件夹"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

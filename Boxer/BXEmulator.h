@@ -318,6 +318,9 @@ extern NSStringEncoding BXDirectStringEncoding;
 /// Returns the correct DOSBox configuration string for the "timing" setting given the specified timing mode.
 + (NSString *) configStringForGameportTimingMode: (BXGameportTimingMode)mode;
 
+/// Updates a DOSBox configuration property dynamically at runtime.
++ (void) setConfigValue: (NSString *)value forSection: (NSString *)section property: (NSString *)property;
+
 
 #pragma mark Controlling emulation state
 

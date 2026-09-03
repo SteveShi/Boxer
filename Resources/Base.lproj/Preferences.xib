@@ -121,6 +121,26 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
+                                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="501">
+                                                    <rect key="frame" x="32" y="15" width="155" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Drive audio:" id="502">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="503">
+                                                    <rect key="frame" x="190" y="14" width="289" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Emulate physical drive seek sounds" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="504">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="62" name="value" keyPath="values.enableDiskNoise" id="505"/>
+                                                    </connections>
+                                                </button>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" boxType="custom" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="349">
                                                     <rect key="frame" x="-1" y="75" width="534" height="54"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -535,6 +555,13 @@ be enabled in the Universal Access preferences.</string>
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showMT32ROMsInFinder:" target="-2" id="301"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="506"/>
+                <menuItem title="[Show Sound Canvas ROMs in Finder]" id="507">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showSoundCanvasROMsInFinder:" target="-2" id="508"/>
                     </connections>
                 </menuItem>
             </items>

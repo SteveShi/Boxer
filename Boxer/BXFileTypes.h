@@ -24,6 +24,7 @@ extern NSString * const BXCDROMFolderType;      //!< .cdrom
 extern NSString * const BXCuesheetImageType;    //!< .cue / .inst
 extern NSString * const BXISOImageType;         //!< .iso / .gog
 extern NSString * const BXCDRImageType;         //!< .cdr
+extern NSString * const BXMDSImageType;         //!< .mds / .mdf
 extern NSString * const BXVirtualPCImageType;   //!< .vfd
 extern NSString * const BXRawFloppyImageType;   //!< .ima
 extern NSString * const BXNDIFImageType;        //!< .img

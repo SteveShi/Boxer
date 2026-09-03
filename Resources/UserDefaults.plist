@@ -52,5 +52,9 @@
 	<true/>
 	<key>CGACompositeMode</key>
 	<integer>0</integer>
+	<key>enableDiskNoise</key>
+	<true/>
+	<key>deinterlacing</key>
+	<string>off</string>
 </dict>
 </plist>

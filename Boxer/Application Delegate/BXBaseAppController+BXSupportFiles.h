@@ -49,6 +49,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSURL *) MT32ROMURLCreatingIfMissing: (BOOL)createIfMissing error: (out NSError **)outError
 NS_SWIFT_NAME(mt32ROMURL(creatingIfMissing:));
 
+/// Returns the path to the application support folder where Boxer keeps Sound Canvas ROM files.
+/// If \c createIfMissing is <code>YES</code>, the folder will be created if it does not exist.
+/// Returns \c nil and populates outError if createIfMissing is YES but the folder
+/// could not be created.
+- (nullable NSURL *) soundCanvasROMURLCreatingIfMissing: (BOOL)createIfMissing error: (out NSError **)outError
+NS_SWIFT_NAME(soundCanvasROMURL(creatingIfMissing:));
+
+/// Reveals Boxer's Sound Canvas ROMs folder in Finder, creating it if needed.
+- (IBAction) showSoundCanvasROMsInFinder: (nullable id)sender;
+
 
 #pragma mark - MT-32 ROM management
 

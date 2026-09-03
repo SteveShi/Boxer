@@ -518,6 +518,43 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Deinterlace Video (FMV)" id="3410">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Deinterlace Video (FMV)" id="3411">
+                                    <items>
+                                        <menuItem title="Off" id="3412">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleDeinterlacing:" target="-1" id="3417"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Light" tag="1" id="3413">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleDeinterlacing:" target="-1" id="3418"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Medium" tag="2" id="3414">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleDeinterlacing:" target="-1" id="3419"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Strong" tag="3" id="3415">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleDeinterlacing:" target="-1" id="3420"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Full" tag="4" id="3416">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleDeinterlacing:" target="-1" id="3421"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Hercules Tint" id="1613">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Hercules Tint" id="1618">
@@ -857,6 +894,13 @@
                                     <action selector="mountPreviousDrivesInQueues:" target="-1" id="2177"/>
                                 </connections>
                             </menuItem>
+                            <menuItem isSeparatorItem="YES" id="3401"/>
+                            <menuItem title="Emulate Drive Seek Sounds" id="3402">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleDiskNoise:" target="-1" id="3403"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -913,6 +957,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showWhatsNew:" target="-1" id="3302"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Open Sound Canvas ROMs Folder" id="3430">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showSoundCanvasROMsInFinder:" target="-1" id="3431"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="1125"/>

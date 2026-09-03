@@ -117,6 +117,33 @@ NSString * const MT32PCMROMFilenamePattern = @"pcm";
 	return ROMsURL;
 }
 
+- (NSURL *) soundCanvasROMURLCreatingIfMissing: (BOOL)createIfMissing error: (out NSError **)outError
+{
+    NSURL *supportURL   = [self supportURLCreatingIfMissing: NO error: NULL];
+    NSURL *ROMsURL      = [supportURL URLByAppendingPathComponent: @"Sound Canvas ROMs"];
+    
+	if (createIfMissing)
+	{
+		BOOL created = [[NSFileManager defaultManager] createDirectoryAtURL: ROMsURL
+                                                withIntermediateDirectories: YES
+                                                                 attributes: nil
+                                                                      error: outError];
+        
+        if (!created)
+            return nil;
+	}
+	return ROMsURL;
+}
+
+- (IBAction) showSoundCanvasROMsInFinder: (id)sender
+{
+    NSURL *ROMsURL = [self soundCanvasROMURLCreatingIfMissing: YES error: NULL];
+    if (ROMsURL)
+    {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs: @[ROMsURL]];
+    }
+}
+
 
 //The user may have put the ROM files into the folder themselves,
 //so we can't rely on them having a consistent naming scheme.

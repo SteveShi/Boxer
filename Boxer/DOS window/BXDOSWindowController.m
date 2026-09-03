@@ -476,6 +476,31 @@ NSString * const BXDOSWindowFullscreenSizeFormat = @"Fullscreen size for %@";
                                                forKey: @"CGACompositeMode"];
 }
 
+- (IBAction) toggleDeinterlacing: (id <NSValidatedUserInterfaceItem>)sender
+{
+    NSArray *modes = @[@"off", @"light", @"medium", @"strong", @"full"];
+    NSInteger tag = sender.tag;
+    if (tag >= 0 && tag < (NSInteger)modes.count)
+    {
+        NSString *mode = modes[tag];
+        [[NSUserDefaults standardUserDefaults] setObject: mode forKey: @"deinterlacing"];
+        [BXEmulator setConfigValue: mode forSection: @"render" property: @"deinterlacing"];
+    }
+}
+
+- (IBAction) toggleDiskNoise: (id)sender
+{
+    BOOL current = [[NSUserDefaults standardUserDefaults] boolForKey: @"enableDiskNoise"];
+    BOOL newSetting = !current;
+    [[NSUserDefaults standardUserDefaults] setBool: newSetting forKey: @"enableDiskNoise"];
+    [BXEmulator setConfigValue: (newSetting ? @"seek-only" : @"off")
+                    forSection: @"disknoise"
+                      property: @"floppy_disk_noise"];
+    [BXEmulator setConfigValue: @"off"
+                    forSection: @"disknoise"
+                      property: @"hard_disk_noise"];
+}
+
 + (NSSize) _nextFullscreenSizeIntervalForSize: (NSSize)currentSize
                            originalResolution: (NSSize)baseResolution
                                     ascending: (BOOL)ascending
@@ -977,6 +1002,29 @@ NSString * const BXDOSWindowFullscreenSizeFormat = @"Fullscreen size for %@";
         {
             return NO;
         }
+    }
+
+    else if (theAction == @selector(toggleDeinterlacing:))
+    {
+        NSArray *modes = @[@"off", @"light", @"medium", @"strong", @"full"];
+        NSString *currentMode = [[NSUserDefaults standardUserDefaults] stringForKey: @"deinterlacing"] ?: @"off";
+        NSInteger tag = theItem.tag;
+        if (tag >= 0 && tag < (NSInteger)modes.count && [modes[tag] isEqualToString: currentMode])
+        {
+            theItem.state = NSControlStateValueOn;
+        }
+        else
+        {
+            theItem.state = NSControlStateValueOff;
+        }
+        return YES;
+    }
+
+    else if (theAction == @selector(toggleDiskNoise:))
+    {
+        BOOL current = [[NSUserDefaults standardUserDefaults] boolForKey: @"enableDiskNoise"];
+        theItem.state = current ? NSControlStateValueOn : NSControlStateValueOff;
+        return YES;
     }
 
     else if (theAction == @selector(toggleLaunchPanel:))

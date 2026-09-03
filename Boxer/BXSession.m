@@ -258,6 +258,15 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 		
 		self.importQueue = [[NSOperationQueue alloc] init];
 		self.scanQueue = [[NSOperationQueue alloc] init];
+		
+		[[NSUserDefaults standardUserDefaults] addObserver: self
+		                                        forKeyPath: @"enableDiskNoise"
+		                                           options: 0
+		                                           context: NULL];
+		[[NSUserDefaults standardUserDefaults] addObserver: self
+		                                        forKeyPath: @"deinterlacing"
+		                                           options: 0
+		                                           context: NULL];
 	}
 	return self;
 }
@@ -320,6 +329,9 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
     
     self.temporaryFolderURL = nil;
     self.MT32MessagesReceived = nil;
+    
+    [[NSUserDefaults standardUserDefaults] removeObserver: self forKeyPath: @"enableDiskNoise"];
+    [[NSUserDefaults standardUserDefaults] removeObserver: self forKeyPath: @"deinterlacing"];
 }
 
 - (BOOL) readFromURL: (NSURL *)absoluteURL
@@ -1360,6 +1372,19 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 	NSNumber *frameskip = [self.gameSettings objectForKey: @"frameskip"];
 	if (frameskip && [self validateValue: &frameskip forKey: @"frameskip" error: nil])
 		[self setValue: frameskip forKey: @"frameskip"];
+	
+	BOOL diskNoiseEnabled = [[NSUserDefaults standardUserDefaults] boolForKey: @"enableDiskNoise"];
+	[BXEmulator setConfigValue: (diskNoiseEnabled ? @"seek-only" : @"off")
+	                forSection: @"disknoise"
+	                  property: @"floppy_disk_noise"];
+
+	NSString *deinterlaceMode = [[NSUserDefaults standardUserDefaults] stringForKey: @"deinterlacing"];
+	if (deinterlaceMode.length > 0)
+	{
+		[BXEmulator setConfigValue: deinterlaceMode
+		                forSection: @"render"
+		                  property: @"deinterlacing"];
+	}
 	
 	
 	//After all preflight configuration has finished, go ahead and open whatever
@@ -2539,6 +2564,26 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
     if (object == self.DOSWindowController && [keyPath isEqualToString: @"currentPanel"])
     {
         [self _syncAutoPausedState];
+    }
+    else if (object == [NSUserDefaults standardUserDefaults])
+    {
+        if ([keyPath isEqualToString: @"enableDiskNoise"])
+        {
+            BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey: @"enableDiskNoise"];
+            [BXEmulator setConfigValue: (enabled ? @"seek-only" : @"off")
+                            forSection: @"disknoise"
+                              property: @"floppy_disk_noise"];
+            [BXEmulator setConfigValue: @"off"
+                            forSection: @"disknoise"
+                              property: @"hard_disk_noise"];
+        }
+        else if ([keyPath isEqualToString: @"deinterlacing"])
+        {
+            NSString *mode = [[NSUserDefaults standardUserDefaults] stringForKey: @"deinterlacing"] ?: @"off";
+            [BXEmulator setConfigValue: mode
+                            forSection: @"render"
+                              property: @"deinterlacing"];
+        }
     }
 }
 

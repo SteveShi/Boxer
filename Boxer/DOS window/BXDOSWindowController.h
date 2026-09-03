@@ -170,6 +170,12 @@ extern NSNotificationName const BXViewDidLiveResizeNotification;
 /// Toggle the emulator's active rendering filter.
 - (IBAction) toggleRenderingStyle: (id)sender;
 
+/// Toggle FMV video deinterlacing mode.
+- (IBAction) toggleDeinterlacing: (id)sender;
+
+/// Toggle physical disk drive noise emulation.
+- (IBAction) toggleDiskNoise: (id)sender;
+
 /// Increase the draw size of the fullscreen window.
 - (IBAction) incrementFullscreenSize: (id)sender;
 /// Decrease the draw size of the fullscreen window.

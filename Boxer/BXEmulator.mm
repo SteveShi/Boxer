@@ -19,6 +19,7 @@
 #import "dos/dos_locale.h"
 #import "gui/render/render.h"
 #import "gui/common.h"
+#import "setup.h"
 
 
 #pragma mark - Constants
@@ -168,6 +169,12 @@ static BOOL _hasStartedEmulator = NO;
 + (NSString *) configStringForGameportTimingMode: (BXGameportTimingMode)mode
 {
 	return (mode == BXGameportTimingClockBased) ? @"true" : @"false";
+}
+
++ (void) setConfigValue: (NSString *)value forSection: (NSString *)section property: (NSString *)property
+{
+	if (!value || !section || !property) return;
+	set_section_property_value(section.UTF8String, property.UTF8String, value.UTF8String);
 }
 
 

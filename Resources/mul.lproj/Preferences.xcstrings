@@ -1725,6 +1725,60 @@
           }
         }
       }
+    },
+    "502.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"Drive audio:\"; ObjectID = \"502\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drive audio:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "驱动器音频:"
+          }
+        }
+      }
+    },
+    "504.title": {
+      "comment": "Class = \"NSButtonCell\"; title = \"Emulate physical drive seek sounds\"; ObjectID = \"504\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emulate physical drive seek sounds"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模拟物理驱动器寻道音效"
+          }
+        }
+      }
+    },
+    "507.title": {
+      "comment": "Class = \"NSMenuItem\"; title = \"Show Sound Canvas ROMs in Finder\"; ObjectID = \"507\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Sound Canvas ROMs in Finder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在访达中显示 Sound Canvas ROM"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

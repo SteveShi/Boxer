@@ -27,6 +27,7 @@ NSString * const BXCDROMFolderType      = @"net.washboardabs.boxer-cdrom-folder"
 NSString * const BXCuesheetImageType    = @"com.goldenhawk.cdrwin-cuesheet";
 NSString * const BXISOImageType         = @"public.iso-image";
 NSString * const BXCDRImageType         = @"com.apple.disk-image-cdr";
+NSString * const BXMDSImageType         = @"org.cdemu.mds-image";
 NSString * const BXVirtualPCImageType   = @"com.microsoft.virtualpc-disk-image";
 NSString * const BXRawFloppyImageType   = @"com.winimage.raw-disk-image";
 NSString * const BXNDIFImageType        = @"com.apple.disk-image-ndif";
@@ -68,6 +69,7 @@ NSString * const BXDOCFileType          = @"net.washboardabs.boxer-plain-text";
                  BXCDROMImageBundleType,
                  BXISOImageType,
                  BXCDRImageType,
+                 BXMDSImageType,
                  nil];
     });
     return types;
@@ -228,6 +230,8 @@ NSString * const BXDOCFileType          = @"net.washboardabs.boxer-plain-text";
             @"inst": BXCuesheetImageType,
             @"iso": BXISOImageType,
             @"cdr": BXCDRImageType,
+            @"mds": BXMDSImageType,
+            @"mdf": BXISOImageType,
             @"ima": BXRawFloppyImageType,
             @"vfd": BXVirtualPCImageType,
             @"gog": @"com.gog.gog-disk-image",

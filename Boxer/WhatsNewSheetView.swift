@@ -47,6 +47,24 @@ public struct WhatsNewSheetView: View {
             subtitleKey: LocalizedStringKey("Updated to Munt 2.8.2 for superior Roland MT-32 emulation accuracy and stability.")
         ),
         WhatsNewFeatureItem(
+            systemImage: "internaldrive.fill",
+            color: .cyan,
+            titleKey: LocalizedStringKey("Physical Drive Noise Emulation"),
+            subtitleKey: LocalizedStringKey("Authentic acoustic simulation of vintage 3.5\" floppy disk and mechanical hard drive head seek sounds.")
+        ),
+        WhatsNewFeatureItem(
+            systemImage: "waveform.path.ecg",
+            color: .indigo,
+            titleKey: LocalizedStringKey("Roland Sound Canvas (SC-55)"),
+            subtitleKey: LocalizedStringKey("Integrated Nuked-SC55 emulation plugin with automatic ROM detection in Application Support.")
+        ),
+        WhatsNewFeatureItem(
+            systemImage: "film.stack",
+            color: .teal,
+            titleKey: LocalizedStringKey("FMV Deinterlacing & MDS Disc Support"),
+            subtitleKey: LocalizedStringKey("Adaptive scanline deinterlacing for FMV cutscenes and seamless mounting of multi-track MDS/MDF images.")
+        ),
+        WhatsNewFeatureItem(
             systemImage: "gamecontroller.fill",
             color: .green,
             titleKey: LocalizedStringKey("Native Wireless Game Controllers"),
