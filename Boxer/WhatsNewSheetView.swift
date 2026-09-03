@@ -47,22 +47,10 @@ public struct WhatsNewSheetView: View {
             subtitleKey: LocalizedStringKey("Updated to Munt 2.8.2 for superior Roland MT-32 emulation accuracy and stability.")
         ),
         WhatsNewFeatureItem(
-            systemImage: "internaldrive.fill",
-            color: .cyan,
-            titleKey: LocalizedStringKey("Physical Drive Noise Emulation"),
-            subtitleKey: LocalizedStringKey("Authentic acoustic simulation of vintage 3.5\" floppy disk and mechanical hard drive head seek sounds.")
-        ),
-        WhatsNewFeatureItem(
             systemImage: "waveform.path.ecg",
             color: .indigo,
             titleKey: LocalizedStringKey("Roland Sound Canvas (SC-55)"),
             subtitleKey: LocalizedStringKey("Integrated Nuked-SC55 emulation plugin with automatic ROM detection in Application Support.")
-        ),
-        WhatsNewFeatureItem(
-            systemImage: "film.stack",
-            color: .teal,
-            titleKey: LocalizedStringKey("FMV Deinterlacing & MDS Disc Support"),
-            subtitleKey: LocalizedStringKey("Adaptive scanline deinterlacing for FMV cutscenes and seamless mounting of multi-track MDS/MDF images.")
         ),
         WhatsNewFeatureItem(
             systemImage: "gamecontroller.fill",
@@ -76,28 +64,40 @@ public struct WhatsNewSheetView: View {
         self.onDismiss = onDismiss
     }
     
+    private func dismiss() {
+        if let onDismiss = onDismiss {
+            onDismiss()
+        } else if let window = NSApp.keyWindow {
+            if let parent = window.sheetParent {
+                parent.endSheet(window)
+            } else {
+                window.close()
+            }
+        }
+    }
+    
     public var body: some View {
-        VStack(spacing: 28) {
+        VStack(spacing: 20) {
             VStack(spacing: 8) {
                 Image(nsImage: NSApp.applicationIconImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 64, height: 64)
+                    .frame(width: 56, height: 56)
                 
                 Text(LocalizedStringKey("What's New in Boxer"), tableName: "WhatsNew")
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
             }
-            .padding(.top, 24)
+            .padding(.top, 22)
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 16) {
                 ForEach(features) { feature in
                     HStack(alignment: .top, spacing: 16) {
                         Image(systemName: feature.systemImage)
-                            .font(.system(size: 28))
+                            .font(.system(size: 26))
                             .foregroundStyle(feature.color)
-                            .frame(width: 36, height: 36)
+                            .frame(width: 32, height: 32)
                         
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .leading, spacing: 3) {
                             Text(feature.titleKey, tableName: "WhatsNew")
                                 .font(.headline)
                             
@@ -109,20 +109,12 @@ public struct WhatsNewSheetView: View {
                     }
                 }
             }
-            .padding(.horizontal, 24)
+            .padding(.horizontal, 28)
             
-            Spacer(minLength: 16)
+            Spacer(minLength: 12)
             
             Button {
-                if let onDismiss = onDismiss {
-                    onDismiss()
-                } else if let window = NSApp.keyWindow {
-                    if let parent = window.sheetParent {
-                        parent.endSheet(window)
-                    } else {
-                        window.close()
-                    }
-                }
+                dismiss()
             } label: {
                 Text(LocalizedStringKey("Continue"), tableName: "WhatsNew")
                     .frame(maxWidth: .infinity)
@@ -131,10 +123,11 @@ public struct WhatsNewSheetView: View {
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
             .keyboardShortcut(.defaultAction)
-            .padding(.horizontal, 24)
-            .padding(.bottom, 24)
+            .keyboardShortcut(.cancelAction)
+            .padding(.horizontal, 28)
+            .padding(.bottom, 22)
         }
-        .frame(width: 480, height: 500)
+        .frame(width: 480, height: 530)
     }
 }
 
