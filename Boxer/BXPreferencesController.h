@@ -28,6 +28,12 @@
 /// The shelf dropzone onto which the user can drop MT-32 ROMs to install them.
 @property (strong, nonatomic) IBOutlet BXMT32ROMDropzone *MT32ROMDropzone;
 
+/// The segmented control used to switch between MT-32 and Sound Canvas devices in the Audio panel.
+@property (strong, nonatomic) IBOutlet NSSegmentedControl *deviceSegmentedControl;
+
+/// Action triggered when switching between MT-32 and Sound Canvas devices.
+- (IBAction) switchMIDIDevice: (id)sender;
+
 /// The how-to-find-ROMs instructions shown in the Audio panel when no ROMs have been installed yet.
 @property (strong, nonatomic) IBOutlet NSView *missingMT32ROMHelp;
 
@@ -36,6 +42,12 @@
 
 /// The preferences for MT-32 emulation. Only shown when ROMs are installed.
 @property (strong, nonatomic) IBOutlet NSView *MT32ROMOptions;
+
+/// The checkbox for showing messages from MT-32 LCD.
+@property (strong, nonatomic) IBOutlet NSButton *showMT32LCDMessagesButton;
+
+/// The description text below the LCD message toggle.
+@property (strong, nonatomic) IBOutlet NSTextField *showMT32LCDMessagesDescription;
 
 /// The checkbox for enabling/disabling hotkey capture on the Keyboard panel.
 @property (strong, nonatomic) IBOutlet NSButton *hotkeyCaptureToggle;

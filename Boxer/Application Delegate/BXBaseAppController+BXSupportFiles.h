@@ -85,6 +85,14 @@ NS_SWIFT_NAME(soundCanvasROMURL(creatingIfMissing:));
 /// if there was a problem (including if the URLs did not contain any MT-32 ROMs.)
 - (BOOL) importMT32ROMsFromURLs: (NSArray<NSURL*> *)URLs error: (out NSError **)outError;
 
+#pragma mark - Sound Canvas ROM management
+
+/// Returns whether any Sound Canvas ROM files are currently installed.
+@property (readonly, nonatomic) BOOL hasSoundCanvasROMs;
+
+/// Copies specified Sound Canvas ROM files into the Sound Canvas ROMs directory.
+- (BOOL) importSoundCanvasROMsFromURLs: (NSArray<NSURL*> *)URLs error: (out NSError **)outError;
+
 @end
 
 NS_ASSUME_NONNULL_END

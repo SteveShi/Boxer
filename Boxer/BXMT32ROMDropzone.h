@@ -15,4 +15,7 @@
 /// The type of MT-32 device to display (or BXMT32ROMTypeUnknown for no device.)
 @property (assign, nonatomic) BXMT32ROMType ROMType;
 
+/// Whether the dropzone is currently showing the Roland Sound Canvas (SC-55) device.
+@property (assign, nonatomic) BOOL showsSoundCanvas;
+
 @end

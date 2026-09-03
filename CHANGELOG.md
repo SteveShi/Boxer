@@ -1,5 +1,41 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Beta2 (English)
+
+This release brings refined skeuomorphic design, visual layout polish, and complete Chinese localization for Boxer. It introduces bespoke vector-rendered 3D hardware artwork for Roland Sound Canvas (SC-55), resolves UI layout overlap and baseline cutting across Preferences, and completes full Chinese translations across game import workflows.
+
+### Key Changes
+- **Roland Sound Canvas (SC-55) Skeuomorphic Presentation**: Created bespoke vector-rendered 3D hardware artwork (`SC55.png` and `SC55@2x.png`) with authentic 1991 industrial perspective, matching the fidelity and visual language of the Roland MT-32 and CM-32L sound modules.
+- **Preferences Visual & Layout Polish**:
+  - Resolved baseline cutting through the CRT display easel tripod in Display Preferences by adopting macOS adaptive `separatorColor` and fine-tuning baseline offset.
+  - Dynamically expanded Display and Audio preference panels from 396pt to 456pt, eliminating cramped vertical margins, overlapping text, and truncated descriptions.
+  - Symmetrically aligned Audio preferences: aligned missing ROM help text to `x=118`, matching bottom seek sound controls, and streamlined Chinese typography for clean two-tier layout.
+- **Comprehensive Chinese Localization**:
+  - Fully translated the game import wizard (`Import a Game` window) in `ImportWindow.xcstrings`, including window title, dropzones, installer dialogs, and completion screens.
+  - Localized setup tips and soundcard configuration guidance in `ImportTipsPanel.xcstrings`.
+  - Fixed untranslated strings in `Localizable.xcstrings` for Roland emulation states and dropzone instructions.
+- **SC-55 ROMset Multi-file Discovery**: Improved Sound Canvas ROM recognition to seamlessly detect all 5 chip ROM files (`sc55_rom1.bin`, `sc55_rom2.bin`, `sc55_waverom1.bin`, `sc55_waverom2.bin`, `sc55_waverom3.bin`) when dragged onto the shelf or copied into `~/Library/Application Support/Boxer/Sound Canvas ROMs/`.
+
+---
+
+## 版本 2.0.0-Beta2 (中文)
+
+本版本专注于拟物化视觉美化、偏好设置界面排版精细化调优以及全流程本地化补全。全新设计并集成了 Roland Sound Canvas (SC-55) 专属拟物 3D 机身图形，彻底解决了偏好设置中分割线穿透、控件挤压与文字截断问题，并完成了游戏导入向导的全量中文本地化。
+
+### 主要更新
+- **Roland Sound Canvas (SC-55) 拟物立体渲染**：重新手工矢量绘制并渲染了与原版 MT-32 / CM-32L 透视及质感高度契合的 3D 拟物机身图示（`SC55.png` 与 `SC55@2x.png`），完美陈列于音频面板实木置物架上。
+- **偏好设置排版与视觉打磨**：
+  - 修复显示面板中底部分割线横切 CRT 画架木质脚掌的问题，改用系统自适应 `separatorColor` 半透明细线并微调展示台画架基准点。
+  - 将显示面板与音频面板容器高度由 396pt 自适应扩充至 456pt，彻底杜绝复选框拥挤、行距过窄及说明文案尾部标点被截断的视觉瑕疵。
+  - 音频面板下半区两段对称对齐：将未安装 ROM 提示框左边距对齐至 `x=118`，精简文案层级，使其与底部的物理寻道音效选项呈现工整严谨的两段式排版。
+- **全流程中文本地化补全**：
+  - 完整汉化“导入新游戏”向导窗口（`ImportWindow.xcstrings`），覆盖窗口标题、拖拽游戏盒、安装程序调度与完成界面。
+  - 汉化并校对“安装提示面板”（`ImportTipsPanel.xcstrings`）中的声卡设置（Sound Blaster 16）与驱动器选择指导。
+  - 修复 `Localizable.xcstrings` 中 Roland CM-32L / MT-32 状态提示及拖放说明的英文遗留。
+- **SC-55 多芯片 ROMset 识别支持**：优化 Sound Canvas ROM 发现与导入管线，拖入置物架时支持自动识别并整包导入 Roland SC-55 v1.21 的全部 5 颗芯片 ROM 文件（`sc55_rom1.bin`、`sc55_rom2.bin`、`sc55_waverom1/2/3.bin`）。
+
+---
+
 ## Version 2.0.0-Beta1 (English)
 
 This landmark Beta release marks the full modernization of Boxer's emulation core, upgrading to the latest **DOSBox-Staging 0.83.0** specifically optimized for Apple Silicon (ARM64). It incorporates deep architectural advancements, C++20 modernizations, native ARM64 dynamic recompiler core, enhanced audio synthesis, and improved FAT filesystem handling while preserving Boxer's native macOS interface, Metal shaders, and CoreAudio integration.

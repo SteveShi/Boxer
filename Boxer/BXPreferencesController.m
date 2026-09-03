@@ -207,10 +207,70 @@ enum {
 }
 
 
-#pragma mark - Managing MT-32 ROMs
+#pragma mark - Managing MT-32 and Sound Canvas ROMs
+
+- (IBAction) switchMIDIDevice: (id)sender
+{
+    [self syncMT32ROMState];
+}
 
 - (void) syncMT32ROMState
 {
+    BOOL isSoundCanvas = (self.deviceSegmentedControl && self.deviceSegmentedControl.selectedSegment == 1);
+    self.MT32ROMDropzone.showsSoundCanvas = isSoundCanvas;
+    
+    if (isSoundCanvas)
+    {
+        BOOL hasSC = [(BXBaseAppController *)[NSApp delegate] hasSoundCanvasROMs];
+        if (hasSC)
+        {
+            self.MT32ROMDropzone.ROMType = BXMT32ROMIsSC55;
+            self.MT32ROMDropzone.title = NSLocalizedString(@"Roland Sound Canvas SC-55 emulation is installed.",
+                                                           @"Title shown in Sound Canvas dropzone when ROMs are installed.");
+            self.missingMT32ROMHelp.hidden = YES;
+            self.realMT32Help.hidden = YES;
+            self.MT32ROMOptions.hidden = NO;
+            self.showMT32LCDMessagesButton.hidden = YES;
+            self.showMT32LCDMessagesDescription.frame = NSMakeRect(58, 20, 330, 48);
+            self.showMT32LCDMessagesDescription.stringValue = NSLocalizedString(@"Music in General MIDI and GS games will be played through your Roland Sound Canvas module.", @"Explanation when Sound Canvas emulation is enabled.");
+        }
+        else
+        {
+            self.MT32ROMDropzone.ROMType = BXMT32ROMTypeUnknown;
+            self.MT32ROMDropzone.title = NSLocalizedString(@"Drop Sound Canvas ROMs here to enable SC-55 emulation.",
+                                                           @"Title shown in Sound Canvas dropzone when no ROMs are present.");
+            NSTextField *titleField = [self.missingMT32ROMHelp viewWithTag: 1];
+            NSTextField *descField = [self.missingMT32ROMHelp viewWithTag: 2];
+            if (titleField)
+            {
+                titleField.stringValue = NSLocalizedString(@"Boxer does not come with Sound Canvas ROMs due to copyright restrictions.", @"Header explaining missing SC-55 ROMs.");
+            }
+            if (descField)
+            {
+                descField.stringValue = NSLocalizedString(@"Drop Roland SC-55 ROM files (such as SC55_v10.ROM) onto this shelf, or click here to open the Sound Canvas ROMs folder in Finder.", @"Explanation of where to find and install SC-55 ROMs.");
+            }
+            self.missingMT32ROMHelp.hidden = NO;
+            self.realMT32Help.hidden = YES;
+            self.MT32ROMOptions.hidden = YES;
+        }
+        return;
+    }
+    
+    // In MT-32 mode, restore MT-32 help text and LCD message controls
+    self.showMT32LCDMessagesButton.hidden = NO;
+    self.showMT32LCDMessagesDescription.frame = NSMakeRect(76, 14, 330, 44);
+    self.showMT32LCDMessagesDescription.stringValue = NSLocalizedString(@"Some games will print secret messages on the MT-32’s LCD panel. When enabled, Boxer will display these on-screen.", @"Explanation of MT-32 LCD message option.");
+    NSTextField *titleField = [self.missingMT32ROMHelp viewWithTag: 1];
+    NSTextField *descField = [self.missingMT32ROMHelp viewWithTag: 2];
+    if (titleField)
+    {
+        titleField.stringValue = NSLocalizedString(@"Boxer does not come with the ROMs needed to play\nMT-32 music, as these are not legal to distribute.", @"Header explaining missing MT-32 ROMs.");
+    }
+    if (descField)
+    {
+        descField.stringValue = NSLocalizedString(@"But if one should stumble across MT-32 ROMs on the internet, then acccidentally download them, one could drag them onto this shelf to bring one’s MT-32 games to life.", @"Humorous explanation of where to find and install MT-32 ROMs.");
+    }
+    
     NSString *title = nil;
     BXMT32ROMType type = BXMT32ROMTypeUnknown;
     BOOL showROMHelp;
@@ -318,24 +378,45 @@ enum {
 
 - (BOOL) handleROMImportFromURLs: (NSArray *)URLs
 {
-    NSError *error;
-    BOOL succeeded = [(BXBaseAppController *)[NSApp delegate] importMT32ROMsFromURLs: URLs error: &error];
+    NSError *error = nil;
+    BOOL succeeded = NO;
+    if (self.deviceSegmentedControl && self.deviceSegmentedControl.selectedSegment == 1)
+    {
+        succeeded = [(BXBaseAppController *)[NSApp delegate] importSoundCanvasROMsFromURLs: URLs error: &error];
+    }
+    else
+    {
+        succeeded = [(BXBaseAppController *)[NSApp delegate] importMT32ROMsFromURLs: URLs error: &error];
+    }
     
     if (!succeeded)
     {
         [self.window.attachedSheet orderOut: self];
-        
-        [self presentError: error
-            modalForWindow: self.window
-                  delegate: nil
-        didPresentSelector: NULL
-               contextInfo: NULL];
+        if (error)
+        {
+            [self presentError: error
+                modalForWindow: self.window
+                      delegate: nil
+            didPresentSelector: NULL
+                   contextInfo: NULL];
+        }
+    }
+    else
+    {
+        [self syncMT32ROMState];
     }
     return succeeded;
 }
 
 - (IBAction) showMT32ROMsInFinder: (id)sender
 {
+    BOOL isSoundCanvas = (self.deviceSegmentedControl && self.deviceSegmentedControl.selectedSegment == 1);
+    if (isSoundCanvas)
+    {
+        [self showSoundCanvasROMsInFinder: sender];
+        return;
+    }
+    
     NSMutableArray *URLsToReveal = [NSMutableArray arrayWithCapacity: 2];
     NSURL *controlROMURL = [(BXBaseAppController *)[NSApp delegate] MT32ControlROMURL];
     if (controlROMURL)
@@ -381,14 +462,20 @@ enum {
     openPanel.allowsMultipleSelection = YES;
     
     openPanel.prompt = NSLocalizedString(@"Import", @"Label for confirm button shown in MT-32 ROM file chooser panel.");
-	openPanel.message = NSLocalizedString(@"Select the MT-32 control ROM and PCM ROM to use.",
-                                          @"Help text shown at the top of MT-32 ROM file chooser panel.");
-	
-    //Note: we use straight file extension comparisons instead
-    //of UTI codes because the ".rom" extension is owned by a
-    //dozen-and-one console emulators and any UTI definition
-    //of our own would just fight with them.
-    openPanel.allowedContentTypes = @[[UTType typeWithFilenameExtension:@"rom"]];
+    
+    BOOL isSoundCanvas = (self.deviceSegmentedControl && self.deviceSegmentedControl.selectedSegment == 1);
+    if (isSoundCanvas)
+    {
+        openPanel.message = NSLocalizedString(@"Select the Sound Canvas SC-55 ROM to use.",
+                                              @"Help text shown at the top of Sound Canvas ROM file chooser panel.");
+        openPanel.allowedContentTypes = @[[UTType typeWithFilenameExtension:@"rom"], [UTType typeWithFilenameExtension:@"bin"]];
+    }
+    else
+    {
+        openPanel.message = NSLocalizedString(@"Select the MT-32 control ROM and PCM ROM to use.",
+                                              @"Help text shown at the top of MT-32 ROM file chooser panel.");
+        openPanel.allowedContentTypes = @[[UTType typeWithFilenameExtension:@"rom"]];
+    }
     
     [openPanel beginSheetModalForWindow: self.window
                       completionHandler: ^(NSInteger result) {
@@ -400,37 +487,41 @@ enum {
 }
 
 
-//Customise the menu item titles in the MT-32 shelf's right-click menu,
+//Customise the menu item titles in the shelf's right-click menu,
 //depending on whether ROMs are present yet or not.
 - (BOOL) validateMenuItem: (NSMenuItem *)menuItem
 {
+    BOOL isSoundCanvas = (self.deviceSegmentedControl && self.deviceSegmentedControl.selectedSegment == 1);
     BOOL hasROMs = (self.MT32ROMDropzone.ROMType != BXMT32ROMTypeUnknown);
     if (menuItem.action == @selector(showMT32ROMFileChooser:))
     {
-        //If we already have a valid ROM, then replace it
-        if (hasROMs)
+        if (isSoundCanvas)
         {
-            menuItem.title = NSLocalizedString(@"Replace MT-32 ROMs…",
-                                               @"Title of menu item for choosing MT-32 ROMs to replace the existing set.");
+            menuItem.title = hasROMs ? NSLocalizedString(@"Replace Sound Canvas ROMs…", @"Title of menu item for replacing SC-55 ROMs.")
+                                     : NSLocalizedString(@"Add Sound Canvas ROMs…", @"Title of menu item for adding SC-55 ROMs.");
         }
         else
         {
-            menuItem.title = NSLocalizedString(@"Add MT-32 ROMs…",
-                                               @"Title of menu item for choosing MT-32 ROMs to add when no ROMs are already present.");
+            menuItem.title = hasROMs ? NSLocalizedString(@"Replace MT-32 ROMs…", @"Title of menu item for choosing MT-32 ROMs to replace the existing set.")
+                                     : NSLocalizedString(@"Add MT-32 ROMs…", @"Title of menu item for choosing MT-32 ROMs to add when no ROMs are already present.");
         }
     }
     else if (menuItem.action == @selector(showMT32ROMsInFinder:))
     {
-        if (hasROMs)
+        if (isSoundCanvas)
         {
-            menuItem.title = NSLocalizedString(@"Show ROMs in Finder",
-                                               @"Title of menu item for revealing the MT-32 ROM folder in Finder, when ROMs are already present.");
+            menuItem.title = hasROMs ? NSLocalizedString(@"Show Sound Canvas ROMs in Finder", @"Title of menu item for revealing SC-55 ROMs.")
+                                     : NSLocalizedString(@"Show Sound Canvas ROM folder in Finder", @"Title of menu item for revealing SC-55 folder.");
         }
         else
         {
-            menuItem.title = NSLocalizedString(@"Show ROM folder in Finder",
-                                               @"Title of menu item for revealing the MT-32 ROM folder in Finder, when no ROMs are present.");
+            menuItem.title = hasROMs ? NSLocalizedString(@"Show ROMs in Finder", @"Title of menu item for revealing the MT-32 ROM folder in Finder, when ROMs are already present.")
+                                     : NSLocalizedString(@"Show ROM folder in Finder", @"Title of menu item for revealing the MT-32 ROM folder in Finder, when no ROMs are present.");
         }
+    }
+    else if (menuItem.action == @selector(showSoundCanvasROMsInFinder:))
+    {
+        menuItem.hidden = isSoundCanvas;
     }
     return YES;    
 }
@@ -614,6 +705,30 @@ enum {
 {
     //Unhighlight the shelf when the drag operation leaves it.
     self.MT32ROMDropzone.highlighted = NO;
+}
+
+@end
+
+
+#pragma mark - Deinterlacing User Defaults Binding
+
+@implementation NSUserDefaults (BXDeinterlacing)
+
++ (NSSet *) keyPathsForValuesAffectingDeinterlacingEnabled
+{
+    return [NSSet setWithObject: @"deinterlacing"];
+}
+
+- (BOOL) deinterlacingEnabled
+{
+    NSString *mode = [self stringForKey: @"deinterlacing"];
+    return mode && ![mode isEqualToString: @"off"];
+}
+
+- (void) setDeinterlacingEnabled: (BOOL)flag
+{
+    NSString *mode = flag ? @"medium" : @"off";
+    [self setObject: mode forKey: @"deinterlacing"];
 }
 
 @end

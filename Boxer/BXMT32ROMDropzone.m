@@ -14,6 +14,7 @@
 @property (strong, nonatomic) CALayer *backgroundLayer;
 @property (strong, nonatomic) CALayer *CM32LLayer;
 @property (strong, nonatomic) CALayer *MT32Layer;
+@property (strong, nonatomic) CALayer *SC55Layer;
 @property (strong, nonatomic) CALayer *highlightLayer;
 @property (strong, nonatomic) CATextLayer *titleLayer;
 
@@ -34,12 +35,14 @@
     self.backgroundLayer    = [CALayer layer];
     self.CM32LLayer         = [CALayer layer];
     self.MT32Layer          = [CALayer layer];
+    self.SC55Layer          = [CALayer layer];
     self.highlightLayer     = [CALayer layer];
     self.titleLayer         = [CATextLayer layer];
     
     self.backgroundLayer.delegate = self;
     self.CM32LLayer.delegate = self;
     self.MT32Layer.delegate = self;
+    self.SC55Layer.delegate = self;
     self.highlightLayer.delegate = self;
     self.titleLayer.delegate = self;
     
@@ -48,23 +51,25 @@
     self.backgroundLayer.contents   = [NSImage imageNamed: @"MT32Shelf"];
     self.CM32LLayer.contents        = [NSImage imageNamed: @"CM32L"];
     self.MT32Layer.contents         = [NSImage imageNamed: @"MT32"];
+    self.SC55Layer.contents         = [NSImage imageNamed: @"SC55"];
     self.highlightLayer.contents    = [NSImage imageNamed: @"MT32ShelfHighlight"];
     
     //Force the shelf and device layers to the same size as the view.
     self.backgroundLayer.frame = NSRectToCGRect(self.bounds);
-    self.CM32LLayer.frame = self.MT32Layer.frame = self.highlightLayer.frame = self.backgroundLayer.bounds;
+    self.CM32LLayer.frame = self.MT32Layer.frame = self.SC55Layer.frame = self.highlightLayer.frame = self.backgroundLayer.bounds;
     
     
     //Start the device layers hidden - we'll unhide them selectively
     //when our type is changed.
     self.CM32LLayer.hidden      = YES;
     self.MT32Layer.hidden       = YES;
+    self.SC55Layer.hidden       = YES;
     self.highlightLayer.hidden  = YES;
     
-    //Add a hidden glow to the CM-32L and MT-32 layers,
+    //Add a hidden glow to the CM-32L, MT-32 and SC-55 layers,
     //which will be unhidden when we highlight.
-    self.MT32Layer.shadowRadius = self.CM32LLayer.shadowRadius = 6;
-    self.MT32Layer.shadowColor  = self.CM32LLayer.shadowColor = CGColorGetConstantColor(kCGColorWhite);
+    self.MT32Layer.shadowRadius = self.CM32LLayer.shadowRadius = self.SC55Layer.shadowRadius = 6;
+    self.MT32Layer.shadowColor  = self.CM32LLayer.shadowColor = self.SC55Layer.shadowColor = CGColorGetConstantColor(kCGColorWhite);
     
 
     //Set up the title text layer to sit 20 pixels in from the shelf edges.
@@ -85,6 +90,7 @@
     
     [self.backgroundLayer addSublayer: self.CM32LLayer];
     [self.backgroundLayer addSublayer: self.MT32Layer];
+    [self.backgroundLayer addSublayer: self.SC55Layer];
     [self.backgroundLayer addSublayer: self.titleLayer];
     [self.backgroundLayer addSublayer: self.highlightLayer];
     
@@ -143,13 +149,25 @@
 - (void) _syncDisplayedDevice
 {
     [CATransaction begin];
-        self.CM32LLayer.hidden      = (self.ROMType & BXMT32ROMIsCM32L) != BXMT32ROMIsCM32L;
-        self.MT32Layer.hidden       = (self.ROMType & BXMT32ROMIsMT32) != BXMT32ROMIsMT32;
-        self.highlightLayer.hidden  = !(self.ROMType == BXMT32ROMTypeUnknown && self.isHighlighted);
+        if (self.showsSoundCanvas)
+        {
+            self.CM32LLayer.hidden      = YES;
+            self.MT32Layer.hidden       = YES;
+            self.SC55Layer.hidden       = (self.ROMType & BXMT32ROMIsSC55) != BXMT32ROMIsSC55;
+            self.highlightLayer.hidden  = !(self.ROMType == BXMT32ROMTypeUnknown && self.isHighlighted);
+        }
+        else
+        {
+            self.SC55Layer.hidden       = YES;
+            self.CM32LLayer.hidden      = (self.ROMType & BXMT32ROMIsCM32L) != BXMT32ROMIsCM32L;
+            self.MT32Layer.hidden       = (self.ROMType & BXMT32ROMIsMT32) != BXMT32ROMIsMT32;
+            self.highlightLayer.hidden  = !(self.ROMType == BXMT32ROMTypeUnknown && self.isHighlighted);
+        }
     [CATransaction commit];
     
-    self.MT32Layer.shadowOpacity    = self.isHighlighted ? 1: 0;
-    self.CM32LLayer.shadowOpacity   = self.isHighlighted ? 1: 0;
+    self.MT32Layer.shadowOpacity    = (!self.showsSoundCanvas && self.isHighlighted) ? 1: 0;
+    self.CM32LLayer.shadowOpacity   = (!self.showsSoundCanvas && self.isHighlighted) ? 1: 0;
+    self.SC55Layer.shadowOpacity    = (self.showsSoundCanvas && self.isHighlighted) ? 1: 0;
     
     [self setNeedsDisplay: YES];
 }
@@ -159,6 +177,15 @@
     if (ROMType != self.ROMType)
     {
         _ROMType = ROMType;
+        [self _syncDisplayedDevice];
+    }
+}
+
+- (void) setShowsSoundCanvas: (BOOL)showsSoundCanvas
+{
+    if (_showsSoundCanvas != showsSoundCanvas)
+    {
+        _showsSoundCanvas = showsSoundCanvas;
         [self _syncDisplayedDevice];
     }
 }

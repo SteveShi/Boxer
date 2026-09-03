@@ -1726,26 +1726,44 @@
         }
       }
     },
-    "502.title": {
-      "comment": "Class = \"NSTextFieldCell\"; title = \"Drive audio:\"; ObjectID = \"502\";",
+    "521.title": {
+      "comment": "Class = \"NSButtonCell\"; title = \"Deinterlace Full-Motion Video (FMV)\"; ObjectID = \"521\";",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Drive audio:"
+            "value": "Deinterlace Full-Motion Video (FMV)"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "驱动器音频:"
+            "value": "全动态视频自适应去隔行 (FMV)"
           }
         }
       }
     },
-    "504.title": {
-      "comment": "Class = \"NSButtonCell\"; title = \"Emulate physical drive seek sounds\"; ObjectID = \"504\";",
+    "524.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"Smooths scanline striping in FMV cutscenes for clearer playback.\"; ObjectID = \"524\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smooths scanline striping in FMV cutscenes for clearer playback."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "消除游戏过场动画中的交错隔行条纹，呈现更平滑清晰的视频画面。"
+          }
+        }
+      }
+    },
+    "531.title": {
+      "comment": "Class = \"NSButtonCell\"; title = \"Emulate physical drive seek sounds\"; ObjectID = \"531\";",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1758,6 +1776,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "模拟物理驱动器寻道音效"
+          }
+        }
+      }
+    },
+    "533.title": {
+      "comment": "Class = \"NSTextFieldCell\"; title = \"Plays authentic mechanical seek and spin sounds when floppy disk or hard disk drives are accessed.\"; ObjectID = \"533\";",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plays authentic mechanical seek and spin sounds when floppy disk or hard disk drives are accessed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "逼真还原复古 3.5 英寸软盘与机械硬盘的磁头寻道音效，在驱动器读写时播放。"
           }
         }
       }
@@ -1776,6 +1812,168 @@
           "stringUnit": {
             "state": "translated",
             "value": "在访达中显示 Sound Canvas ROM"
+          }
+        }
+      }
+    },
+    "Roland Sound Canvas SC-55 emulation is installed.": {
+      "comment": "Title shown in Sound Canvas dropzone when ROMs are installed.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roland Sound Canvas SC-55 emulation is installed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roland Sound Canvas SC-55 仿真已安装。"
+          }
+        }
+      }
+    },
+    "Drop Sound Canvas ROMs here to enable SC-55 emulation.": {
+      "comment": "Title shown in Sound Canvas dropzone when no ROMs are present.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drop Sound Canvas ROMs here to enable SC-55 emulation."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将 Sound Canvas ROM 拖放到此架子上以启用 SC-55 仿真。"
+          }
+        }
+      }
+    },
+    "Boxer does not come with Sound Canvas ROMs due to copyright restrictions.": {
+      "comment": "Header explaining missing SC-55 ROMs.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer does not come with Sound Canvas ROMs due to copyright restrictions."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "由于版权限制，Boxer 未随附运行所需的 Sound Canvas ROM 文件。"
+          }
+        }
+      }
+    },
+    "Drop Roland SC-55 ROM files (such as SC55_v10.ROM) onto this shelf, or click here to open the Sound Canvas ROMs folder in Finder.": {
+      "comment": "Explanation of where to find and install SC-55 ROMs.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drop Roland SC-55 ROM files (such as SC55_v10.ROM) onto this shelf, or click here to open the Sound Canvas ROMs folder in Finder."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请将 Roland SC-55 ROM 文件（如 SC55_v10.ROM）拖放到此置物架上，或点此在“访达”中打开 Sound Canvas ROM 文件夹。"
+          }
+        }
+      }
+    },
+    "Music in General MIDI and GS games will be played through your Roland Sound Canvas module.": {
+      "comment": "Explanation when Sound Canvas emulation is enabled.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Music in General MIDI and GS games will be played through your Roland Sound Canvas module."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支持 General MIDI 和 GS 规范的游戏音乐将通过您的 Roland Sound Canvas 模块播放。"
+          }
+        }
+      }
+    },
+    "Select the Sound Canvas SC-55 ROM to use.": {
+      "comment": "Help text shown at the top of Sound Canvas ROM file chooser panel.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select the Sound Canvas SC-55 ROM to use."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择要使用的 Sound Canvas SC-55 ROM。"
+          }
+        }
+      }
+    },
+    "Replace Sound Canvas ROMs…": {
+      "comment": "Title of menu item for replacing SC-55 ROMs.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace Sound Canvas ROMs…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替换 Sound Canvas ROM…"
+          }
+        }
+      }
+    },
+    "Add Sound Canvas ROMs…": {
+      "comment": "Title of menu item for adding SC-55 ROMs.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Sound Canvas ROMs…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加 Sound Canvas ROM…"
+          }
+        }
+      }
+    },
+    "Show Sound Canvas ROM folder in Finder": {
+      "comment": "Title of menu item for revealing SC-55 folder.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Sound Canvas ROM folder in Finder"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在访达中显示 Sound Canvas ROM 文件夹"
           }
         }
       }

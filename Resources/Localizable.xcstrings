@@ -3991,7 +3991,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Drop MT-32 ROMs here to enable MT-32 emulation."
+            "value": "将 MT-32 ROM 文件拖放到此，以启用 MT-32 仿真。"
           }
         }
       }
@@ -5429,7 +5429,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Import a Game"
+            "value": "导入游戏"
           }
         }
       }
@@ -8671,7 +8671,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Roland CM-32L emulation is installed."
+            "value": "Roland CM-32L 仿真已安装。"
           }
         }
       }
@@ -8712,7 +8712,143 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Roland MT-32 emulation is installed."
+            "value": "Roland MT-32 仿真已安装。"
+          }
+        }
+      }
+    },
+    "Some games will print secret messages on the MT-32’s LCD panel. When enabled, Boxer will display these on-screen.": {
+      "comment": "Explanation of MT-32 LCD message option.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some games will print secret messages on the MT-32’s LCD panel. When enabled, Boxer will display these on-screen."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分游戏会在 MT-32 液晶面板上输出提示消息。启用后，Boxer 将在屏幕上浮动显示这些提示。"
+          }
+        }
+      }
+    },
+    "Roland Sound Canvas SC-55 emulation is installed.": {
+      "comment": "Title shown in Sound Canvas dropzone when ROMs are installed.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roland Sound Canvas SC-55 emulation is installed."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roland Sound Canvas SC-55 仿真已安装。"
+          }
+        }
+      }
+    },
+    "Drop Sound Canvas ROMs here to enable SC-55 emulation.": {
+      "comment": "Title shown in Sound Canvas dropzone when no ROMs are present.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drop Sound Canvas ROMs here to enable SC-55 emulation."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将 Sound Canvas ROM 拖放到此置物架以启用 SC-55 仿真。"
+          }
+        }
+      }
+    },
+    "Music in General MIDI and GS games will be played through your Roland Sound Canvas module.": {
+      "comment": "Explanation when Sound Canvas emulation is enabled.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Music in General MIDI and GS games will be played through your Roland Sound Canvas module."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "支持 General MIDI 和 GS 规范的游戏音乐将通过您的 Roland Sound Canvas 模块播放。"
+          }
+        }
+      }
+    },
+    "Boxer does not come with Sound Canvas ROMs due to copyright restrictions.": {
+      "comment": "Header explaining missing SC-55 ROMs.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer does not come with Sound Canvas ROMs due to copyright restrictions."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "因版权限制，Boxer 未随附 Sound Canvas ROM 文件。"
+          }
+        }
+      }
+    },
+    "Drop Roland SC-55 ROM files (such as SC55_v10.ROM) onto this shelf, or click here to open the Sound Canvas ROMs folder in Finder.": {
+      "comment": "Explanation of where to find and install SC-55 ROMs.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drop Roland SC-55 ROM files (such as SC55_v10.ROM) onto this shelf, or click here to open the Sound Canvas ROMs folder in Finder."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将 SC-55 ROM 文件（如 SC55_v10.ROM）拖放到上方置物架，或点此在“访达”中打开 ROM 文件夹。"
+          }
+        }
+      }
+    },
+    "Boxer does not come with the ROMs needed to play\nMT-32 music, as these are not legal to distribute.": {
+      "comment": "Header explaining missing MT-32 ROMs.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boxer does not come with the ROMs needed to play\nMT-32 music, as these are not legal to distribute."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "因版权分发限制，Boxer 未内置 MT-32 ROM 文件。"
+          }
+        }
+      }
+    },
+    "But if one should stumble across MT-32 ROMs on the internet, then acccidentally download them, one could drag them onto this shelf to bring one’s MT-32 games to life.": {
+      "comment": "Humorous explanation of where to find and install MT-32 ROMs.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "But if one should stumble across MT-32 ROMs on the internet, then acccidentally download them, one could drag them onto this shelf to bring one’s MT-32 games to life."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将 MT-32 ROM 文件拖放到上方置物架，即可激活真实的 MT-32 游戏音效。"
           }
         }
       }

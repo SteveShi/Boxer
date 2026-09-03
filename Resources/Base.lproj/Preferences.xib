@@ -11,6 +11,7 @@
                 <outlet property="MT32ROMDropzone" destination="308" id="311"/>
                 <outlet property="MT32ROMOptions" destination="289" id="328"/>
                 <outlet property="currentGamesFolderItem" destination="145" id="253"/>
+                <outlet property="deviceSegmentedControl" destination="550" id="553"/>
                 <outlet property="filterGallery" destination="71" id="98"/>
                 <outlet property="gamesFolderSelector" destination="142" id="231"/>
                 <outlet property="hotkeyCaptureDescription" destination="368" id="HeE-iz-5DJ"/>
@@ -19,6 +20,8 @@
                 <outlet property="hotkeyCaptureToggle" destination="366" id="Xvg-Sk-grj"/>
                 <outlet property="missingMT32ROMHelp" destination="287" id="329"/>
                 <outlet property="realMT32Help" destination="330" id="335"/>
+                <outlet property="showMT32LCDMessagesButton" destination="316" id="554"/>
+                <outlet property="showMT32LCDMessagesDescription" destination="318" id="555"/>
                 <outlet property="tabView" destination="174" id="438"/>
                 <outlet property="toolbarForTabs" destination="100" id="262"/>
                 <outlet property="window" destination="1" id="52"/>
@@ -121,26 +124,7 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="501">
-                                                    <rect key="frame" x="32" y="15" width="155" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Drive audio:" id="502">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="503">
-                                                    <rect key="frame" x="190" y="14" width="289" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <buttonCell key="cell" type="check" title="Emulate physical drive seek sounds" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="504">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <binding destination="62" name="value" keyPath="values.enableDiskNoise" id="505"/>
-                                                    </connections>
-                                                </button>
+
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" boxType="custom" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="349">
                                                     <rect key="frame" x="-1" y="75" width="534" height="54"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -196,11 +180,11 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70">
-                                            <rect key="frame" x="0.0" y="0.0" width="532" height="396"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="532" height="456"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="71" customClass="BXFilterGallery">
-                                                    <rect key="frame" x="0.0" y="183" width="532" height="213"/>
+                                                    <rect key="frame" x="0.0" y="243" width="532" height="213"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <subviews>
                                                         <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83" customClass="BXFilterPortrait">
@@ -226,7 +210,7 @@
                                                             </connections>
                                                         </button>
                                                         <button focusRingType="none" tag="2" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81" customClass="BXFilterPortrait">
-                                                            <rect key="frame" x="345" y="1" width="128" height="212"/>
+                                                            <rect key="frame" x="345" y="2" width="128" height="212"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <buttonCell key="cell" type="square" title="CRT Display" bezelStyle="shadowlessSquare" image="GalleryTVScanlines" imagePosition="overlaps" alignment="center" focusRingType="none" inset="2" id="88" customClass="BXFilterPortraitCell">
                                                                 <behavior key="behavior" lightByContents="YES"/>
@@ -248,7 +232,7 @@
                                                     </subviews>
                                                 </customView>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75">
-                                                    <rect key="frame" x="118" y="143" width="296" height="18"/>
+                                                    <rect key="frame" x="118" y="185" width="296" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="Start up games in Full Screen mode" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="76">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -260,7 +244,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74">
-                                                    <rect key="frame" x="136" y="109" width="279" height="28"/>
+                                                    <rect key="frame" x="136" y="153" width="340" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="You can switch to and from Full Screen at any time from the View menu or by pressing Cmd-F." id="77">
                                                         <font key="font" metaFont="smallSystem"/>
@@ -269,7 +253,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="73">
-                                                    <rect key="frame" x="118" y="68" width="296" height="18"/>
+                                                    <rect key="frame" x="118" y="120" width="296" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="Always use 4:3 aspect ratio" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="78">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -277,12 +261,33 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <binding destination="62" name="value" keyPath="values.aspectCorrected" id="95"/>
+                                                        <outlet property="nextKeyView" destination="520" id="525"/>
                                                     </connections>
                                                 </button>
                                                 <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="72">
-                                                    <rect key="frame" x="136" y="34" width="279" height="28"/>
+                                                    <rect key="frame" x="136" y="88" width="340" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="When enabled, games will be stretched to match their original aspect ratio on old PC monitors." id="79">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="520">
+                                                    <rect key="frame" x="118" y="55" width="296" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Deinterlace Full-Motion Video (FMV)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="521">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="62" name="value" keyPath="values.deinterlacingEnabled" id="523"/>
+                                                    </connections>
+                                                </button>
+                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="522">
+                                                    <rect key="frame" x="136" y="23" width="340" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Smooths scanline striping in FMV cutscenes for clearer playback." id="524">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -309,34 +314,58 @@
                             </tabViewItem>
                             <tabViewItem label="Audio Preferences" identifier="" id="268" userLabel="Audio Preferences">
                                 <view key="view" id="269" customClass="ADBDelegatedView">
-                                    <rect key="frame" x="0.0" y="0.0" width="532" height="396"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="532" height="456"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="270" userLabel="View">
-                                            <rect key="frame" x="0.0" y="0.0" width="532" height="320"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="532" height="456"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
+                                                <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="550">
+                                                    <rect key="frame" x="116" y="412" width="300" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="551">
+                                                        <font key="font" metaFont="system"/>
+                                                        <segments>
+                                                            <segment label="Roland MT-32" selected="YES"/>
+                                                            <segment label="Roland Sound Canvas" tag="1"/>
+                                                        </segments>
+                                                    </segmentedCell>
+                                                    <connections>
+                                                        <action selector="switchMIDIDevice:" target="-2" id="552"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="308" customClass="BXMT32ROMDropzone">
+                                                    <rect key="frame" x="0.0" y="198" width="532" height="192"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="square" title="[Drop MT-32 ROMs here to enable MT-32 emulation]" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="309">
+                                                        <behavior key="behavior" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                        <connections>
+                                                            <outlet property="menu" destination="295" id="313"/>
+                                                        </connections>
+                                                    </buttonCell>
+                                                </button>
                                                 <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="287">
-                                                    <rect key="frame" x="60" y="0.0" width="412" height="128"/>
+                                                    <rect key="frame" x="60" y="90" width="412" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="275">
-                                                            <rect key="frame" x="17" y="74" width="378" height="34"/>
+                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="275">
+                                                            <rect key="frame" x="56" y="54" width="344" height="32"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="276">
                                                                 <font key="font" metaFont="systemBold"/>
-                                                                <string key="title">Boxer does not come with the ROMs needed to play
-MT-32 music, as these are not legal to distribute.</string>
+                                                                <string key="title">因版权分发限制，Boxer 未内置 MT-32 ROM 文件。</string>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="277">
-                                                            <rect key="frame" x="17" y="23" width="378" height="43"/>
+                                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="277">
+                                                            <rect key="frame" x="56" y="14" width="344" height="36"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="278">
                                                                 <font key="font" metaFont="smallSystem"/>
-                                                                <string key="title">But if one should stumble across MT-32 ROMs on the internet, then acccidentally download them, one could drag them onto this shelf to bring one’s MT-32 games to life.</string>
+                                                                <string key="title">将 MT-32 ROM 文件拖放到上方置物架，即可激活真实的 MT-32 游戏音效。</string>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -344,11 +373,11 @@ MT-32 music, as these are not legal to distribute.</string>
                                                     </subviews>
                                                 </customView>
                                                 <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="330">
-                                                    <rect key="frame" x="60" y="0.0" width="412" height="128"/>
+                                                    <rect key="frame" x="60" y="90" width="412" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="332">
-                                                            <rect key="frame" x="17" y="74" width="378" height="34"/>
+                                                            <rect key="frame" x="56" y="54" width="344" height="32"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Music in supporting games will be played through your Roland MT-32 Sound Module." id="333">
                                                                 <font key="font" metaFont="systemBold"/>
@@ -357,7 +386,7 @@ MT-32 music, as these are not legal to distribute.</string>
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="331">
-                                                            <rect key="frame" x="17" y="23" width="378" height="43"/>
+                                                            <rect key="frame" x="56" y="14" width="344" height="36"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="As an MT-32 owner, you are also a person of taste and distinction." id="334">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -368,11 +397,11 @@ MT-32 music, as these are not legal to distribute.</string>
                                                     </subviews>
                                                 </customView>
                                                 <customView hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="289">
-                                                    <rect key="frame" x="60" y="0.0" width="412" height="128"/>
+                                                    <rect key="frame" x="60" y="90" width="412" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="316">
-                                                            <rect key="frame" x="58" y="89" width="296" height="18"/>
+                                                            <rect key="frame" x="58" y="62" width="296" height="18"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <buttonCell key="cell" type="check" title="Show messages from the MT-32’s LCD" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="317">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -383,7 +412,7 @@ MT-32 music, as these are not legal to distribute.</string>
                                                             </connections>
                                                         </button>
                                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="318">
-                                                            <rect key="frame" x="76" y="40" width="279" height="43"/>
+                                                            <rect key="frame" x="76" y="14" width="330" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Some games will print secret messages on the MT-32’s LCD panel. When enabled, Boxer will display these on-screen." id="319">
                                                                 <font key="font" metaFont="smallSystem"/>
@@ -393,6 +422,30 @@ MT-32 music, as these are not legal to distribute.</string>
                                                         </textField>
                                                     </subviews>
                                                 </customView>
+                                                <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="540">
+                                                    <rect key="frame" x="40" y="78" width="452" height="5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                </box>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="530">
+                                                    <rect key="frame" x="118" y="42" width="296" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Emulate physical drive seek sounds" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="531">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="62" name="value" keyPath="values.enableDiskNoise" id="534"/>
+                                                    </connections>
+                                                </button>
+                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="532">
+                                                    <rect key="frame" x="136" y="12" width="340" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="Plays authentic mechanical seek and spin sounds when floppy disk or hard disk drives are accessed." id="533">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="303">
                                                     <rect key="frame" x="490" y="16" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -403,17 +456,6 @@ MT-32 music, as these are not legal to distribute.</string>
                                                     <connections>
                                                         <action selector="showAudioPreferencesHelp:" target="-2" id="306"/>
                                                     </connections>
-                                                </button>
-                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="308" customClass="BXMT32ROMDropzone">
-                                                    <rect key="frame" x="0.0" y="128" width="532" height="192"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <buttonCell key="cell" type="square" title="[Drop MT-32 ROMs here to enable MT-32 emulation]" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="309">
-                                                        <behavior key="behavior" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                        <connections>
-                                                            <outlet property="menu" destination="295" id="313"/>
-                                                        </connections>
-                                                    </buttonCell>
                                                 </button>
                                             </subviews>
                                         </customView>

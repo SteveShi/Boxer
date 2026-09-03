@@ -104,7 +104,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Launch installer"
+            "value": "启动安装程序"
           }
         }
       }
@@ -284,7 +284,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose game folder…"
+            "value": "选取游戏文件夹…"
           }
         }
       }
@@ -320,7 +320,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Launch game"
+            "value": "启动游戏"
           }
         }
       }
@@ -536,7 +536,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Launch game"
+            "value": "启动游戏"
           }
         }
       }
@@ -716,7 +716,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Launch game"
+            "value": "启动游戏"
           }
         }
       }
@@ -788,7 +788,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Search for cover art"
+            "value": "搜索封面插图"
           }
         }
       }
@@ -824,7 +824,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Please wait while Boxer\nscans your game."
+            "value": "请稍候，Boxer 正在扫描您的游戏。"
           }
         }
       }
@@ -860,7 +860,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Drop your game here."
+            "value": "将游戏拖放到此处。"
           }
         }
       }
@@ -896,7 +896,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Drop a CD-ROM, game folder or disc image\nand Boxer will import it into a new gamebox. "
+            "value": "拖入 CD-ROM、游戏文件夹或光盘映像，\nBoxer 将自动将其导入为新的游戏盒。"
           }
         }
       }
@@ -932,7 +932,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Boxer will now launch an\ninstaller to set up this game."
+            "value": "Boxer 即将启动安装程序以配置此游戏。"
           }
         }
       }
@@ -968,7 +968,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Choose installer:"
+            "value": "选取安装程序："
           }
         }
       }
@@ -1004,7 +1004,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "You can skip the installer if the game is\nalready installed and ready to play."
+            "value": "若游戏已安装完毕可直接运行，您可以跳过安装程序。"
           }
         }
       }
@@ -1112,7 +1112,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Please wait while Boxer\nfinishes importing your game."
+            "value": "请稍候，Boxer 正在完成游戏导入。"
           }
         }
       }
@@ -1148,7 +1148,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Congratulations! Your new gamebox is ready to play."
+            "value": "恭喜！您的新游戏盒已就绪，随时可以开始游玩。"
           }
         }
       }

@@ -144,6 +144,62 @@ NSString * const MT32PCMROMFilenamePattern = @"pcm";
     }
 }
 
+- (BOOL) hasSoundCanvasROMs
+{
+    NSURL *ROMsURL = [self soundCanvasROMURLCreatingIfMissing: NO error: NULL];
+    if (!ROMsURL) return NO;
+    
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtURL: ROMsURL
+                                                   includingPropertiesForKeys: nil
+                                                                      options: NSDirectoryEnumerationSkipsHiddenFiles
+                                                                        error: NULL];
+    for (NSURL *file in files)
+    {
+        NSString *ext = file.pathExtension.lowercaseString;
+        NSString *name = file.lastPathComponent.lowercaseString;
+        if ([ext isEqualToString: @"rom"] || [ext isEqualToString: @"bin"] || [name containsString: @"sc55"] || [name containsString: @"sc-55"] || [name containsString: @"soundcanvas"])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL) importSoundCanvasROMsFromURLs: (NSArray *)URLs error: (NSError **)outError
+{
+    NSURL *destDir = [self soundCanvasROMURLCreatingIfMissing: YES error: outError];
+    if (!destDir) return NO;
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    BOOL importedAny = NO;
+    for (NSURL *URL in URLs)
+    {
+        NSNumber *isDir = nil;
+        [URL getResourceValue: &isDir forKey: NSURLIsDirectoryKey error: nil];
+        if (isDir.boolValue)
+        {
+            NSArray *subfiles = [manager contentsOfDirectoryAtURL: URL includingPropertiesForKeys: nil options: NSDirectoryEnumerationSkipsHiddenFiles error: nil];
+            if ([self importSoundCanvasROMsFromURLs: subfiles error: outError])
+            {
+                importedAny = YES;
+            }
+        }
+        else
+        {
+            NSURL *destFile = [destDir URLByAppendingPathComponent: URL.lastPathComponent];
+            if ([destFile checkResourceIsReachableAndReturnError: nil])
+            {
+                [manager removeItemAtURL: destFile error: nil];
+            }
+            if ([manager copyItemAtURL: URL toURL: destFile error: outError])
+            {
+                importedAny = YES;
+            }
+        }
+    }
+    return importedAny;
+}
+
 
 //The user may have put the ROM files into the folder themselves,
 //so we can't rely on them having a consistent naming scheme.

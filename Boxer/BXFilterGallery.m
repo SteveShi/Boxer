@@ -30,7 +30,7 @@
 	);
 
 	//Also add a bevel line at the bottom of the view
-	NSColor *bevelColor = [NSColor whiteColor];
+	NSColor *bevelColor = [NSColor separatorColor];
 	NSRect bevelRect = self.bounds;
 	bevelRect.size.height = 1.0f;
 	

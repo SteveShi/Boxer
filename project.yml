@@ -713,8 +713,8 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer
         INFOPLIST_FILE: Info.plist
         CODE_SIGN_ENTITLEMENTS: Boxer/Boxer.entitlements
-        MARKETING_VERSION: 2.0.0-Beta1
-        CURRENT_PROJECT_VERSION: 2.0.0-Beta1+20260903
+        MARKETING_VERSION: 2.0.0-Beta2
+        CURRENT_PROJECT_VERSION: 2.0.0-Beta2+20260903
         SUEnableAutomaticChecks: true
         SUScheduledCheckInterval: 86400
         SUFeedURL: https://github.com/SteveShi/Boxer/releases/latest/download/appcast.xml
@@ -1331,8 +1331,8 @@ targets:
         PRODUCT_NAME: "Boxer Standalone"
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer-standalone
         INFOPLIST_FILE: Standalone/Boxer Standalone-Info.plist
-        MARKETING_VERSION: 2.0.0-Beta1
-        CURRENT_PROJECT_VERSION: 2.0.0-Beta1+20260903
+        MARKETING_VERSION: 2.0.0-Beta2
+        CURRENT_PROJECT_VERSION: 2.0.0-Beta2+20260903
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: "-"
         DEVELOPMENT_TEAM: ""
@@ -1393,8 +1393,8 @@ targets:
         PRODUCT_NAME: "Boxer Bundler"
         PRODUCT_BUNDLE_IDENTIFIER: com.steveshi.boxer-bundler
         INFOPLIST_FILE: Bundler/Boxer Bundler-Info.plist
-        MARKETING_VERSION: 2.0.0-Beta1
-        CURRENT_PROJECT_VERSION: 2.0.0-Beta1+20260903
+        MARKETING_VERSION: 2.0.0-Beta2
+        CURRENT_PROJECT_VERSION: 2.0.0-Beta2+20260903
         CODE_SIGN_STYLE: Manual
         CODE_SIGN_IDENTITY: "-"
         DEVELOPMENT_TEAM: ""

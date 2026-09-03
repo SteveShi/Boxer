@@ -32,7 +32,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "完成 importing"
+            "value": "完成导入"
           }
         }
       }
@@ -68,7 +68,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "重新启动应用 installer"
+            "value": "重新运行安装程序"
           }
         }
       }
@@ -104,7 +104,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Has the installer finished setting up the game?"
+            "value": "安装程序是否已完成游戏配置？"
           }
         }
       }
@@ -140,7 +140,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "If so, then we’re ready to finish importing."
+            "value": "如果是，即可完成导入。"
           }
         }
       }
@@ -176,7 +176,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "If you’re asked where to install the game:"
+            "value": "如果询问游戏安装路径："
           }
         }
       }
@@ -212,7 +212,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select anywhere on 驱动器 C."
+            "value": "选择 C 盘上的任意位置。"
           }
         }
       }
@@ -248,7 +248,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Select 声音 Blaster 16 with IRQ 7."
+            "value": "选择 Sound Blaster 16（IRQ 为 7）。"
           }
         }
       }
@@ -284,7 +284,7 @@
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "If you’re asked for soundcard settings:"
+            "value": "如果询问声卡设置："
           }
         }
       }
