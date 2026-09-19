@@ -1,5 +1,41 @@
 # Boxer Changelog / 更新日志
 
+## Version 2.0.0-Beta3 (English)
+
+This is a stability and correctness release. Following a full code audit of the DOSBox-Staging 0.83.0 integration, this version fixes several crash bugs (including one that could abort on launch with certain games such as the X-COM Demo), eliminates cross-thread data races in the audio, video and shader subsystems, and hardens error handling throughout the emulation pipeline. No new features — just a much more solid foundation.
+
+### Key Changes
+- **Launch Crash with Certain Games Fixed**: Fixed an out-of-bounds array access in the DOS shell integration that aborted at startup under hardened builds when a batch file or program path did not begin with an uppercase drive letter (reported with the X-COM Demo).
+- **Shader Panel Crash Fixed**: Fixed a guaranteed nil-unwrapping crash in the shader model's name cache and locked all shader-list state behind a lock, making shader enumeration and reloading thread-safe.
+- **MIDI Robustness**: Oversized System Exclusive messages are now clamped to the MIDI packet buffer instead of risking a stack overflow, and disconnect errors from CoreMIDI are logged instead of silently ignored.
+- **Thread-Safe Emulator Control**: CPU speed, auto-speed, turbo and core-mode changes made from the UI are now forwarded to the emulation thread instead of mutating DOSBox state concurrently; video tint/composite/hue settings likewise. Frame callbacks are always delivered on the main thread, so background emulation can no longer touch AppKit views.
+- **Per-Session Working Directory**: The emulator no longer changes the process-wide working directory. Each session tracks its own base path, and drive paths are resolved to absolute at mount time — eliminating interference between sessions and a main-thread-vs-emulation-thread filesystem race.
+- **Cleaner Shutdown**: Session cleanup now waits (briefly, with a cap) for the emulation thread to exit before deleting the session's temporary folder, narrowing a window where DOSBox could still be writing to deleted files.
+- **MT-32 ROM Error Handling**: Missing or unreadable MT-32 ROM files now surface a proper error dialog instead of crashing, and partial initialization is cleaned up without leaks.
+- **Memory Leak Fixes**: Directory-enumeration handles that DOSBox never closed are now released during emulator teardown; the emulator instance no longer leaks if initialization throws.
+- **Better Error Reporting**: Configuration parse/write failures, drive-mount rollback failures, gamebox cleanup failures and SDL init failures are now logged (or surfaced as unrecoverable errors) instead of failing silently.
+- **Architecture Cleanup**: The coalface bridge header no longer exposes DOSBox internals to the whole app; the mouse bridge, key buffer, session crash reporting, capture-file handling and printer formatting were split into focused files.
+
+---
+
+## 版本 2.0.0-Beta3 (中文)
+
+本版本是一个稳定性与正确性专项版本。在对 DOSBox-Staging 0.83.0 集成层进行全面代码审计后，本版修复了多处崩溃缺陷（包括部分游戏如《X-COM Demo》启动即崩溃的问题），消除了音频、视频与着色器子系统中的跨线程数据竞争，并全面强化了仿真管线的错误处理。没有新功能——只有更扎实的地基。
+
+### 主要更新
+- **修复部分游戏启动崩溃**：修复 DOS Shell 集成中的数组越界访问——当批处理文件或程序路径的首字符并非大写盘符时，加固构建会直接中止（实测由《X-COM Demo》触发）。
+- **修复着色器面板崩溃**：修复着色器模型名称缓存中必然触发的强解包崩溃，并为全部着色器列表状态加锁，着色器枚举与重载自此线程安全。
+- **MIDI 稳健性**：超长 System Exclusive 消息现在会按 MIDI 包缓冲区容量截断，杜绝栈溢出隐患；CoreMIDI 断连错误改为记录日志而非静默忽略。
+- **模拟器控制线程安全**：界面上的 CPU 速度、自动提速、极速模式与核心模式切换现在会转发至模拟线程执行，不再与 DOSBox 并发改状态；显示色调/合成/色相设置同理。帧回调一律投递到主线程，后台模拟再也不会触碰 AppKit 视图。
+- **会话独立工作目录**：模拟器不再修改进程级工作目录。每个会话维护各自的基准路径，且盘符路径在挂载时即解析为绝对路径——彻底消除多会话相互干扰与主线程对模拟线程文件系统的竞态。
+- **更干净的关闭流程**：会话清理时会（有上限地）等待模拟线程退出后再删除临时目录，收窄了 DOSBox 仍在写文件却被删除的竞态窗口。
+- **MT-32 ROM 错误处理**：MT-32 ROM 文件缺失或不可读时弹出规范错误提示而非直接崩溃，半初始化状态也会无泄漏地清理。
+- **内存泄漏修复**：DOSBox 未关闭的目录枚举句柄会在模拟器收尾时统一释放；初始化抛异常时模拟器实例不再泄漏。
+- **更完善的错误上报**：配置解析/写回失败、驱动器挂载回滚失败、游戏盒清理失败与 SDL 初始化失败现在都会记录日志（或作为不可恢复错误上报），不再静默吞掉。
+- **架构清理**：coalface 桥接头文件不再向全应用暴露 DOSBox 内部类型；鼠标桥接、键盘缓冲、会话崩溃报告、捕获文件处理与打印机格式化均拆分为职责单一的文件。
+
+---
+
 ## Version 2.0.0-Beta2 (English)
 
 This release brings refined skeuomorphic design, visual layout polish, and complete Chinese localization for Boxer. It introduces bespoke vector-rendered 3D hardware artwork for Roland Sound Canvas (SC-55), resolves UI layout overlap and baseline cutting across Preferences, and completes full Chinese translations across game import workflows.
