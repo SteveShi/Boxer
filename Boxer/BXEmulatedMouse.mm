@@ -8,13 +8,8 @@
 
 #import "BXEmulatedMouse.h"
 
-#import "config.h"
-#import "video.h"
 #import "mouse.h"
-
-
-#import "hardware/input/private/mouse_common.h"
-#import "hardware/input/private/mouse_interfaces.h"
+#import "BXCoalface.h"
 
 #pragma mark -
 #pragma mark Private method declarations
@@ -72,8 +67,8 @@
 		if (!flag) [self clearInput];
 		
 		_active = flag;
-		MOUSE_NotifyWindowActive(flag);
-		MOUSE_UpdateGFX();
+		boxer_mouseNotifyWindowActive(flag);
+		boxer_mouseUpdateGFX();
 	}
 }
 
@@ -82,7 +77,7 @@
 	if (_locked != locked)
 	{
 		_locked = locked;
-		MOUSE_UpdateGFX();
+		boxer_mouseUpdateGFX();
 	}
 }
 
@@ -91,7 +86,7 @@
 	if (_tracksWhileUnlocked != tracks)
 	{
 		_tracksWhileUnlocked = tracks;
-		MOUSE_UpdateGFX();
+		boxer_mouseUpdateGFX();
 	}
 }
 
@@ -105,18 +100,19 @@
 		NSPoint canvasDelta = NSMakePoint(delta.x * canvas.size.width,
 										  delta.y * canvas.size.height);
 		
-		int32_t resX = (int32_t)mouse_shared.resolution_x;
-		int32_t resY = (int32_t)mouse_shared.resolution_y;
+		int32_t resX = 320;
+		int32_t resY = 200;
+		boxer_mouseScreenResolution(&resX, &resY);
 		if (resX < 2) resX = 320;
 		if (resY < 2) resY = 200;
 
 		int32_t absX = (int32_t)round(point.x * (resX - 1));
 		int32_t absY = (int32_t)round(point.y * (resY - 1));
 		
-		MOUSE_EventMoved((float)canvasDelta.x,
-						 (float)canvasDelta.y,
-						 absX,
-						 absY);
+		boxer_mouseEventMoved((float)canvasDelta.x,
+							  (float)canvasDelta.y,
+							  absX,
+							  absY);
 	}
 }
 
@@ -142,7 +138,7 @@
 	{
 		if (pressed)
 		{
-			MOUSE_EventButton(static_cast<MouseButtonId>(button), true);
+			boxer_mouseEventButton((int)button, true);
             self.pressedButtons |= buttonMask;
             
             _lastButtonDown[button] = [NSDate timeIntervalSinceReferenceDate];
@@ -169,9 +165,9 @@
             }
             else
             {
-                MOUSE_EventButton(static_cast<MouseButtonId>(button), false);
+                boxer_mouseEventButton((int)button, false);
                 self.pressedButtons &= ~buttonMask;
-                
+
                 _lastButtonDown[button] = 0;
             }
         }

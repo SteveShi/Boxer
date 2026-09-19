@@ -125,6 +125,8 @@ targets:
       - path: Boxer/BXScroller.m
       - path: Boxer/BXSession.m
       - path: Boxer/BXSession+BXAudioControls.m
+      - path: Boxer/BXSession+BXCaptures.m
+      - path: Boxer/BXSession+BXCrashReporting.m
       - path: Boxer/BXSession+BXDragDrop.m
       - path: Boxer/BXSession+BXFileManagement.m
       - path: Boxer/BXSession+BXPrinting.m
@@ -182,6 +184,8 @@ targets:
       - path: Boxer/NSApplication+BXScripting.m
       - path: "Other Sources/BGHUDAppKit/BGThemeManager.m"
       - path: Boxer/Printing/BXEmulatedPrinter.mm
+      - path: Boxer/Printing/BXEmulatedPrinterPrivate.h
+      - path: Boxer/Printing/BXEmulatedPrinter+BXFormatting.mm
       - path: Boxer/Printing/BXPrintSession.m
       - path: Boxer/Printing/BXPrintStatusPanelController.m
       - path: Boxer/Rendering/BXVideoFrame.m
@@ -810,6 +814,8 @@ targets:
       - path: Boxer/BXScroller.m
       - path: Boxer/BXSession.m
       - path: Boxer/BXSession+BXAudioControls.m
+      - path: Boxer/BXSession+BXCaptures.m
+      - path: Boxer/BXSession+BXCrashReporting.m
       - path: Boxer/BXSession+BXDragDrop.m
       - path: Boxer/BXSession+BXFileManagement.m
       - path: Boxer/BXSession+BXPrinting.m
@@ -854,6 +860,8 @@ targets:
       - path: Boxer/NSAlert+BXAlert.m
       - path: "Other Sources/BGHUDAppKit/BGThemeManager.m"
       - path: Boxer/Printing/BXEmulatedPrinter.mm
+      - path: Boxer/Printing/BXEmulatedPrinterPrivate.h
+      - path: Boxer/Printing/BXEmulatedPrinter+BXFormatting.mm
       - path: Boxer/Printing/BXPrintSession.m
       - path: Boxer/Printing/BXPrintStatusPanelController.m
       - path: Boxer/Rendering/BXVideoFrame.m

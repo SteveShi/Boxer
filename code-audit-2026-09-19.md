@@ -183,3 +183,20 @@ UI 目录（`DOS window/`、`Application Delegate/`）**零 DOSBox 依赖**，`B
 - **修复**：索引做范围校验 + `toupper`，无效路径按「无驱动器」处理（nil drive 对下游 `_filesystemURLForDOSPath:` 安全，且不影响 `_didExecuteFileAtDOSPath:` 的配对语义）
 - 重建后 X-COM Demo 正常进入 MicroProse 片头，实机验证通过
 - 附带发现：Debug 构建的 libc++ 加固会系统性暴露此类裸数组索引 UB，`Drives[]`/`dosPath[0]` 同类写法值得后续专项排查（本次已核查全部 `driveIndex` 计算点，其余均经 `_indexOfDriveLetter:`（有断言）或 `DOS_MakeName` 成功校验后访问）
+
+---
+
+## 十二、第五批修复记录：M15-M18 架构拆分（2026-09-20，Boxer + Standalone 双 target 构建验证通过）
+
+| 项 | 改动 |
+|---|---|
+| M18 | **`Boxer/BXCoalface.h` 全面瘦身**：移除 `#import "config.h"/"video.h"` 与全部 GFX_*/E_Exit/MIDI_Available/OpenCaptureFile 重映射宏（0.83 集成后这些宏只剩死重——真身转发函数已在 BXCoalface.mm 定义，DOSBox 侧用的是子模块自己的 `include/BXCoalface.h`）；类型全部本地定义（`Bitu` 等 + 复用 0.83 的 `GFX_CALLBACK_DEFINED` 保护块）。**BXEmulatedMouse.mm 脱离 DOSBox 私有头**：`mouse_shared.resolution` 与 MOUSE_* 事件 API 改经 5 个新 coalface 垫片（`boxer_mouseScreenResolution`/`NotifyWindowActive`/`UpdateGFX`/`EventMoved`/`EventButton`），私有头只留在 BXCoalface.mm。**BXKeyBuffer.mm** 清掉僵尸的 dosbox.h/bios.h/pic.h 依赖（引用只剩一行注释死代码）。BXCoalface.mm 同步移除 `#undef` 舞蹈 |
+| M15 | **BXSession 崩溃报告拆分**：`_writeCrashDumpForEmulatorException:` + `_reportEmulatorException:`（约 180 行）及两个静态辅助函数迁入新文件 `BXSession+BXCrashReporting.m`，声明入 `BXSessionPrivate.h` |
+| M17 | **BXSession+BXFileManagement 捕获段拆分**：`URLForCaptureOfType:` + `emulator:openCaptureFileOfType:extension:` 迁入新文件 `BXSession+BXCaptures(.h/.m)`，原分类相应删除；`BXSessionPrivate.h` 统一引入 |
+| M16 | **BXEmulatedPrinter 拆分**：私有常量/宏/类扩展（~186 行）抽到 `BXEmulatedPrinterPrivate.h`；Formatting + Character mapping 段（~630 行）迁入新分类 `BXEmulatedPrinter+BXFormatting.mm`。主文件从 2547 行降至 ~1920 行，保留 ESC/P 字节流解释器与打印会话管线 |
+
+新增文件（均已注册进 project.yml 两个 target 并 `xcodegen generate`）：`BXSession+BXCrashReporting.m`、`BXSession+BXCaptures.h/.m`、`BXEmulatedPrinterPrivate.h`、`BXEmulatedPrinter+BXFormatting.mm`。
+
+**验证**：`xcodebuild -scheme Boxer` 与 `-scheme "Boxer Standalone"`（Debug）均 BUILD SUCCEEDED。
+
+**审计至此全部收口**：4 HIGH ✅、18/18 MEDIUM ✅（含架构拆分的安全子集：category 抽取 + 头文件解耦；更深的类型级拆分——如打印机解释器独立类、BXSession 策略对象化——已具备文件结构基础，可在后续迭代继续推进）。

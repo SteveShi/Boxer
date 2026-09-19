@@ -13,6 +13,8 @@
 #import "cross.h"
 #import "shell.h"
 #import "hardware/input/mouse.h"
+#import "hardware/input/private/mouse_common.h"
+#import "hardware/input/private/mouse_interfaces.h"
 #import "utils/rect.h"
 #import "gui/private/common.h"
 #import "dosbox.h"
@@ -578,6 +580,34 @@ bool boxer_isMouseCaptured()
 	return false;
 }
 
+void boxer_mouseScreenResolution(int32_t *outResolutionX, int32_t *outResolutionY)
+{
+	//Implemented here (rather than in BXEmulatedMouse) so that the private
+	//mouse_common.h header stays out of Boxer's mouse bridge entirely.
+	if (outResolutionX) *outResolutionX = mouse_shared.resolution_x;
+	if (outResolutionY) *outResolutionY = mouse_shared.resolution_y;
+}
+
+void boxer_mouseNotifyWindowActive(bool windowActive)
+{
+	MOUSE_NotifyWindowActive(windowActive);
+}
+
+void boxer_mouseUpdateGFX()
+{
+	MOUSE_UpdateGFX();
+}
+
+void boxer_mouseEventMoved(float deltaX, float deltaY, int32_t absoluteX, int32_t absoluteY)
+{
+	MOUSE_EventMoved(deltaX, deltaY, absoluteX, absoluteY);
+}
+
+void boxer_mouseEventButton(int buttonId, bool pressed)
+{
+	MOUSE_EventButton(static_cast<MouseButtonId>(buttonId), pressed);
+}
+
 void boxer_setCapsLockActive(bool active)
 {
 	BXEmulator *emulator = [BXEmulator currentEmulator];
@@ -679,7 +709,7 @@ void boxer_die(const char *functionName, const char *fileName, int lineNumber, c
 
 void restart_program(std::vector<std::string> & parameters) {
     // TODO: re-write?
-    E_Exit("Restarting not implemented!");
+    boxer_die(__PRETTY_FUNCTION__, __FILE__, __LINE__, "Restarting not implemented!");
 }
 
 
@@ -704,13 +734,6 @@ std::vector<std::string> MAPPER_GetEventNames(const std::string &prefix) {return
 #include "programs.h"
 #include <string>
 #include "mouse.h"
-
-#undef GFX_Events
-#undef GFX_StartUpdate
-#undef GFX_EndUpdate
-#undef GFX_SetSize
-#undef GFX_GetRGB
-#undef GFX_GetBestMode
 
 #include "gui/private/common.h"
 #include "gui/render/render_backend.h"

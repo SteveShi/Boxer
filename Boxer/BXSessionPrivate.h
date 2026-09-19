@@ -12,6 +12,7 @@
 #import "BXSession+BXUIControls.h"
 #import "BXSession+BXAudioControls.h"
 #import "BXSession+BXFileManagement.h"
+#import "BXSession+BXCaptures.h"
 #import "BXSession+BXPrinting.h"
 #import "BXSessionError.h"
 #import "ADBUserNotificationDispatcher.h"
@@ -121,6 +122,11 @@ extern ADBUserNotificationType const BXGameImportedNotificationType NS_SWIFT_NAM
 
 /// Called if DOSBox encounters an unrecoverable error and throws an exception.
 - (void) _reportEmulatorException: (NSException *)exception;
+
+/// Writes a human-readable crash dump for the exception to the user's
+/// Application Support folder, returning the dump's URL (or nil on failure).
+/// Implemented in BXSession+BXCrashReporting.
+- (NSURL *) _writeCrashDumpForEmulatorException: (NSException *)exception;
 
 /// Starts the emulator on a background thread and reports unrecoverable emulator exceptions on the main thread.
 - (void) _startEmulatorInBackground;

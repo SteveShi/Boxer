@@ -7,9 +7,6 @@
 
 #import "BXKeyBuffer.h"
 #import "BXCoalface.h"
-#import "dosbox.h"
-#import "bios.h"
-#import "pic.h"
 
 //For unicode constants
 #import <Cocoa/Cocoa.h>
@@ -321,9 +318,7 @@
 - (BOOL) addKeyForBIOSKeyCode: (UInt16)key
 {
     NSAssert(key != BXNoKey, @"Unrecognised key passed to addKeyForBIOSKeyCode:.");
-    
-    //return BIOS_AddKeyToBuffer(key);
-    
+
     NSUInteger nextAddIndex = (_addIndex + 1) % BXKeyBufferSize;
     
     if (nextAddIndex != _readIndex)
