@@ -30,3 +30,7 @@ swiftpm/
 .freebuff/
 .claude/
 scratch/
+.workbuddy/
+
+# ─── 本地文档（不入库）──────────────────────────────────────────────
+code-audit-*.md
