@@ -987,7 +987,13 @@ NSString * const BXGameboxErrorDomain = @"BXGameboxErrorDomain";
         //If for some reason we couldn't copy or symlink, clean up our temporary folder before we bail out.
         if (!succeeded)
         {
-            [manager removeItemAtURL: intermediateBaseURL error: NULL];
+            NSError *cleanupError = nil;
+            if (![manager removeItemAtURL: intermediateBaseURL error: &cleanupError])
+            {
+                //A leftover half-built gamebox package can confuse subsequent
+                //open/rebuild attempts, so don't let cleanup failures vanish.
+                NSLog(@"[Boxer] Failed to clean up intermediate gamebox folder at %@: %@", intermediateBaseURL, cleanupError);
+            }
             return nil;
         }
     }

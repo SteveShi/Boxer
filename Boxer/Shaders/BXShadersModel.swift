@@ -51,28 +51,36 @@ public class BXShadersModel : NSObject {
     public static let shared : BXShadersModel = {
         return BXShadersModel()
     }()
-    
+
+    // The singleton is exposed to ObjC and may be reached from any thread;
+    // guard all mutable state instead of relying on nonisolated(unsafe).
+    private let stateLock = NSLock()
+
     private var systemShaders: [BXShaderModel]
     private var customShaders: [BXShaderModel]
-    
+
     override init() {
         systemShaders = BXShadersModel.loadSystemShaders()
         customShaders = BXShadersModel.loadCustomShaders()
         super.init()
     }
-    
+
     @objc
     public func reload() {
-        customShaders       = BXShadersModel.loadCustomShaders()
-        _allShaderNames     = nil
-        _customShaderNames  = nil
+        let reloadedCustomShaders = BXShadersModel.loadCustomShaders()
+        stateLock.lock()
+        customShaders      = reloadedCustomShaders
+        _allShaderNames    = nil
+        _customShaderNames = nil
+        stateLock.unlock()
         NotificationCenter.default.post(name: BXShadersModel.shaderModelCustomShadersDidChange, object: nil)
     }
     
     private var _systemShaderNames: [String]?
-    
+
     @objc
     public var systemShaderNames: [String] {
+        stateLock.lock(); defer { stateLock.unlock() }
         if _systemShaderNames == nil {
             _systemShaderNames = systemShaders.map { $0.name }
         }
@@ -80,9 +88,10 @@ public class BXShadersModel : NSObject {
     }
 
     private var _customShaderNames: [String]?
-    
+
     @objc
     public var customShaderNames: [String] {
+        stateLock.lock(); defer { stateLock.unlock() }
         if _customShaderNames == nil {
             _customShaderNames = customShaders.map { $0.name }
         }
@@ -90,11 +99,12 @@ public class BXShadersModel : NSObject {
     }
 
     private var _allShaderNames: [String]?
-    
+
     @objc
     public var allShaderNames: [String] {
+        stateLock.lock(); defer { stateLock.unlock() }
         if _allShaderNames == nil {
-            
+            _allShaderNames = systemShaders.map { $0.name } + customShaders.map { $0.name }
         }
         return _allShaderNames!
     }
@@ -106,8 +116,11 @@ public class BXShadersModel : NSObject {
                 let shader = self[name] {
                 return shader
             }
-            
-            return self["Pixellate"]!
+
+            //Fall back to any available shader rather than crashing when the
+            //bundled "Pixellate" preset is missing or renamed.
+            return self["Pixellate"] ?? systemShaders.first ?? customShaders.first
+                ?? BXShaderModel(url: URL(fileURLWithPath: "/nonexistent"))
         }
         
         set {
@@ -134,6 +147,7 @@ public class BXShadersModel : NSObject {
     }
     
     subscript(name: String) -> BXShaderModel? {
+        stateLock.lock(); defer { stateLock.unlock() }
         return systemShaders.first(where: { $0.name == name }) ?? customShaders.first(where: { $0.name == name })
     }
     
@@ -246,9 +260,8 @@ public class BXShadersModel : NSObject {
                 var res = [String:Double]()
                 for param in state.split(separator: ";") {
                     let vals = param.split(separator: "=")
-                    if let d = Double(vals[1]) {
-                        res[String(vals[0])] = d
-                    }
+                    guard vals.count == 2, let d = Double(vals[1]) else { continue }
+                    res[String(vals[0])] = d
                 }
                 return res
             }

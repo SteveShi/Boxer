@@ -494,7 +494,13 @@ static void _didReceiveMIDIInput(const MIDIPacketList *packets, void *portContex
     if (self.isListening)
     {
         [self _cancelTimeout];
-        MIDIPortDisconnectSource(_port, _source);
+        OSStatus disconnectStatus = MIDIPortDisconnectSource(_port, _source);
+        if (disconnectStatus != noErr)
+        {
+            //A failed disconnect usually means the endpoint already vanished,
+            //but log it so stale connections aren't a mystery later.
+            NSLog(@"[Boxer] MIDIPortDisconnectSource failed with status %d", (int)disconnectStatus);
+        }
     }
     _notificationThread = nil;
     _port = (MIDIObjectRef)0;

@@ -1364,9 +1364,16 @@ static NSArray<NSURL*>* removeUserDirs(NSArray<NSURL*>* oldArrs)
                 
                 if (replacedDrive)
                 {
-                    [self.emulator mountDrive: replacedDrive error: NULL];
-                    
-                    if (replacedDriveWasCurrent && self.emulator.isAtPrompt)
+                    NSError *rollbackError = nil;
+                    BOOL rolledBack = [self.emulator mountDrive: replacedDrive error: &rollbackError];
+                    if (!rolledBack)
+                    {
+                        //The old drive letter vanishes silently if rollback
+                        //also fails: make sure that isn't invisible to users.
+                        NSLog(@"[Boxer] Failed to restore previously-mounted drive after failed mount: %@", rollbackError);
+                    }
+
+                    if (rolledBack && replacedDriveWasCurrent && self.emulator.isAtPrompt)
                     {
                         [self.emulator changeToDriveLetter: replacedDrive.letter];
                     }
@@ -1579,6 +1586,10 @@ static NSArray<NSURL*>* removeUserDirs(NSArray<NSURL*>* oldArrs)
 	[center removeObserver: self name: NSWorkspaceDidMountNotification		object: workspace];
 	[center removeObserver: self name: NSWorkspaceDidUnmountNotification	object: workspace];
 	[center removeObserver: self name: NSWorkspaceWillUnmountNotification	object: workspace];
+
+	[[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: NSApplicationDidBecomeActiveNotification
+                                                  object: NSApp];
 }
 
 - (void) _volumeDidMount: (NSNotification *)theNotification

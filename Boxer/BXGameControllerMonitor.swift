@@ -10,10 +10,19 @@ import Cocoa
 import GameController
 import os.log
 
-private let kJoystickButton1 = BXEmulatedJoystickButton(rawValue: 1) ?? BXEmulatedJoystickButton(rawValue: 0)!
-private let kJoystickButton2 = BXEmulatedJoystickButton(rawValue: 2) ?? BXEmulatedJoystickButton(rawValue: 0)!
-private let kJoystickButton3 = BXEmulatedJoystickButton(rawValue: 3) ?? BXEmulatedJoystickButton(rawValue: 0)!
-private let kJoystickButton4 = BXEmulatedJoystickButton(rawValue: 4) ?? BXEmulatedJoystickButton(rawValue: 0)!
+//The ObjC enum defines joystick buttons 1-4. If that enum ever changes,
+//fail loudly at first use with a clear message instead of a bare IUO crash.
+private func requiredJoystickButton(_ rawValue: UInt) -> BXEmulatedJoystickButton {
+    guard let button = BXEmulatedJoystickButton(rawValue: rawValue) else {
+        preconditionFailure("BXEmulatedJoystickButton is missing rawValue \(rawValue); the ObjC enum has changed.")
+    }
+    return button
+}
+
+private let kJoystickButton1 = requiredJoystickButton(1)
+private let kJoystickButton2 = requiredJoystickButton(2)
+private let kJoystickButton3 = requiredJoystickButton(3)
+private let kJoystickButton4 = requiredJoystickButton(4)
 
 @MainActor
 @objc(BXGameControllerMonitor)

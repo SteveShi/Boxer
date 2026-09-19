@@ -226,16 +226,22 @@ NSString * const BXMT32PCMROMTypeKey = @"BXMT32PCMROMType";
     if (_PCMROMImage)
     {
         MT32Emu::ROMImage::freeROMImage(_PCMROMImage);
-        delete _PCMROMHandle;
         _PCMROMImage = NULL;
+    }
+    if (_PCMROMHandle)
+    {
+        delete _PCMROMHandle;
         _PCMROMHandle = NULL;
     }
-    
+
     if (_controlROMImage)
     {
         MT32Emu::ROMImage::freeROMImage(_controlROMImage);
-        delete _controlROMHandle;
         _controlROMImage = NULL;
+    }
+    if (_controlROMHandle)
+    {
+        delete _controlROMHandle;
         _controlROMHandle = NULL;
     }
 }
@@ -342,12 +348,32 @@ NSString * const BXMT32PCMROMTypeKey = @"BXMT32PCMROMType";
     _reportHandler = new BXEmulatedMT32ReportHandler(self);
     _synth = new MT32Emu::Synth(_reportHandler);
     
-    _PCMROMHandle = new MT32Emu::FileStream();
-    _PCMROMHandle->open(self.PCMROMURL.fileSystemRepresentation);
-    
     _controlROMHandle = new MT32Emu::FileStream();
-    _controlROMHandle->open(self.controlROMURL.fileSystemRepresentation);
-    
+    if (!_controlROMHandle->open(self.controlROMURL.fileSystemRepresentation))
+    {
+        if (outError)
+        {
+            *outError = [NSError errorWithDomain: BXEmulatedMT32ErrorDomain
+                                            code: BXEmulatedMT32InvalidROM
+                                        userInfo: @{ NSURLErrorKey: self.controlROMURL }];
+        }
+        [self close];
+        return NO;
+    }
+
+    _PCMROMHandle = new MT32Emu::FileStream();
+    if (!_PCMROMHandle->open(self.PCMROMURL.fileSystemRepresentation))
+    {
+        if (outError)
+        {
+            *outError = [NSError errorWithDomain: BXEmulatedMT32ErrorDomain
+                                            code: BXEmulatedMT32InvalidROM
+                                        userInfo: @{ NSURLErrorKey: self.PCMROMURL }];
+        }
+        [self close];
+        return NO;
+    }
+
     _controlROMImage = MT32Emu::ROMImage::makeROMImage(_controlROMHandle);
     _PCMROMImage = MT32Emu::ROMImage::makeROMImage(_PCMROMHandle);
     

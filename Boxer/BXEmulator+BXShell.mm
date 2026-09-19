@@ -477,8 +477,6 @@ nil];
 	//Normalise the command to lowercase
 	NSString *command = originalCommand.lowercaseString;
 
-	NSLog(@"BXDIAG _handleCommand: '%@' args:'%@' matched=%d", command, originalArgumentString, ([_commandList objectForKey: command] != nil));
-
 	//Check if the command matched one of our aliases
 	NSString *aliasedCommand = [_commandAliases objectForKey: command];
 	if (aliasedCommand)
@@ -654,9 +652,21 @@ nil];
                      withArguments: (const char *)arguments
                        isBatchFile: (BOOL)isBatchFile
 {
-    char driveIndex = dosPath[0] - 'A';
-    DOS_Drive *dosboxDrive = Drives[driveIndex].get();
-	BXDrive *drive = [self _driveMatchingDOSBoxDrive: dosboxDrive];
+    //The DOS path nominally starts with a drive letter, but game autoexecs
+    //have been known to throw oddities at us (empty paths, lowercase or
+    //non-ASCII first bytes). An out-of-range index aborts under libc++
+    //hardening (or reads garbage without it), so validate before lookup and
+    //treat an unrecognised path as drive-less.
+    DOS_Drive *dosboxDrive = NULL;
+    if (dosPath != NULL && dosPath[0] != '\0')
+    {
+        NSInteger driveIndex = toupper((unsigned char)dosPath[0]) - 'A';
+        if (driveIndex >= 0 && driveIndex < DOS_DRIVES)
+        {
+            dosboxDrive = Drives[driveIndex].get();
+        }
+    }
+	BXDrive *drive = dosboxDrive ? [self _driveMatchingDOSBoxDrive: dosboxDrive] : nil;
     
     //IMPLEMENTATION NOTE: these lookups are a little messy because the DOS path we receive comes with the drive letter
     //stuck on the front, which we then end up trimming back off in the lookup functions.

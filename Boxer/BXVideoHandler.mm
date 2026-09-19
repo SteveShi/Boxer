@@ -165,7 +165,17 @@
 {
     if (self.emulator.isInitialized)
     {
-        boxer_setHerculesTintMode((Bit8u)self.herculesTint);
+        if (self.emulator.emulationThread.isExecuting && self.emulator.emulationThread != [NSThread currentThread])
+        {
+            [self performSelector: _cmd
+                         onThread: self.emulator.emulationThread
+                       withObject: nil
+                    waitUntilDone: NO];
+        }
+        else
+        {
+            boxer_setHerculesTintMode((Bit8u)self.herculesTint);
+        }
     }
 }
 
@@ -181,7 +191,17 @@
 {
     if (self.emulator.isInitialized)
     {
-        boxer_setCGAComponentMode((Bit8u)self.CGAComposite);
+        if (self.emulator.emulationThread.isExecuting && self.emulator.emulationThread != [NSThread currentThread])
+        {
+            [self performSelector: _cmd
+                         onThread: self.emulator.emulationThread
+                       withObject: nil
+                    waitUntilDone: NO];
+        }
+        else
+        {
+            boxer_setCGAComponentMode((Bit8u)self.CGAComposite);
+        }
     }
 }
 
@@ -195,7 +215,17 @@
 {
     if (self.emulator.isInitialized)
     {
-        boxer_setCGACompositeHueOffset(self.CGAHueAdjustment);
+        if (self.emulator.emulationThread.isExecuting && self.emulator.emulationThread != [NSThread currentThread])
+        {
+            [self performSelector: _cmd
+                         onThread: self.emulator.emulationThread
+                       withObject: nil
+                    waitUntilDone: NO];
+        }
+        else
+        {
+            boxer_setCGACompositeHueOffset(self.CGAHueAdjustment);
+        }
     }
 }
 
@@ -206,7 +236,7 @@
 {
 	if (self.emulator.isInitialized)
 	{
-        if (self.emulator.emulationThread != [NSThread currentThread])
+        if (self.emulator.emulationThread.isExecuting && self.emulator.emulationThread != [NSThread currentThread])
         {
             [self performSelector: _cmd
                          onThread: self.emulator.emulationThread

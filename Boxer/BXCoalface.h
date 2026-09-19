@@ -143,6 +143,9 @@ extern "C" {
     void * boxer_openLocalDirectory(const char *path, DOS_Drive *drive);
     void boxer_closeLocalDirectory(void *handle);
     bool boxer_getNextDirectoryEntry(void *handle, char *outName, bool &isDirectory);
+    /// Releases any enumeration handles that were never closed (error paths,
+    /// forced unmounts, emulation shutdown). Called during emulator teardown.
+    void boxer_closeAllLocalDirectories(void);
 	
     
 #pragma mark - Runloop and event loop handling

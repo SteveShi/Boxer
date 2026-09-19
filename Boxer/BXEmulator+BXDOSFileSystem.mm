@@ -1246,6 +1246,21 @@ void MSCDEX_SetCDInterface(int intNr, int forceCD);
 }
 
 //Internal DOS_Drive localdrive function for the two wrapper methods above
+- (NSString *) _absoluteHostPathForDrivePath: (NSString *)path
+{
+    //DOSBox stores the host path we hand it as the drive's base directory and
+    //uses it directly for all runtime file operations, so it must be absolute:
+    //a relative path would silently depend on the process-wide working
+    //directory instead of this emulator's own session base URL.
+    if (!path || path.isAbsolutePath) return path;
+
+    NSURL *baseURL = self.baseURL;
+    if (!baseURL) return path;
+
+    NSURL *absoluteURL = path.length ? [baseURL URLByAppendingPathComponent: path] : baseURL;
+    return absoluteURL.path;
+}
+
 - (DOS_Drive *)	_DOSBoxDriveFromPath: (NSString *)path
 						   freeSpace: (NSInteger)freeSpace
 							geometry: (BXDriveGeometry)geometry
@@ -1257,8 +1272,8 @@ void MSCDEX_SetCDInterface(int intNr, int forceCD);
 		NSUInteger bytesPerCluster = (geometry.bytesPerSector * geometry.sectorsPerCluster);
 		geometry.freeClusters = (NSUInteger)freeSpace / bytesPerCluster;
 	}
-	
-	const char *drivePath = [[NSFileManager defaultManager] fileSystemRepresentationWithPath: path];
+
+	const char *drivePath = [[NSFileManager defaultManager] fileSystemRepresentationWithPath: [self _absoluteHostPathForDrivePath: path]];
 	
     //NOTE: as far as DOSBox is concerned there's actually nothing that can go wrong here,
     //so outError goes unused.
@@ -1283,8 +1298,8 @@ void MSCDEX_SetCDInterface(int intNr, int forceCD);
         NSUInteger bytesPerCluster = (geometry.bytesPerSector * geometry.sectorsPerCluster);
         geometry.freeClusters = (NSUInteger)freeSpace / bytesPerCluster;
     }
-    
-    const char *drivePath = [[NSFileManager defaultManager] fileSystemRepresentationWithPath: path];
+
+    const char *drivePath = [[NSFileManager defaultManager] fileSystemRepresentationWithPath: [self _absoluteHostPathForDrivePath: path]];
     //First, make sure we have a directory for our shadowed path!
     BOOL isPath = NO;
     if (![[NSFileManager defaultManager] fileExistsAtPath:shadowedPath isDirectory:&isPath]) {

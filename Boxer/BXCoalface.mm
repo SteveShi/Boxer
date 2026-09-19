@@ -123,7 +123,6 @@ Bitu boxer_prepareForFrameSize(Bitu width, Bitu height, Bitu gfx_flags, double s
 	
 	NSSize outputSize	= NSMakeSize((CGFloat)width, (CGFloat)height);
 	NSSize scale		= NSMakeSize((CGFloat)scalex, (CGFloat)scaley);
-	NSLog(@"BXDIAG boxer_prepareForFrameSize %lux%lu", (unsigned long)width, (unsigned long)height);
 	[[emulator videoHandler] prepareForOutputSize: outputSize atScale: scale withCallback: callback];
 
 	MouseScreenParams params{};
@@ -397,27 +396,76 @@ bool boxer_localFileExists(const char *path, DOS_Drive *drive)
 
 #pragma mark Directory enumeration
 
+//Registry of currently-open enumeration handles, so any handles that DOSBox
+//fails to close (error paths, forced unmounts, emulation shutdown) are still
+//released instead of leaking the enumerator and its whole resource chain.
+static NSMutableArray *openLocalDirectoryHandles = nil;
+
+static void boxer_registerLocalDirectoryHandle(void *handle)
+{
+    if (!openLocalDirectoryHandles) openLocalDirectoryHandles = [NSMutableArray new];
+    @synchronized (openLocalDirectoryHandles)
+    {
+        [openLocalDirectoryHandles addObject: [NSValue valueWithPointer: handle]];
+    }
+}
+
+static void boxer_unregisterLocalDirectoryHandle(void *handle)
+{
+    if (!openLocalDirectoryHandles) return;
+    @synchronized (openLocalDirectoryHandles)
+    {
+        NSValue *match = nil;
+        for (NSValue *value in openLocalDirectoryHandles)
+        {
+            if (value.pointerValue == handle)
+            {
+                match = value;
+                break;
+            }
+        }
+        if (match) [openLocalDirectoryHandles removeObject: match];
+    }
+}
+
 void *boxer_openLocalDirectory(const char *path, DOS_Drive *drive)
 {
     BXEmulator *emulator = [BXEmulator currentEmulator];
     id <ADBFilesystemFileURLEnumeration> enumerator = [emulator _directoryEnumeratorForLocalPath: path
                                                                                         onDOSBoxDrive: drive];
-    
+
     NSCAssert1(enumerator != nil, @"No enumerator found for %s", path);
-    
+
     //Our own enumerators don't include directory entries for . and ..,
     //which are expected by DOSBox. So, we insert them ourselves during iteration.
     NSMutableArray *fakeEntries = [NSMutableArray arrayWithObjects: @".", @"..", nil];
-    
-    //The dictionary will be released when the calling context calls boxer_closeLocalDirectory() with the pointer to the dictionary.
+
+    //The dictionary will be released when the calling context calls boxer_closeLocalDirectory() with the pointer to the dictionary,
+    //or during emulation teardown via boxer_closeAllLocalDirectories().
     NSDictionary *enumeratorInfo = @{ @"enumerator": enumerator, @"fakeEntries": fakeEntries };
-    
-    return (void*)CFBridgingRetain(enumeratorInfo);
+
+    void *handle = (void*)CFBridgingRetain(enumeratorInfo);
+    boxer_registerLocalDirectoryHandle(handle);
+    return handle;
 }
 
 void boxer_closeLocalDirectory(void *handle)
 {
+    boxer_unregisterLocalDirectoryHandle(handle);
     CFRelease(handle);
+}
+
+void boxer_closeAllLocalDirectories(void)
+{
+    if (!openLocalDirectoryHandles) return;
+    @synchronized (openLocalDirectoryHandles)
+    {
+        for (NSValue *value in openLocalDirectoryHandles)
+        {
+            CFRelease(value.pointerValue);
+        }
+        [openLocalDirectoryHandles removeAllObjects];
+    }
 }
 
 bool boxer_getNextDirectoryEntry(void *handle, char *outName, bool &isDirectory)

@@ -8,6 +8,8 @@
 #import "BXExternalMIDIDevice.h"
 #import "BXExternalMIDIDevice+BXGeneralMIDISysexes.h"
 
+#include <stddef.h>
+
 #pragma mark -
 #pragma mark Private method declarations
 
@@ -318,8 +320,16 @@
 //    } else {
     MIDIPacketList *packetList = (MIDIPacketList *)buffer;
 	MIDIPacket *currentPacket = MIDIPacketListInit(packetList);
-    
-    MIDIPacketListAdd(packetList, sizeof(buffer), currentPacket, (MIDITimeStamp)0, message.length, (UInt8 *)message.bytes);
+
+    //Guard against sysex messages larger than the stack buffer: clamp the
+    //packet payload to what MIDIPacketListAdd can safely hold (packet list
+    //header plus one packet header) instead of relying on DOSBox truncation.
+    ByteCount maxSysexLength = (ByteCount)(sizeof(buffer) - sizeof(packetList->numPackets) - offsetof(MIDIPacket, data));
+    ByteCount sysexLength = (message.length < maxSysexLength) ? (ByteCount)message.length : maxSysexLength;
+    if (sysexLength < (ByteCount)message.length)
+        NSLog(@"%s: truncating oversized sysex message (%lu bytes -> %lu bytes)", __PRETTY_FUNCTION__, (unsigned long)message.length, (unsigned long)sysexLength);
+
+    MIDIPacketListAdd(packetList, sizeof(buffer), currentPacket, (MIDITimeStamp)0, sysexLength, (UInt8 *)message.bytes);
     
     MIDISend(_port, _destination, packetList);
 //    }

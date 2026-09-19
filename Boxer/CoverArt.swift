@@ -53,7 +53,9 @@ class CoverArt: NSObject {
 	/// This overlay gives the image a stylized glossy appearance.
 	@objc(shineForSize:)
 	class func shine(for iconSize: NSSize) -> NSImage? {
-		let shine: NSImage = NSImage(named: "BoxArtShine")!.copy() as! NSImage
+		guard let template = NSImage(named: "BoxArtShine"), let shine = template.copy() as? NSImage else {
+			return nil
+		}
 		shine.size = iconSize
 		return shine
 	}
@@ -129,11 +131,14 @@ class CoverArt: NSObject {
 	
 	//	@objc(representationForSize:scale:)
 	/// Returns a cover art image representation from the source image rendered at the specified size and scale.
-	private func representation(for iconSize: NSSize, scale: CGFloat = 1) -> NSImageRep! {
+	private func representation(for iconSize: NSSize, scale: CGFloat = 1) -> NSImageRep? {
 		let frame = NSRect(origin: .zero, size: iconSize)
-		
+
 		//Create a new empty canvas to draw into
-		let rep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(iconSize.width * scale), pixelsHigh: Int(iconSize.height * scale), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .calibratedRGB, bytesPerRow: 0, bitsPerPixel: 32)!.retagging(with: .sRGB)!
+		guard let baseRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(iconSize.width * scale), pixelsHigh: Int(iconSize.height * scale), bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false, colorSpaceName: .calibratedRGB, bytesPerRow: 0, bitsPerPixel: 32) else {
+			return nil
+		}
+		let rep = baseRep.retagging(with: .sRGB) ?? baseRep
 		rep.size = iconSize
 		
 		NSGraphicsContext.saveGraphicsState()
@@ -166,14 +171,17 @@ class CoverArt: NSObject {
 		}
 		
 		let coverArt = NSImage()
-		coverArt.addRepresentation(representation(for: NSSize(width: 512, height: 512), scale: 2))
-		coverArt.addRepresentation(representation(for: NSSize(width: 512, height: 512)))
-		coverArt.addRepresentation(representation(for: NSSize(width: 256, height: 256), scale: 2))
-		coverArt.addRepresentation(representation(for: NSSize(width: 256, height: 256)))
-		coverArt.addRepresentation(representation(for: NSSize(width: 128, height: 128), scale: 2))
-		coverArt.addRepresentation(representation(for: NSSize(width: 128, height: 128)))
-		coverArt.addRepresentation(representation(for: NSSize(width: 32, height: 32), scale: 2))
-		coverArt.addRepresentation(representation(for: NSSize(width: 32, height: 32)))
+		let iconSizes: [(size: CGFloat, scale: CGFloat)] = [
+			(512, 2), (512, 1),
+			(256, 2), (256, 1),
+			(128, 2), (128, 1),
+			(32, 2),  (32, 1)
+		]
+		for iconSize in iconSizes {
+			if let rep = representation(for: NSSize(width: iconSize.size, height: iconSize.size), scale: iconSize.scale) {
+				coverArt.addRepresentation(rep)
+			}
+		}
 		return coverArt
 	}
 	

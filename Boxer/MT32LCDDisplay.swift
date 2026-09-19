@@ -16,38 +16,47 @@ import Cocoa
 /// Non-ASCII characters will be drawn as empty space.
 class MT32LCDDisplay : NSTextField {
     /// The image containing glyph data for the pixel font.
-    private let pixelFont = NSImage(named: "MT32ScreenDisplay/MT32LCDFontTemplate")!
-    
+    private let pixelFont = NSImage(named: "MT32ScreenDisplay/MT32LCDFontTemplate")
+
     /// The mask image to use for the LCD pixel grid.
     /// This will be drawn in for 20 character places.
-    private let pixelGrid = NSImage(named: "MT32ScreenDisplay/MT32LCDGridTemplate")!
-    
-    /// The background color of the field.
-    private let screenColor = NSColor(named: "MT32ScreenDisplay/screenColor")!
+    private let pixelGrid = NSImage(named: "MT32ScreenDisplay/MT32LCDGridTemplate")
 
-    private let frameColor = NSColor(named: "MT32ScreenDisplay/frameColor")!
+    /// The background color of the field.
+    private let screenColor = NSColor(named: "MT32ScreenDisplay/screenColor") ?? .black
+
+    private let frameColor = NSColor(named: "MT32ScreenDisplay/frameColor") ?? .black
 
     /// The background color of the LCD pixel grid.
-    private let gridColor = NSColor(named: "MT32ScreenDisplay/gridColor")!
+    private let gridColor = NSColor(named: "MT32ScreenDisplay/gridColor") ?? .darkGray
 
     /// The colour of lit LCD pixels upon the grid.
-    private let pixelColor = NSColor(named: "MT32ScreenDisplay/pixelColor")!
-    
+    private let pixelColor = NSColor(named: "MT32ScreenDisplay/pixelColor") ?? .black
+
     /// The inner shadow of the screen.
-    private let innerShadow = NSShadow(blurRadius: 10, offset: NSSize(width: 0, height: -2.0), color: NSColor(named: "MT32ScreenDisplay/innerShadowColor")!)
-    
+    private let innerShadow = NSShadow(blurRadius: 10, offset: NSSize(width: 0, height: -2.0), color: NSColor(named: "MT32ScreenDisplay/innerShadowColor") ?? .black)
+
     /// The lighting effects applied on top of the screen.
-    private let screenLighting = NSGradient(colorsAndLocations: (NSColor(calibratedWhite: 1.0, alpha: 0.10), 0.0), (NSColor(calibratedWhite: 1.0, alpha: 0.07), 0.5), (NSColor.clear, 0.55))!
-    
+    private let screenLighting = NSGradient(colorsAndLocations: (NSColor(calibratedWhite: 1.0, alpha: 0.10), 0.0), (NSColor(calibratedWhite: 1.0, alpha: 0.07), 0.5), (NSColor.clear, 0.55))
+
     override func draw(_ dirtyRect: NSRect) {
         let charsToDisplay = stringValue.padding(toLength: 20, withPad: " ", startingAt: 0)
-        
-        let fontTemplate = pixelFont
-        let gridTemplate = pixelGrid
-        
+
+        //If the template assets are missing we cannot render the LCD effect,
+        //but this should not take down the app: draw the bare screen instead.
+        guard let fontTemplate = pixelFont, let gridTemplate = pixelGrid else {
+            let screenPath = NSBezierPath(roundedRect: bounds, xRadius: 4, yRadius: 4)
+            screenColor.set()
+            screenPath.fill()
+            frameColor.setStroke()
+            screenPath.lineWidth = 2
+            screenPath.strokeInside()
+            return
+        }
+
         let screenShadow = innerShadow
         let screenColor = self.screenColor
-        
+
         let screenPath = NSBezierPath(roundedRect: bounds, xRadius: 4, yRadius: 4)
         
         //First, draw the screen itself
@@ -94,8 +103,7 @@ class MT32LCDDisplay : NSTextField {
                                    width: glyphSize.width, height: glyphSize.height)
 
             //Only bother drawing the character if it's represented in our glyph image.
-            if NSContainsRect(fontTemplateRect, glyphRect) {
-                let maskedGlyph = gridTemplate.copy() as! NSImage
+            if NSContainsRect(fontTemplateRect, glyphRect), let maskedGlyph = gridTemplate.copy() as? NSImage {
                 
                 //First, use the grid to mask the glyph
                 maskedGlyph.lockFocus()
@@ -119,7 +127,7 @@ class MT32LCDDisplay : NSTextField {
         frameColor.setStroke()
         screenPath.lineWidth = 2
         screenPath.strokeInside()
-        screenLighting.draw(in: screenPath, angle: 80)
+        screenLighting?.draw(in: screenPath, angle: 80)
         NSGraphicsContext.current?.restoreGraphicsState()
     }
 }

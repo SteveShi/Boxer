@@ -184,10 +184,10 @@ extern NSStringEncoding BXDirectStringEncoding;
 /// The keybuffer used for pasting text into DOS.
 @property (readonly, retain) BXKeyBuffer *keyBuffer;
 
-/// The OS X filesystem location to which the emulator should resolve relative local filesystem paths.
-/// This is used by DOSBox commands like @c MOUNT, @c IMGMOUNT and @c CONFIG and is directly equivalent
-/// to the current process's working directory: indeed, changing this will change the working
-/// directory for the entire process.
+/// The filesystem location to which the emulator should resolve relative local filesystem paths.
+/// This is used by DOSBox commands like @c MOUNT, @c IMGMOUNT and @c CONFIG and is tracked per-emulator
+/// instance: unlike earlier versions of Boxer it does NOT change the process-wide working directory,
+/// so concurrent sessions (and the emulation thread) never interfere with each other's path resolution.
 @property (copy, nonatomic) NSURL *baseURL;
 
 

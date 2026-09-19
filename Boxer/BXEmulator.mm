@@ -86,10 +86,23 @@ void CPU_Core_Dynrec_Cache_Init(bool enable_cache);
 
 #pragma mark - Implementation
 
+@interface BXEmulator ()
+
+//These apply CPU settings directly on whatever thread they are called from;
+//public setters forward them to the emulation thread to avoid racing the
+//emulation loop on DOSBox's CPU globals.
+- (void) _applyFixedSpeed: (NSNumber *)newSpeed;
+- (void) _applyAutoSpeed: (NSNumber *)autoSpeed;
+- (void) _applyTurboSpeed: (NSNumber *)turboSpeed;
+- (void) _applyCoreMode: (NSNumber *)coreMode;
+
+@end
+
 @implementation BXEmulator
 {
     CommandLine *commandLine;
     Config *configuration;
+    NSURL *_sessionBaseURL;
 }
 @synthesize processName = _processName;
 @synthesize lastProcess = _lastProcess;
@@ -262,18 +275,30 @@ static BOOL _hasStartedEmulator = NO;
 					   userInfo: nil];
 	
 	self.executing = YES;
-	
+
 	//Start DOSBox's main loop
-	[self _startDOSBox];
-	
-	self.executing = NO;
-	
-	if (_currentEmulator == self)
-    {
-        [_currentEmulator release];
-        _currentEmulator = nil;
+	@try
+	{
+		[self _startDOSBox];
 	}
-    
+	@finally
+	{
+		//_startDOSBox may raise NSExceptions (e.g. unrecoverable init errors);
+		//without this cleanup the exception unwinds past the MRC release below
+		//and leaks the emulator instance and the _currentEmulator global.
+		self.executing = NO;
+
+		//Release any directory-enumeration handles that DOSBox never closed,
+		//regardless of whether emulation ended normally or via exception.
+		boxer_closeAllLocalDirectories();
+
+		if (_currentEmulator == self)
+		{
+			[_currentEmulator release];
+			_currentEmulator = nil;
+		}
+	}
+
 	[self _postNotificationName: BXEmulatorDidFinishNotification
 			   delegateSelector: @selector(emulatorDidFinish:)
 					   userInfo: nil];
@@ -281,7 +306,7 @@ static BOOL _hasStartedEmulator = NO;
 
 - (void) cancel
 {
-    if (self.emulationThread && [NSThread currentThread] != self.emulationThread)
+    if (self.emulationThread.isExecuting && [NSThread currentThread] != self.emulationThread)
     {
         [self performSelector: _cmd onThread: self.emulationThread withObject: nil waitUntilDone: NO];
     }
@@ -314,16 +339,22 @@ static BOOL _hasStartedEmulator = NO;
 
 - (NSURL *) baseURL
 {
-    NSString *cwdPath = [[NSFileManager defaultManager] currentDirectoryPath];
-    if (cwdPath)
-        return [NSURL fileURLWithPath: cwdPath];
-    else
-        return nil;
+    if (!_sessionBaseURL)
+    {
+        //Default to the working directory we were launched with, captured once
+        //per emulator instance instead of tracked via the process-wide CWD.
+        _sessionBaseURL = [[NSFileManager defaultManager] currentDirectoryURL];
+    }
+    return _sessionBaseURL;
 }
 
 - (void) setBaseURL: (NSURL *)URL
 {
-    [[NSFileManager defaultManager] changeCurrentDirectoryPath: URL.path];
+    //Store the base path per-emulator rather than mutating the process-wide
+    //working directory: chdir() is global mutable state shared by every
+    //session and thread, and mutating it from the main thread raced the
+    //emulation thread's filesystem operations.
+    _sessionBaseURL = [URL copy];
 }
 
 
@@ -429,18 +460,34 @@ static BOOL _hasStartedEmulator = NO;
 {
 	if (self.isExecuting)
 	{
-		//Turn off automatic speed scaling
-        self.autoSpeed = NO;
-        
-		CPU_CycleMax = (Bit32s)newSpeed;
-		
-		//Stop DOSBox from resetting the cycles after a program exits
-		CPU_CycleAutoAdjust = false;
-		
-		//Wipe out the cycles queue: we do this because DOSBox's CPU functions do whenever they modify the cycles
-		CPU_CycleLeft	= 0;
-		CPU_Cycles		= 0;
+		//Mutations of the CPU globals must happen on the emulation thread.
+		if (self.emulationThread.isExecuting && [NSThread currentThread] != self.emulationThread)
+		{
+			[self performSelector: @selector(_applyFixedSpeed:)
+						  onThread: self.emulationThread
+					   withObject: @(newSpeed)
+					 waitUntilDone: NO];
+		}
+		else
+		{
+			[self _applyFixedSpeed: @(newSpeed)];
+		}
 	}
+}
+
+- (void) _applyFixedSpeed: (NSNumber *)newSpeedNumber
+{
+	//Turn off automatic speed scaling
+	self.autoSpeed = NO;
+
+	CPU_CycleMax = (Bit32s)newSpeedNumber.integerValue;
+
+	//Stop DOSBox from resetting the cycles after a program exits
+	CPU_CycleAutoAdjust = false;
+
+	//Wipe out the cycles queue: we do this because DOSBox's CPU functions do whenever they modify the cycles
+	CPU_CycleLeft	= 0;
+	CPU_Cycles		= 0;
 }
 
 - (BOOL) isAutoSpeed
@@ -459,24 +506,42 @@ static BOOL _hasStartedEmulator = NO;
 {
 	if (self.isExecuting && self.isAutoSpeed != autoSpeed)
 	{
-        //While we're in turbo, don't change the auto-speed setting directly;
-        //instead, set the value we'll return to when we come out of turbo.
-        if (self.isTurboSpeed)
-        {
-            _wasAutoSpeed = autoSpeed;
-        }
-        else
-        {
-            static int bx_old_cycle_max = 3000;
-            //Be a good boy and record/restore the old cycles setting
-            if (autoSpeed)	bx_old_cycle_max = CPU_CycleMax;
-            else			CPU_CycleMax = bx_old_cycle_max;
-            
-            //Always force the usage percentage to 100
-            CPU_CyclePercUsed = 100;
-            
-            CPU_CycleAutoAdjust = (autoSpeed) ? true : false;
-        }
+		//Mutations of the CPU globals must happen on the emulation thread.
+		if (self.emulationThread.isExecuting && [NSThread currentThread] != self.emulationThread)
+		{
+			[self performSelector: @selector(_applyAutoSpeed:)
+						  onThread: self.emulationThread
+					   withObject: @(autoSpeed)
+					 waitUntilDone: NO];
+		}
+		else
+		{
+			[self _applyAutoSpeed: @(autoSpeed)];
+		}
+	}
+}
+
+- (void) _applyAutoSpeed: (NSNumber *)autoSpeedNumber
+{
+	BOOL autoSpeed = autoSpeedNumber.boolValue;
+
+	//While we're in turbo, don't change the auto-speed setting directly;
+	//instead, set the value we'll return to when we come out of turbo.
+	if (self.isTurboSpeed)
+	{
+		_wasAutoSpeed = autoSpeed;
+	}
+	else
+	{
+		static int bx_old_cycle_max = 3000;
+		//Be a good boy and record/restore the old cycles setting
+		if (autoSpeed)	bx_old_cycle_max = CPU_CycleMax;
+		else			CPU_CycleMax = bx_old_cycle_max;
+
+		//Always force the usage percentage to 100
+		CPU_CyclePercUsed = 100;
+
+		CPU_CycleAutoAdjust = (autoSpeed) ? true : false;
 	}
 }
 
@@ -486,33 +551,51 @@ static BOOL _hasStartedEmulator = NO;
 {
     if (turboSpeed != self.isTurboSpeed)
     {
-        if (turboSpeed)
-        {
-            ticksLocked = YES;
-            
-            _wasAutoSpeed = (CPU_CycleAutoAdjust == BXSpeedAuto);
-            //Suppress auto-speed temporarily
-            if (_wasAutoSpeed)
-            {
-                CPU_CycleAutoAdjust = NO;
-                //Hurray, magic numbers!
-                CPU_CycleMax /= 3;
-                if (CPU_CycleMax < 1000) CPU_CycleMax = 1000;
-            }
-        }
-        else
-        {
-            ticksLocked = NO;
-            
-            //Restore the previous auto-speed value.
-            if (_wasAutoSpeed)
-            {
-                _wasAutoSpeed = NO;
-                CPU_CycleAutoAdjust = BXSpeedAuto;
-                //TODO: should we set this using setAutoSpeed:?
-            }
-        }
+		//Mutations of the CPU globals must happen on the emulation thread.
+		if (self.emulationThread.isExecuting && [NSThread currentThread] != self.emulationThread)
+		{
+			[self performSelector: @selector(_applyTurboSpeed:)
+						  onThread: self.emulationThread
+					   withObject: @(turboSpeed)
+					 waitUntilDone: NO];
+		}
+		else
+		{
+			[self _applyTurboSpeed: @(turboSpeed)];
+		}
     }
+}
+
+- (void) _applyTurboSpeed: (NSNumber *)turboSpeedNumber
+{
+	BOOL turboSpeed = turboSpeedNumber.boolValue;
+
+	if (turboSpeed)
+	{
+		ticksLocked = YES;
+
+		_wasAutoSpeed = (CPU_CycleAutoAdjust == BXSpeedAuto);
+		//Suppress auto-speed temporarily
+		if (_wasAutoSpeed)
+		{
+			CPU_CycleAutoAdjust = NO;
+			//Hurray, magic numbers!
+			CPU_CycleMax /= 3;
+			if (CPU_CycleMax < 1000) CPU_CycleMax = 1000;
+		}
+	}
+	else
+	{
+		ticksLocked = NO;
+
+		//Restore the previous auto-speed value.
+		if (_wasAutoSpeed)
+		{
+			_wasAutoSpeed = NO;
+			CPU_CycleAutoAdjust = BXSpeedAuto;
+			//TODO: should we set this using setAutoSpeed:?
+		}
+	}
 }
 
 
@@ -544,39 +627,57 @@ static BOOL _hasStartedEmulator = NO;
 {
 	if (self.isExecuting && self.coreMode != coreMode)
 	{
-		switch(coreMode)
+		//Mutations of the CPU globals must happen on the emulation thread.
+		if (self.emulationThread.isExecuting && [NSThread currentThread] != self.emulationThread)
 		{
-			case BXCoreNormal:
-				cpudecoder = &CPU_Core_Normal_Run;
-				break;
-				
-			case BXCoreDynamic:
-#if (C_DYNAMIC_X86)
-				CPU_Core_Dyn_X86_Cache_Init(true);
-				CPU_Core_Dyn_X86_SetFPUMode(true);
-				cpudecoder = &CPU_Core_Dyn_X86_Run;
-#endif
-				
-#if (C_DYNREC)
-				CPU_Core_Dynrec_Cache_Init(true);
-				cpudecoder = &CPU_Core_Dynrec_Run;
-#endif
-				break;
-			case BXCoreSimple:	
-				cpudecoder = &CPU_Core_Simple_Run;
-				break;
-			case BXCoreFull:
-				cpudecoder = &CPU_Core_Full_Run;
-				break;
+			[self performSelector: @selector(_applyCoreMode:)
+						  onThread: self.emulationThread
+					   withObject: @(coreMode)
+					 waitUntilDone: NO];
 		}
-		
-		//Prevent DOSBox from resetting the core mode after a program exits
-		//CPU_AutoDetermineMode has been removed in Staging, explicit mode is preserved automatically
-		
-		//Reset DOSBox's emulated cycles counters
-		CPU_CycleLeft=0;
-		CPU_Cycles=0;
+		else
+		{
+			[self _applyCoreMode: @(coreMode)];
+		}
 	}
+}
+
+- (void) _applyCoreMode: (NSNumber *)coreModeNumber
+{
+	BXCoreMode coreMode = (BXCoreMode)coreModeNumber.integerValue;
+
+	switch(coreMode)
+	{
+		case BXCoreNormal:
+			cpudecoder = &CPU_Core_Normal_Run;
+			break;
+
+		case BXCoreDynamic:
+#if (C_DYNAMIC_X86)
+			CPU_Core_Dyn_X86_Cache_Init(true);
+			CPU_Core_Dyn_X86_SetFPUMode(true);
+			cpudecoder = &CPU_Core_Dyn_X86_Run;
+#endif
+
+#if (C_DYNREC)
+			CPU_Core_Dynrec_Cache_Init(true);
+			cpudecoder = &CPU_Core_Dynrec_Run;
+#endif
+			break;
+		case BXCoreSimple:
+			cpudecoder = &CPU_Core_Simple_Run;
+			break;
+		case BXCoreFull:
+			cpudecoder = &CPU_Core_Full_Run;
+			break;
+	}
+
+	//Prevent DOSBox from resetting the core mode after a program exits
+	//CPU_AutoDetermineMode has been removed in Staging, explicit mode is preserved automatically
+
+	//Reset DOSBox's emulated cycles counters
+	CPU_CycleLeft=0;
+	CPU_Cycles=0;
 }
 
 
@@ -587,7 +688,7 @@ static BOOL _hasStartedEmulator = NO;
 {
 	if (!self.isPaused)
 	{
-        if (self.emulationThread && [NSThread currentThread] != self.emulationThread)
+        if (self.emulationThread.isExecuting && [NSThread currentThread] != self.emulationThread)
         {
             [self performSelector: _cmd onThread: self.emulationThread withObject: nil waitUntilDone: NO];
         }
@@ -603,10 +704,10 @@ static BOOL _hasStartedEmulator = NO;
 }
 
 - (void) resume
-{	
+{
 	if (self.isPaused)
     {
-        if (self.emulationThread && [NSThread currentThread] != self.emulationThread)
+        if (self.emulationThread.isExecuting && [NSThread currentThread] != self.emulationThread)
         {
             [self performSelector: _cmd onThread: self.emulationThread withObject: nil waitUntilDone: NO];
         }
@@ -1012,7 +1113,11 @@ static bool bx_gameport_timed = true;
 	int sdlStatus = SDL_Init(SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_EVENTS);
 	if (sdlStatus < 0)
 	{
-		NSLog(@"[Boxer] SDL_Init failed with error: %s", SDL_GetError());
+		//Without these SDL subsystems (audio in particular) emulation would
+		//misbehave in confusing ways: fail loudly via the session's exception
+		//reporting path instead of continuing with a crippled setup.
+		[NSException raise: BXEmulatorUnrecoverableException
+					format: @"SDL_Init failed with error: %s", SDL_GetError()];
 	}
 	
 	try

@@ -76,6 +76,10 @@
 //How many recently-launched programs the session should track before it discards older ones.
 #define BXRecentProgramsLimit 10
 
+//How long _cleanup should wait for the emulation thread to finish shutting down
+//before deleting the session's temporary folder anyway (in seconds).
+#define BXEmulationShutdownWaitLimit 5.0
+
 static NSString *BXSessionCrashDumpDriveTypeDescription(BXDriveType type)
 {
     switch (type)
@@ -1342,7 +1346,6 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 
 - (void) runPreflightCommandsForEmulator: (BXEmulator *)theEmulator
 {
-    NSLog(@"BXDIAG runPreflightCommandsForEmulator hasConfigured=%d", _hasConfigured);
 	if (!_hasConfigured)
 	{
         @autoreleasepool {
@@ -1365,7 +1368,6 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 
 - (void) runLaunchCommandsForEmulator: (BXEmulator *)theEmulator
 {
-    NSLog(@"BXDIAG runLaunchCommandsForEmulator targetURL=%@", self.targetURL);
 	_hasLaunched = YES;
     
     //Do any just-in-time configuration, which should override all previous startup stuff.
@@ -1448,10 +1450,18 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 
 - (void) emulator: (BXEmulator *)theEmulator didFinishFrame: (BXVideoFrame *)frame
 {
-    static NSUInteger _bxdiagFrameCount = 0;
-    if (_bxdiagFrameCount < 5 || (_bxdiagFrameCount % 60) == 0)
-        NSLog(@"BXDIAG didFinishFrame #%lu frame=%@ panel=%ld", (unsigned long)_bxdiagFrameCount, (frame ? @"yes" : @"nil"), (long)self.DOSWindowController.currentPanel);
-    _bxdiagFrameCount++;
+	//Frame callbacks arrive on the emulation thread, which is a background
+	//thread when useMultithreadedEmulation is enabled. View updates (and the
+	//window resizing inside updateWithFrame:) must happen on the main thread,
+	//so hop across before touching the window controller.
+	if ([NSThread currentThread] != [NSThread mainThread])
+	{
+		[self performSelectorOnMainThread: _cmd
+							   withObject: frame
+							waitUntilDone: NO];
+		return;
+	}
+
 	[self.DOSWindowController updateWithFrame: frame];
 }
 
@@ -2319,35 +2329,63 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
                                                       subdirectory: @"Configurations"];
         
         NSAssert(baseConfURL != nil, @"Missing preflight conf file");
+        NSError *baseConfError = nil;
         BXEmulatorConfiguration *baseConf = [BXEmulatorConfiguration configurationWithContentsOfURL: baseConfURL
-                                                                                              error: NULL];
-        
+                                                                                              error: &baseConfError];
+        if (!baseConf)
+        {
+            //Persisting a conf that inherits from nothing produces baffling
+            //"my settings don't apply" behaviour: log it loudly at minimum.
+            NSLog(@"[Boxer] Failed to load base configuration at %@: %@", baseConfURL, baseConfError);
+        }
+
         [baseConf removeStartupCommands];
-        
+
 		for (NSString *profileConfName in self.gameProfile.configurations)
         {
 			NSURL *profileConfURL = [[NSBundle mainBundle] URLForResource: profileConfName
                                                             withExtension: @"conf"
                                                              subdirectory: @"Configurations"];
-			
+
             NSAssert1(profileConfURL != nil, @"Missing configuration file: %@", profileConfName);
             if (profileConfURL)
             {
+                NSError *profileConfError = nil;
                 BXEmulatorConfiguration *profileConf = [BXEmulatorConfiguration configurationWithContentsOfURL: profileConfURL
-                                                                                                         error: NULL];
+                                                                                                         error: &profileConfError];
                 if (profileConf)
                     [baseConf addSettingsFromConfiguration: profileConf];
+                else
+                    NSLog(@"[Boxer] Failed to load profile configuration '%@': %@", profileConfName, profileConfError);
             }
 		}
-        
+
         [gameboxConf excludeDuplicateSettingsFromConfiguration: baseConf];
-        
-		[gameboxConf writeToURL: configurationURL error: NULL];
+
+        NSError *writeError = nil;
+        if (![gameboxConf writeToURL: configurationURL error: &writeError])
+        {
+            NSLog(@"[Boxer] Failed to write gamebox configuration at %@: %@", configurationURL, writeError);
+        }
 	}
 }
 
 - (void) _cleanup
 {
+	//Give the emulation thread a chance to finish shutting down before we pull
+	//the rug out from under it (cancel is asynchronous, and deleting the
+	//temporary folder while DOSBox may still be writing there is racy). This is
+	//a bounded wait so we never hang the UI on a stuck emulator thread.
+	NSThread *emulationThread = self.emulator.emulationThread;
+	if (emulationThread && emulationThread != [NSThread mainThread] && emulationThread.isExecuting)
+	{
+		NSTimeInterval waitDeadline = [NSDate timeIntervalSinceReferenceDate] + BXEmulationShutdownWaitLimit;
+		while (emulationThread.isExecuting && [NSDate timeIntervalSinceReferenceDate] < waitDeadline)
+		{
+			[NSThread sleepForTimeInterval: 0.05];
+		}
+	}
+
 	//Delete the temporary folder, if one was created
 	if (self.temporaryFolderURL)
 	{
@@ -2591,13 +2629,13 @@ NSString * const BXGameImportedNotificationType     = @"BXGameImported";
 {
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	
-	[center removeObserver: self name: NSWindowWillMiniaturizeNotification object: nil];
+	[center removeObserver: self name: NSWindowDidMiniaturizeNotification object: nil];
 	[center removeObserver: self name: NSWindowDidDeminiaturizeNotification object: nil];
-    
+
 	[center removeObserver: self name: NSMenuDidEndTrackingNotification object: nil];
 	[center removeObserver: self name: NSMenuDidBeginTrackingNotification object: nil];
-	
-	[center removeObserver: self name: NSApplicationWillResignActiveNotification object: nil];
+
+	[center removeObserver: self name: NSApplicationDidResignActiveNotification object: nil];
 	[center removeObserver: self name: NSApplicationDidBecomeActiveNotification object: nil];
 	
 	[center removeObserver: self name: BXWillBeginInterruptionNotification object: nil];

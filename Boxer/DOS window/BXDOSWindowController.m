@@ -1094,8 +1094,6 @@ NSString * const BXDOSWindowFullscreenSizeFormat = @"Fullscreen size for %@";
     BXSession *session = (BXSession *)self.document;
     BXDOSWindow *window = (BXDOSWindow *)self.window;
 
-    NSLog(@"BXDIAG switchToPanel: %ld -> %ld (animate=%d) thread=%@", (long)oldPanel, (long)newPanel, animate, [NSThread isMainThread] ? @"main" : @"bg");
-
     //Don't bother if we're already displaying this panel.
     if (newPanel == oldPanel)
         return;

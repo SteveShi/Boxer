@@ -138,7 +138,7 @@ extension NSImage {
 			targetSize = size
 		}
 		
-		let maskedImage = self.copy() as! NSImage
+		let maskedImage = self.copy() as? NSImage ?? self
 		maskedImage.size = targetSize
 		
 		let imageRect = NSRect(origin: .zero, size: targetSize)
@@ -161,12 +161,16 @@ extension NSImage {
 		precondition(self.isTemplate, "drawInRect:withGradient:dropShadow:innerShadow: can only be used with template images.")
 		
 		//Check if we're rendering into a backing intended for retina displays.
+		//If there is no focused view or graphics context to draw into, there is
+		//nothing sensible we can do: bail out instead of crashing.
+		guard let focusView = NSView.focusView, let context = NSGraphicsContext.current else {
+			return
+		}
 		var pointSize = NSMakeSize(1, 1)
-		pointSize = NSView.focusView!.convertToBacking(pointSize)
+		pointSize = focusView.convertToBacking(pointSize)
 
-		let contextSize = NSView.focusView!.bounds.size
-		
-		let context = NSGraphicsContext.current!
+		let contextSize = focusView.bounds.size
+
 		let cgContext = context.cgContext
 
 		let drawFlipped = respectContextIsFlipped && context.isFlipped
@@ -193,7 +197,9 @@ extension NSImage {
 		//First get a representation of the image suitable for drawing into the destination.
 		let imageRect = NSRectToCGRect(drawRect)
 		var tmpRect = drawRect
-		let baseImage = cgImage(forProposedRect: &tmpRect, context: context, hints: nil)
+		guard let baseImage = cgImage(forProposedRect: &tmpRect, context: context, hints: nil) else {
+			return
+		}
 
 		
 		//Next, render it into a new bitmap context sized to cover the whole dirty area.
@@ -212,15 +218,19 @@ extension NSImage {
 									  width: imageRect.size.width * pointSize.width,
 									  height: imageRect.size.height * pointSize.height)
 		
-		maskContext.draw(baseImage!, in: relativeMaskRect)
+		maskContext.draw(baseImage, in: relativeMaskRect)
 		//Grab our first mask image, which is just the original image with padding.
-		let imageMask = maskContext.makeImage()
+		guard let imageMask = maskContext.makeImage() else {
+			return
+		}
 
 		//Now invert the colors in the context and grab another image, which will be our inverse mask.
 		maskContext.setBlendMode(.xor)
 		maskContext.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 		maskContext.fill(CGRectMake(0, 0, maskPixelSize.width, maskPixelSize.height))
-		let invertedImageMask = maskContext.makeImage()
+		guard let invertedImageMask = maskContext.makeImage() else {
+			return
+		}
 
 		
 		//To render the drop shadow, draw the original mask but clipped by the inverted mask:
@@ -248,9 +258,9 @@ extension NSImage {
 			
 			let shadowColor = dropShadow.shadowColor?.cgColor
 			
-			cgContext.clip(to: maskRect, mask: invertedImageMask!)
+			cgContext.clip(to: maskRect, mask: invertedImageMask)
 			cgContext.setShadow(offset: shadowOffset, blur: dropShadow.shadowBlurRadius, color: shadowColor)
-			cgContext.draw(imageMask!, in: imageOffset)
+			cgContext.draw(imageMask, in: imageOffset)
 		}
 		
 		//Finally, render the inner region with the gradient and inner shadow (if any)
@@ -265,7 +275,7 @@ extension NSImage {
 				cgContext.translateBy(x: 0.0, y: contextSize.height)
 				cgContext.scaleBy(x: 1.0, y: -1.0)
 			}
-			cgContext.clip(to: maskRect, mask: imageMask!)
+			cgContext.clip(to: maskRect, mask: imageMask)
 			
 			if let fillGradient {
 				fillGradient.draw(in: drawRect, angle: 270.0)
@@ -280,7 +290,7 @@ extension NSImage {
 				let shadowColor = innerShadow.shadowColor?.cgColor
 				
 				cgContext.setShadow(offset: shadowOffset, blur: innerShadow.shadowBlurRadius, color: shadowColor)
-				cgContext.draw(invertedImageMask!, in: imageOffset)
+				cgContext.draw(invertedImageMask, in: imageOffset)
 			}
 		}
 	}

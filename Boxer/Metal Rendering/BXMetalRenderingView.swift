@@ -15,13 +15,26 @@ import os.log
 
 private let MAX_INFLIGHT = 1
 
-private let kStyleNormal = BXRenderingStyle(rawValue: 0) ?? BXRenderingStyle(rawValue: -1)!
-private let kStyleSmoothed = BXRenderingStyle(rawValue: 1) ?? BXRenderingStyle(rawValue: -1)!
-private let kStyleCRT = BXRenderingStyle(rawValue: 2) ?? BXRenderingStyle(rawValue: -1)!
+//The ObjC enum defines styles 0-2; these constants must match it. Fail loudly
+//at first use with a clear message if the enum ever changes.
+private func requiredRenderingStyle(_ rawValue: Int) -> BXRenderingStyle {
+    guard let style = BXRenderingStyle(rawValue: rawValue) else {
+        preconditionFailure("BXRenderingStyle is missing rawValue \(rawValue); the ObjC enum has changed.")
+    }
+    return style
+}
+
+private let kStyleNormal = requiredRenderingStyle(0)
+private let kStyleSmoothed = requiredRenderingStyle(1)
+private let kStyleCRT = requiredRenderingStyle(2)
 
 @MainActor
 @objc(BXMetalRenderingView)
 @objcMembers
+// NOTE: @preconcurrency is required to conform to the nonisolated ObjC protocol
+// from a @MainActor class in Swift 6 mode. The isolation invariant is enforced
+// at runtime instead: BXSession forwards frame callbacks to the main thread
+// before any view update, so update(with:) always runs on the main actor.
 public final class BXMetalRenderingView: MTKView, @preconcurrency BXFrameRenderingView, CAAnimationDelegate {
     
     // MARK: - Properties
